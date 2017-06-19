@@ -1,0 +1,72 @@
+---
+title: "2-Gen Austin PRP"
+subtitle: "The LBJ School of Public Affairs"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(ggplot2)
+library(GGally)
+library(plotly)
+library(d3heatmap)
+library(leaflet)
+library(webshot)
+library(maps)
+library(readr)
+library(highcharter)
+TestData=read_csv("~/GitHub/Maker Space/Test Data- ACS + 211 - Test Data- ACS + 211.csv")
+col_types = cols(`Zip Code` = col_character())
+names(TestData)
+reg=lm(calls~mfi2013, data=TestData)
+summary(reg)
+confint(reg)
+plot(reg)
+```
+    
+Column {data-width=600}
+-------------------------------------
+    
+### Chart 1
+    
+```{r Simple LR calls~fampov for Test Data, echo=FALSE}
+data(citytemp)
+
+hc <- highchart() %>% 
+  hc_xAxis(categories = citytemp$month) %>% 
+  hc_add_series(name = "Tokyo", data = citytemp$tokyo) %>% 
+  hc_add_series(name = "London", data = citytemp$london) %>% 
+  hc_add_series(name = "Other city",
+                data = (citytemp$tokyo + citytemp$london)/2)
+hc %>% hc_add_theme(hc_theme_538())
+```
+
+```{r Scatterplot of Calls and Family Poverty with Training Data, echo=FALSE}
+
+```
+   
+Column {data-width=400}
+-------------------------------------
+   
+### Chart 2
+
+```{r}
+data(unemployment)
+
+hcmap("countries/us/us-all-all", data = unemployment,
+      name = "Unemployment", value = "value", joinBy = c("hc-key", "code"),
+      borderColor = "transparent") %>%
+  hc_colorAxis(dataClasses = color_classes(c(seq(0, 10, by = 2), 50))) %>% 
+  hc_legend(layout = "vertical", align = "right",
+            floating = TRUE, valueDecimals = 0, valueSuffix = "%") 
+```   
+ 
+### Chart 3
+    
+```{r, fig.height=4, fig.width=5}
+library(d3heatmap)
+d3heatmap(TestData, scale="column", colors="Blues")
+```
