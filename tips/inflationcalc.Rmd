@@ -9,8 +9,7 @@ output:
     highlight: github
 ---
 
-# TIP: Automating Inflation Calculations in Google Sheets 
-Hey y’all, I was working on a historical data set on School Finance this past week and came across a flawed, albeit enlightening article on automating inflation calculations on historical for large, historical datasets. The formula had parsing errors that were fixable by adding a concatenate function. Anyway, passing it along in case others want to use it.
+Hey y’all, as I was working on a historical data set on School Finance this past week and came across a flawed, albeit enlightening article on automating inflation calculations on historical for large, historical datasets. The formula had parsing errors that were fixable by adding a concatenate function. Anyway, passing it along in case others want to use it.
 
 ![Figure 1 - Sample Historical Data](/Users/matthewworthington/Google Drive/R/GitHub/mrworthington.github.io/assets/img/calcinflation.png)
 
@@ -24,7 +23,7 @@ CONCATENATE("cost1=",B2,"&year1=",A2,"01&year2=",YEAR(TODAY()),"0",MONTH(DATE(20
 ```
 
 ## Step 2: If Needed, Replace Cells For Dates You’re Adjusting To
-* The only caveat is that you’ll need to replace the dates for `TODAY()` & `DATE(2017,5,20))` with whatever date you’re adjusting for. In case, I’m adjusting to the latest calculations that the Bureau of Labor Statistics has made available through their CPI Calculator.  If that’s what you’re adjusting for, then the current formula works as is. If your dates and figures are in columns other than `Column A` & `Column B`, you’ll need to adjust the `B2` & `A2` values in the formula above. Otherwise, it’ll work as it is written above.
+The only caveat is that you’ll need to replace the dates for `TODAY()` & `DATE(2017,5,20))` with whatever date you’re adjusting for. In case, I’m adjusting to the latest calculations that the Bureau of Labor Statistics has made available through their CPI Calculator.  If that’s what you’re adjusting for, then the current formula works as is. If your dates and figures are in columns other than `Column A` & `Column B`, you’ll need to adjust the `B2` & `A2` values in the formula above. Otherwise, it’ll work as it is written above.
 
 ## Step 3: Copy Down For All Rows With Data & Wait.
 Then just copy down for all rows that needed to be adjusted for inflation. Just to expect to wait a while if you’re loading queries for hundreds of data points.
