@@ -1,5 +1,6 @@
 ---
 title: "My Website"
+output: pdf_document
 ---
 
 Hello, Website!
