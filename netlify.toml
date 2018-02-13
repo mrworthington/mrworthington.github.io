@@ -1,3 +1,7 @@
+[context.production]
+  command = ""
+  publish = ""
+
 [context.blog]
   command = "hugo"
   publish = "public"
