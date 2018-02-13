@@ -1,5 +1,6 @@
 body {
-  font-family: "TiemposText", Georgia, Times, "Times New Roman", serif;
+  /* font-family: "TiemposText", Georgia, Times, "Times New Roman", serif; */
+  font-family: 'ibm-plex-sans', 'Helvetica Neue', Arial, sans-serif;
   font-size: 16px;
   color: #333;
 }
@@ -21,7 +22,8 @@ a.codelink:hover {
   color: rgb(18, 9, 119) !important; }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "TiemposHeadline", Georgia, Times, "Times New Roman", serif;
+  /* font-family: "TiemposHeadline", Georgia, Times, "Times New Roman", serif; */
+  font-family: 'ibm-plex-sans', 'Helvetica Neue', Arial, sans-serif;
   font-weight: 400;
   margin-bottom: 1rem; }
 
