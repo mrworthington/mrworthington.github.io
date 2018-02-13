@@ -6,6 +6,7 @@
     command = "hugo"
     publish = "public"
     HUGO_VERSION = "0.36"
+    RUBY_VERSION = "2.2.9"
 
 [context.blog]
   command = "hugo"
