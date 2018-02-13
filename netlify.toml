@@ -1,0 +1,4 @@
+[context.blog]
+  command = "hugo"
+  publish = "public"
+  HUGO_VERSION = "0.36"
