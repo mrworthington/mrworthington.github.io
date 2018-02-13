@@ -5,10 +5,10 @@
 [context.blog]
     command = "hugo"
     publish = "public"
-    HUGO_VERSION = "0.36"
 
   [context.blog.environment]
     RUBY_VERSION = "2.2.9"
+    HUGO_VERSION = "0.36"
     
 [context.branch-deploy]
     command = "hugo"
@@ -17,3 +17,4 @@
     
   [context.branch-deploy.environment]
     RUBY_VERSION = "2.2.9"
+    HUGO_VERSION = "0.36"
