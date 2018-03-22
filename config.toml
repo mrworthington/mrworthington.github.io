@@ -1,4 +1,4 @@
-baseurl = "/"
+baseurl = "https://www.mrworthington.com"
 DefaultContentLanguage = "en"
 title = "Matt Worthington"
 theme = "beautifulhugo"
