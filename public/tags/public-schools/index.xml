@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Public Schools on Matt Worthington</title>
+    <link>/tags/public-schools/</link>
+    <description>A blog about early modern history and digital humanities</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 21 Mar 2018 00:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="/tags/public-schools/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Testimony to The Texas Commission on Public School Finance</title>
+      <link>/2018/03/21/testimony-to-the-texas-commission-on-public-school-finance/</link>
+      <pubDate>Wed, 21 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/03/21/testimony-to-the-texas-commission-on-public-school-finance/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Notes On The Texas School Finance Commission</title>
+      <link>/2018/03/20/notes-on-the-texas-school-finance-commission/</link>
+      <pubDate>Tue, 20 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/03/20/notes-on-the-texas-school-finance-commission/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
