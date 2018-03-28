@@ -21,6 +21,9 @@ This evening, [the Ed Trust is hosting a discussion on twitter at 8PM ET](https:
 
 <!--more-->
 
+
+## Why Visualize School Finance?
+
 In recent years, much has been debated about school funding, or the lack thereof. Notably, recent studies coming out of places like [Texas A&M](https://www.texastribune.org/2018/03/28/texas-am-lori-taylor-public-education-funding/) and [the US Commission on Civil Rights](http://usccr.gov/pubs/2018-01-10-Education-Inequity.pdf) have highlighted funding deficits throughout America that not only threaten the futures of currently enrolled public school students, but [our future economies](https://www.texastribune.org/2018/03/20/texas-notice-credit-rating-downgrade-comptroller-says/) throughout America.
 
 You may not have children, but school finance impacts you regardless. And as one news executive said recently in a visit to one of my public policy classes, "school finance is the thing people should be talking about but will likely never get talked about."
