@@ -41,9 +41,13 @@ So here's to helping people understand with clean visualizations. Alright, let's
 
 While we'll visualize the three sources of funding, this dataset will organize a few other data points of use. While I'll do my best to address what each one is, I may overlook a few variables. If I do, you can reach out to me or reach out to the folks at the Census' Educational Finance Branch.
 
+### Accessing All the Data Used Here
+
+For this code-through, [you can download all the data used for this code-through from my github](https://github.com/mrworthington/fileshare/raw/master/sf-data.zip), which includes the inflation & state "FIPS" code data needed for the visualization to work properly. Just add it to whatever directory you're working out of and you'll be good to go.
+
 ### Import School Finance Data
 
-The US Census has been collecting data from every school district in the country since the 1960s. Using data provided through their FTP database, we can download and import each year's worth of data that they've collected since 1993. For our purposes, we'll start from 1993 for a couple of reasons explained by clicking on the tooltips here[^1] [^2].
+While you already have the data, the US Census has been collecting data from every school district in the country since the 1960s. Using their FTP database, you can download the files here and other various datasets related to public finance. For our purposes, we'll use their elementary and secondary school finance survey files and start from 1993 for a couple of reasons explained by clicking on the tooltips here[^1] [^2].
 
 [^1]: Before 1992, the method of collection for the census didn't disaggregate federal revenues from state revenues because federal dollars were technically implemented through the state. However, since 1992, the census shifted their reporting protocols for states and began requesting that each state delineate between their contributions versus what the federal government provided.
   
@@ -58,8 +62,6 @@ To access this raw data, you can go to the US Census FTP database where the scho
   ![You should see a connecting status like this before the remote disk loads the files.](/img/school-finance-viz/connectingtoftp.png)
 
 After the data downloads into the remote disk, find the files with the following labels highlighted in purple below (i.e., `"elsec.93.xls"`) and download them into a folder called "data". Once you do that, save a .Rproj file into the same location and you'll be able to run the code below without much trouble (I hope).
-
-Alternatively, you can download all the data used for this code-through from my github, which includes the inflation & state "FIPS" code data needed for the visualization to work properly.
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
