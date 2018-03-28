@@ -17,8 +17,6 @@ bigimg: [{src: "/img/school-finance-viz/SFNationalMapOT.png", desc: "Map of US S
 
 ---
 
-## Why Visualize School Finance?
-
 This evening, [the Ed Trust is hosting a discussion on twitter at 8PM ET](https://edtrust.org/resource/funding-gaps-2018/) on school funding inequity, so I thought I would do a code-through of a visualization I made this past summer while researching the legacy of a famous school finance Supreme Court case that ended up determining that [Americans had no fundamental right to an education](https://www.folomedia.org/americans-no-right-education/). In short, it shows the shares of funding over time for each of the three main sources of funding for public education in America: federal funding, state funding, and local funding (mostly property taxes). 
 
 <!--more-->
