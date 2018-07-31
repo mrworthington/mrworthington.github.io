@@ -9,7 +9,7 @@ output:
 ---
 This is a brief overview of where I've studied, worked, volunteered, or shared. By no means does it contain everything I've done, but covers the more notable experiences. If you'd like to know more about anything listed below, contact me using the links at the bottom of the page.
 
-## <a style="font-weight:900;text-transform:capitalize;color:#3d3d3d">Education</a>
+## <a style="font-weight:600;text-transform:capitalize;color:#3d3d3d">Education</a>
 ***
 #### **[The LBJ School of Public Affairs, UT Austin](https://lbj.utexas.edu)** <a style="font-weight:200;color:#9cadb7"> | Austin, TX</a><a style="float:right;color:#9cadb7">Exp. 2018</a> 
 #### Master of Public Affairs, Merit Fellowship Recipient
@@ -22,8 +22,10 @@ This is a brief overview of where I've studied, worked, volunteered, or shared. 
 
 
 
-## <a style="font-weight:900;text-transform:capitalize;color:#3d3d3d">Professional</a>
+## <a style="font-weight:600;text-transform:capitalize;color:#3d3d3d">Professional</a>
 ***
+#### <a style="color:#005f86">Director of Analytics & Insight</a> | <a href="http://www.unitedwayaustin.org" style="font-weight:200;text-transform:capitalize;color:#9cadb7">United Way for Greater Austin</a><a style="float:right;color:#9cadb7">Aug 2018-Present </a> 
+
 #### <a style="color:#005f86">Research & Reporting Analyst</a> | <a href="https://www.folomedia.org/about/" style="font-weight:200;text-transform:capitalize;color:#9cadb7">Folo Media</a><a style="float:right;color:#9cadb7">Summer & Fall 2017</a> 
 
 #### <a style="color:#005f86">Graduate Assistant</a> | <a href="http://diversity.utexas.edu" style="font-weight:200;text-transform:capitalize;color:#9cadb7">DDCE @ UT Austin</a><a style="float:right;color:#9cadb7">Spring 2017</a> 
@@ -34,7 +36,7 @@ This is a brief overview of where I've studied, worked, volunteered, or shared. 
 
 #### <a style="color:#005f86">Special Education Teacher & Case Manager</a> | <a href="http://profiles.dcps.dc.gov/MacFarland+Middle+School" style="font-weight:200;text-transform:capitalize;color:#9cadb7">DC Public Schools</a><a style="float:right;color:#9cadb7">2009-2012</a>
 
-## <a style="font-weight:900;text-transform:capitalize;color:#3d3d3d">Volunteer</a>
+## <a style="font-weight:600;text-transform:capitalize;color:#3d3d3d">Volunteer</a>
 ***
 #### <a style="color:#005f86">Liturgy Homilist</a> | <a href="http://voxveniae.com" style="font-weight:200;text-transform:capitalize;color:#9cadb7">Vox Veniae - Austin, TX</a><a style="float:right;color:#9cadb7">2015-Present</a> 
 
@@ -50,7 +52,7 @@ This is a brief overview of where I've studied, worked, volunteered, or shared. 
 
 #### <a style="color:#005f86">Summer Youth Volunteer</a> | <a href="http://ourkidsfirstsf.org" style="font-weight:200;text-transform:capitalize;color:#9cadb7">Our Kids First - San Francisco, CA</a><a style="float:right;color:#9cadb7">Summer 2017</a>  
 
-## <a style="font-weight:900;text-transform:capitalize;color:#3d3d3d">Publication and Presentations</a>
+## <a style="font-weight:600;text-transform:capitalize;color:#3d3d3d">Publication and Presentations</a>
 ***
 
 ##### [^1] <a href="https://www.folomedia.org/icymi-this-was-all-about-racism/" style="color:#005f86">ICYMI: This was all about racism</a> | <a style="font-weight:200;text-transform:capitalize;color:#9cadb7">Folo Media</a><a style="float:right;color:#9cadb7">Dec 2017</a>
