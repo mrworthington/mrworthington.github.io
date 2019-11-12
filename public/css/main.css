@@ -1,7 +1,7 @@
 /* --- General --- */
 
 body {
-  font-family: "Sentinel SSm A", "Sentinel SSm B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: "Ringside Narrow SSm A", "Ringside Narrow SSm B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 18px;
   color: #404040;
   position: relative;
@@ -15,8 +15,9 @@ p {
 }
 
 h1,h2,h3,h4,h5,h6 {
+  font-family: "Ringside Narrow SSm A", "Ringside Narrow SSm B";
 	font-style: normal;
-	font-weight: 700;
+	font-weight: 800;
 }
 
 p a {
@@ -34,7 +35,7 @@ a:focus {
 }
 
 code {
-	font-family: "IBM Plex Mono", Menlo, monospace;
+	font-family: "Fira Code", Menlo, monospace;
     padding: 2px 4px;
     font-size: 80%;
     color: #404040;
@@ -126,12 +127,19 @@ img {
 
 /* --- Navbar --- */
 
+.navbar-brand {
+    font-family: "Ringside Narrow SSm A", "Ringside Narrow SSm B";
+
+}
+
 .navbar-custom {
   background: #333f48;
   border-bottom: 0px solid #333f48;
 }
 
 .navbar-custom .nav li a {
+    font-family: "Ringside Narrow SSm A", "Ringside Narrow SSm B";
+
   text-transform: uppercase;
   font-size: 14px;
   letter-spacing: 1px;
