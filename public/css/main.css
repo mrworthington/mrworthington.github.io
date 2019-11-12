@@ -15,6 +15,7 @@ p {
 }
 
 h1,h2,h3,h4,h5,h6 {
+  font-family: "Ringside Narrow SSm A", "Ringside Narrow SSm B";
 	font-style: normal;
 	font-weight: 700;
 }
@@ -126,12 +127,19 @@ img {
 
 /* --- Navbar --- */
 
+.navbar-brand {
+    font-family: "Ringside Narrow SSm A", "Ringside Narrow SSm B";
+
+}
+
 .navbar-custom {
   background: #333f48;
   border-bottom: 0px solid #333f48;
 }
 
 .navbar-custom .nav li a {
+    font-family: "Ringside Narrow SSm A", "Ringside Narrow SSm B";
+
   text-transform: uppercase;
   font-size: 14px;
   letter-spacing: 1px;
