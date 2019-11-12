@@ -1,0 +1,748 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>School Finance on Matt Worthington</title>
+    <link>https://www.mrworthington.com/tags/school-finance/</link>
+    <description>A blog about early modern history and digital humanities</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 28 Mar 2018 00:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="https://www.mrworthington.com/tags/school-finance/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Visualizing American School Finance</title>
+      <link>https://www.mrworthington.com/2018/03/28/visualizing-american-school-finance-since-1993/</link>
+      <pubDate>Wed, 28 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.mrworthington.com/2018/03/28/visualizing-american-school-finance-since-1993/</guid>
+      <description>&lt;p&gt;This evening, &lt;a href=&#34;https://edtrust.org/resource/funding-gaps-2018/&#34;&gt;the Ed Trust is hosting a discussion on twitter at 8PM ET&lt;/a&gt; on school funding inequity, so I thought I would do a code-through of a visualization I made this past summer while researching the legacy of a famous school finance Supreme Court case that ended up determining that &lt;a href=&#34;https://www.folomedia.org/americans-no-right-education/&#34;&gt;Americans had no fundamental right to an education&lt;/a&gt;. In short, it shows the shares of funding over time for each of the three main sources of funding for public education in America: federal funding, state funding, and local funding (mostly property taxes).&lt;/p&gt;
+
+&lt;h2 id=&#34;why-visualize-school-finance&#34;&gt;Why Visualize School Finance?&lt;/h2&gt;
+
+&lt;p&gt;In recent years, much has been debated about school funding, or the lack thereof. Notably, recent studies coming out of places like &lt;a href=&#34;https://www.texastribune.org/2018/03/28/texas-am-lori-taylor-public-education-funding/&#34;&gt;Texas A&amp;amp;M&lt;/a&gt; and &lt;a href=&#34;http://usccr.gov/pubs/2018-01-10-Education-Inequity.pdf&#34;&gt;the US Commission on Civil Rights&lt;/a&gt; have highlighted funding deficits throughout America that not only threaten the futures of currently enrolled public school students, but &lt;a href=&#34;https://www.texastribune.org/2018/03/20/texas-notice-credit-rating-downgrade-comptroller-says/&#34;&gt;our future economies&lt;/a&gt; throughout America.&lt;/p&gt;
+
+&lt;p&gt;You may not have children, but school finance impacts you regardless. And as one news executive said recently in a visit to one of my public policy classes, &amp;ldquo;school finance is the thing people should be talking about but will likely never get talked about.&amp;rdquo;&lt;/p&gt;
+
+&lt;p&gt;So here&amp;rsquo;s to helping people understand with clean visualizations. Alright, let&amp;rsquo;s see the map and get to the code-through.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;the-map&#34;&gt;The Map&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&#34;../../img/school-finance-viz/SFNationalMapOT.png&#34; alt=&#34;Our Final Product: A Map of US School Funding Revenues Since 1993&#34; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;the-code-through&#34;&gt;The Code Through&lt;/h2&gt;
+
+&lt;p&gt;While we&amp;rsquo;ll visualize the three sources of funding, this dataset will organize a few other data points of use. While I&amp;rsquo;ll do my best to address what each one is, I may overlook a few variables. If I do, you can reach out to me or reach out to the folks at the Census&amp;rsquo; Educational Finance Branch.&lt;/p&gt;
+
+&lt;h3 id=&#34;accessing-all-the-data-used-here&#34;&gt;Accessing All the Data Used Here&lt;/h3&gt;
+
+&lt;p&gt;For this code-through, &lt;a href=&#34;https://github.com/mrworthington/fileshare/raw/master/sf-data.zip&#34;&gt;you can download all the data used for this code-through from my github&lt;/a&gt;, which includes the inflation &amp;amp; state &amp;ldquo;FIPS&amp;rdquo; code data needed for the visualization to work properly. Just add it to whatever directory you&amp;rsquo;re working out of and you&amp;rsquo;ll be good to go.&lt;/p&gt;
+
+&lt;h3 id=&#34;import-school-finance-data&#34;&gt;Import School Finance Data&lt;/h3&gt;
+
+&lt;p&gt;While you already have the data, the US Census has been collecting data from every school district in the country since the 1960s. Using their FTP database, you can download the files here and other various datasets related to public finance. For our purposes, we&amp;rsquo;ll use their elementary and secondary school finance survey files and start from 1993 for a couple of reasons explained by clicking on the tooltips here&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; &lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+
+&lt;p&gt;To access this raw data, you can go to the US Census FTP database where the school finance datasets are stored and download them into a folder there. First, &lt;a href=&#34;ftp://ftp.census.gov/govs/school/&#34;&gt;go to the FTP database&lt;/a&gt;. Second, choose &amp;ldquo;Allow&amp;rdquo; when prompted and select guest when asked for authentication.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;../../img/school-finance-viz/ftp-finderprompt.png&#34; alt=&#34;First, hit &amp;quot;Allow&amp;quot; &#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Once you do this, you should see a dialogue showing your connection status that looks like this.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;../../img/school-finance-viz/connectingtoftp.png&#34; alt=&#34;You should see a connecting status like this before the remote disk loads the files.&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;After the data downloads into the remote disk, find the files with the following labels highlighted in purple below (i.e., &lt;code&gt;&amp;quot;elsec.93.xls&amp;quot;&lt;/code&gt;) and download them into a folder called &amp;ldquo;data&amp;rdquo;. Once you do that, save a .Rproj file into the same location and you&amp;rsquo;ll be able to run the code below without much trouble (I hope).&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r setup, include=FALSE&#34; data-lang=&#34;r setup, include=FALSE&#34;&gt;knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE
+)
+library(tidyverse)
+library(readxl)
+library(geofacet)
+library(ggthemes)
+library(showtext)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;One note about my code. By no means am I an expert in R and when I produced this code, I knew way less about the &lt;code&gt;tidyverse&lt;/code&gt; than I do now. If any other R folks have feedback, I&amp;rsquo;m 100% open to ways I can make this code cleaner and more efficient.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r import school finance data, message=FALSE, warning=FALSE, cache=, include=TRUE, paged.print=FALSE&#34; data-lang=&#34;r import school finance data, message=FALSE, warning=FALSE, cache=, include=TRUE, paged.print=FALSE&#34;&gt;setwd(&amp;#34;data/&amp;#34;)
+
+#Import Census School Finance Data
+sf1993 &amp;lt;- read_excel(&amp;#34;elsec93.xls&amp;#34;)
+sf1994 &amp;lt;- read_excel(&amp;#34;elsec94.xls&amp;#34;)
+sf1995 &amp;lt;- read_excel(&amp;#34;elsec95.xls&amp;#34;)
+sf1996 &amp;lt;- read_excel(&amp;#34;elsec96.xls&amp;#34;)
+sf1997 &amp;lt;- read_excel(&amp;#34;elsec97.xls&amp;#34;)
+sf1998 &amp;lt;- read_excel(&amp;#34;elsec98.xls&amp;#34;)
+sf1999 &amp;lt;- read_excel(&amp;#34;elsec99.xls&amp;#34;)
+sf2000 &amp;lt;- read_excel(&amp;#34;elsec00.xls&amp;#34;)
+sf2001 &amp;lt;- read_excel(&amp;#34;elsec01.xls&amp;#34;)
+sf2002 &amp;lt;- read_excel(&amp;#34;elsec02.xls&amp;#34;)
+sf2003 &amp;lt;- read_excel(&amp;#34;elsec03.xls&amp;#34;)
+sf2004 &amp;lt;- read_excel(&amp;#34;elsec04.xls&amp;#34;)
+sf2005 &amp;lt;- read_excel(&amp;#34;elsec05.xls&amp;#34;)
+sf2006 &amp;lt;- read_excel(&amp;#34;elsec06.xls&amp;#34;)
+sf2007 &amp;lt;- read_excel(&amp;#34;elsec07.xls&amp;#34;)
+sf2008 &amp;lt;- read_excel(&amp;#34;elsec08.xls&amp;#34;)
+sf2009 &amp;lt;- read_excel(&amp;#34;elsec09.xls&amp;#34;)
+sf2010 &amp;lt;- read_excel(&amp;#34;elsec10.xls&amp;#34;)
+sf2011 &amp;lt;- read_excel(&amp;#34;elsec11.xls&amp;#34;)
+sf2012 &amp;lt;- read_excel(&amp;#34;elsec12.xls&amp;#34;)
+sf2013 &amp;lt;- read_excel(&amp;#34;elsec13.xls&amp;#34;)
+sf2014 &amp;lt;- read_excel(&amp;#34;elsec14.xls&amp;#34;)
+sf2015 &amp;lt;- read_excel(&amp;#34;elsec15.xls&amp;#34;)
+
+#Add YEAR Column, No M/D
+sf1993$YEAR &amp;lt;- as.character(&amp;#34;1993&amp;#34;)
+sf1994$YEAR &amp;lt;- as.character(&amp;#34;1994&amp;#34;)
+sf1995$YEAR &amp;lt;- as.character(&amp;#34;1995&amp;#34;)
+sf1996$YEAR &amp;lt;- as.character(&amp;#34;1996&amp;#34;)
+sf1997$YEAR &amp;lt;- as.character(&amp;#34;1997&amp;#34;)
+sf1998$YEAR &amp;lt;- as.character(&amp;#34;1998&amp;#34;)
+sf1999$YEAR &amp;lt;- as.character(&amp;#34;1999&amp;#34;)
+sf2000$YEAR &amp;lt;- as.character(&amp;#34;2000&amp;#34;)
+sf2001$YEAR &amp;lt;- as.character(&amp;#34;2001&amp;#34;)
+sf2002$YEAR &amp;lt;- as.character(&amp;#34;2002&amp;#34;)
+sf2003$YEAR &amp;lt;- as.character(&amp;#34;2003&amp;#34;)
+sf2004$YEAR &amp;lt;- as.character(&amp;#34;2004&amp;#34;)
+sf2005$YEAR &amp;lt;- as.character(&amp;#34;2005&amp;#34;)
+sf2006$YEAR &amp;lt;- as.character(&amp;#34;2006&amp;#34;)
+sf2007$YEAR &amp;lt;- as.character(&amp;#34;2007&amp;#34;)
+sf2008$YEAR &amp;lt;- as.character(&amp;#34;2008&amp;#34;)
+sf2009$YEAR &amp;lt;- as.character(&amp;#34;2009&amp;#34;)
+sf2010$YEAR &amp;lt;- as.character(&amp;#34;2010&amp;#34;)
+sf2011$YEAR &amp;lt;- as.character(&amp;#34;2011&amp;#34;)
+sf2012$YEAR &amp;lt;- as.character(&amp;#34;2012&amp;#34;)
+sf2013$YEAR &amp;lt;- as.character(&amp;#34;2013&amp;#34;)
+sf2014$YEAR &amp;lt;- as.character(&amp;#34;2014&amp;#34;)
+sf2015$YEAR &amp;lt;- as.character(&amp;#34;2015&amp;#34;)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&#34;import-inflation-data-and-tidy-the-data&#34;&gt;Import Inflation Data and Tidy The Data&lt;/h3&gt;
+
+&lt;p&gt;At this part, we&amp;rsquo;re limiting the raw data to the revenue sources, along with a few other identifiers and more granular funding sources that will get accounted into the larger buckets of Federal, State, &amp;amp; Local revenues but are interesting to see in our table nonetheless.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r filter variables of interest and rename, include=TRUE&#34; data-lang=&#34;r filter variables of interest and rename, include=TRUE&#34;&gt;#Introduce Inflation
+inflation &amp;lt;- read_csv(&amp;#34;data/inflation.csv&amp;#34;, col_types = cols(YEAR_S = col_character()))
+
+#Select Only Those Variables of Interest
+t1993 &amp;lt;- dplyr::select(sf1993, one_of(c(&amp;#34;STATE&amp;#34;, &amp;#34;ID&amp;#34;, &amp;#34;YEAR&amp;#34;, &amp;#34;NAME&amp;#34;, &amp;#34;SCHLEV&amp;#34;, &amp;#34;V33&amp;#34;, &amp;#34;TOTALREV&amp;#34;, &amp;#34;TFEDREV&amp;#34;, &amp;#34;TSTREV&amp;#34;,&amp;#34;TLOCREV&amp;#34;, &amp;#34;T06&amp;#34;, &amp;#34;U97&amp;#34;, &amp;#34;TOTALEXP&amp;#34;, &amp;#34;TCURELSC&amp;#34;)))
+t1994 &amp;lt;- dplyr::select(sf1994, one_of(c(&amp;#34;STATE&amp;#34;, &amp;#34;IDCENSUS&amp;#34;, &amp;#34;YEAR&amp;#34;, &amp;#34;NAME&amp;#34;, &amp;#34;SCHLEV&amp;#34;, &amp;#34;V33&amp;#34;, &amp;#34;TOTALREV&amp;#34;, &amp;#34;TFEDREV&amp;#34;, &amp;#34;TSTREV&amp;#34;,&amp;#34;TLOCREV&amp;#34;, &amp;#34;T06&amp;#34;, &amp;#34;U97&amp;#34;, &amp;#34;TOTALEXP&amp;#34;, &amp;#34;TCURELSC&amp;#34;)))
+t1995 &amp;lt;- dplyr::select(sf1995, one_of(c(&amp;#34;STATE&amp;#34;, &amp;#34;IDCENSUS&amp;#34;, &amp;#34;YEAR&amp;#34;, &amp;#34;NAME&amp;#34;, &amp;#34;SCHLEV&amp;#34;, &amp;#34;V33&amp;#34;, &amp;#34;TOTALREV&amp;#34;, &amp;#34;TFEDREV&amp;#34;, &amp;#34;TSTREV&amp;#34;,&amp;#34;TLOCREV&amp;#34;, &amp;#34;T06&amp;#34;, &amp;#34;U97&amp;#34;, &amp;#34;TOTALEXP&amp;#34;, &amp;#34;TCURELSC&amp;#34;)))
+t1996 &amp;lt;- dplyr::select(sf1996, one_of(c(&amp;#34;STATE&amp;#34;, &amp;#34;IDCENSUS&amp;#34;, &amp;#34;YEAR&amp;#34;, &amp;#34;NAME&amp;#34;, &amp;#34;SCHLEV&amp;#34;, &amp;#34;V33&amp;#34;, &amp;#34;TOTALREV&amp;#34;, &amp;#34;TFEDREV&amp;#34;, &amp;#34;TSTREV&amp;#34;,&amp;#34;TLOCREV&amp;#34;, &amp;#34;T06&amp;#34;, &amp;#34;U97&amp;#34;, &amp;#34;TOTALEXP&amp;#34;, &amp;#34;TCURELSC&amp;#34;)))
+t1997 &amp;lt;- dplyr::select(sf1997, one_of(c(&amp;#34;STATE&amp;#34;, &amp;#34;IDCENSUS&amp;#34;, &amp;#34;YEAR&amp;#34;, &amp;#34;NAME&amp;#34;, &amp;#34;SCHLEV&amp;#34;, &amp;#34;V33&amp;#34;, &amp;#34;TOTALREV&amp;#34;, &amp;#34;TFEDREV&amp;#34;, &amp;#34;TSTREV&amp;#34;,&amp;#34;TLOCREV&amp;#34;, &amp;#34;T06&amp;#34;, &amp;#34;U97&amp;#34;, &amp;#34;TOTALEXP&amp;#34;, &amp;#34;TCURELSC&amp;#34;)))
+t1998 &amp;lt;- dplyr::select(sf1998, one_of(c(&amp;#34;STATE&amp;#34;, &amp;#34;IDCENSUS&amp;#34;, &amp;#34;YEAR&amp;#34;, &amp;#34;NAME&amp;#34;, &amp;#34;SCHLEV&amp;#34;, &amp;#34;V33&amp;#34;, &amp;#34;TOTALREV&amp;#34;, &amp;#34;TFEDREV&amp;#34;, &amp;#34;TSTREV&amp;#34;,&amp;#34;TLOCREV&amp;#34;, &amp;#34;T06&amp;#34;, &amp;#34;U97&amp;#34;, &amp;#34;TOTALEXP&amp;#34;, &amp;#34;TCURELSC&amp;#34;)))
+t1999 &amp;lt;- dplyr::select(sf1999, one_of(c(&amp;#34;STATE&amp;#34;, &amp;#34;IDCENSUS&amp;#34;, &amp;#34;YEAR&amp;#34;, &amp;#34;NAME&amp;#34;, &amp;#34;SCHLEV&amp;#34;, &amp;#34;V33&amp;#34;, &amp;#34;TOTALREV&amp;#34;, &amp;#34;TFEDREV&amp;#34;, &amp;#34;TSTREV&amp;#34;,&amp;#34;TLOCREV&amp;#34;, &amp;#34;T06&amp;#34;, &amp;#34;U97&amp;#34;, &amp;#34;TOTALEXP&amp;#34;, &amp;#34;TCURELSC&amp;#34;)))
+t2000 &amp;lt;- dplyr::select(sf2000, one_of(c(&amp;#34;STATE&amp;#34;, &amp;#34;IDCENSUS&amp;#34;, &amp;#34;YEAR&amp;#34;, &amp;#34;NAME&amp;#34;, &amp;#34;SCHLEV&amp;#34;, &amp;#34;V33&amp;#34;, &amp;#34;TOTALREV&amp;#34;, &amp;#34;TFEDREV&amp;#34;, &amp;#34;TSTREV&amp;#34;,&amp;#34;TLOCREV&amp;#34;, &amp;#34;T06&amp;#34;, &amp;#34;U97&amp;#34;, &amp;#34;TOTALEXP&amp;#34;, &amp;#34;TCURELSC&amp;#34;)))
+t2001 &amp;lt;- dplyr::select(sf2001, one_of(c(&amp;#34;STATE&amp;#34;, &amp;#34;IDCENSUS&amp;#34;, &amp;#34;YEAR&amp;#34;, &amp;#34;NAME&amp;#34;, &amp;#34;SCHLEV&amp;#34;, &amp;#34;V33&amp;#34;, &amp;#34;TOTALREV&amp;#34;, &amp;#34;TFEDREV&amp;#34;, &amp;#34;TSTREV&amp;#34;,&amp;#34;TLOCREV&amp;#34;, &amp;#34;T06&amp;#34;, &amp;#34;U97&amp;#34;, &amp;#34;TOTALEXP&amp;#34;, &amp;#34;TCURELSC&amp;#34;)))
+t2002 &amp;lt;- dplyr::select(sf2002, one_of(c(&amp;#34;STATE&amp;#34;, &amp;#34;IDCENSUS&amp;#34;, &amp;#34;YEAR&amp;#34;, &amp;#34;NAME&amp;#34;, &amp;#34;SCHLEV&amp;#34;, &amp;#34;V33&amp;#34;, &amp;#34;TOTALREV&amp;#34;, &amp;#34;TFEDREV&amp;#34;, &amp;#34;TSTREV&amp;#34;,&amp;#34;TLOCREV&amp;#34;, &amp;#34;T06&amp;#34;, &amp;#34;U97&amp;#34;, &amp;#34;TOTALEXP&amp;#34;, &amp;#34;TCURELSC&amp;#34;)))
+t2003 &amp;lt;- dplyr::select(sf2003, one_of(c(&amp;#34;STATE&amp;#34;, &amp;#34;IDCENSUS&amp;#34;, &amp;#34;YEAR&amp;#34;, &amp;#34;NAME&amp;#34;, &amp;#34;SCHLEV&amp;#34;, &amp;#34;V33&amp;#34;, &amp;#34;TOTALREV&amp;#34;, &amp;#34;TFEDREV&amp;#34;, &amp;#34;TSTREV&amp;#34;,&amp;#34;TLOCREV&amp;#34;, &amp;#34;T06&amp;#34;, &amp;#34;U97&amp;#34;, &amp;#34;TOTALEXP&amp;#34;, &amp;#34;TCURELSC&amp;#34;)))
+t2004 &amp;lt;- dplyr::select(sf2004, one_of(c(&amp;#34;STATE&amp;#34;, &amp;#34;IDCENSUS&amp;#34;, &amp;#34;YEAR&amp;#34;, &amp;#34;NAME&amp;#34;, &amp;#34;SCHLEV&amp;#34;, &amp;#34;V33&amp;#34;, &amp;#34;TOTALREV&amp;#34;, &amp;#34;TFEDREV&amp;#34;, &amp;#34;TSTREV&amp;#34;,&amp;#34;TLOCREV&amp;#34;, &amp;#34;T06&amp;#34;, &amp;#34;U97&amp;#34;, &amp;#34;TOTALEXP&amp;#34;, &amp;#34;TCURELSC&amp;#34;)))
+t2005 &amp;lt;- dplyr::select(sf2005, one_of(c(&amp;#34;STATE&amp;#34;, &amp;#34;IDCENSUS&amp;#34;, &amp;#34;YEAR&amp;#34;, &amp;#34;NAME&amp;#34;, &amp;#34;SCHLEV&amp;#34;, &amp;#34;V33&amp;#34;, &amp;#34;TOTALREV&amp;#34;, &amp;#34;TFEDREV&amp;#34;, &amp;#34;TSTREV&amp;#34;,&amp;#34;TLOCREV&amp;#34;, &amp;#34;T06&amp;#34;, &amp;#34;U97&amp;#34;, &amp;#34;TOTALEXP&amp;#34;, &amp;#34;TCURELSC&amp;#34;)))
+t2006 &amp;lt;- dplyr::select(sf2006, one_of(c(&amp;#34;STATE&amp;#34;, &amp;#34;IDCENSUS&amp;#34;, &amp;#34;YEAR&amp;#34;, &amp;#34;NAME&amp;#34;, &amp;#34;SCHLEV&amp;#34;, &amp;#34;V33&amp;#34;, &amp;#34;TOTALREV&amp;#34;, &amp;#34;TFEDREV&amp;#34;, &amp;#34;TSTREV&amp;#34;,&amp;#34;TLOCREV&amp;#34;, &amp;#34;T06&amp;#34;, &amp;#34;U97&amp;#34;, &amp;#34;TOTALEXP&amp;#34;, &amp;#34;TCURELSC&amp;#34;)))
+t2007 &amp;lt;- dplyr::select(sf2007, one_of(c(&amp;#34;STATE&amp;#34;, &amp;#34;IDCENSUS&amp;#34;, &amp;#34;YEAR&amp;#34;, &amp;#34;NAME&amp;#34;, &amp;#34;SCHLEV&amp;#34;, &amp;#34;V33&amp;#34;, &amp;#34;TOTALREV&amp;#34;, &amp;#34;TFEDREV&amp;#34;, &amp;#34;TSTREV&amp;#34;,&amp;#34;TLOCREV&amp;#34;, &amp;#34;T06&amp;#34;, &amp;#34;U97&amp;#34;, &amp;#34;TOTALEXP&amp;#34;, &amp;#34;TCURELSC&amp;#34;)))
+t2008 &amp;lt;- dplyr::select(sf2008, one_of(c(&amp;#34;STATE&amp;#34;, &amp;#34;IDCENSUS&amp;#34;, &amp;#34;YEAR&amp;#34;, &amp;#34;NAME&amp;#34;, &amp;#34;SCHLEV&amp;#34;, &amp;#34;V33&amp;#34;, &amp;#34;TOTALREV&amp;#34;, &amp;#34;TFEDREV&amp;#34;, &amp;#34;TSTREV&amp;#34;,&amp;#34;TLOCREV&amp;#34;, &amp;#34;T06&amp;#34;, &amp;#34;U97&amp;#34;, &amp;#34;TOTALEXP&amp;#34;, &amp;#34;TCURELSC&amp;#34;)))
+t2009 &amp;lt;- dplyr::select(sf2009, one_of(c(&amp;#34;STATE&amp;#34;, &amp;#34;IDCENSUS&amp;#34;, &amp;#34;YEAR&amp;#34;, &amp;#34;NAME&amp;#34;, &amp;#34;SCHLEV&amp;#34;, &amp;#34;V33&amp;#34;, &amp;#34;TOTALREV&amp;#34;, &amp;#34;TFEDREV&amp;#34;, &amp;#34;TSTREV&amp;#34;,&amp;#34;TLOCREV&amp;#34;, &amp;#34;T06&amp;#34;, &amp;#34;U97&amp;#34;, &amp;#34;TOTALEXP&amp;#34;, &amp;#34;TCURELSC&amp;#34;)))
+t2010 &amp;lt;- dplyr::select(sf2010, one_of(c(&amp;#34;STATE&amp;#34;, &amp;#34;IDCENSUS&amp;#34;, &amp;#34;YEAR&amp;#34;, &amp;#34;NAME&amp;#34;, &amp;#34;SCHLEV&amp;#34;, &amp;#34;V33&amp;#34;, &amp;#34;TOTALREV&amp;#34;, &amp;#34;TFEDREV&amp;#34;, &amp;#34;TSTREV&amp;#34;,&amp;#34;TLOCREV&amp;#34;, &amp;#34;T06&amp;#34;, &amp;#34;U97&amp;#34;, &amp;#34;TOTALEXP&amp;#34;, &amp;#34;TCURELSC&amp;#34;)))
+t2011 &amp;lt;- dplyr::select(sf2011, one_of(c(&amp;#34;STATE&amp;#34;, &amp;#34;IDCENSUS&amp;#34;, &amp;#34;YEAR&amp;#34;, &amp;#34;NAME&amp;#34;, &amp;#34;SCHLEV&amp;#34;, &amp;#34;V33&amp;#34;, &amp;#34;TOTALREV&amp;#34;, &amp;#34;TFEDREV&amp;#34;, &amp;#34;TSTREV&amp;#34;,&amp;#34;TLOCREV&amp;#34;, &amp;#34;T06&amp;#34;, &amp;#34;U97&amp;#34;, &amp;#34;TOTALEXP&amp;#34;, &amp;#34;TCURELSC&amp;#34;)))
+t2012 &amp;lt;- dplyr::select(sf2012, one_of(c(&amp;#34;STATE&amp;#34;, &amp;#34;IDCENSUS&amp;#34;, &amp;#34;YEAR&amp;#34;, &amp;#34;NAME&amp;#34;, &amp;#34;SCHLEV&amp;#34;, &amp;#34;V33&amp;#34;, &amp;#34;TOTALREV&amp;#34;, &amp;#34;TFEDREV&amp;#34;, &amp;#34;TSTREV&amp;#34;,&amp;#34;TLOCREV&amp;#34;, &amp;#34;T06&amp;#34;, &amp;#34;U97&amp;#34;, &amp;#34;TOTALEXP&amp;#34;, &amp;#34;TCURELSC&amp;#34;)))
+t2013 &amp;lt;- dplyr::select(sf2013, one_of(c(&amp;#34;STATE&amp;#34;, &amp;#34;IDCENSUS&amp;#34;, &amp;#34;YEAR&amp;#34;, &amp;#34;NAME&amp;#34;, &amp;#34;SCHLEV&amp;#34;, &amp;#34;V33&amp;#34;, &amp;#34;TOTALREV&amp;#34;, &amp;#34;TFEDREV&amp;#34;, &amp;#34;TSTREV&amp;#34;,&amp;#34;TLOCREV&amp;#34;, &amp;#34;T06&amp;#34;, &amp;#34;U97&amp;#34;, &amp;#34;TOTALEXP&amp;#34;, &amp;#34;TCURELSC&amp;#34;)))
+t2014 &amp;lt;- dplyr::select(sf2014, one_of(c(&amp;#34;STATE&amp;#34;, &amp;#34;IDCENSUS&amp;#34;, &amp;#34;YEAR&amp;#34;, &amp;#34;NAME&amp;#34;, &amp;#34;SCHLEV&amp;#34;, &amp;#34;V33&amp;#34;, &amp;#34;TOTALREV&amp;#34;, &amp;#34;TFEDREV&amp;#34;, &amp;#34;TSTREV&amp;#34;,&amp;#34;TLOCREV&amp;#34;, &amp;#34;T06&amp;#34;, &amp;#34;U97&amp;#34;, &amp;#34;TOTALEXP&amp;#34;, &amp;#34;TCURELSC&amp;#34;)))
+t2015 &amp;lt;- dplyr::select(sf2015, one_of(c(&amp;#34;STATE&amp;#34;, &amp;#34;IDCENSUS&amp;#34;, &amp;#34;YEAR&amp;#34;, &amp;#34;NAME&amp;#34;, &amp;#34;SCHLEV&amp;#34;, &amp;#34;V33&amp;#34;, &amp;#34;TOTALREV&amp;#34;, &amp;#34;TFEDREV&amp;#34;, &amp;#34;TSTREV&amp;#34;,&amp;#34;TLOCREV&amp;#34;, &amp;#34;T06&amp;#34;, &amp;#34;U97&amp;#34;, &amp;#34;TOTALEXP&amp;#34;, &amp;#34;TCURELSC&amp;#34;)))&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&#34;recode-additional-variables-of-interest&#34;&gt;Recode Additional Variables of Interest&lt;/h3&gt;
+
+&lt;p&gt;Truth be told, many databases use strange identifiers to identify what those variables represent. In the census dataset, they used some names that are easy to interpret at first glance. For instance, &lt;code&gt;TOTALREV&lt;/code&gt; equals &amp;ldquo;Total Revenue&amp;rdquo;. However, some variables aren&amp;rsquo;t easily interpretable. For my purposes, I wanted to create more readable names for some of the variables I pulled in earlier. This code does that.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r recode all variables from original dataset, include=FALSE&#34; data-lang=&#34;r recode all variables from original dataset, include=FALSE&#34;&gt;#Recode 1993 Variables
+t1993 &amp;lt;- rename(t1993,  
+                ENROLL = V33,
+                IDCENSUS = ID,
+                PROPTAX = T06,
+                MISCREV = U97)
+
+#Recode 1994 Variables
+t1994 &amp;lt;- rename(t1994,  
+                ENROLL = V33,
+                PROPTAX = T06,
+                MISCREV = U97)
+
+#Recode 1995 Variables
+t1995 &amp;lt;- rename(t1995,  
+                ENROLL = V33,
+                PROPTAX = T06,
+                MISCREV = U97)
+
+#Recode 1996 Variables
+t1996 &amp;lt;- rename(t1996,  
+                ENROLL = V33,
+                PROPTAX = T06,
+                MISCREV = U97)
+
+#Recode 1997 Variables
+t1997 &amp;lt;- rename(t1997,  
+                ENROLL = V33,
+                PROPTAX = T06,
+                MISCREV = U97)
+
+#Recode 1998 Variables
+t1998 &amp;lt;- rename(t1998,  
+                ENROLL = V33,
+                PROPTAX = T06,
+                MISCREV = U97)
+
+#Recode 1999 Variables
+t1999 &amp;lt;- rename(t1999,  
+                ENROLL = V33,
+                PROPTAX = T06,
+                MISCREV = U97)
+
+#Recode 2000 Variables
+t2000 &amp;lt;- rename(t2000,  
+                ENROLL = V33,
+                PROPTAX = T06,
+                MISCREV = U97)
+
+#Recode 2001 Variables
+t2001 &amp;lt;- rename(t2001,  
+                ENROLL = V33,
+                PROPTAX = T06,
+                MISCREV = U97)
+
+#Recode 2002 Variables
+t2002 &amp;lt;- rename(t2002,  
+                ENROLL = V33,
+                PROPTAX = T06,
+                MISCREV = U97)
+
+#Recode 2003 Variables
+t2003 &amp;lt;- rename(t2003,  
+                ENROLL = V33,
+                PROPTAX = T06,
+                MISCREV = U97)
+
+#Recode 2004 Variables
+t2004 &amp;lt;- rename(t2004,  
+                ENROLL = V33,
+                PROPTAX = T06,
+                MISCREV = U97)
+
+#Recode 2005 Variables
+t2005 &amp;lt;- rename(t2005,  
+                ENROLL = V33,
+                PROPTAX = T06,
+                MISCREV = U97)
+#Recode 2006 Variables
+t2006 &amp;lt;- rename(t2006,  
+                ENROLL = V33,
+                PROPTAX = T06,
+                MISCREV = U97)
+
+#Recode 2007 Variables
+t2007 &amp;lt;- rename(t2007,  
+                ENROLL = V33,
+                PROPTAX = T06,
+                MISCREV = U97)
+
+#Recode 2008 Variables
+t2008 &amp;lt;- rename(t2008,  
+                ENROLL = V33,
+                PROPTAX = T06,
+                MISCREV = U97)
+
+#Recode 2009 Variables
+t2009 &amp;lt;- rename(t2009,  
+                ENROLL = V33,
+                PROPTAX = T06,
+                MISCREV = U97)
+
+#Recode 2010 Variables
+t2010 &amp;lt;- rename(t2010,  
+                ENROLL = V33,
+                PROPTAX = T06,
+                MISCREV = U97)
+
+#Recode 2011 Variables
+t2011 &amp;lt;- rename(t2011,  
+                ENROLL = V33,
+                PROPTAX = T06,
+                MISCREV = U97)
+
+#Recode 2012 Variables
+t2012 &amp;lt;- rename(t2012,  
+                ENROLL = V33,
+                PROPTAX = T06,
+                MISCREV = U97)
+
+#Recode 2013 Variables
+t2013 &amp;lt;- rename(t2013,  
+                ENROLL = V33,
+                PROPTAX = T06,
+                MISCREV = U97)
+
+#Recode 2014 Variables
+t2014 &amp;lt;- rename(t2014,  
+                ENROLL = V33,
+                PROPTAX = T06,
+                MISCREV = U97)
+
+#Recode 2015 Variables
+t2015 &amp;lt;- rename(t2015,  
+                ENROLL = V33,
+                PROPTAX = T06,
+                MISCREV = U97)
+
+inflation &amp;lt;- rename(inflation, 
+                    INDEX = Index,
+                    YEAR = YEAR_S)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&#34;add-the-bls-education-inflation-index&#34;&gt;Add The BLS Education Inflation Index&lt;/h3&gt;
+
+&lt;p&gt;Here, we&amp;rsquo;re combining the inflation data from &lt;a href=&#34;https://data.bls.gov/cgi-bin/surveymost?cu&#34;&gt;the BLS Education Inflation Index&lt;/a&gt; alongside their annual counterparts from the census files so we can multiply the index value by each year&amp;rsquo;s recorded funding amount. Once we do that, we&amp;rsquo;ll have our inflation adjusted figures and be able to visualize them.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r add inflation, echo=TRUE&#34; data-lang=&#34;r add inflation, echo=TRUE&#34;&gt;#Add Inflation Index
+inflation &amp;lt;- inflation %&amp;gt;% as_tibble() %&amp;gt;% mutate(
+  Annual = NULL)
+t1993 &amp;lt;- left_join(t1993, inflation, by =&amp;#34;YEAR&amp;#34;)
+t1994 &amp;lt;- left_join(t1994, inflation, by =&amp;#34;YEAR&amp;#34;)
+t1995 &amp;lt;- left_join(t1995, inflation, by =&amp;#34;YEAR&amp;#34;)
+t1996 &amp;lt;- left_join(t1996, inflation, by =&amp;#34;YEAR&amp;#34;)
+t1997 &amp;lt;- left_join(t1997, inflation, by =&amp;#34;YEAR&amp;#34;)
+t1998 &amp;lt;- left_join(t1998, inflation, by =&amp;#34;YEAR&amp;#34;)
+t1999 &amp;lt;- left_join(t1999, inflation, by =&amp;#34;YEAR&amp;#34;)
+t2000 &amp;lt;- left_join(t2000, inflation, by =&amp;#34;YEAR&amp;#34;)
+t2001 &amp;lt;- left_join(t2001, inflation, by =&amp;#34;YEAR&amp;#34;)
+t2002 &amp;lt;- left_join(t2002, inflation, by =&amp;#34;YEAR&amp;#34;)
+t2003 &amp;lt;- left_join(t2003, inflation, by =&amp;#34;YEAR&amp;#34;)
+t2004 &amp;lt;- left_join(t2004, inflation, by =&amp;#34;YEAR&amp;#34;)
+t2005 &amp;lt;- left_join(t2005, inflation, by =&amp;#34;YEAR&amp;#34;)
+t2006 &amp;lt;- left_join(t2006, inflation, by =&amp;#34;YEAR&amp;#34;)
+t2007 &amp;lt;- left_join(t2007, inflation, by =&amp;#34;YEAR&amp;#34;)
+t2008 &amp;lt;- left_join(t2008, inflation, by =&amp;#34;YEAR&amp;#34;)
+t2009 &amp;lt;- left_join(t2009, inflation, by =&amp;#34;YEAR&amp;#34;)
+t2010 &amp;lt;- left_join(t2010, inflation, by =&amp;#34;YEAR&amp;#34;)
+t2011 &amp;lt;- left_join(t2011, inflation, by =&amp;#34;YEAR&amp;#34;)
+t2012 &amp;lt;- left_join(t2012, inflation, by =&amp;#34;YEAR&amp;#34;)
+t2013 &amp;lt;- left_join(t2013, inflation, by =&amp;#34;YEAR&amp;#34;)
+t2014 &amp;lt;- left_join(t2014, inflation, by =&amp;#34;YEAR&amp;#34;)
+t2015 &amp;lt;- left_join(t2015, inflation, by =&amp;#34;YEAR&amp;#34;)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&#34;adjust-our-data-for-inflation&#34;&gt;Adjust Our Data for Inflation&lt;/h3&gt;
+
+&lt;p&gt;As mentioned before, we&amp;rsquo;ll be using data from &lt;a href=&#34;https://data.bls.gov/cgi-bin/surveymost?cu&#34;&gt;the Bureau of Labor &amp;amp; Statistics&amp;rsquo; Education Inflation Index&lt;/a&gt; to calculate our inflation adjusted figures.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r Calculate Education Inflation 1993-2015, include=FALSE&#34; data-lang=&#34;r Calculate Education Inflation 1993-2015, include=FALSE&#34;&gt;t1993e &amp;lt;- t1993 %&amp;gt;% as_tibble() %&amp;gt;% mutate(
+  TOTALREVe = TOTALREV*IndexED,
+  TFEDREVe = TFEDREV*IndexED,
+  TSTREVe = TSTREV*IndexED,
+  TLOCREVe = TLOCREV*IndexED,
+  PROPTAXe = PROPTAX*IndexED,
+  MISCREVe = MISCREV*IndexED,
+  TOTALEXPe = TOTALEXP*IndexED,
+  TCURELSCe = TCURELSC*IndexED)
+
+t1994e &amp;lt;- t1994 %&amp;gt;% as_tibble() %&amp;gt;% mutate(
+  TOTALREVe = TOTALREV*IndexED,
+  TFEDREVe = TFEDREV*IndexED,
+  TSTREVe = TSTREV*IndexED,
+  TLOCREVe = TLOCREV*IndexED,
+  PROPTAXe = PROPTAX*IndexED,
+  MISCREVe = MISCREV*IndexED,
+  TOTALEXPe = TOTALEXP*IndexED,
+  TCURELSCe = TCURELSC*IndexED)
+
+t1995e &amp;lt;- t1995 %&amp;gt;% as_tibble() %&amp;gt;% mutate(
+  TOTALREVe = TOTALREV*IndexED,
+  TFEDREVe = TFEDREV*IndexED,
+  TSTREVe = TSTREV*IndexED,
+  TLOCREVe = TLOCREV*IndexED,
+  PROPTAXe = PROPTAX*IndexED,
+  MISCREVe = MISCREV*IndexED,
+  TOTALEXPe = TOTALEXP*IndexED,
+  TCURELSCe = TCURELSC*IndexED)
+
+t1996e &amp;lt;- t1996 %&amp;gt;% as_tibble() %&amp;gt;% mutate(
+  TOTALREVe = TOTALREV*IndexED,
+  TFEDREVe = TFEDREV*IndexED,
+  TSTREVe = TSTREV*IndexED,
+  TLOCREVe = TLOCREV*IndexED,
+  PROPTAXe = PROPTAX*IndexED,
+  MISCREVe = MISCREV*IndexED,
+  TOTALEXPe = TOTALEXP*IndexED,
+  TCURELSCe = TCURELSC*IndexED)
+
+t1997e &amp;lt;- t1997 %&amp;gt;% as_tibble() %&amp;gt;% mutate(
+  TOTALREVe = TOTALREV*IndexED,
+  TFEDREVe = TFEDREV*IndexED,
+  TSTREVe = TSTREV*IndexED,
+  TLOCREVe = TLOCREV*IndexED,
+  PROPTAXe = PROPTAX*IndexED,
+  MISCREVe = MISCREV*IndexED,
+  TOTALEXPe = TOTALEXP*IndexED,
+  TCURELSCe = TCURELSC*IndexED)
+
+t1998e &amp;lt;- t1998 %&amp;gt;% as_tibble() %&amp;gt;% mutate(
+  TOTALREVe = TOTALREV*IndexED,
+  TFEDREVe = TFEDREV*IndexED,
+  TSTREVe = TSTREV*IndexED,
+  TLOCREVe = TLOCREV*IndexED,
+  PROPTAXe = PROPTAX*IndexED,
+  MISCREVe = MISCREV*IndexED,
+  TOTALEXPe = TOTALEXP*IndexED,
+  TCURELSCe = TCURELSC*IndexED)
+
+t1999e &amp;lt;- t1999 %&amp;gt;% as_tibble() %&amp;gt;% mutate(
+  TOTALREVe = TOTALREV*IndexED,
+  TFEDREVe = TFEDREV*IndexED,
+  TSTREVe = TSTREV*IndexED,
+  TLOCREVe = TLOCREV*IndexED,
+  PROPTAXe = PROPTAX*IndexED,
+  MISCREVe = MISCREV*IndexED,
+  TOTALEXPe = TOTALEXP*IndexED,
+  TCURELSCe = TCURELSC*IndexED)
+
+t2000e &amp;lt;- t2000 %&amp;gt;% as_tibble() %&amp;gt;% mutate(
+  TOTALREVe = TOTALREV*IndexED,
+  TFEDREVe = TFEDREV*IndexED,
+  TSTREVe = TSTREV*IndexED,
+  TLOCREVe = TLOCREV*IndexED,
+  PROPTAXe = PROPTAX*IndexED,
+  MISCREVe = MISCREV*IndexED,
+  TOTALEXPe = TOTALEXP*IndexED,
+  TCURELSCe = TCURELSC*IndexED)
+
+t2001e &amp;lt;- t2001 %&amp;gt;% as_tibble() %&amp;gt;% mutate(
+  TOTALREVe = TOTALREV*IndexED,
+  TFEDREVe = TFEDREV*IndexED,
+  TSTREVe = TSTREV*IndexED,
+  TLOCREVe = TLOCREV*IndexED,
+  PROPTAXe = PROPTAX*IndexED,
+  MISCREVe = MISCREV*IndexED,
+  TOTALEXPe = TOTALEXP*IndexED,
+  TCURELSCe = TCURELSC*IndexED)
+
+
+t2002e &amp;lt;- t2002 %&amp;gt;% as_tibble() %&amp;gt;% mutate(
+  TOTALREVe = TOTALREV*IndexED,
+  TFEDREVe = TFEDREV*IndexED,
+  TSTREVe = TSTREV*IndexED,
+  TLOCREVe = TLOCREV*IndexED,
+  PROPTAXe = PROPTAX*IndexED,
+  MISCREVe = MISCREV*IndexED,
+  TOTALEXPe = TOTALEXP*IndexED,
+  TCURELSCe = TCURELSC*IndexED)
+
+t2003e &amp;lt;- t2003 %&amp;gt;% as_tibble() %&amp;gt;% mutate(
+  TOTALREVe = TOTALREV*IndexED,
+  TFEDREVe = TFEDREV*IndexED,
+  TSTREVe = TSTREV*IndexED,
+  TLOCREVe = TLOCREV*IndexED,
+  PROPTAXe = PROPTAX*IndexED,
+  MISCREVe = MISCREV*IndexED,
+  TOTALEXPe = TOTALEXP*IndexED,
+  TCURELSCe = TCURELSC*IndexED)
+
+t2004e &amp;lt;- t2004 %&amp;gt;% as_tibble() %&amp;gt;% mutate(
+  TOTALREVe = TOTALREV*IndexED,
+  TFEDREVe = TFEDREV*IndexED,
+  TSTREVe = TSTREV*IndexED,
+  TLOCREVe = TLOCREV*IndexED,
+  PROPTAXe = PROPTAX*IndexED,
+  MISCREVe = MISCREV*IndexED,
+  TOTALEXPe = TOTALEXP*IndexED,
+  TCURELSCe = TCURELSC*IndexED)
+
+t2005e &amp;lt;- t2005 %&amp;gt;% as_tibble() %&amp;gt;% mutate(
+  TOTALREVe = TOTALREV*IndexED,
+  TFEDREVe = TFEDREV*IndexED,
+  TSTREVe = TSTREV*IndexED,
+  TLOCREVe = TLOCREV*IndexED,
+  PROPTAXe = PROPTAX*IndexED,
+  MISCREVe = MISCREV*IndexED,
+  TOTALEXPe = TOTALEXP*IndexED,
+  TCURELSCe = TCURELSC*IndexED)
+
+t2006e &amp;lt;- t2006 %&amp;gt;% as_tibble() %&amp;gt;% mutate(
+  TOTALREVe = TOTALREV*IndexED,
+  TFEDREVe = TFEDREV*IndexED,
+  TSTREVe = TSTREV*IndexED,
+  TLOCREVe = TLOCREV*IndexED,
+  PROPTAXe = PROPTAX*IndexED,
+  MISCREVe = MISCREV*IndexED,
+  TOTALEXPe = TOTALEXP*IndexED,
+  TCURELSCe = TCURELSC*IndexED)
+
+t2007e &amp;lt;- t2007 %&amp;gt;% as_tibble() %&amp;gt;% mutate(
+  TOTALREVe = TOTALREV*IndexED,
+  TFEDREVe = TFEDREV*IndexED,
+  TSTREVe = TSTREV*IndexED,
+  TLOCREVe = TLOCREV*IndexED,
+  PROPTAXe = PROPTAX*IndexED,
+  MISCREVe = MISCREV*IndexED,
+  TOTALEXPe = TOTALEXP*IndexED,
+  TCURELSCe = TCURELSC*IndexED)
+
+t2008e &amp;lt;- t2008 %&amp;gt;% as_tibble() %&amp;gt;% mutate(
+  TOTALREVe = TOTALREV*IndexED,
+  TFEDREVe = TFEDREV*IndexED,
+  TSTREVe = TSTREV*IndexED,
+  TLOCREVe = TLOCREV*IndexED,
+  PROPTAXe = PROPTAX*IndexED,
+  MISCREVe = MISCREV*IndexED,
+  TOTALEXPe = TOTALEXP*IndexED,
+  TCURELSCe = TCURELSC*IndexED)
+
+t2009e &amp;lt;- t2009 %&amp;gt;% as_tibble() %&amp;gt;% mutate(
+  TOTALREVe = TOTALREV*IndexED,
+  TFEDREVe = TFEDREV*IndexED,
+  TSTREVe = TSTREV*IndexED,
+  TLOCREVe = TLOCREV*IndexED,
+  PROPTAXe = PROPTAX*IndexED,
+  MISCREVe = MISCREV*IndexED,
+  TOTALEXPe = TOTALEXP*IndexED,
+  TCURELSCe = TCURELSC*IndexED)
+
+t2010e &amp;lt;- t2010 %&amp;gt;% as_tibble() %&amp;gt;% mutate(
+  TOTALREVe = TOTALREV*IndexED,
+  TFEDREVe = TFEDREV*IndexED,
+  TSTREVe = TSTREV*IndexED,
+  TLOCREVe = TLOCREV*IndexED,
+  PROPTAXe = PROPTAX*IndexED,
+  MISCREVe = MISCREV*IndexED,
+  TOTALEXPe = TOTALEXP*IndexED,
+  TCURELSCe = TCURELSC*IndexED)
+
+t2011e &amp;lt;- t2011 %&amp;gt;% as_tibble() %&amp;gt;% mutate(
+  TOTALREVe = TOTALREV*IndexED,
+  TFEDREVe = TFEDREV*IndexED,
+  TSTREVe = TSTREV*IndexED,
+  TLOCREVe = TLOCREV*IndexED,
+  PROPTAXe = PROPTAX*IndexED,
+  MISCREVe = MISCREV*IndexED,
+  TOTALEXPe = TOTALEXP*IndexED,
+  TCURELSCe = TCURELSC*IndexED)
+
+t2012e &amp;lt;- t2012 %&amp;gt;% as_tibble() %&amp;gt;% mutate(
+  TOTALREVe = TOTALREV*IndexED,
+  TFEDREVe = TFEDREV*IndexED,
+  TSTREVe = TSTREV*IndexED,
+  TLOCREVe = TLOCREV*IndexED,
+  PROPTAXe = PROPTAX*IndexED,
+  MISCREVe = MISCREV*IndexED,
+  TOTALEXPe = TOTALEXP*IndexED,
+  TCURELSCe = TCURELSC*IndexED)
+
+t2013e &amp;lt;- t2013 %&amp;gt;% as_tibble() %&amp;gt;% mutate(
+  TOTALREVe = TOTALREV*IndexED,
+  TFEDREVe = TFEDREV*IndexED,
+  TSTREVe = TSTREV*IndexED,
+  TLOCREVe = TLOCREV*IndexED,
+  PROPTAXe = PROPTAX*IndexED,
+  MISCREVe = MISCREV*IndexED,
+  TOTALEXPe = TOTALEXP*IndexED,
+  TCURELSCe = TCURELSC*IndexED)
+
+t2014e &amp;lt;- t2014 %&amp;gt;% as_tibble() %&amp;gt;% mutate(
+  TOTALREVe = TOTALREV*IndexED,
+  TFEDREVe = TFEDREV*IndexED,
+  TSTREVe = TSTREV*IndexED,
+  TLOCREVe = TLOCREV*IndexED,
+  PROPTAXe = PROPTAX*IndexED,
+  MISCREVe = MISCREV*IndexED,
+  TOTALEXPe = TOTALEXP*IndexED,
+  TCURELSCe = TCURELSC*IndexED)
+
+t2015e &amp;lt;- t2015 %&amp;gt;% as_tibble() %&amp;gt;% mutate(
+  TOTALREVe = TOTALREV*IndexED,
+  TFEDREVe = TFEDREV*IndexED,
+  TSTREVe = TSTREV*IndexED,
+  TLOCREVe = TLOCREV*IndexED,
+  PROPTAXe = PROPTAX*IndexED,
+  MISCREVe = MISCREV*IndexED,
+  TOTALEXPe = TOTALEXP*IndexED,
+  TCURELSCe = TCURELSC*IndexED)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&#34;merge-all-datasets-into-one&#34;&gt;Merge All Datasets Into One&lt;/h3&gt;
+
+&lt;p&gt;At this point, once each of our individual datasets that are adjusted for inflation are compiled, we can merge them into one single dataset that is one step closer to being visualized.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r merge 1993-2015 datasets with ed inflation into one, include=FALSE&#34; data-lang=&#34;r merge 1993-2015 datasets with ed inflation into one, include=FALSE&#34;&gt;full.94e &amp;lt;- bind_rows(t1993e, t1994e)
+full.95e &amp;lt;- bind_rows(full.94e, t1995e)
+full.96e &amp;lt;- bind_rows(full.95e, t1996e)
+full.97e &amp;lt;- bind_rows(full.96e, t1997e)
+full.98e &amp;lt;- bind_rows(full.97e, t1998e)
+full.99e &amp;lt;- bind_rows(full.98e, t1999e)
+full.00e &amp;lt;- bind_rows(full.99e, t2000e)
+full.01e &amp;lt;- bind_rows(full.00e, t2001e)
+full.02e &amp;lt;- bind_rows(full.01e, t2002e)
+full.03e &amp;lt;- bind_rows(full.02e, t2003e)
+full.04e &amp;lt;- bind_rows(full.03e, t2004e)
+full.05e &amp;lt;- bind_rows(full.04e, t2005e)
+full.06e &amp;lt;- bind_rows(full.05e, t2006e)
+full.07e &amp;lt;- bind_rows(full.06e, t2007e)
+full.08e &amp;lt;- bind_rows(full.07e, t2008e)
+full.09e &amp;lt;- bind_rows(full.08e, t2009e)
+full.10e &amp;lt;- bind_rows(full.09e, t2010e)
+full.11e &amp;lt;- bind_rows(full.10e, t2011e)
+full.12e &amp;lt;- bind_rows(full.11e, t2012e)
+full.13e &amp;lt;- bind_rows(full.12e, t2013e)
+full.14e &amp;lt;- bind_rows(full.13e, t2014e)
+full25e &amp;lt;- bind_rows(full.14e, t2015e)
+
+full25 &amp;lt;- dplyr::select(full25e, one_of(c(&amp;#34;STATE&amp;#34;, &amp;#34;IDCENSUS&amp;#34;, &amp;#34;YEAR&amp;#34;, &amp;#34;NAME&amp;#34;, &amp;#34;SCHLEV&amp;#34;, &amp;#34;ENROLL&amp;#34;, &amp;#34;TOTALREV&amp;#34;, &amp;#34;TFEDREV&amp;#34;, &amp;#34;TSTREV&amp;#34;,&amp;#34;TLOCREV&amp;#34;, &amp;#34;PROPTAX&amp;#34;, &amp;#34;MISCREV&amp;#34;, &amp;#34;TOTALEXP&amp;#34;, &amp;#34;TCURELSC&amp;#34;)))&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&#34;add-fips-state-codes-to-our-datasets&#34;&gt;Add FIPS State Codes To Our Datasets&lt;/h3&gt;
+
+&lt;p&gt;To take full advantage of the &lt;code&gt;geofacet&lt;/code&gt; package, I used FIPS code identifiers to help identify each state. For more on what FIPS is, &lt;a href=&#34;https://www.census.gov/geo/reference/ansi_statetables.html&#34;&gt;check this page out&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r Add FIPS state codes to our uniform datset&#34; data-lang=&#34;r Add FIPS state codes to our uniform datset&#34;&gt;#Import the FIPS state codes
+fipscode &amp;lt;- read_csv(&amp;#34;data/FIPSStates.csv&amp;#34;, col_types = cols(`census id` = col_character()))
+
+#Remove Unnecessary Columns
+fipscode &amp;lt;- fipscode %&amp;gt;% as_tibble() %&amp;gt;% mutate(&amp;#34;Official USPS Code&amp;#34; = NULL)
+
+#Rename the FIPS id column to &amp;#39;STATE&amp;#39;, which we&amp;#39;ll use to replace our current column identifying each state.  
+fipscode &amp;lt;- rename(fipscode, STATE = &amp;#34;census id&amp;#34;)
+
+#Add the New State ID to our Uniform Dataset
+fullest &amp;lt;- left_join(full25, fipscode, by =&amp;#34;STATE&amp;#34;)
+
+#Remove All Columns Except our Major Revenue Columns
+full25a &amp;lt;- dplyr::select(fullest, one_of(c(&amp;#34;YEAR&amp;#34;,&amp;#34;Name&amp;#34;, &amp;#34;TOTALREV&amp;#34;, &amp;#34;TFEDREV&amp;#34;, &amp;#34;TSTREV&amp;#34;, &amp;#34;TLOCREV&amp;#34;)))
+
+#Change our YEAR column to a Date Format
+full25a &amp;lt;- rename(full25a, State = Name) %&amp;gt;%
+  mutate(YEAR=as.Date(YEAR, format = &amp;#34;%Y&amp;#34;))
+  
+#Begin Summarizing our Data by Year &amp;amp; State
+full25b &amp;lt;- full25a %&amp;gt;% group_by(YEAR,State) %&amp;gt;% summarise_each(funs(sum))
+
+#Now that we have summarized data, calculate the share of revenue by diving each of the three revenue source amounts by the total amount of revenue in that state each year.
+full25b &amp;lt;- full25b %&amp;gt;% as_tibble() %&amp;gt;% mutate(
+  PctFED = (TFEDREV/TOTALREV)*100,
+  PctSTA = (TSTREV/TOTALREV)*100,
+  PctLOC = (TLOCREV/TOTALREV)*100)
+  
+  
+#Remove the Total Revenue Column
+full25c &amp;lt;- dplyr::select(full25b, one_of(c(&amp;#34;YEAR&amp;#34;, &amp;#34;State&amp;#34;, &amp;#34;PctFED&amp;#34;, &amp;#34;PctSTA&amp;#34;, &amp;#34;PctLOC&amp;#34;)))
+
+#Rename Columns with Printable Identifiers
+full25c &amp;lt;- rename(full25c, 
+                 &amp;#34;Federal Revenue&amp;#34; = PctFED,
+                 &amp;#34;State Revenue&amp;#34; = PctSTA,
+                 &amp;#34;Local Revenue&amp;#34; = PctLOC)
+
+#Transform the Data Longways for Visualization Purposes
+fullest25e &amp;lt;- gather(full25c, &amp;#34;Source&amp;#34;, &amp;#34;Percent&amp;#34;, 3:5)
+yearly_avg &amp;lt;- fullest25e %&amp;gt;% group_by(YEAR,Source) %&amp;gt;% summarise(Annual_Avg = mean(Percent))&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id=&#34;plot-the-school-finance-map&#34;&gt;Plot The School Finance Map&lt;/h2&gt;
+
+&lt;p&gt;At this point, we&amp;rsquo;ll use the &lt;code&gt;geofacet&lt;/code&gt; and &lt;code&gt;ggplot2&lt;/code&gt; packages to visualize our data. For style purposes, I&amp;rsquo;ve used a theme from the &lt;code&gt;ggthemes&lt;/code&gt; package to make the visualization a bit cleaner, along with a few custom theme stylings. Once you run this, you should be able to reproduce the visualization I shared at the top of this post.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r Distribution Map, echo=FALSE, fig.retina=TRUE, fig.height=12, fig.showtext=TRUE, fig.width=20&#34; data-lang=&#34;r Distribution Map, echo=FALSE, fig.retina=TRUE, fig.height=12, fig.showtext=TRUE, fig.width=20&#34;&gt;showtext::showtext_auto()
+
+gg &amp;lt;- ggplot(arrange(fullest25e,Source,YEAR), aes(x = YEAR, y =Percent, fill = Source, group = Source)) +
+  geom_area(alpha = 0.8, position = &amp;#39;stack&amp;#39;) +
+  scale_fill_manual(values = c(&amp;#34;#ef8a62&amp;#34;, &amp;#34;#d1e5f0&amp;#34;, &amp;#34;#67a9cf&amp;#34;)) +
+  facet_geo(~ State, grid = &amp;#34;us_state_grid2&amp;#34;) +
+  scale_x_date(expand=c(0,0), date_breaks=&amp;#34;7 year&amp;#34;, date_labels = &amp;#34;%Y&amp;#34;, limits = c(as.Date(c(&amp;#34;1993-02-27&amp;#34;, &amp;#34;2016-06-01&amp;#34;)))) +
+  scale_y_continuous(expand = c(0, 0)) +
+  labs(title = &amp;#34;How Schools Were Paid For Over The Past 25 Years, 1993-2015&amp;#34;,
+       subtitle=&amp;#34;The chart shows annual school funding shares in each state by federal, state, and local sources.&amp;#34;,
+       caption = &amp;#34;Data Source: US Census, Public Finance Survey \nNote: Figures are adjusted for inflation using the BLS Education Index.&amp;#34;,
+       x = &amp;#34;Year&amp;#34;,
+       y = &amp;#34;Percentage of Overall Funding&amp;#34;) + 
+  theme_hc() + 
+  theme(text = element_text(color = &amp;#34;#4D4D4D&amp;#34;),
+        plot.title=element_text(face=&amp;#34;bold&amp;#34;, size = 40),
+        plot.subtitle=element_text(size=24),
+        plot.caption=element_text(size=14),
+        legend.title=element_text(size = 18, face=&amp;#34;bold&amp;#34;),
+        legend.text = element_text(size = 18),
+        legend.position = c(.85, 0.2),
+        legend.box.just = &amp;#34;right&amp;#34;,
+        legend.key.size = unit(1, &amp;#34;cm&amp;#34;),
+        axis.title.y = element_text(color = &amp;#34;#4D4D4D&amp;#34;, face=&amp;#39;bold&amp;#39;),
+        axis.title.x = element_text(size = 14, color = &amp;#34;#4D4D4D&amp;#34;, face=&amp;#39;bold&amp;#39;),
+        strip.text.x = element_text(size = 11.5, color = &amp;#34;#4D4D4D&amp;#34;, face=&amp;#39;bold&amp;#39;),
+        strip.text.y = element_text(size = 14, color = &amp;#34;#4D4D4D&amp;#34;, face=&amp;#39;bold&amp;#39;),
+        strip.background = element_rect(fill = &amp;#34;#ffffff&amp;#34;, color = NA)) +
+        guides(fill=guide_legend(direction = &amp;#34;vertical&amp;#34;, 
+                                 title.position = &amp;#34;top&amp;#34;, 
+                                 label.position = &amp;#34;right&amp;#34;, 
+                                 byrow=TRUE, 
+                                 title=&amp;#34;Source of Funding&amp;#34;))
+
+# Save The Plot as a .png file
+ggsave(&amp;#34;SFNationalMapOT.png&amp;#34;, plot = gg, device = &amp;#34;png&amp;#34;, dpi=300,  width = 20, height = 12)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;hr /&gt;
+
+&lt;h3 id=&#34;bonus-school-finance-map&#34;&gt;Bonus School Finance Map&lt;/h3&gt;
+
+&lt;p&gt;While I had limited time to produce the code-through for the first map, here&amp;rsquo;s an extra map that shows how much each state&amp;rsquo;s per pupil funding compares to the national average since 1992. One note about this one is that it uses the All-Consumer series inflation index from the Bureau of Labor &amp;amp; Statistics for 1992, while the 1993 data onward uses the BLS Education Index.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;../../img/school-finance-viz/SFNationalMapPP.png&#34; alt=&#34;A Comparison of Each State&#39;s Per Pupil Funding To The National Average&#34; /&gt;&lt;/p&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+
+&lt;hr /&gt;
+
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34;&gt;Before 1992, the method of collection for the census didn&amp;rsquo;t disaggregate federal revenues from state revenues because federal dollars were technically implemented through the state. However, since 1992, the census shifted their reporting protocols for states and began requesting that each state delineate between their contributions versus what the federal government provided.
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:1&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:2&#34;&gt;While this method of collection started in 1992, our analysis will start in 1993 because that is when &lt;a href=&#34;https://data.bls.gov/cgi-bin/surveymost?cu&#34;&gt;the Bureau of Labor &amp;amp; Statistics introduced their Education Inflation Index&lt;/a&gt;, which was meant to provide clarity on a dollar&amp;rsquo;s value in the education space.
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:2&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>My Testimony to The Texas Commission on Public School Finance</title>
+      <link>https://www.mrworthington.com/2018/03/21/my-testimony-to-the-texas-commission-on-public-school-finance/</link>
+      <pubDate>Wed, 21 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.mrworthington.com/2018/03/21/my-testimony-to-the-texas-commission-on-public-school-finance/</guid>
+      <description>&lt;p&gt;After almost 10 hours waiting to testify before the &lt;a href=&#34;https://tea.texas.gov/schoolfinancecommission/&#34;&gt;Texas Commission on Public School Finance&lt;/a&gt;, I took full advantage of the three minutes I had to tell them about the dramatic rise of school poverty, reduced state funding to public education, the lack of transparency in equity funding that hardly ends up where it should go, and the need to put updated funding weights for the cost of education and special populations on a mandated review schedule similar to what the state does with agencies and the sunset commission.&lt;/p&gt;
+
+&lt;p&gt;Here is a modified copy of my testimony.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&#34;transcript-of-my-testimony&#34;&gt;Transcript of My Testimony&lt;/h4&gt;
+
+&lt;p&gt;My name is Matt Worthington and I am a resident of Austin, TX; parent of two girls; former special education teacher; and a former district technology administrator of &lt;a href=&#34;https://dcps.dc.gov&#34;&gt;DC Public Schools&lt;/a&gt; and &lt;a href=&#34;http://www.kippaustin.org&#34;&gt;KIPP Austin Public Schools&lt;/a&gt; who holds a Masters in Education and am nearing completion of a second Master&amp;rsquo;s in Public Affairs from the &lt;a href=&#34;https://lbj.utexas.edu&#34;&gt;LBJ School&lt;/a&gt; at the University of Texas.&lt;/p&gt;
+
+&lt;p&gt;Members of the committee: Texas schools are getting poorer faster than they&amp;rsquo;re getting bigger. Between 1995 &amp;amp; 2016, the share of students identified as economically disadvantaged in traditional ISDs rose by almost 13%&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;. In raw numbers, that translates to an 83% increase in the total number of economically disadvantaged students from 1995 to 2016. This is because the increase of poor students is outpacing the overall population growth of students.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;The current body of medical &amp;amp; economic research on child poverty tells us that poverty exposes children to what is called “toxic stress”. This adversity has strong linear relationships with multiple health impairments in adulthood, including heart disease, obesity, cancer, alcoholism, and depression.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:3&#34;&gt;&lt;a href=&#34;#fn:3&#34;&gt;3&lt;/a&gt;&lt;/sup&gt; They reduce life expectancies for children. Counter that, one of the more significant explanations for long life-expectancies is local government spending.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:4&#34;&gt;&lt;a href=&#34;#fn:4&#34;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;In Texas, school poverty disproportionately effects students of color. In 2014, almost half of the non-white student population in Texas attended high-poverty schools, which generally have greater academic, social, and emotional needs but receive inadequate funding for programming.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:5&#34;&gt;&lt;a href=&#34;#fn:5&#34;&gt;5&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;Meanwhile, the state has lowered its share of per-pupil funding on traditional ISDs. Since 2008, the state&amp;rsquo;s funding has dipped by almost $500 per ADA while local property tax funding has skyrocketed at over $800 per ADA. Multiplied by the respective ADA counts of students in 2016, this shift constitutes an increased burden of roughly $4.3 billion for statewide local property tax funding and a decreased responsibility of roughly $2.5 billion for funding from the state.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:6&#34;&gt;&lt;a href=&#34;#fn:6&#34;&gt;6&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;../../post/2018-03-21-my-testimony-to-the-texas-commission-on-public-school-finance_files/perstudentrevenuehistory.png&#34; alt=&#34;Data: [Texas Education Agency - PEIMS District Financial Actual Reports](https://tea.texas.gov/financialstandardreports/); accessed via a public information request.&#34; /&gt;
+&lt;!-- &lt;img src=&#34;../../post/2018-03-21-my-testimony-to-the-texas-commission-on-public-school-finance_files/perstudentrevenues.png&#34; width=&#34;100%&#34; /&gt; --&gt;&lt;/p&gt;
+
+&lt;p&gt;While recapture was designed to provide equity, it has been undermined by the state’s supplanting of revenues that it claims to supplement. Detailed records of recapture revenues show an over 800% increase in annual collections since 1994, but the state maintains no accounting method that tracks exactly&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:7&#34;&gt;&lt;a href=&#34;#fn:7&#34;&gt;7&lt;/a&gt;&lt;/sup&gt; where recapture money goes, by district. In other words, the public cannot see where the money ends up.&lt;/p&gt;
+
+&lt;p&gt;Increasingly, poor districts are running out of ways to get more revenue. Nearly 43% of property poor districts have maxed out on their M&amp;amp;O rates compared to only 14% of property wealthy districts.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:8&#34;&gt;&lt;a href=&#34;#fn:8&#34;&gt;8&lt;/a&gt;&lt;/sup&gt; This means poor districts are increasingly reliant on the hope for more funding from recapture. However, this hope is fragile because most property wealthy districts tax on M&amp;amp;O within their range of golden pennies, which is not subject to recapture.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:9&#34;&gt;&lt;a href=&#34;#fn:9&#34;&gt;9&lt;/a&gt;&lt;/sup&gt; This is because many property wealthy districts do not trust the state as a fiduciary of recapture revenues.&lt;/p&gt;
+
+&lt;p&gt;If we fail to ensure that all 5.3 million children in Texas attend schools that are adequately and transparently funded, we risk a future where Texas is characterized by its lack moral, economic, or cultural wealth. That will happen if we fail to ensure that money intended for poor children actually makes its way to those classrooms where they are learning against all odds.
+If that means we, as Texas taxpayers, must pay more money than so be it. The lives of 5.3 million children and future generations of Texans literally depend upon it.&lt;/p&gt;
+
+&lt;p&gt;Thank you.&lt;/p&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+
+&lt;hr /&gt;
+
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34;&gt;Data: Texas Education Agency - &lt;a href=&#34;https://rptsvr1.tea.texas.gov/perfreport/snapshot/index_old.html&#34;&gt;Annual Snapshot School District Profiles, 1995 &amp;amp; 2016&lt;/a&gt;.
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:1&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:2&#34;&gt;I use the phrase &amp;ldquo;poor children&amp;rdquo; or &amp;ldquo;in poverty&amp;rdquo; here in reference to students who are economically disadvantaged. While some are quick to note that the Federal Poverty Guidelines are not the same thing as economically disadvantaged (which follows guidelines from &lt;a href=&#34;https://www.federalregister.gov/documents/2017/04/10/2017-07043/child-nutrition-programs-income-eligibility-guidelines&#34;&gt;the National School Lunch&lt;/a&gt; &amp;amp; Breakfast Programs), it&amp;rsquo;s worth noting that the Federal Poverty Guideline is often criticized for being a very low measure of poverty in 2018. For a family of four, &lt;a href=&#34;https://www.federalregister.gov/documents/2018/01/18/2018-00814/annual-update-of-the-hhs-poverty-guidelines&#34;&gt;the 2018 Federal Poverty Guideline is $25,100&lt;/a&gt;. This figure is before taxes, which would further reduce the take home pay. The numbers used to determine economically disadvantaged are either 130% (the free-lunch population) or 180% (the reduced-lunch population) of the Federal Poverty Guideline, which are far lower than the 200% measure used by many poverty research institutions like &lt;a href=&#34;https://spotlightonpoverty.org&#34;&gt;Spotlight on Poverty &amp;amp; Opportunity: The Source for News, Ideas and Action&lt;/a&gt;.
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:2&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:3&#34;&gt;Shonkoff, J. P. (2016). Capitalizing on Advances in Science to Reduce the Health Consequences of Early Childhood Adversity. JAMA Pediatrics, 170(10), 1003. &lt;a href=&#34;https://doi.org/10.1001/jamapediatrics.2016.1559&#34;&gt;https://doi.org/10.1001/jamapediatrics.2016.1559&lt;/a&gt;
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:3&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:4&#34;&gt;Chetty, R., Stepner, M., Abraham, S., Lin, S., Scuderi, B., Turner, N., … Cutler, D. (2016). The Association Between Income and Life Expectancy in the United States, 2001-2014. JAMA, 315(16), 1750. &lt;a href=&#34;https://doi.org/10.1001/jama.2016.4226&#34;&gt;https://doi.org/10.1001/jama.2016.4226&lt;/a&gt;
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:4&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:5&#34;&gt;Source: &lt;a href=&#34;http://nationalequityatlas.org/indicators/School_poverty/Trend:35536/Texas/false/School_type:All_public_schools/&#34;&gt;The National Equity Atlas&lt;/a&gt;; Data: the National Center for Education Statistics (NCES) Common Core of Data (CCD) Public Elementary/Secondary School Universe Survey.
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:5&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:6&#34;&gt;Data: &lt;a href=&#34;https://tea.texas.gov/financialstandardreports/&#34;&gt;Texas Education Agency - PEIMS District Financial Actual Reports&lt;/a&gt;; accessed via a public information request.
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:6&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:7&#34;&gt;In an interview with &lt;a href=&#34;https://www.folomedia.org/about/&#34;&gt;Folo Media&lt;/a&gt; this past summer, the office of State Funding for the Texas Education Agency verified that their current method of finance does not allow them to keep track of how much schools receive in recapture funds.
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:7&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:8&#34;&gt;Data: &lt;a href=&#34;https://tea.texas.gov/financialstandardreports/&#34;&gt;Texas Education Agency - State Aid Template 2017-18 and 2018-19 Biennium&lt;/a&gt;; accessed online.
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:8&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:9&#34;&gt;Data: &lt;a href=&#34;https://tea.texas.gov/financialstandardreports/&#34;&gt;Texas Education Agency - State Aid Template 2017-18 and 2018-19 Biennium&lt;/a&gt;; accessed online.
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:9&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,22 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Matt Worthington</title>
+    <link>https://www.mrworthington.com/</link>
+    <description>A blog about early modern history and digital humanities</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 28 Mar 2018 00:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="https://www.mrworthington.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Posts</title>
+      <link>https://www.mrworthington.com/post/</link>
+      <pubDate>Wed, 28 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.mrworthington.com/post/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

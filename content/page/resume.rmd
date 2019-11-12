@@ -24,7 +24,9 @@ This is a brief overview of where I've studied, worked, volunteered, or shared. 
 
 ## <a style="font-weight:600;text-transform:capitalize;color:#3d3d3d">Professional</a>
 ***
-#### <a style="color:#005f86">Director of Analytics & Insight</a> | <a href="http://www.unitedwayaustin.org" style="font-weight:200;text-transform:capitalize;color:#9cadb7">United Way for Greater Austin</a><a style="float:right;color:#9cadb7">Aug 2018-Present </a> 
+#### <a style="color:#005f86">Manager of Data & Analytics</a> | <a href="http://www.texas2036.org" style="font-weight:200;text-transform:capitalize;color:#9cadb7">Texas 2036</a><a style="float:right;color:#9cadb7">Mar 2019-Present </a> 
+
+#### <a style="color:#005f86">Director of Analytics & Insight</a> | <a href="http://www.unitedwayaustin.org" style="font-weight:200;text-transform:capitalize;color:#9cadb7">United Way for Greater Austin</a><a style="float:right;color:#9cadb7">Aug 2018-Feb 2019 </a> 
 
 #### <a style="color:#005f86">Research & Reporting Analyst</a> | <a href="https://www.folomedia.org/about/" style="font-weight:200;text-transform:capitalize;color:#9cadb7">Folo Media</a><a style="float:right;color:#9cadb7">Summer & Fall 2017</a> 
 
