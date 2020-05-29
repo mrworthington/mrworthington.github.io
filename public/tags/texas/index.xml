@@ -1,20 +1,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Texas on Matt Worthington</title>
-    <link>/tags/texas/</link>
+    <link>https://www.mrworthington.com/tags/texas/</link>
     <description>A blog about early modern history and digital humanities</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Wed, 21 Mar 2018 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="/tags/texas/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://www.mrworthington.com/tags/texas/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>My Testimony to The Texas Commission on Public School Finance</title>
-      <link>/2018/03/21/my-testimony-to-the-texas-commission-on-public-school-finance/</link>
+      <link>https://www.mrworthington.com/2018/03/21/my-testimony-to-the-texas-commission-on-public-school-finance/</link>
       <pubDate>Wed, 21 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>/2018/03/21/my-testimony-to-the-texas-commission-on-public-school-finance/</guid>
+      <guid>https://www.mrworthington.com/2018/03/21/my-testimony-to-the-texas-commission-on-public-school-finance/</guid>
       <description>&lt;p&gt;After almost 10 hours waiting to testify before the &lt;a href=&#34;https://tea.texas.gov/schoolfinancecommission/&#34;&gt;Texas Commission on Public School Finance&lt;/a&gt;, I took full advantage of the three minutes I had to tell them about the dramatic rise of school poverty, reduced state funding to public education, the lack of transparency in equity funding that hardly ends up where it should go, and the need to put updated funding weights for the cost of education and special populations on a mandated review schedule similar to what the state does with agencies and the sunset commission.&lt;/p&gt;
 
 &lt;p&gt;Here is a modified copy of my testimony.&lt;/p&gt;
@@ -69,15 +69,6 @@ If that means we, as Texas taxpayers, must pay more money than so be it. The liv
  &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:9&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
-    </item>
-    
-    <item>
-      <title>Notes On The Texas School Finance Commission</title>
-      <link>/2018/03/20/notes-on-the-texas-school-finance-commission/</link>
-      <pubDate>Tue, 20 Mar 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/2018/03/20/notes-on-the-texas-school-finance-commission/</guid>
-      <description></description>
     </item>
     
   </channel>

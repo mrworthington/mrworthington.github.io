@@ -1,12 +1,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Matt Worthington</title>
-    <link>/categories/</link>
+    <link>https://www.mrworthington.com/categories/</link>
     <description>A blog about early modern history and digital humanities</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Wed, 28 Mar 2018 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://www.mrworthington.com/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>

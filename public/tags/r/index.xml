@@ -1,20 +1,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>R on Matt Worthington</title>
-    <link>/tags/r/</link>
+    <link>https://www.mrworthington.com/tags/r/</link>
     <description>A blog about early modern history and digital humanities</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Wed, 28 Mar 2018 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="/tags/r/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://www.mrworthington.com/tags/r/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Visualizing American School Finance</title>
-      <link>/2018/03/28/visualizing-american-school-finance-since-1993/</link>
+      <link>https://www.mrworthington.com/2018/03/28/visualizing-american-school-finance-since-1993/</link>
       <pubDate>Wed, 28 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>/2018/03/28/visualizing-american-school-finance-since-1993/</guid>
+      <guid>https://www.mrworthington.com/2018/03/28/visualizing-american-school-finance-since-1993/</guid>
       <description>&lt;p&gt;This evening, &lt;a href=&#34;https://edtrust.org/resource/funding-gaps-2018/&#34;&gt;the Ed Trust is hosting a discussion on twitter at 8PM ET&lt;/a&gt; on school funding inequity, so I thought I would do a code-through of a visualization I made this past summer while researching the legacy of a famous school finance Supreme Court case that ended up determining that &lt;a href=&#34;https://www.folomedia.org/americans-no-right-education/&#34;&gt;Americans had no fundamental right to an education&lt;/a&gt;. In short, it shows the shares of funding over time for each of the three main sources of funding for public education in America: federal funding, state funding, and local funding (mostly property taxes).&lt;/p&gt;
 
 &lt;h2 id=&#34;why-visualize-school-finance&#34;&gt;Why Visualize School Finance?&lt;/h2&gt;
