@@ -629,7 +629,7 @@ footer .theme-by {
   }
   .intro-header.big-img {
     margin-top: 0px;  /* Full navbar is small navbar + 20px padding on each side when expanded */
-    box-shadow:inset 0 0 0 2000px rgba(0,0,0,0.75);
+    box-shadow:inset 0 0 0 2000px rgba(0,0,0,0.60);
   }
   .intro-header.big-img .page-heading,
   .intro-header.big-img .post-heading  {
