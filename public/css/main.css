@@ -288,6 +288,37 @@ img {
   .navbar-custom .nav .navlinks-container.show-children .navlinks-children {
     display: block;
   }
+  
+  body {
+    font-family: "Whitney SSm A", "Whitney SSm B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 1.5em;
+    color: #4d4d4d;
+    position: relative;
+    background: #FFF;
+}
+
+.post-preview .post-title {
+  font-size: 1.5em !important;
+  margin-bottom: .9rem !important;
+}
+ 
+.post-preview .post-subtitle {
+  font-size: 1.25em !important;
+}
+
+.post-preview .post-meta, .post-heading .post-meta {
+font-size: .8em !important;
+}
+
+.intro-header .page-heading h1 {
+font-size: 2.5em !important;
+}
+
+.intro-header .page-heading .page-subheading, .intro-header .post-heading .post-subheading, .intro-header .course-heading .course-subheading {
+font-size: 1.25em !important;
+}
+    
+  
 }
 @media only screen and (min-width: 768px) {
   .navbar-custom .nav .navlinks-container {
@@ -992,20 +1023,21 @@ input.gsc-input, .gsc-input-box, .gsc-input-box-hover, .gsc-input-box-focus, .gs
 }
 
 .bigfoot-footnote__content {
-  position: relative;
-  z-index: 8;
-  display: inline-block;
-  font-size: 0.875em;
-  max-height: 15em;
-  padding: 1.1em 1.3em 1.2em;
-  box-sizing: inherit;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-  background: #fafafa;
-  border-radius: 0.5em;
-  -webkit-font-smoothing: subpixel-antialiased;
-  line-height: normal;
+position: relative;
+font-family: "Ringside Narrow SSm A";
+display: inline-block;
+font-size: 0.875em;
+max-height: 29em;
+padding: 1.1em 1.3em 1.2em;
+box-sizing: inherit;
+-webkit-overflow-scrolling: touch;
+background: #fafafa;
+border-radius: 0.5em;
+-webkit-font-smoothing: subpixel-antialiased;
+line-height: normal;
+font-weight: 300;
 }
+
 .bigfoot-footnote__content img {
   max-width: 100%;
 }
