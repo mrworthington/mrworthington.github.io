@@ -1,0 +1,219 @@
+---
+title: "Exploring Case Fatality for COVID-19 in Texas"
+author: "Matthew Worthington"
+date: '2020-07-21'
+categories:
+- Public Health
+- Code-Through
+tags:
+- COVID19
+- Texas
+- Public Health
+- DSHS
+subtitle: A Code-Through Showing Revenue Breakdowns Since 1993
+bigimg:
+- src: https://images.unsplash.com/photo-1506808541308-577f3be75bb7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2279&q=80
+  desc: 'Photo: Isabella and Louisa Fischer (@twinsfisch)'
+draft: yes
+slug: covid-case-fatality-tx
+output:
+  blogdown::html_page:
+    toc: no
+---
+
+This evening, [the Ed Trust is hosting a discussion on twitter at 8PM ET](https://edtrust.org/resource/funding-gaps-2018/) on school funding inequity, so I thought I would do a code-through of a visualization I made this past summer while researching the legacy of a famous school finance Supreme Court case that ended up determining that [Americans had no fundamental right to an education](https://www.folomedia.org/americans-no-right-education/). In short, it shows the shares of funding over time for each of the three main sources of funding for public education in America: federal funding, state funding, and local funding (mostly property taxes). 
+
+<!--more-->
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(janitor)
+library(texas2036)
+library(ggthemes)
+library(zoo)
+
+
+mort_rate <- read_csv("https://raw.githubusercontent.com/texas-2036/covid_tracker/master/clean_data/dshs/cases/state_cases_trends.csv") %>% 
+  select(date,cumulative_cases,cumulative_fatalities) %>% 
+  mutate(mort_rate=round(cumulative_fatalities/cumulative_cases, digits=4),
+         mort_rate_7day=rollmean(mort_rate, 7, 
+                                  fill=0, align = "right"))
+
+mort_rate %>% 
+  ggplot() +
+  geom_col(aes(x=date,y=mort_rate), fill="#3A4A9F", alpha=0.2, width=.9) +
+  geom_area(aes(x=date,y=mort_rate_7day), fill="#F26852", alpha=0.2) +
+  geom_line(aes(x=date,y=mort_rate_7day), color="#F26852") + 
+  scale_y_continuous(labels = scales::percent, breaks=c(0,.0025,.005,.0075,.010,.0125,.015,.0175,.020,.0225,.025,.0275)) +
+  theme_2036() +
+  theme(plot.caption = ggtext::element_markdown(family = "Montserrat", color = "#8C8F93", size = 10, 
+                                                 lineheight = 1, hjust = 0, vjust = -5)) +
+  labs(title="COVID-19 Texas Case Fatality Rate - Historical Values",
+       subtitle="**Data:** Texas Department of State Health Services - Accessible Dashboard Data (Trends Tab) <br><br>**Legend:** <span style='color:#3A4A9F;opacity:0.2'>**Mortality Rate**</span> | <span style='color:#F26852;opacity:0.2'>**7-Day Average**</span>",
+       caption= "**Method:** Mortality Rate is calculated by dividing each day's total fatalities from each day's total cases",
+       y="Case Fatality Rate (%)",
+       x="Date")
+
+# ggsave("case_fatality_history_tx_covid19.png", width=12,height=6,dpi=300)
+
+```
+
+## GGiraph Test
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(ggiraph)
+library(tidyverse)
+library(gfonts)
+library(flextable)
+library(tinter)
+
+ts_county_cases <- read_csv("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv")
+
+sf_counties <- tidycensus::county_laea
+ts_county_cases_sf <- ts_county_cases %>% 
+  filter(date=="2020-03-27",
+         state=="Texas") %>% 
+  left_join(sf_counties, by=c("fips"="GEOID")) %>% 
+  sf::st_as_sf()
+
+# flextable part -----
+fun_flextable <- function(dat){
+  ft <- flextable(dat, col_keys = c("county", "cases", "deaths"), 
+                  defaults = list(fontname = "Whitney SSm A"), 
+                  theme_fun = theme_vanilla)
+  ft <- fontsize(ft, part = "all", size = 20)
+  ft <- bold(ft, part = "header", bold = TRUE)
+  ft <- color(ft, color = "black", part = "all")
+  ft <- set_table_properties(ft, layout = "autofit")
+  as.character(htmltools_value(ft))
+}
+temp_dat <- as.data.frame(ts_county_cases_sf)[,c("county", "cases", "deaths")]
+temp_dat <- split(temp_dat, seq_len(nrow(temp_dat)))
+ts_county_cases_sf$tooltip <- map_chr(temp_dat, fun_flextable)
+# end of flextable part
+
+
+tx_map <- ts_county_cases_sf %>%
+  ggplot() +
+  geom_sf(data=sf_counties %>% filter(str_detect(GEOID,"48")),color="#dddddd", fill="#f2f2f2", lwd=.3) +
+  geom_sf_interactive(aes(fill=cases, tooltip=tooltip, data_id = county), lwd=.3) +
+  scale_fill_gradientn(colours = tinter("#5da5da", steps = 5), labels = function(x) paste0(x,"Cases")) +
+  coord_sf(datum=NA) +
+  hrbrthemes::theme_ipsum_es(base_family="Whitney SSm A") +
+  theme(plot.title = element_text(family="Whitney SSm A", face = "bold"),
+        plot.subtitle = element_text(family="Whitney SSm A", face = "plain"),
+        plot.caption = element_text(family="Whitney SSm A", face = "plain")) + 
+  labs(title="Confirmed COVID-19 Cases By County - Texas",
+       subtitle="As of March 26th, 2020",
+       caption="SOURCE: New York Times COVID-19 Database")
+
+girafe(ggobj = tx_map, fonts = list(sans = "Whitney SSm A"), width_svg = 12, height_svg = 8,
+       options = list(
+         opts_tooltip(css = "padding:5px;background:white;border-radius:2px 2px 2px 2px;"),
+         opts_hover_inv(css = "opacity:0.8;"),
+         opts_hover(css = "stroke-width:2;")
+       ))
+```
+
+
+## Testing Highcharts
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(highcharter)
+library(vroom)
+library(lubridate)
+
+tx2036_hc <- hc_theme_merge(
+  hc_theme_smpl(),
+  hc_theme(chart = list(backgroundColor = "#3A4A9F", 
+                        style = list(fontFamily = "Whitney SSm A", fontSize = "28px", 
+                                     color="#fff",fontWeight="500", textTransform="uppercase")),
+           title = list(style = list(fontFamily = "Whitney SSm A", 
+                                     fontWeight = "bold",
+                                     color="white"),
+                        align = "left"), 
+           subtitle = list(style = list(fontFamily = "Whitney SSm A", 
+                                        color="#fff",
+                                        textTransform="initial",
+                                        fontWeight="400",
+                                        fontSize = "14px"),
+                           align = "left"), 
+           legend = list(align = "right", 
+                         style = list(fontFamily = "Whitney SSm A", color="white"),
+                         itemStyle = list(fontFamily = 'Whitney SSm A', color = 'white'),
+                         itemHoverStyle = list(color = 'gray'),   
+                         verticalAlign = "top"),
+           credits = list(style = list(color = "#fff")),
+           xAxis = list(labels =list(style = list(fontFamily = "Whitney SSm A", color="#fff")), 
+                        title = list(style = list(color = "#fff", fontSize = "12px", 
+                                                  color="#fff",fontWeight="500")),
+                        gridLineWidth = 0,
+                        gridLineColor = "#F3F3F3", 
+                        lineColor = 'rgba(255,255,255,0.7)', 
+                        minorGridLineColor = 'rgba(243,243,243,0.7)', 
+                        tickColor = "#F3F3F3", 
+                        tickWidth = 1), 
+           yAxis = list(labels =list(style = list(fontFamily = "Whitney SSm A", color="#fff")), 
+                        title = list(style = list(color = "#fff", fontSize = "12px", 
+                                                  color="#fff",fontWeight="500")), 
+                        gridLineWidth = .5,
+                        gridLineColor = 'rgba(243,243,243,0.15)', 
+                        lineColor = 'rgba(255,255,255,0.15)', 
+                        minorGridLineColor = 'rgba(243,243,243,0.15)', 
+                        tickColor = "#F3F3F3", 
+                        tickWidth = 2)))
+
+key_events <- vroom("https://docs.google.com/spreadsheets/d/e/2PACX-1vQ2q_c5RpywszCamM3VINgAwZ51OJoPfBFflEvXpuAqAZrw9SDovcGnfDOlF7uwzCnZf5XMkEluhlUb/pub?output=csv") %>% 
+  clean_names() %>% 
+  mutate(date=as_date(date))
+
+r_naught <- vroom("https://d14wlfuexuxgcm.cloudfront.net/covid/rt.csv") %>% 
+  filter(region=="TX")
+
+ key_events_fltr <- key_events %>%
+      filter(!str_detect(event,"Stimulus"))
+    
+    dates <- key_events_fltr$date
+    events <- key_events_fltr$event
+    
+    plotLines <- map2(key_events_fltr$date,key_events_fltr$event,
+                      ~list(label = list(text = .y,
+                                         style = list(color = "rgba(255, 255, 255, 0.6)", 
+                                                      fontSize='12px',textTransform='initial')),
+                            color = "rgba(255, 255, 255, 0.6)",
+                            width = 1,
+                            dashStyle = "Dash",
+                            value = datetime_to_timestamp(as.Date(.x, tz="UTC"))))
+    
+   viz <- r_naught %>% 
+      hchart("line", hcaes(x = date, y = mean), animation=FALSE,
+             tooltip = FALSE,
+             threshold = 1, color = "#FFD100", negativeColor = "#F26852") %>%
+      hc_add_series(r_naught, type = "arearange",
+                    hcaes(x = date, low = lower_80,
+                          high = upper_80),
+                    threshold = 1, color = "#FFD100", negativeColor = "#F26852",
+                    linkedTo = "r_naught") %>%
+      hc_plotOptions(arearange = list(fillOpacity=.3)) %>%
+      hc_title(
+        text ="Texas Effective Reproduction Rate · R<sub>t</sub>",
+        useHTML = TRUE) %>% 
+      hc_subtitle(
+        text ="From R<sub>t</sub> Live: R<sub>t</sub>  is the average number of people who become infected by an infectious person.</br><span style='color: #FFD100'>If it’s above 1.0, COVID-19 will spread quickly.</span> <span style='color: #F26852'>If it’s below 1.0, infections will slow.</span>",
+        useHTML = TRUE) %>%
+      hc_yAxis(title = list(text="Effective Reproduction Rate (R<sub>t</sub>)"),
+               min = min(r_naught$lower_80), 
+               max = max(r_naught$upper_80)) %>% 
+      hc_xAxis(title=NULL,
+               plotLines = plotLines) %>% 
+      hc_tooltip(table = FALSE, sort = FALSE,
+                 pointFormat = "Effective Reproduction Rate · R<sub>t</sub>: {point.mean:,.2f}<br>") %>% 
+      hc_credits(
+        enabled = TRUE,
+        text = "Source: rt.live Analysis",
+        href = "https://rt.live") %>%
+      hc_add_theme(tx2036_hc)
+    
+    widgetframe::frameWidget(viz)
+```
+
