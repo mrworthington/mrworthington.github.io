@@ -13,7 +13,7 @@ tags:
   - Charter Schools
   - US Census
 subtitle: 'A Code-Through Showing Revenue Breakdowns Since 1993'
-bigimg: [{src: "/img/school-finance-viz/SFNationalMapOT.png", desc: "Map of US School Funding Revenues Since 1993"}]
+bigimg: [{src: "https://images.unsplash.com/photo-1506808541308-577f3be75bb7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2279&q=80", desc: "Photo: Isabella and Louisa Fischer (@twinsfisch)"}]
 
 ---
 

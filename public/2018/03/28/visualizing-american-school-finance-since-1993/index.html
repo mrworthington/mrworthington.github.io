@@ -12,25 +12,25 @@
   <meta property="og:description" content="A Code-Through Showing Revenue Breakdowns Since 1993">
   <meta name="twitter:description" content="A Code-Through Showing Revenue Breakdowns Since 1993">
   <meta name="author" content="Matt Worthington"/>
-  <link href='https://www.mrworthington.com/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <link href='../../../../img/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@mrworthington" />
   <meta name="twitter:creator" content="@mrworthington" />
-  <meta property="og:url" content="https://www.mrworthington.com/2018/03/28/visualizing-american-school-finance-since-1993/" />
+  <meta property="og:url" content="/2018/03/28/visualizing-american-school-finance-since-1993/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Matt Worthington" />
 
 
-  <meta name="generator" content="Hugo 0.59.1" />
-  <link rel="canonical" href="https://www.mrworthington.com/2018/03/28/visualizing-american-school-finance-since-1993/" />
-  <link rel="alternate" href="https://www.mrworthington.com/index.xml" type="application/rss+xml" title="Matt Worthington">
+  <meta name="generator" content="Hugo 0.74.1" />
+  <link rel="canonical" href="../../../../2018/03/28/visualizing-american-school-finance-since-1993/" />
+  <link rel="alternate" href="../../../../index.xml" type="application/rss+xml" title="Matt Worthington">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://www.mrworthington.com/css/main.css" />
+  <link rel="stylesheet" href="../../../../css/main.css" />
   <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/6771036/6925812/css/fonts.css" />
   <link href="https://fonts.googleapis.com/css?family=Fira+Code:300,400,500,600,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://www.mrworthington.com/css/highlight.min.css" />
+  <link rel="stylesheet" href="../../../../css/highlight.min.css" />
 
 
 
@@ -57,7 +57,7 @@ if (!doNotTrack) {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="https://www.mrworthington.com">Matt Worthington</a>
+      <a class="navbar-brand" href="../../../../">Matt Worthington</a>
     </div>
 
     <div class="collapse navbar-collapse" id="main-navbar">
@@ -113,7 +113,7 @@ if (!doNotTrack) {
 
 
   
-    <div id="header-big-imgs" data-num-img=1 data-img-src-1="https://www.mrworthington.com/img/school-finance-viz/SFNationalMapOT.png" data-img-desc-1="Map of US School Funding Revenues Since 1993"></div>
+    <div id="header-big-imgs" data-num-img=1 data-img-src-1="https://images.unsplash.com/photo-1506808541308-577f3be75bb7?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=2279&amp;q=80" data-img-desc-1="Photo: Isabella and Louisa Fischer (@twinsfisch)"></div>
   
 
   <header class="header-section has-img">
@@ -179,45 +179,26 @@ if (!doNotTrack) {
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
         <p>This evening, <a href="https://edtrust.org/resource/funding-gaps-2018/">the Ed Trust is hosting a discussion on twitter at 8PM ET</a> on school funding inequity, so I thought I would do a code-through of a visualization I made this past summer while researching the legacy of a famous school finance Supreme Court case that ended up determining that <a href="https://www.folomedia.org/americans-no-right-education/">Americans had no fundamental right to an education</a>. In short, it shows the shares of funding over time for each of the three main sources of funding for public education in America: federal funding, state funding, and local funding (mostly property taxes).</p>
-
 <h2 id="why-visualize-school-finance">Why Visualize School Finance?</h2>
-
 <p>In recent years, much has been debated about school funding, or the lack thereof. Notably, recent studies coming out of places like <a href="https://www.texastribune.org/2018/03/28/texas-am-lori-taylor-public-education-funding/">Texas A&amp;M</a> and <a href="http://usccr.gov/pubs/2018-01-10-Education-Inequity.pdf">the US Commission on Civil Rights</a> have highlighted funding deficits throughout America that not only threaten the futures of currently enrolled public school students, but <a href="https://www.texastribune.org/2018/03/20/texas-notice-credit-rating-downgrade-comptroller-says/">our future economies</a> throughout America.</p>
-
 <p>You may not have children, but school finance impacts you regardless. And as one news executive said recently in a visit to one of my public policy classes, &ldquo;school finance is the thing people should be talking about but will likely never get talked about.&rdquo;</p>
-
 <p>So here&rsquo;s to helping people understand with clean visualizations. Alright, let&rsquo;s see the map and get to the code-through.</p>
-
-<hr />
-
+<hr>
 <h2 id="the-map">The Map</h2>
-
-<p><img src="../../../../img/school-finance-viz/SFNationalMapOT.png" alt="Our Final Product: A Map of US School Funding Revenues Since 1993" /></p>
-
-<hr />
-
+<p><img src="../../../../img/school-finance-viz/SFNationalMapOT.png" alt="Our Final Product: A Map of US School Funding Revenues Since 1993"></p>
+<hr>
 <h2 id="the-code-through">The Code Through</h2>
-
 <p>While we&rsquo;ll visualize the three sources of funding, this dataset will organize a few other data points of use. While I&rsquo;ll do my best to address what each one is, I may overlook a few variables. If I do, you can reach out to me or reach out to the folks at the Census&rsquo; Educational Finance Branch.</p>
-
 <h3 id="accessing-all-the-data-used-here">Accessing All the Data Used Here</h3>
-
 <p>For this code-through, <a href="https://github.com/mrworthington/fileshare/raw/master/sf-data.zip">you can download all the data used for this code-through from my github</a>, which includes the inflation &amp; state &ldquo;FIPS&rdquo; code data needed for the visualization to work properly. Just add it to whatever directory you&rsquo;re working out of and you&rsquo;ll be good to go.</p>
-
 <h3 id="import-school-finance-data">Import School Finance Data</h3>
-
-<p>While you already have the data, the US Census has been collecting data from every school district in the country since the 1960s. Using their FTP database, you can download the files here and other various datasets related to public finance. For our purposes, we&rsquo;ll use their elementary and secondary school finance survey files and start from 1993 for a couple of reasons explained by clicking on the tooltips here<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup> <sup class="footnote-ref" id="fnref:2"><a href="#fn:2">2</a></sup>.</p>
-
+<p>While you already have the data, the US Census has been collecting data from every school district in the country since the 1960s. Using their FTP database, you can download the files here and other various datasets related to public finance. For our purposes, we&rsquo;ll use their elementary and secondary school finance survey files and start from 1993 for a couple of reasons explained by clicking on the tooltips here<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>.</p>
 <p>To access this raw data, you can go to the US Census FTP database where the school finance datasets are stored and download them into a folder there. First, <a href="ftp://ftp.census.gov/govs/school/">go to the FTP database</a>. Second, choose &ldquo;Allow&rdquo; when prompted and select guest when asked for authentication.</p>
-
-<p><img src="../../../../img/school-finance-viz/ftp-finderprompt.png" alt="First, hit &quot;Allow&quot; " /></p>
-
+<p><img src="../../../../img/school-finance-viz/ftp-finderprompt.png" alt="First, hit &ldquo;Allow&rdquo; "></p>
 <p>Once you do this, you should see a dialogue showing your connection status that looks like this.</p>
-
-<p><img src="../../../../img/school-finance-viz/connectingtoftp.png" alt="You should see a connecting status like this before the remote disk loads the files." /></p>
-
+<p><img src="../../../../img/school-finance-viz/connectingtoftp.png" alt="You should see a connecting status like this before the remote disk loads the files."></p>
 <p>After the data downloads into the remote disk, find the files with the following labels highlighted in purple below (i.e., <code>&quot;elsec.93.xls&quot;</code>) and download them into a folder called &ldquo;data&rdquo;. Once you do that, save a .Rproj file into the same location and you&rsquo;ll be able to run the code below without much trouble (I hope).</p>
-<div class="highlight"><pre class="chroma"><code class="language-r setup, include=FALSE" data-lang="r setup, include=FALSE">knitr::opts_chunk$set(
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">knitr::opts_chunk$set(
 	echo = TRUE,
 	message = FALSE,
 	warning = FALSE
@@ -226,9 +207,10 @@ library(tidyverse)
 library(readxl)
 library(geofacet)
 library(ggthemes)
-library(showtext)</code></pre></div>
-<p>One note about my code. By no means am I an expert in R and when I produced this code, I knew way less about the <code>tidyverse</code> than I do now. If any other R folks have feedback, I&rsquo;m 100% open to ways I can make this code cleaner and more efficient.</p>
-<div class="highlight"><pre class="chroma"><code class="language-r import school finance data, message=FALSE, warning=FALSE, cache=, include=TRUE, paged.print=FALSE" data-lang="r import school finance data, message=FALSE, warning=FALSE, cache=, include=TRUE, paged.print=FALSE">setwd(&#34;data/&#34;)
+library(showtext)
+</code></pre></div><p>One note about my code. By no means am I an expert in R and when I produced this code, I knew way less about the <code>tidyverse</code> than I do now. If any other R folks have feedback, I&rsquo;m 100% open to ways I can make this code cleaner and more efficient.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">
+setwd(&#34;data/&#34;)
 
 #Import Census School Finance Data
 sf1993 &lt;- read_excel(&#34;elsec93.xls&#34;)
@@ -278,11 +260,11 @@ sf2011$YEAR &lt;- as.character(&#34;2011&#34;)
 sf2012$YEAR &lt;- as.character(&#34;2012&#34;)
 sf2013$YEAR &lt;- as.character(&#34;2013&#34;)
 sf2014$YEAR &lt;- as.character(&#34;2014&#34;)
-sf2015$YEAR &lt;- as.character(&#34;2015&#34;)</code></pre></div>
-<h3 id="import-inflation-data-and-tidy-the-data">Import Inflation Data and Tidy The Data</h3>
-
+sf2015$YEAR &lt;- as.character(&#34;2015&#34;)
+</code></pre></div><h3 id="import-inflation-data-and-tidy-the-data">Import Inflation Data and Tidy The Data</h3>
 <p>At this part, we&rsquo;re limiting the raw data to the revenue sources, along with a few other identifiers and more granular funding sources that will get accounted into the larger buckets of Federal, State, &amp; Local revenues but are interesting to see in our table nonetheless.</p>
-<div class="highlight"><pre class="chroma"><code class="language-r filter variables of interest and rename, include=TRUE" data-lang="r filter variables of interest and rename, include=TRUE">#Introduce Inflation
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">
+#Introduce Inflation
 inflation &lt;- read_csv(&#34;data/inflation.csv&#34;, col_types = cols(YEAR_S = col_character()))
 
 #Select Only Those Variables of Interest
@@ -308,11 +290,11 @@ t2011 &lt;- dplyr::select(sf2011, one_of(c(&#34;STATE&#34;, &#34;IDCENSUS&#34;, 
 t2012 &lt;- dplyr::select(sf2012, one_of(c(&#34;STATE&#34;, &#34;IDCENSUS&#34;, &#34;YEAR&#34;, &#34;NAME&#34;, &#34;SCHLEV&#34;, &#34;V33&#34;, &#34;TOTALREV&#34;, &#34;TFEDREV&#34;, &#34;TSTREV&#34;,&#34;TLOCREV&#34;, &#34;T06&#34;, &#34;U97&#34;, &#34;TOTALEXP&#34;, &#34;TCURELSC&#34;)))
 t2013 &lt;- dplyr::select(sf2013, one_of(c(&#34;STATE&#34;, &#34;IDCENSUS&#34;, &#34;YEAR&#34;, &#34;NAME&#34;, &#34;SCHLEV&#34;, &#34;V33&#34;, &#34;TOTALREV&#34;, &#34;TFEDREV&#34;, &#34;TSTREV&#34;,&#34;TLOCREV&#34;, &#34;T06&#34;, &#34;U97&#34;, &#34;TOTALEXP&#34;, &#34;TCURELSC&#34;)))
 t2014 &lt;- dplyr::select(sf2014, one_of(c(&#34;STATE&#34;, &#34;IDCENSUS&#34;, &#34;YEAR&#34;, &#34;NAME&#34;, &#34;SCHLEV&#34;, &#34;V33&#34;, &#34;TOTALREV&#34;, &#34;TFEDREV&#34;, &#34;TSTREV&#34;,&#34;TLOCREV&#34;, &#34;T06&#34;, &#34;U97&#34;, &#34;TOTALEXP&#34;, &#34;TCURELSC&#34;)))
-t2015 &lt;- dplyr::select(sf2015, one_of(c(&#34;STATE&#34;, &#34;IDCENSUS&#34;, &#34;YEAR&#34;, &#34;NAME&#34;, &#34;SCHLEV&#34;, &#34;V33&#34;, &#34;TOTALREV&#34;, &#34;TFEDREV&#34;, &#34;TSTREV&#34;,&#34;TLOCREV&#34;, &#34;T06&#34;, &#34;U97&#34;, &#34;TOTALEXP&#34;, &#34;TCURELSC&#34;)))</code></pre></div>
-<h3 id="recode-additional-variables-of-interest">Recode Additional Variables of Interest</h3>
-
+t2015 &lt;- dplyr::select(sf2015, one_of(c(&#34;STATE&#34;, &#34;IDCENSUS&#34;, &#34;YEAR&#34;, &#34;NAME&#34;, &#34;SCHLEV&#34;, &#34;V33&#34;, &#34;TOTALREV&#34;, &#34;TFEDREV&#34;, &#34;TSTREV&#34;,&#34;TLOCREV&#34;, &#34;T06&#34;, &#34;U97&#34;, &#34;TOTALEXP&#34;, &#34;TCURELSC&#34;)))
+</code></pre></div><h3 id="recode-additional-variables-of-interest">Recode Additional Variables of Interest</h3>
 <p>Truth be told, many databases use strange identifiers to identify what those variables represent. In the census dataset, they used some names that are easy to interpret at first glance. For instance, <code>TOTALREV</code> equals &ldquo;Total Revenue&rdquo;. However, some variables aren&rsquo;t easily interpretable. For my purposes, I wanted to create more readable names for some of the variables I pulled in earlier. This code does that.</p>
-<div class="highlight"><pre class="chroma"><code class="language-r recode all variables from original dataset, include=FALSE" data-lang="r recode all variables from original dataset, include=FALSE">#Recode 1993 Variables
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">
+#Recode 1993 Variables
 t1993 &lt;- rename(t1993,  
                 ENROLL = V33,
                 IDCENSUS = ID,
@@ -452,11 +434,10 @@ t2015 &lt;- rename(t2015,
 
 inflation &lt;- rename(inflation, 
                     INDEX = Index,
-                    YEAR = YEAR_S)</code></pre></div>
-<h3 id="add-the-bls-education-inflation-index">Add The BLS Education Inflation Index</h3>
-
+                    YEAR = YEAR_S)
+</code></pre></div><h3 id="add-the-bls-education-inflation-index">Add The BLS Education Inflation Index</h3>
 <p>Here, we&rsquo;re combining the inflation data from <a href="https://data.bls.gov/cgi-bin/surveymost?cu">the BLS Education Inflation Index</a> alongside their annual counterparts from the census files so we can multiply the index value by each year&rsquo;s recorded funding amount. Once we do that, we&rsquo;ll have our inflation adjusted figures and be able to visualize them.</p>
-<div class="highlight"><pre class="chroma"><code class="language-r add inflation, echo=TRUE" data-lang="r add inflation, echo=TRUE">#Add Inflation Index
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">#Add Inflation Index
 inflation &lt;- inflation %&gt;% as_tibble() %&gt;% mutate(
   Annual = NULL)
 t1993 &lt;- left_join(t1993, inflation, by =&#34;YEAR&#34;)
@@ -481,11 +462,12 @@ t2011 &lt;- left_join(t2011, inflation, by =&#34;YEAR&#34;)
 t2012 &lt;- left_join(t2012, inflation, by =&#34;YEAR&#34;)
 t2013 &lt;- left_join(t2013, inflation, by =&#34;YEAR&#34;)
 t2014 &lt;- left_join(t2014, inflation, by =&#34;YEAR&#34;)
-t2015 &lt;- left_join(t2015, inflation, by =&#34;YEAR&#34;)</code></pre></div>
-<h3 id="adjust-our-data-for-inflation">Adjust Our Data for Inflation</h3>
+t2015 &lt;- left_join(t2015, inflation, by =&#34;YEAR&#34;)
 
+</code></pre></div><h3 id="adjust-our-data-for-inflation">Adjust Our Data for Inflation</h3>
 <p>As mentioned before, we&rsquo;ll be using data from <a href="https://data.bls.gov/cgi-bin/surveymost?cu">the Bureau of Labor &amp; Statistics&rsquo; Education Inflation Index</a> to calculate our inflation adjusted figures.</p>
-<div class="highlight"><pre class="chroma"><code class="language-r Calculate Education Inflation 1993-2015, include=FALSE" data-lang="r Calculate Education Inflation 1993-2015, include=FALSE">t1993e &lt;- t1993 %&gt;% as_tibble() %&gt;% mutate(
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">
+t1993e &lt;- t1993 %&gt;% as_tibble() %&gt;% mutate(
   TOTALREVe = TOTALREV*IndexED,
   TFEDREVe = TFEDREV*IndexED,
   TSTREVe = TSTREV*IndexED,
@@ -714,11 +696,13 @@ t2015e &lt;- t2015 %&gt;% as_tibble() %&gt;% mutate(
   PROPTAXe = PROPTAX*IndexED,
   MISCREVe = MISCREV*IndexED,
   TOTALEXPe = TOTALEXP*IndexED,
-  TCURELSCe = TCURELSC*IndexED)</code></pre></div>
-<h3 id="merge-all-datasets-into-one">Merge All Datasets Into One</h3>
+  TCURELSCe = TCURELSC*IndexED)
 
+
+
+</code></pre></div><h3 id="merge-all-datasets-into-one">Merge All Datasets Into One</h3>
 <p>At this point, once each of our individual datasets that are adjusted for inflation are compiled, we can merge them into one single dataset that is one step closer to being visualized.</p>
-<div class="highlight"><pre class="chroma"><code class="language-r merge 1993-2015 datasets with ed inflation into one, include=FALSE" data-lang="r merge 1993-2015 datasets with ed inflation into one, include=FALSE">full.94e &lt;- bind_rows(t1993e, t1994e)
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">full.94e &lt;- bind_rows(t1993e, t1994e)
 full.95e &lt;- bind_rows(full.94e, t1995e)
 full.96e &lt;- bind_rows(full.95e, t1996e)
 full.97e &lt;- bind_rows(full.96e, t1997e)
@@ -741,11 +725,11 @@ full.13e &lt;- bind_rows(full.12e, t2013e)
 full.14e &lt;- bind_rows(full.13e, t2014e)
 full25e &lt;- bind_rows(full.14e, t2015e)
 
-full25 &lt;- dplyr::select(full25e, one_of(c(&#34;STATE&#34;, &#34;IDCENSUS&#34;, &#34;YEAR&#34;, &#34;NAME&#34;, &#34;SCHLEV&#34;, &#34;ENROLL&#34;, &#34;TOTALREV&#34;, &#34;TFEDREV&#34;, &#34;TSTREV&#34;,&#34;TLOCREV&#34;, &#34;PROPTAX&#34;, &#34;MISCREV&#34;, &#34;TOTALEXP&#34;, &#34;TCURELSC&#34;)))</code></pre></div>
-<h3 id="add-fips-state-codes-to-our-datasets">Add FIPS State Codes To Our Datasets</h3>
-
+full25 &lt;- dplyr::select(full25e, one_of(c(&#34;STATE&#34;, &#34;IDCENSUS&#34;, &#34;YEAR&#34;, &#34;NAME&#34;, &#34;SCHLEV&#34;, &#34;ENROLL&#34;, &#34;TOTALREV&#34;, &#34;TFEDREV&#34;, &#34;TSTREV&#34;,&#34;TLOCREV&#34;, &#34;PROPTAX&#34;, &#34;MISCREV&#34;, &#34;TOTALEXP&#34;, &#34;TCURELSC&#34;)))
+</code></pre></div><h3 id="add-fips-state-codes-to-our-datasets">Add FIPS State Codes To Our Datasets</h3>
 <p>To take full advantage of the <code>geofacet</code> package, I used FIPS code identifiers to help identify each state. For more on what FIPS is, <a href="https://www.census.gov/geo/reference/ansi_statetables.html">check this page out</a>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-r Add FIPS state codes to our uniform datset" data-lang="r Add FIPS state codes to our uniform datset">#Import the FIPS state codes
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">
+#Import the FIPS state codes
 fipscode &lt;- read_csv(&#34;data/FIPSStates.csv&#34;, col_types = cols(`census id` = col_character()))
 
 #Remove Unnecessary Columns
@@ -785,11 +769,10 @@ full25c &lt;- rename(full25c,
 
 #Transform the Data Longways for Visualization Purposes
 fullest25e &lt;- gather(full25c, &#34;Source&#34;, &#34;Percent&#34;, 3:5)
-yearly_avg &lt;- fullest25e %&gt;% group_by(YEAR,Source) %&gt;% summarise(Annual_Avg = mean(Percent))</code></pre></div>
-<h2 id="plot-the-school-finance-map">Plot The School Finance Map</h2>
-
+yearly_avg &lt;- fullest25e %&gt;% group_by(YEAR,Source) %&gt;% summarise(Annual_Avg = mean(Percent))
+</code></pre></div><h2 id="plot-the-school-finance-map">Plot The School Finance Map</h2>
 <p>At this point, we&rsquo;ll use the <code>geofacet</code> and <code>ggplot2</code> packages to visualize our data. For style purposes, I&rsquo;ve used a theme from the <code>ggthemes</code> package to make the visualization a bit cleaner, along with a few custom theme stylings. Once you run this, you should be able to reproduce the visualization I shared at the top of this post.</p>
-<div class="highlight"><pre class="chroma"><code class="language-r Distribution Map, echo=FALSE, fig.retina=TRUE, fig.height=12, fig.showtext=TRUE, fig.width=20" data-lang="r Distribution Map, echo=FALSE, fig.retina=TRUE, fig.height=12, fig.showtext=TRUE, fig.width=20">showtext::showtext_auto()
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">showtext::showtext_auto()
 
 gg &lt;- ggplot(arrange(fullest25e,Source,YEAR), aes(x = YEAR, y =Percent, fill = Source, group = Source)) +
   geom_area(alpha = 0.8, position = &#39;stack&#39;) +
@@ -824,25 +807,22 @@ gg &lt;- ggplot(arrange(fullest25e,Source,YEAR), aes(x = YEAR, y =Percent, fill 
                                  title=&#34;Source of Funding&#34;))
 
 # Save The Plot as a .png file
-ggsave(&#34;SFNationalMapOT.png&#34;, plot = gg, device = &#34;png&#34;, dpi=300,  width = 20, height = 12)</code></pre></div>
-<hr />
-
+ggsave(&#34;SFNationalMapOT.png&#34;, plot = gg, device = &#34;png&#34;, dpi=300,  width = 20, height = 12)
+</code></pre></div><hr>
 <h3 id="bonus-school-finance-map">Bonus School Finance Map</h3>
-
 <p>While I had limited time to produce the code-through for the first map, here&rsquo;s an extra map that shows how much each state&rsquo;s per pupil funding compares to the national average since 1992. One note about this one is that it uses the All-Consumer series inflation index from the Bureau of Labor &amp; Statistics for 1992, while the 1993 data onward uses the BLS Education Index.</p>
-
-<p><img src="../../../../img/school-finance-viz/SFNationalMapPP.png" alt="A Comparison of Each State's Per Pupil Funding To The National Average" /></p>
-<div class="footnotes">
-
-<hr />
-
+<p><img src="../../../../img/school-finance-viz/SFNationalMapPP.png" alt="A Comparison of Each State&rsquo;s Per Pupil Funding To The National Average"></p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
 <ol>
-<li id="fn:1">Before 1992, the method of collection for the census didn&rsquo;t disaggregate federal revenues from state revenues because federal dollars were technically implemented through the state. However, since 1992, the census shifted their reporting protocols for states and began requesting that each state delineate between their contributions versus what the federal government provided.
- <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
-<li id="fn:2">While this method of collection started in 1992, our analysis will start in 1993 because that is when <a href="https://data.bls.gov/cgi-bin/surveymost?cu">the Bureau of Labor &amp; Statistics introduced their Education Inflation Index</a>, which was meant to provide clarity on a dollar&rsquo;s value in the education space.
- <a class="footnote-return" href="#fnref:2"><sup>[return]</sup></a></li>
+<li id="fn:1" role="doc-endnote">
+<p>Before 1992, the method of collection for the census didn&rsquo;t disaggregate federal revenues from state revenues because federal dollars were technically implemented through the state. However, since 1992, the census shifted their reporting protocols for states and began requesting that each state delineate between their contributions versus what the federal government provided. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p>While this method of collection started in 1992, our analysis will start in 1993 because that is when <a href="https://data.bls.gov/cgi-bin/surveymost?cu">the Bureau of Labor &amp; Statistics introduced their Education Inflation Index</a>, which was meant to provide clarity on a dollar&rsquo;s value in the education space. <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
 </ol>
-</div>
+</section>
         	
               
                 <span class="post-meta">
@@ -897,7 +877,7 @@ ggsave(&#34;SFNationalMapOT.png&#34;, plot = gg, device = &#34;png&#34;, dpi=300
               </li>
           
           <li> 
-            <a href="https://www.mrworthington.com/index.xml" title="RSS">
+            <a href="../../../../index.xml" title="RSS">
               <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -916,7 +896,7 @@ ggsave(&#34;SFNationalMapOT.png&#34;, plot = gg, device = &#34;png&#34;, dpi=300
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.1</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.74.1</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>
@@ -928,14 +908,14 @@ ggsave(&#34;SFNationalMapOT.png&#34;, plot = gg, device = &#34;png&#34;, dpi=300
 <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script src="https://www.mrworthington.com/js/main.js"></script>
+<script src="../../../../js/main.js"></script>
 <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 <script src="//cdn.bootcss.com/highlight.js/9.12.0/languages/r.min.js"></script>
 <script> hljs.configure({languages: ["r"]}); hljs.initHighlightingOnLoad();</script>
 
 
 <script> renderMathInElement(document.body); </script>
-<script src= "https://www.mrworthington.com/js/bigfoot.js"></script>
+<script src= "/js/bigfoot.js"></script>
 <script> $.bigfoot(); </script>
 
 

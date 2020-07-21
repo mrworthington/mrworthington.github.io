@@ -18,7 +18,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
     post = "/:year/:month/:day/:slug/"
 
 [Params]
-  subtitle = "Notes on Life, Education, Liturgy, & Policy"
+  subtitle = "Notes From Inside The House"
   favicon = "img/favicon.ico"
   dateFormat = "January 2, 2006"
   commit = false

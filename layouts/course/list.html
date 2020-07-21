@@ -28,7 +28,7 @@
             <article class="post-preview">
               <a href="{{ .Permalink }}">
                 <h2 class="post-title">{{ .Title }}</h2>
-    
+
                 {{ if .Params.subtitle }}
                   <h3 class="post-subtitle">
                     {{ .Params.subtitle }}
@@ -39,12 +39,12 @@
               <div class="post-entry">
                 {{ if .Truncated }}
                   {{ .Summary }}
-                  <a href="{{ .Permalink }}" class="post-read-more">[{{ i18n "readMore" }}]</a>
+                  <a href="{{ .Permalink }}" class="post-read-more">{{ i18n "readMore" }}</a>
                 {{ else }}
                   {{ .Content }}
                 {{ end }}
               </div>
-    
+
               {{ if .Params.tags }}
                 <span class="post-meta">
                   {{ range .Params.tags }}
@@ -52,11 +52,11 @@
                   {{ end }}
                 </span>
               {{ end }}
-    
+
             </article>
           {{ end }}
         </div>
-      
+
         {{ if or (.Paginator.HasPrev) (.Paginator.HasNext) }}
           <ul class="pager main-pager">
             {{ if .Paginator.HasPrev }}
@@ -75,4 +75,3 @@
     </div>
   </div>
 {{ end }}
-

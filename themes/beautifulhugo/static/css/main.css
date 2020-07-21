@@ -20,6 +20,10 @@ h1,h2,h3,h4,h5,h6 {
 	font-weight: 800;
 }
 
+.h4, h4 {
+font-size: 17px;
+}
+
 p a {
   text-decoration: none;
   color: #bf5700;
