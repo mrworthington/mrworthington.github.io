@@ -9,7 +9,6 @@
   [context.blog.environment]
     RUBY_VERSION = "2.6.2"
     HUGO_VERSION = "0.74.1"
-    
 
 [context.dev-site]
     command = "hugo"
