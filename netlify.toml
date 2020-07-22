@@ -1,12 +1,21 @@
 [context.production]
   command = ""
-  publish = "public"
+  publish = ""
 
-[context.data]
+[context.blog]
     command = "hugo"
-    publish = "_site"
+    publish = "public"
 
-  [context.data.environment]
+  [context.blog.environment]
+    RUBY_VERSION = "2.6.2"
+    HUGO_VERSION = "0.74.1"
+    
+
+[context.dev-site]
+    command = "hugo"
+    publish = "public"
+
+  [context.dev-site.environment]
     RUBY_VERSION = "2.6.2"
     HUGO_VERSION = "0.74.1"
 
