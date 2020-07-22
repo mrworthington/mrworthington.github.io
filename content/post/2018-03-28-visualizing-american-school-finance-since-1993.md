@@ -3,6 +3,7 @@ title: Visualizing American School Finance
 author: Matthew Worthington
 date: '2018-03-28'
 slug: visualizing-american-school-finance-since-1993
+type: post
 categories:
   - Education
   - Code-Through

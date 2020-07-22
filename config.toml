@@ -1,4 +1,4 @@
-baseurl = "post/"
+baseurl = "/"
 DefaultContentLanguage = "en"
 title = "Matt Worthington"
 theme = "beautifulhugo"
@@ -19,6 +19,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
 [Params]
   subtitle = "Notes From Inside The House"
+  mainSections = ["post","posts"]
   favicon = "img/favicon.ico"
   dateFormat = "January 2, 2006"
   commit = false
@@ -50,7 +51,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
 [[menu.main]]
     name = "Home"
-    url = "post/"
+    url = ""
     weight = 1
 
 [[menu.main]]
