@@ -1,4 +1,4 @@
-baseurl = "https://www.mrworthington.com"
+baseurl = "post/"
 DefaultContentLanguage = "en"
 title = "Matt Worthington"
 theme = "beautifulhugo"
@@ -50,7 +50,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
 [[menu.main]]
     name = "Home"
-    url = ""
+    url = "post/"
     weight = 1
 
 [[menu.main]]
