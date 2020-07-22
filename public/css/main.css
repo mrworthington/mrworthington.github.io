@@ -656,7 +656,7 @@ footer .theme-by {
   }
   .intro-header.big-img {
     margin-top: 0px;  /* Full navbar is small navbar + 20px padding on each side when expanded */
-    background-position: right 0px bottom 0vh;
+    background-position: right 0px bottom -28vh;
     box-shadow:inset 0 0 0 2000px rgba(0,0,0,0.60);
   }
   .intro-header.big-img .page-heading,
