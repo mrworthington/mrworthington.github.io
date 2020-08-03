@@ -1,0 +1,193 @@
+---
+title: "Analyzing COVID-19 in Austin"
+description: |
+  Austin Public Heath has been profiled numerous times throughout the pandemic as being relentless in their efforts to get good data, despite multiple challenges and barriers. In this post, I take a look at local COVID data for Austin that has been collected by Austin Public Health. 
+author:
+  - name: Matt Worthington 
+    url: https://mrworthington.com/about
+    affiliation: Me, Myself, and I
+    affiliation_url: https://mrworthington.com
+date: 05-20-2020
+creative_commons: CC BY-NC
+output:
+  distill::distill_article:
+    css: hospital_header.css
+    self_contained: false
+preview: ryan-magsino-sohLeI-k-HU-unsplash.jpg
+twitter:
+  creator: "@mrworthington"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(janitor)
+library(gfonts)
+library(flextable)
+library(tinter)
+library(geojsonsf)
+library(highcharter)
+library(tigris)
+library(geojson)
+library(sf)
+
+options(tigris_use_cache=TRUE)
+
+# Learn more about creating blogs with Distill at:
+# https://rstudio.github.io/distill/blog.html
+
+```
+
+
+
+```{r include=FALSE}
+
+tx2036_hc <- hc_theme_merge(
+  hc_theme_smpl(),
+  hc_theme(chart = list(backgroundColor = "#fff", 
+                        style = list(fontFamily = '"Ringside Narrow SSm A", "Ringside Narrow SSm B", -apple-system, sans-serif !important', 
+                                     fontSize = "28px", 
+                                     color="#4d4d4d",fontWeight="800", textTransform="uppercase")),
+           title = list(style = list(fontFamily = '-apple-system, sans-serif !important', 
+                                     fontWeight = "bold",
+                                     color="#2d2d2d"),
+                        align = "left"), 
+           subtitle = list(style = list(fontFamily = '"Ringside Narrow SSm A", "Ringside Narrow SSm B", -apple-system, sans-serif !important',
+                                        color="#7d7d7d",
+                                        textTransform="initial",
+                                        fontWeight="400",
+                                        fontSize = "14px"),
+                           align = "left"), 
+           legend = list(align = "right", 
+                         style = list(fontFamily = '"Ringside Narrow SSm A", "Ringside Narrow SSm B", -apple-system, sans-serif !important', color="#6d6d6d"),
+                         itemStyle = list(fontFamily = '"Ringside Narrow SSm A", "Ringside Narrow SSm B", -apple-system, sans-serif !important', color = '#6d6d6d'),
+                         itemHoverStyle = list(color = 'gray'),   
+                         verticalAlign = "top"),
+           credits = list(style = list(color = "#fff")),
+           xAxis = list(labels =list(style = list(fontFamily = '"Ringside Narrow SSm A", "Ringside Narrow SSm B", -apple-system, sans-serif !important', color="#2d2d2d")), 
+                        title = list(style = list(color = "#4d4d4d", fontSize = "12px", 
+                                                  color="#4d4d4d",fontWeight="500")),
+                        gridLineWidth = 0,
+                        gridLineColor = "#9d9d9d", 
+                        lineColor = 'rgba(0,0,0,0.7)', 
+                        minorGridLineColor = 'rgba(0,0,0,0.7)', 
+                        tickColor = "#9d9d9d", 
+                        tickWidth = 1), 
+           yAxis = list(labels =list(style = list(fontFamily = '"Ringside Narrow SSm A", "Ringside Narrow SSm B", -apple-system, sans-serif !important', color="#2d2d2d")), 
+                        title = list(style = list(color = "#fff", fontSize = "12px", 
+                                                  color="#fff",fontWeight="500")), 
+                        gridLineWidth = .5,
+                        gridLineColor = 'rgba(0,0,0,0.15)', 
+                        lineColor = 'rgba(0,0,0,0.15)', 
+                        minorGridLineColor = 'rgba(0,0,0,0.15)', 
+                        tickColor = "#9d9d9d", 
+                        tickWidth = 2)))
+
+   myMenuItems <- c("downloadCSV", "downloadCSV", "separator", "downloadPNG", "downloadJPEG", "downloadPDF")
+
+
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, layout="l-body-outset", fig.height=8}
+
+library(tidyverse)
+library(janitor)
+library(gfonts)
+library(flextable)
+library(tinter)
+library(geojsonsf)
+library(highcharter)
+library(tigris)
+library(geojson)
+library(sf)
+
+tx_zips <- tigris::zctas(state="TX",cb=TRUE) 
+
+sf_counties <- tigris::counties(state="TX") %>% filter(GEOID=="48453")
+
+geo_travis <- geojsonsf::sf_geojson(sf_counties)
+
+# For ArcGIS Data, The service ID is the key that goes after the datasets directory. Then use the 'ID' provided to pull the data into whatever format you want. For ATX, visit this site: https://services.arcgis.com/0L95CJ0VTaxqcmED/ArcGIS/rest/services/web0723/FeatureServer
+
+atx_covid_zips_cases <- readr::read_csv("https://opendata.arcgis.com/datasets/4d913cdf3d894c3898696a7216e44180_02.csv") %>% 
+  janitor::clean_names() %>% 
+  dplyr::mutate(zipcode=as.character(zipcode))
+
+atx_zips_by_cases_sf <- atx_covid_zips_cases %>%
+  dplyr::left_join(tx_zips, by=c("zipcode"="GEOID10")) %>% 
+  dplyr::select(zipcode, count, geometry) %>% 
+  sf::st_as_sf()
+
+# Have tried adding `st_transform(102739)` here (right after st_as_sf()), but despite correctly rendering in ggplot2 or elsewhere, it seems the transformation doesn't stick when the shapefile is converted to geojson format.
+
+geo_zips_travis <- sf_geojson(atx_zips_by_cases_sf)
+
+crs <- '{
+  "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:EPSG:102739"
+  }
+}'
+
+geo_zips_travis <- geo_zips_travis %>% geojson::crs_add(crs)
+
+ # In the highcharts, library, there is a function called hc-transform that helps you add this inside of custom geojson objects. I just haven't been able to find a way to add the hc-transform into custom geojson objects. Here's a sample of hc-transform from one of the maps in highcharts own maps library:
+ # "hc-transform": {
+ #    "default": {
+ #      "crs": "+proj=lcc +lat_1=32.13333333333333 +lat_2=33.96666666666667 +lat_0=31.66666666666667 +lon_0=-98.5 +x_0=600000 +y_0=2000000 +ellps=GRS80 +units=m +no_defs",
+ #      "scale": 0.000561591402519,
+ #      "jsonres": 15.5,
+ #      "jsonmarginX": -999,
+ #      "jsonmarginY": 9851,
+ #      "xoffset": -169837.133029,
+ #      "yoffset": 2545161.1438
+ #    }
+ #  },
+
+geo_zips_travis <- jsonlite::fromJSON(geo_zips_travis, simplifyVector = FALSE)
+
+# stops <- color_stops(n = 10, colors = c("#3A4A9F", "#FFFFFF", "#F26852"))
+
+highchart() %>%
+  hc_add_series_map(geo_zips_travis,atx_covid_zips_cases, value = "count", joinBy = "zipcode", name = "COVID-19 in Austin") %>% 
+  hc_add_series(mapData = geo_travis, showInLegend = FALSE, nullColor = "transparent", borderColor = "#000",
+                borderWidth = 3) %>%
+  hc_title(
+    text ="Texas Effective Reproduction Rate · R<sub>t</sub>",
+    useHTML = TRUE) %>% 
+  hc_subtitle(
+    text ="From R<sub>t</sub> Live: R<sub>t</sub>  is the average number of people who become infected by an infectious person.",
+    useHTML = TRUE) %>%
+  hc_tooltip(table = FALSE, sort = FALSE,
+             pointFormat = "Zip: {point.zipcode}<br>Confirmed Cases: {point.count:,.0f}") %>% 
+  hc_credits(
+    enabled = TRUE,
+    text = "Source: rt.live Analysis",
+    href = "https://rt.live") %>%
+  hc_add_theme(tx2036_hc) %>%
+  hc_colorAxis(minColor = "#f7fbff", maxColor = "#08306b") %>% 
+  hc_size(height = 700, width = 500) %>% 
+        hc_exporting(enabled=TRUE, scale=2, sourceWidth= 1200, sourceHeight = 600, 
+                     allowHTML = TRUE,
+                     buttons = list(contextButton = list(menuItems = myMenuItems, 
+                                                         title = "Export This Chart",
+                                                         symbol = 'menuball', 
+                                                         symbolStrokeWidth = 1,
+                                                         symbolFill = 'rgba(93,165,218, 0.9)',
+                                                         symbolStroke ='#4d4d4d',
+                                                         theme = list(fill='#ffffff'))),
+                     chartOptions = list(title =  list(style = list(fontWeight = '800', fontSize = '22px', textTransform = "uppercase")),
+                                         subtitle =  list(style = list(fontSize = '14px'))))
+
+```
+
+## Acknowledgments {.appendix}
+
+This is a place to recognize people and institutions. It may also be a good place
+to acknowledge and cite software that makes your work possible.
+
+## Author Contributions {.appendix}
+
+We strongly encourage you to include an author contributions statement briefly 
+describing what each author did.
+

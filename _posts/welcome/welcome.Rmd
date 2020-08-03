@@ -1,0 +1,343 @@
+---
+title: "Testing Out Different Libraries"
+description: |
+  In this post, we test out a few features to make sure this blog can be interactive. First is ggplot2, second is ggiraph, and last is highcharter.
+author:
+  - name: Matt Worthington 
+    url: https://mrworthington.com/about
+    affiliation: Me, Myself, and I
+    affiliation_url: https://mrworthington.com
+date: 05-20-2020
+draft: true
+creative_commons: CC BY-NC
+output:
+  distill::distill_article:
+    css: hospital_header.css
+    self_contained: false
+preview: dan-gold-pexByC8iQE4-unsplash-3.jpg
+twitter:
+  creator: "@mrworthington"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+# Learn more about creating blogs with Distill at:
+# https://rstudio.github.io/distill/blog.html
+
+```
+
+This evening, [the Ed Trust is hosting a discussion on twitter at 8PM ET](https://edtrust.org/resource/funding-gaps-2018/) on school funding inequity, so I thought I would do a code-through of a visualization I made this past summer while researching the legacy of a famous school finance Supreme Court case that ended up determining that [Americans had no fundamental right to an education](https://www.folomedia.org/americans-no-right-education/). In short, it shows the shares of funding over time for each of the three main sources of funding for public education in America: federal funding, state funding, and local funding (mostly property taxes).
+
+## GGiraph Test
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, layout="l-page", fig.height=6}
+library(ggiraph)
+library(tidyverse)
+library(gfonts)
+library(flextable)
+library(tinter)
+ts_county_cases <- read_csv("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv")
+sf_counties <- tidycensus::county_laea
+ts_county_cases_sf <- ts_county_cases %>% 
+  filter(date=="2020-03-27",
+         state=="Texas") %>% 
+  left_join(sf_counties, by=c("fips"="GEOID")) %>% 
+  sf::st_as_sf()
+# flextable part -----
+fun_flextable <- function(dat){
+  ft <- flextable(dat, col_keys = c("county", "cases", "deaths"), 
+                  defaults = list(fontname = "Whitney SSm A"), 
+                  theme_fun = theme_vanilla)
+  ft <- fontsize(ft, part = "all", size = 20)
+  ft <- bold(ft, part = "header", bold = TRUE)
+  ft <- color(ft, color = "black", part = "all")
+  ft <- set_table_properties(ft, layout = "autofit")
+  as.character(htmltools_value(ft))
+}
+temp_dat <- as.data.frame(ts_county_cases_sf)[,c("county", "cases", "deaths")]
+temp_dat <- split(temp_dat, seq_len(nrow(temp_dat)))
+ts_county_cases_sf$tooltip <- map_chr(temp_dat, fun_flextable)
+# end of flextable part
+tx_map <- ts_county_cases_sf %>%
+  ggplot() +
+  geom_sf(data=sf_counties %>% filter(str_detect(GEOID,"48")),color="#dddddd", fill="#f2f2f2", lwd=.3) +
+  geom_sf_interactive(aes(fill=cases, tooltip=tooltip, data_id = county), lwd=.3) +
+  scale_fill_gradientn(colours = tinter("#5da5da", steps = 5), labels = function(x) paste0(x,"Cases")) +
+  coord_sf(datum=NA) +
+  hrbrthemes::theme_ipsum_es(base_family="Whitney SSm A") +
+  theme(plot.title = element_text(family="Whitney SSm A", face = "bold"),
+        plot.subtitle = element_text(family="Whitney SSm A", face = "plain"),
+        plot.caption = element_text(family="Whitney SSm A", face = "plain")) + 
+  labs(title="Confirmed COVID-19 Cases By County - Texas",
+       subtitle="As of March 26th, 2020",
+       caption="SOURCE: New York Times COVID-19 Database")
+girafe(ggobj = tx_map, fonts = list(sans = "Whitney SSm A"), width_svg = 12, height_svg = 8,
+       options = list(
+         opts_tooltip(css = "padding:5px;background:white;border-radius:2px 2px 2px 2px;"),
+         opts_hover_inv(css = "opacity:0.8;"),
+         opts_hover(css = "stroke-width:2;")
+       ))
+```
+
+
+```{r include=FALSE}
+
+tx2036_hc <- hc_theme_merge(
+  hc_theme_smpl(),
+  hc_theme(chart = list(backgroundColor = "#fff", 
+                        style = list(fontFamily = '"Ringside Narrow SSm A", "Ringside Narrow SSm B", -apple-system, sans-serif !important', 
+                                     fontSize = "28px", 
+                                     color="#4d4d4d",fontWeight="800", textTransform="uppercase")),
+           title = list(style = list(fontFamily = '-apple-system, sans-serif !important', 
+                                     fontWeight = "bold",
+                                     color="#2d2d2d"),
+                        align = "left"), 
+           subtitle = list(style = list(fontFamily = '"Ringside Narrow SSm A", "Ringside Narrow SSm B", -apple-system, sans-serif !important',
+                                        color="#7d7d7d",
+                                        textTransform="initial",
+                                        fontWeight="400",
+                                        fontSize = "14px"),
+                           align = "left"), 
+           legend = list(align = "right", 
+                         style = list(fontFamily = '"Ringside Narrow SSm A", "Ringside Narrow SSm B", -apple-system, sans-serif !important', color="#6d6d6d"),
+                         itemStyle = list(fontFamily = '"Ringside Narrow SSm A", "Ringside Narrow SSm B", -apple-system, sans-serif !important', color = '#6d6d6d'),
+                         itemHoverStyle = list(color = 'gray'),   
+                         verticalAlign = "top"),
+           credits = list(style = list(color = "#fff")),
+           xAxis = list(labels =list(style = list(fontFamily = '"Ringside Narrow SSm A", "Ringside Narrow SSm B", -apple-system, sans-serif !important', color="#2d2d2d")), 
+                        title = list(style = list(color = "#4d4d4d", fontSize = "12px", 
+                                                  color="#4d4d4d",fontWeight="500")),
+                        gridLineWidth = 0,
+                        gridLineColor = "#9d9d9d", 
+                        lineColor = 'rgba(0,0,0,0.7)', 
+                        minorGridLineColor = 'rgba(0,0,0,0.7)', 
+                        tickColor = "#9d9d9d", 
+                        tickWidth = 1), 
+           yAxis = list(labels =list(style = list(fontFamily = '"Ringside Narrow SSm A", "Ringside Narrow SSm B", -apple-system, sans-serif !important', color="#2d2d2d")), 
+                        title = list(style = list(color = "#fff", fontSize = "12px", 
+                                                  color="#fff",fontWeight="500")), 
+                        gridLineWidth = .5,
+                        gridLineColor = 'rgba(0,0,0,0.15)', 
+                        lineColor = 'rgba(0,0,0,0.15)', 
+                        minorGridLineColor = 'rgba(0,0,0,0.15)', 
+                        tickColor = "#9d9d9d", 
+                        tickWidth = 2)))
+
+   myMenuItems <- c("downloadCSV", "downloadCSV", "separator", "downloadPNG", "downloadJPEG", "downloadPDF")
+
+
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, layout="l-body"}
+
+library(tidyverse)
+library(janitor)
+library(gfonts)
+library(flextable)
+library(tinter)
+library(geojsonsf)
+library(highcharter)
+library(tigris)
+library(geojson)
+library(sf)
+
+tx_zips <- tigris::zctas(state="TX",cb=TRUE) 
+
+sf_counties <- tigris::counties(state="TX") %>% filter(GEOID=="48453")
+
+# geo_travis <- geojsonsf::sf_geojson(sf_counties)
+
+# For ArcGIS Data, The service ID is the key that goes after the datasets directory. Then use the 'ID' provided to pull the data into whatever format you want. For ATX, visit this site: https://services.arcgis.com/0L95CJ0VTaxqcmED/ArcGIS/rest/services/web0723/FeatureServer
+
+atx_covid_zips_cases <- readr::read_csv("https://opendata.arcgis.com/datasets/4d913cdf3d894c3898696a7216e44180_02.csv") %>% 
+  janitor::clean_names() %>% 
+  dplyr::mutate(zipcode=as.character(zipcode))
+
+atx_zips_by_cases_sf <- atx_covid_zips_cases %>%
+  dplyr::left_join(tx_zips, by=c("zipcode"="GEOID10")) %>% 
+  dplyr::select(zipcode, count, geometry) %>% 
+  sf::st_as_sf() %>% 
+  st_transform(102739)
+
+# Have tried adding `st_transform(102739)` here (right after st_as_sf()), but despite correctly rendering in ggplot2 or elsewhere, it seems the transformation doesn't stick when the shapefile is converted to geojson format.
+
+geo_zips_travis <- sf_geojson(atx_zips_by_cases_sf)
+
+crs <- '{
+  "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:EPSG:102739"
+  }
+}'
+
+geo_zips_travis <- geo_zips_travis %>% geojson::crs_add(crs)
+
+ # In the highcharts, library, there is a function called hc-transform that helps you add this inside of custom geojson objects. I just haven't been able to find a way to add the hc-transform into custom geojson objects. Here's a sample of hc-transform from one of the maps in highcharts own maps library:
+ # "hc-transform": {
+ #    "default": {
+ #      "crs": "+proj=lcc +lat_1=32.13333333333333 +lat_2=33.96666666666667 +lat_0=31.66666666666667 +lon_0=-98.5 +x_0=600000 +y_0=2000000 +ellps=GRS80 +units=m +no_defs",
+ #      "scale": 0.000561591402519,
+ #      "jsonres": 15.5,
+ #      "jsonmarginX": -999,
+ #      "jsonmarginY": 9851,
+ #      "xoffset": -169837.133029,
+ #      "yoffset": 2545161.1438
+ #    }
+ #  },
+
+geo_zips_travis <- jsonlite::fromJSON(geo_zips_travis, simplifyVector = FALSE)
+
+# stops <- color_stops(n = 10, colors = c("#3A4A9F", "#FFFFFF", "#F26852"))
+
+highchart() %>%
+  hc_add_series_map(geo_zips_travis,atx_covid_zips_cases, value = "count", joinBy = "zipcode", name = "COVID-19 in Austin") %>% 
+  hc_add_series(mapData = geo_travis, showInLegend = FALSE, nullColor = "transparent", borderColor = "#000",
+                borderWidth = 3) %>%
+  hc_title(
+    text ="Texas Effective Reproduction Rate · R<sub>t</sub>",
+    useHTML = TRUE) %>% 
+  hc_subtitle(
+    text ="From R<sub>t</sub> Live: R<sub>t</sub>  is the average number of people who become infected by an infectious person.",
+    useHTML = TRUE) %>%
+  hc_tooltip(table = FALSE, sort = FALSE,
+             pointFormat = "Zip: {point.zipcode}<br>Confirmed Cases: {point.count:,.0f}") %>% 
+  hc_credits(
+    enabled = TRUE,
+    text = "Source: rt.live Analysis",
+    href = "https://rt.live") %>%
+  hc_add_theme(tx2036_hc) %>%
+  hc_colorAxis(minColor = "#f7fbff", maxColor = "#08306b") %>% 
+  hc_size(height = 700) %>% 
+        hc_exporting(enabled=TRUE, scale=2, sourceWidth= 1200, sourceHeight = 600, 
+                     allowHTML = TRUE,
+                     buttons = list(contextButton = list(menuItems = myMenuItems, 
+                                                         title = "Export This Chart",
+                                                         symbol = 'menuball', 
+                                                         symbolStrokeWidth = 1,
+                                                         symbolFill = 'rgba(93,165,218, 0.9)',
+                                                         symbolStroke ='#4d4d4d',
+                                                         theme = list(fill='#ffffff'))),
+                     chartOptions = list(title =  list(style = list(fontWeight = '800', fontSize = '22px', textTransform = "uppercase")),
+                                         subtitle =  list(style = list(fontSize = '14px'))))
+
+```
+
+## Testing Highcharts
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, layout="l-page", fig.height=5}
+library(highcharter)
+library(vroom)
+library(lubridate)
+library(janitor)
+tx2036_hc <- hc_theme_merge(
+  hc_theme_smpl(),
+  hc_theme(chart = list(backgroundColor = "#fff", 
+                        style = list(fontFamily = '-apple-system, sans-serif !important', 
+                                     fontSize = "28px", 
+                                     color="#4d4d4d",fontWeight="800", textTransform="uppercase")),
+           title = list(style = list(fontFamily = '-apple-system, sans-serif !important', 
+                                     fontWeight = "bold",
+                                     color="#2d2d2d"),
+                        align = "left"), 
+           subtitle = list(style = list(fontFamily = '-apple-system, sans-serif !important',
+                                        color="#7d7d7d",
+                                        textTransform="initial",
+                                        fontWeight="400",
+                                        fontSize = "14px"),
+                           align = "left"), 
+           legend = list(align = "right", 
+                         style = list(fontFamily = '-apple-system, sans-serif !important', color="#6d6d6d"),
+                         itemStyle = list(fontFamily = '-apple-system, sans-serif !important', color = '#6d6d6d'),
+                         itemHoverStyle = list(color = 'gray'),   
+                         verticalAlign = "top"),
+           credits = list(style = list(color = "#fff")),
+           xAxis = list(labels =list(style = list(fontFamily = '-apple-system, sans-serif !important', color="#2d2d2d")), 
+                        title = list(style = list(color = "#4d4d4d", fontSize = "12px", 
+                                                  color="#4d4d4d",fontWeight="500")),
+                        gridLineWidth = 0,
+                        gridLineColor = "#9d9d9d", 
+                        lineColor = 'rgba(0,0,0,0.7)', 
+                        minorGridLineColor = 'rgba(0,0,0,0.7)', 
+                        tickColor = "#9d9d9d", 
+                        tickWidth = 1), 
+           yAxis = list(labels =list(style = list(fontFamily = '-apple-system, sans-serif !important', color="#2d2d2d")), 
+                        title = list(style = list(color = "#fff", fontSize = "12px", 
+                                                  color="#fff",fontWeight="500")), 
+                        gridLineWidth = .5,
+                        gridLineColor = 'rgba(0,0,0,0.15)', 
+                        lineColor = 'rgba(0,0,0,0.15)', 
+                        minorGridLineColor = 'rgba(0,0,0,0.15)', 
+                        tickColor = "#9d9d9d", 
+                        tickWidth = 2)))
+
+key_events <- vroom("https://docs.google.com/spreadsheets/d/e/2PACX-1vQ2q_c5RpywszCamM3VINgAwZ51OJoPfBFflEvXpuAqAZrw9SDovcGnfDOlF7uwzCnZf5XMkEluhlUb/pub?output=csv") %>% 
+  clean_names() %>% 
+  mutate(date=as_date(date))
+
+r_naught <- vroom("https://d14wlfuexuxgcm.cloudfront.net/covid/rt.csv") %>% 
+  filter(region=="TX")
+
+ key_events_fltr <- key_events %>%
+      filter(!str_detect(event,"Stimulus"))
+    
+    dates <- key_events_fltr$date
+    events <- key_events_fltr$event
+    
+    plotLines <- map2(key_events_fltr$date,key_events_fltr$event,
+                      ~list(label = list(text = .y,
+                                         style = list(color = "rgba(0, 0, 0, 0.6)", 
+                                                      fontSize='12px',textTransform='initial')),
+                            color = "rgba(0, 0, 0, 0.6)",
+                            width = 1,
+                            dashStyle = "Dash",
+                            value = datetime_to_timestamp(as.Date(.x, tz="UTC"))))
+    
+   myMenuItems <- c("downloadPNG", "downloadJPEG", "downloadPDF", "downloadCSV" )
+    
+   r_naught %>% 
+      hchart("line", hcaes(x = date, y = mean), animation=FALSE,
+             tooltip = FALSE,
+             threshold = 1, color = "#F26852", negativeColor = "#FFD100") %>%
+      hc_add_series(r_naught, type = "arearange",
+                    hcaes(x = date, low = lower_80,
+                          high = upper_80),
+                    threshold = 1, color = "#F26852", negativeColor = "#FFD100",
+                    linkedTo = "r_naught") %>%
+      hc_plotOptions(arearange = list(fillOpacity=.3)) %>%
+      hc_title(
+        text ="Texas Effective Reproduction Rate · R<sub>t</sub>",
+        useHTML = TRUE) %>% 
+      hc_subtitle(
+        text ="From R<sub>t</sub> Live: R<sub>t</sub>  is the average number of people who become infected by an infectious person.</br></br><span style='color: #F26852'>If it’s above 1.0, COVID-19 will spread quickly.</span> <span style='color: #FFD100'>If it’s below 1.0, infections will slow.</span>",
+        useHTML = TRUE) %>%
+      hc_yAxis(title = list(text="Effective Reproduction Rate (R<sub>t</sub>)"),
+               min = min(r_naught$lower_80), 
+               max = max(r_naught$upper_80)) %>% 
+      hc_xAxis(title=NULL,
+               plotLines = plotLines) %>% 
+      hc_tooltip(table = FALSE, sort = FALSE,
+                 pointFormat = "Effective Reproduction Rate · R<sub>t</sub>: {point.mean:,.2f}<br>") %>% 
+      hc_credits(
+        enabled = TRUE,
+        text = "Source: rt.live Analysis",
+        href = "https://rt.live") %>%
+      hc_add_theme(tx2036_hc) %>% 
+       hc_exporting(enabled=TRUE,
+        buttons = list(contextButton = list(menuItems = myMenuItems)))
+   
+   
+    
+```
+
+
+## Acknowledgments {.appendix}
+
+This is a place to recognize people and institutions. It may also be a good place
+to acknowledge and cite software that makes your work possible.
+
+## Author Contributions {.appendix}
+
+We strongly encourage you to include an author contributions statement briefly 
+describing what each author did.
+

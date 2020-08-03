@@ -1,0 +1,138 @@
+---
+title: "Experiences"
+description: |
+  As of `r format(Sys.Date(), "%B %Y")`
+output:
+  distill::distill_article:
+    css: resume_header.css
+    self_contained: false
+creative_commons: CC BY-NC
+twitter:
+  creator: "@mrworthington"
+---
+
+This is a brief overview of where I've studied, worked, volunteered, or shared. By no means does it contain everything I've done, but covers the more notable experiences. If you'd like to know more about anything listed below, contact me using the links at the bottom of the page.
+
+## <a style="font-weight:600;text-transform:capitalize;color:#3d3d3d">Education</a>
+***
+#### **[The LBJ School of Public Affairs, UT Austin](https://lbj.utexas.edu)** <a style="font-weight:200;color:#9cadb7"> | Austin, TX</a><a style="float:right;color:#9cadb7">May 2019</a> 
+#### Master of Public Affairs, Merit Fellowship Recipient
+
+#### **[George Mason University](https://www2.gmu.edu)**</a><a style="font-weight:200;color:#9cadb7"> | Fairfax, VA</a><a style="float:right;color:#9cadb7">May 2011</a>  
+#### Master of Education in Special Education, <a href="https://www.teachforamerica.org" style="font-weight:200;text-transform:capitalize;color:#9cadb7"> | TFA Cohort</a>
+
+#### **[Abilene Christian University](http://acu.edu)** <a style="font-weight:200;color:#9cadb7"> | Abilene, TX</a><a style="float:right;color:#9cadb7">December 2008</a>                                                                                               
+#### Bachelor of Arts in English 
+
+
+
+## <a style="font-weight:600;text-transform:capitalize;color:#3d3d3d">Professional</a>
+***
+#### <a style="color:#005f86">Manager of Data & Analytics</a> | <a href="http://www.texas2036.org" style="font-weight:200;text-transform:capitalize;color:#9cadb7">Texas 2036</a><a style="float:right;color:#9cadb7">Mar 2019-Present </a> 
+
+#### <a style="color:#005f86">Director of Analytics & Insight</a> | <a href="http://www.unitedwayaustin.org" style="font-weight:200;text-transform:capitalize;color:#9cadb7">United Way for Greater Austin</a><a style="float:right;color:#9cadb7">Aug 2018-Feb 2019 </a> 
+
+#### <a style="color:#005f86">Research & Reporting Analyst</a> | <a href="https://www.folomedia.org/about/" style="font-weight:200;text-transform:capitalize;color:#9cadb7">Folo Media</a><a style="float:right;color:#9cadb7">Summer & Fall 2017</a> 
+
+#### <a style="color:#005f86">Graduate Assistant</a> | <a href="http://diversity.utexas.edu" style="font-weight:200;text-transform:capitalize;color:#9cadb7">DDCE @ UT Austin</a><a style="float:right;color:#9cadb7">Spring 2017</a> 
+
+#### <a style="color:#005f86">Digital Learning Coordinator</a> | <a href="http://www.kippaustin.org" style="font-weight:200;text-transform:capitalize;color:#9cadb7">KIPP Austin Public Schools</a><a style="float:right;color:#9cadb7">2013-2016</a>
+
+#### <a style="color:#005f86">Manager of Technology Strategy</a> | <a href="https://dcps.dc.gov" style="font-weight:200;text-transform:capitalize;color:#9cadb7">DC Public Schools</a><a style="float:right;color:#9cadb7">2012-2013</a> 
+
+#### <a style="color:#005f86">Special Education Teacher & Case Manager</a> | <a href="http://profiles.dcps.dc.gov/MacFarland+Middle+School" style="font-weight:200;text-transform:capitalize;color:#9cadb7">DC Public Schools</a><a style="float:right;color:#9cadb7">2009-2012</a>
+
+## <a style="font-weight:600;text-transform:capitalize;color:#3d3d3d">Volunteer</a>
+***
+#### <a style="color:#005f86">Liturgy Homilist</a> | <a href="http://voxveniae.com" style="font-weight:200;text-transform:capitalize;color:#9cadb7">Vox Veniae - Austin, TX</a><a style="float:right;color:#9cadb7">2015-Present</a> 
+
+#### <a style="color:#005f86">Liturgy Director</a> | <a href="http://voxveniae.com" style="font-weight:200;text-transform:capitalize;color:#9cadb7">Vox Veniae - Austin, TX</a><a style="float:right;color:#9cadb7">2015-2016</a> 
+
+#### <a style="color:#005f86">Local School Advisory Chair</a> | <a href="http://profiles.dcps.dc.gov/MacFarland+Middle+School" style="font-weight:200;text-transform:capitalize;color:#9cadb7">MacFarland Middle School - Washington, DC</a><a style="float:right;color:#9cadb7">2010-2011</a> 
+
+#### <a style="color:#005f86">IT Coordinator</a> | <a href="http://profiles.dcps.dc.gov/MacFarland+Middle+School" style="font-weight:200;text-transform:capitalize;color:#9cadb7">MacFarland Middle School - Washington, DC</a><a style="float:right;color:#9cadb7">2011-2012</a> 
+
+#### <a style="color:#005f86">Founding Executive Team</a> | <a href="http://www.districtchurch.org" style="font-weight:200;text-transform:capitalize;color:#9cadb7">The District Church - Washington, DC</a><a style="float:right;color:#9cadb7">2010-2011</a> 
+
+#### <a style="color:#005f86">Domestic Poverty Track Co-Director</a> | <a href="https://urbana.org/poverty-track" style="font-weight:200;text-transform:capitalize;color:#9cadb7">Urbana- St. Louis, MO</a><a style="float:right;color:#9cadb7">2009-2010</a>
+
+#### <a style="color:#005f86">Summer Youth Volunteer</a> | <a href="http://ourkidsfirstsf.org" style="font-weight:200;text-transform:capitalize;color:#9cadb7">Our Kids First - San Francisco, CA</a><a style="float:right;color:#9cadb7">Summer 2017</a>  
+
+## <a style="font-weight:600;text-transform:capitalize;color:#3d3d3d">Publication and Presentations</a>
+***
+
+##### [^1] <a href="https://www.folomedia.org/icymi-this-was-all-about-racism/" style="color:#005f86">ICYMI: This was all about racism</a> | <a style="font-weight:200;text-transform:capitalize;color:#9cadb7">Folo Media</a><a style="float:right;color:#9cadb7">Dec 2017</a>
+
+##### [^2] <a href="https://www.folomedia.org/san-antonio-left-edgewood-fend/" style="color:#005f86">How San Antonio left Edgewood to fend for itself</a> | <a style="font-weight:200;text-transform:capitalize;color:#9cadb7">Folo Media</a><a style="float:right;color:#9cadb7">Nov 2017</a>
+
+##### [^3] <a href="https://www.folomedia.org/san-antonio-segregated-schools/" style="color:#005f86">How San Antonio segregated its schools</a> | <a style="font-weight:200;text-transform:capitalize;color:#9cadb7">Folo Media</a><a style="float:right;color:#9cadb7">Nov 2017</a>
+
+##### [^4] <a href="http://tpr.org/post/texas-has-broken-school-finance-system-can-it-be-fixed" style="color:#005f86">Texas Has A Broken School Finance System – Can It Be Fixed?</a> | <a style="font-weight:200;text-transform:capitalize;color:#9cadb7">The Source - Texas Public Radio</a><a style="float:right;color:#9cadb7">Nov 2017</a>
+
+##### [^5] <a href="https://www.folomedia.org/americans-no-right-education/" style="color:#005f86">Why Americans have no right to an education</a> | <a style="font-weight:200;text-transform:capitalize;color:#9cadb7">Folo Media</a><a style="float:right;color:#9cadb7">Nov 2017</a>
+
+##### [^6] <a href="http://tpr.org/post/texas-matters-right-education" style="color:#005f86">A Right To An Education</a> | <a style="font-weight:200;text-transform:capitalize;color:#9cadb7">Texas Matters - Texas Public Radio</a><a style="float:right;color:#9cadb7">Nov 2017</a>
+
+##### [^7] <a href="http://www.expectations.org/perspectives/trumps-budget-doesnt-reflect-my-values/" style="color:#005f86">President Trump's Budget Doesn't Reflect My Values</a> | <a style="font-weight:200;text-transform:capitalize;color:#9cadb7">The Expectations Project</a><a style="float:right;color:#9cadb7">Mar 2017</a>    
+
+##### [^8] <a href="https://www.youtube.com/watch?v=AlZd2sndRcg" style="color:#005f86">Straight Talk From Teachers on Ed Tech Policy</a> | <a style="font-weight:200;text-transform:capitalize;color:#9cadb7">SXSWEdu Policy Forum</a><a style="float:right;color:#9cadb7">March 2016</a> 
+
+##### [^9] <a href="http://blogs.edweek.org/edweek/rick_hess_straight_up/2016/02/the_future_of_technology_in_education_3_things_we_need_to_do_to_help_our_students_succeed.html" style="color:#005f86">3 Ways to Implement Ed-Tech to Help Our Students Succeed</a> | <a style="font-weight:200;text-transform:capitalize;color:#9cadb7">Education Week</a><a style="float:right;color:#9cadb7">Feb 2016</a>
+
+##### [^10] <a href="http://www.talkstoryshow.com/matt-worthington" style="color:#005f86">Giving Space For Others</a> | <a style="font-weight:200;text-transform:capitalize;color:#9cadb7">Talk Story</a><a style="float:right;color:#9cadb7">March 2016</a> 
+
+##### [^11] <a href="hhttps://sojo.net/articles/our-friends-photo-became-racist-meme-heres-how-we-responded" style="color:#005f86">Our Friend's Photo Became a Racist Meme. Here's How We Responded.</a> | <a style="font-weight:200;text-transform:capitalize;color:#9cadb7">Sojourners</a><a style="float:right;color:#9cadb7">Dec 2015</a>   
+
+##### [^12] <a style="color:#005f86">Panelist: Equity & Diversity in EdTech</a> | <a style="font-weight:200;text-transform:capitalize;color:#9cadb7">The Teach For America Entrepreneurship Conference</a><a style="float:right;color:#9cadb7">May 2015</a>   
+
+##### [^13] <a style="color:#005f86">Talk: Faith & Public Service</a> | <a style="font-weight:200;text-transform:capitalize;color:#9cadb7">The Jubilee Conference</a><a style="float:right;color:#9cadb7">2012-2014</a>
+
+##### [^14] <a style="color:#005f86">Panelist: Engaging School Staff in Blended Learning</a> | <a style="font-weight:200;text-transform:capitalize;color:#9cadb7">KIPP School Summit</a><a style="float:right;color:#9cadb7">Jul 2014</a>
+
+##### [^15] <a style="color:#005f86">Education Policy Briefing</a> | <a style="font-weight:200;text-transform:capitalize;color:#9cadb7">Q Conference At The White House</a><a style="float:right;color:#9cadb7">Apr 2012</a>
+
+##### [^16] <a style="color:#005f86">Talk: Other People's Children</a> | <a style="font-weight:200;text-transform:capitalize;color:#9cadb7">Abilene Christian University Summit</a><a style="float:right;color:#9cadb7">Sep 2011</a>
+
+##### [^17] <a style="color:#005f86">Faith & Public Service</a> | <a style="font-weight:200;text-transform:capitalize;color:#9cadb7">Ivy League Congress on Faith & Action</a><a style="float:right;color:#9cadb7">Sep 2011</a>   
+
+##### [^18] <a style="color:#005f86">How Faith Communities Can Support Public Schools</a> | <a style="font-weight:200;text-transform:capitalize;color:#9cadb7">Milligan University</a><a style="float:right;color:#9cadb7">Sep 2011</a>   
+
+##### [^19] <a href="https://digitalcommons.pepperdine.edu/cgi/viewcontent.cgi?article=1036&context=leaven" style="color:#005f86">Under Different Skin</a> | <a style="font-weight:200;text-transform:capitalize;color:#9cadb7">The Leaven Journal - Pepperdine University</a><a style="float:right;color:#9cadb7">Jan 2010</a> 
+
+[^1]: <u>Article Description:</u> While *Rodriguez v. San Antonio ISD* worked its way through the courts in 1968, transcripts of Civil Rights hearings revealed a deeper logic at work in San Antonio and the country that sought to disenfranchise Mexican-Americans in almost every facet of life.
+
+[^2]: <u>Article Description:</u> Reforms of the mid- and late-20th century offered opportunities for some school districts to shore up their property tax base and create more secure funding. Edgewood, however, would not be one of these. 
+
+[^3]: <u>Article Description:</u> The struggles that continue to plague Edgewood ISD are rooted in prejudice. Throughout the 20th century, those prejudices became public policy that would allocate services unevenly across the city, creating intractable inequities still visible in the city’s school districts. 
+
+[^4]: Serving as one of four panelists in a one-hour live radio broadcast for Texas Public Radio’s “The Source”, I discussed the future of Texas Public Education and School Finance along with Texas State Representative Diego Bernal & San Antonio ISD Chief Innovation Officer Mohammed Choudhury. Texas Public Radio’s David Martin Davies moderated the live radio panel.
+
+[^5]: <u>Article Description:</u> Forty-four years ago, the United States Supreme Court ruled that children have no fundamental right to receive an education in a case involving families from a San Antonio school district called Edgewood ISD. This piece explains how Texas’ school finance system helped perpetuate nationwide inequity. 
+
+[^6]: <u>Article Description:</u> In a thirty-minute one-on-one interview for Texas Public Radio’s “Texas Matters” podcast, I describe the history behind America’s lack of a federal right to an education with David Martin Davies of Texas Public Radio. We talk about 1968, redlining in San Antonio, Kelly Air Force base, and other factors that prompted Folo Media’s interest in writing about *Rodriguez v. San Antonio ISD*.
+
+[^7]: In a guest post for The Expectations Project, I broke down how even though President Trump's budget isn't legally binding, it promoted an ideas that were in direct conflict with my identity as a Christian and a former public school teacher. 
+
+[^8]: In March 2016, served on a panel with the former Governor of North Carolina, Bev Purdue, and Kerry Gallagher, Digital Learning Specialist at St John’s Preparatory School, to discuss solutions to emerging challenges in education policy at the local, state, and federal policy levels. (Austin, TX) 
+
+[^9]: In February 2016, served as a guest blogger for Rick Hess’ (AEI) “Straight Up” Column. Offered three considerations schools should make in an effort to better address the growing diversity of students’ college and career readiness needs through technology.
+
+[^10]: In February of 2016, had a great conversation with Talk Story where we discussed a bit of my background growing up and the importance of giving marginalized communities space for their voices rather than having other people tell their stories.
+
+[^11]: In December 2015, I was asked by Sojourners Magazine to write a reflection on my brother’s response to a hateful meme involving one of my friends from High School through the lens of the Christian season of advent.
+
+[^12]: On May 9, 2015, provided the perspective of an education institution regarding equity and diversity in education technology alongside a panel made of education technology executives and a journalist. (Kansas City, KS) 
+
+[^13]: In 2012 and 2014, taught seminars for graduating college seniors that explored relevant issues and considerations for transitioning to professional life at the intersection of faith and public service, sponsored by the Coalition for Christian Outreach college ministry. (Pittsburgh, PA) 
+
+[^14]: On July 30, 2014, explored best practices in engaging teachers and academic leaders in blended learning alongside KIPP DC and KIPP Bay Area. (Houston, TX)  
+
+[^15]: On April 12, 2012, served as an education panelist alongside members of MarylandCAN and White House staff to discuss ways that faith communities can engage with public education policy on local, state, and federal levels to help close the achievement gap. (Washington, DC) 
+
+[^16]: In 2011, delivered a two part presentation to church practitioners from across the world called “Other People’s Children” that explored outcomes of students in low income communities and various opportunities for the church to radically improve the circumstances of neighborhood schools. (Abilene, TX) 
+
+[^17]: On April 2, 2011, served with Nicole Baker Fulgham (then Vice President of Teacher For America and current CEO of The Expecations Project) and Barbara Schoenly, Board Member of inFocus, to discuss how faith drives our choice of profession and what students of faith should consider when entering public service. (Cambridge, MA)
+
+[^18]: In November of 2010, delivered two 45-minute keynotes exploring opportunities for faith communities to positively impact America’s most struggling schools. (Johnson City, TN)  
+
+[^19]: In 2008, published a reflectional piece on proposed attitudes the Churches of Christ should adopt towards racial reconciliation.

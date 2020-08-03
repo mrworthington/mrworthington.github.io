@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+  <channel>
+    <title>Matt Worthington</title>
+    <link>https://data.mrworthington.com</link>
+    <atom:link href="https://data.mrworthington.com/index.xml" rel="self" type="application/rss+xml"/>
+    <description>Notes From A Spreadsheet
+</description>
+    <generator>Distill</generator>
+    <lastBuildDate>Wed, 20 May 2020 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Analyzing COVID-19 in Austin</title>
+      <dc:creator>Matt Worthington</dc:creator>
+      <link>https://data.mrworthington.com/posts/covid_atx</link>
+      <description>Austin Public Heath has been profiled numerous times throughout the pandemic as being relentless in their efforts to get good data, despite multiple challenges and barriers. In this post, I take a look at local COVID data for Austin that has been collected by Austin Public Health.</description>
+      <guid>https://data.mrworthington.com/posts/covid_atx</guid>
+      <pubDate>Wed, 20 May 2020 00:00:00 +0000</pubDate>
+      <media:content url="https://data.mrworthington.com/posts/covid_atx/ryan-magsino-sohLeI-k-HU-unsplash.jpg" medium="image" type="image/jpeg"/>
+    </item>
+    <item>
+      <title>Visualizing American School Finance</title>
+      <dc:creator>Matt Worthington</dc:creator>
+      <link>https://data.mrworthington.com/posts/school-finance-analysis</link>
+      <description>Analyzing School Finances Revenue Breakdowns For Every State From 1993-2015</description>
+      <category>School Finance</category>
+      <category>Public Education</category>
+      <category>Charter Schools</category>
+      <category>US Census Bureau</category>
+      <guid>https://data.mrworthington.com/posts/school-finance-analysis</guid>
+      <pubDate>Wed, 28 Mar 2018 00:00:00 +0000</pubDate>
+      <media:content url="https://data.mrworthington.com/posts/school-finance-analysis/isabella-and-louisa-fischer-uSPjZzYwXO4-unsplash-2.jpg" medium="image" type="image/jpeg"/>
+    </item>
+    <item>
+      <title>My Testimony to The Texas Commission on Public School Finance</title>
+      <dc:creator>Matt Worthington</dc:creator>
+      <link>https://data.mrworthington.com/posts/public-ed-testimony</link>
+      <description>Delivered on March 19, 2018</description>
+      <category>School Finance</category>
+      <category>Public Education</category>
+      <category>Texas Education Agency</category>
+      <category>Independent School Districts</category>
+      <category>Charter Schools</category>
+      <guid>https://data.mrworthington.com/posts/public-ed-testimony</guid>
+      <pubDate>Wed, 21 Mar 2018 00:00:00 +0000</pubDate>
+      <media:content url="https://data.mrworthington.com/posts/public-ed-testimony/meggyn-pomerleau-2SGDohBsYPg-unsplash-2.jpg" medium="image" type="image/jpeg"/>
+    </item>
+    <item>
+      <title>How San Antonio segregated its schools</title>
+      <dc:creator>Matt Worthington</dc:creator>
+      <link>https://data.mrworthington.com/posts/how_sa_segregated_schools</link>
+      <description>The struggles that continue to plague Edgewood ISD are rooted in prejudice. Throughout the 20th century, those prejudices became public policy that would allocate services unevenly across the city, creating intractable inequities still visible in the city’s school districts.</description>
+      <guid>https://data.mrworthington.com/posts/how_sa_segregated_schools</guid>
+      <pubDate>Wed, 22 Nov 2017 00:00:00 +0000</pubDate>
+      <media:content url="https://data.mrworthington.com/posts/how_sa_segregated_schools/HOLC_San_Antonio_City_Survey_Report_1_Exhibit_B_Racial_Concentrations_2.jpg" medium="image" type="image/jpeg"/>
+    </item>
+    <item>
+      <title>Why Americans Have No Right To An Education</title>
+      <dc:creator>Matt Worthington</dc:creator>
+      <link>https://data.mrworthington.com/posts/why_americans_no_ed</link>
+      <description>How Texas’ school finance system helped perpetuate nationwide inequity.</description>
+      <guid>https://data.mrworthington.com/posts/why_americans_no_ed</guid>
+      <pubDate>Wed, 08 Nov 2017 00:00:00 +0000</pubDate>
+      <media:content url="https://data.mrworthington.com/posts/why_americans_no_ed/fullsizeoutput_77ff.jpg" medium="image" type="image/jpeg"/>
+    </item>
+  </channel>
+</rss>

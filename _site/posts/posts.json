@@ -1,0 +1,93 @@
+[
+  {
+    "path": "posts/covid_atx/",
+    "title": "Analyzing COVID-19 in Austin",
+    "description": "Austin Public Heath has been profiled numerous times throughout the pandemic as being relentless in their efforts to get good data, despite multiple challenges and barriers. In this post, I take a look at local COVID data for Austin that has been collected by Austin Public Health.",
+    "author": [
+      {
+        "name": "Matt Worthington",
+        "url": "https://mrworthington.com/about"
+      }
+    ],
+    "date": "2020-05-20",
+    "categories": [],
+    "preview": "posts/covid_atx/ryan-magsino-sohLeI-k-HU-unsplash.jpg",
+    "last_modified": "2020-07-31T06:43:43-07:00",
+    "input_file": "covid_atx_analysis.utf8.md"
+  },
+  {
+    "path": "posts/school-finance-analysis/",
+    "title": "Visualizing American School Finance",
+    "description": "Analyzing School Finances Revenue Breakdowns For Every State From 1993-2015",
+    "author": [
+      {
+        "name": "Matt Worthington",
+        "url": "https://mrworthington.com/about.html"
+      }
+    ],
+    "date": "2018-03-28",
+    "categories": [
+      "School Finance",
+      "Public Education",
+      "Charter Schools",
+      "US Census Bureau"
+    ],
+    "preview": "posts/school-finance-analysis/isabella-and-louisa-fischer-uSPjZzYwXO4-unsplash-2.jpg",
+    "last_modified": "2020-07-23T20:55:27-07:00",
+    "input_file": {}
+  },
+  {
+    "path": "posts/public-ed-testimony/",
+    "title": "My Testimony to The Texas Commission on Public School Finance",
+    "description": "Delivered on March 19, 2018",
+    "author": [
+      {
+        "name": "Matt Worthington",
+        "url": "https://mrworthington.com/about"
+      }
+    ],
+    "date": "2018-03-21",
+    "categories": [
+      "School Finance",
+      "Public Education",
+      "Texas Education Agency",
+      "Independent School Districts",
+      "Charter Schools"
+    ],
+    "preview": "posts/public-ed-testimony/meggyn-pomerleau-2SGDohBsYPg-unsplash-2.jpg",
+    "last_modified": "2020-07-23T15:25:29-07:00",
+    "input_file": {}
+  },
+  {
+    "path": "posts/how_sa_segregated_schools/",
+    "title": "How San Antonio segregated its schools",
+    "description": "The struggles that continue to plague Edgewood ISD are rooted in prejudice. Throughout the 20th century, those prejudices became public policy that would allocate services unevenly across the city, creating intractable inequities still visible in the city’s school districts.",
+    "author": [
+      {
+        "name": "Matt Worthington",
+        "url": "https://mrworthington.com/about"
+      }
+    ],
+    "date": "2017-11-22",
+    "categories": [],
+    "preview": "posts/how_sa_segregated_schools/HOLC_San_Antonio_City_Survey_Report_1_Exhibit_B_Racial_Concentrations_2.jpg",
+    "last_modified": "2020-07-29T21:49:49-07:00",
+    "input_file": {}
+  },
+  {
+    "path": "posts/why_americans_no_ed/",
+    "title": "Why Americans Have No Right To An Education",
+    "description": "How Texas’ school finance system helped perpetuate nationwide inequity.",
+    "author": [
+      {
+        "name": "Matt Worthington",
+        "url": "https://mrworthington.com/about"
+      }
+    ],
+    "date": "2017-11-08",
+    "categories": [],
+    "preview": "posts/why_americans_no_ed/fullsizeoutput_77ff.jpg",
+    "last_modified": "2020-07-29T21:06:39-07:00",
+    "input_file": {}
+  }
+]

@@ -1,3 +1,5 @@
 ---
-site: blogdown:::blogdown_site
+title: "Notes From A Spreadsheet"
+site: distill::distill_website
+listing: posts
 ---

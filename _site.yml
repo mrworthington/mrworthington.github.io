@@ -1,0 +1,29 @@
+name: "distill_blog"
+title: "Matt Worthington"
+description: |
+  Notes From A Spreadsheet
+output_dir: "_site"
+base_url: https://data.mrworthington.com
+navbar:
+  right:
+    - text: "Home"
+      href: https://data.mrworthington.com
+    - text: "About"
+      href: about.html
+    # - text: "Resume"
+    #   href: resume.html      
+    # - text: "Data"
+    #   href: https://data.mrworthington.com
+    - icon: fa fa-github
+      href: https://github.com/mrworthington
+    - icon: fa fa-twitter
+      href: https://twitter.com/mrworthington
+collections:
+  posts:
+    # disqus: data-mrworthington
+    #share: [twitter, facebook, linkedin]
+
+output:
+  distill::distill_article:
+    css: styles.css
+    toc_depth: 2
