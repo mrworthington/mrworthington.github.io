@@ -11,7 +11,7 @@ background:
       rgba(77,77,77, 0.8)
     ),
     /* bottom, image */
-    url(meggyn-pomerleau-2SGDohBsYPg-unsplash-2.jpg);
+    url(meggyn-pomerleau-2SGDohBsYPg-unsplash-2.jpg) no-repeat center center fixed;
 background-size:cover !important;
 }
 

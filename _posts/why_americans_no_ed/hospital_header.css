@@ -12,9 +12,8 @@ background:
       rgba(77,77,77, 0.8)
     ),
     /* bottom, image */
-    url(fullsizeoutput_77ff.jpg);
+    url(fullsizeoutput_77ff.jpg) no-repeat center center fixed;
 background-size:cover !important;
-background-position: right 0px bottom -44vh;
 }
 
 .highcharts-container text {

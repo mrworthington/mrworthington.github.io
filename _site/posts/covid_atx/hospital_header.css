@@ -11,7 +11,7 @@ background:
       rgba(77,77,77, 0.8)
     ),
     /* bottom, image */
-    url(ryan-magsino-sohLeI-k-HU-unsplash.jpg);
+    url(ryan-magsino-sohLeI-k-HU-unsplash.jpg) no-repeat center center fixed;
 background-size:cover !important;
 }
 

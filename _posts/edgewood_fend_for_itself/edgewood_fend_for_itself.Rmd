@@ -7,7 +7,7 @@ author:
     url: https://mrworthington.com/about
     affiliation: Folo Media (Formerly)
     affiliation_url: https://www.folomedia.org/past-and-present/
-date: 11-17-2017
+date: 11-29-2017
 creative_commons: CC BY-NC
 output:
   distill::distill_article:

@@ -11,9 +11,8 @@ background:
       rgba(77,77,77, 0.8)
     ),
     /* bottom, image */
-    url(isabella-and-louisa-fischer-uSPjZzYwXO4-unsplash-2.jpg);
+    url(isabella-and-louisa-fischer-uSPjZzYwXO4-unsplash-2.jpg) no-repeat center center fixed;
 background-size:cover !important;
-background-position: right 0px bottom -8vh;
 }
 
 .highcharts-container text {

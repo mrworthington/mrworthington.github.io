@@ -12,7 +12,7 @@
     "date": "2020-05-20",
     "categories": [],
     "preview": "posts/covid_atx/ryan-magsino-sohLeI-k-HU-unsplash.jpg",
-    "last_modified": "2020-08-03T15:58:55-07:00",
+    "last_modified": "2020-08-04T11:53:36-07:00",
     "input_file": {}
   },
   {
@@ -75,7 +75,23 @@
     "date": "2017-12-06",
     "categories": [],
     "preview": "posts/all_about_racism/IMG_0028-e1512660939350.jpg",
-    "last_modified": "2020-08-04T11:44:24-07:00",
+    "last_modified": "2020-08-04T11:52:53-07:00",
+    "input_file": {}
+  },
+  {
+    "path": "posts/edgewood_fend_for_itself/",
+    "title": "How San Antonio left Edgewood to fend for itself",
+    "description": "Reforms of the mid- and late-20th century offered opportunities for some school districts to shore up their property tax base and create more secure funding. Edgewood, however, would not be one of these.",
+    "author": [
+      {
+        "name": "Matt Worthington",
+        "url": "https://mrworthington.com/about"
+      }
+    ],
+    "date": "2017-11-29",
+    "categories": [],
+    "preview": "posts/edgewood_fend_for_itself/edgewood1800.jpg",
+    "last_modified": "2020-08-04T14:22:02-07:00",
     "input_file": {}
   },
   {
@@ -92,22 +108,6 @@
     "categories": [],
     "preview": "posts/how_sa_segregated_schools/HOLC_San_Antonio_City_Survey_Report_1_Exhibit_B_Racial_Concentrations_2.jpg",
     "last_modified": "2020-07-29T21:49:49-07:00",
-    "input_file": {}
-  },
-  {
-    "path": "posts/edgewood_fend_for_itself/",
-    "title": "How San Antonio left Edgewood to fend for itself",
-    "description": "Reforms of the mid- and late-20th century offered opportunities for some school districts to shore up their property tax base and create more secure funding. Edgewood, however, would not be one of these.",
-    "author": [
-      {
-        "name": "Matt Worthington",
-        "url": "https://mrworthington.com/about"
-      }
-    ],
-    "date": "2017-11-17",
-    "categories": [],
-    "preview": "posts/edgewood_fend_for_itself/edgewood1800.jpg",
-    "last_modified": "2020-08-04T11:08:47-07:00",
     "input_file": {}
   },
   {

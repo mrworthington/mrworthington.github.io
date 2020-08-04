@@ -11,9 +11,8 @@ background:
       rgba(77,77,77, 0.8)
     ),
     /* bottom, image */
-    url(IMG_0028-e1512660939350.jpg);
+    url(IMG_0028-e1512660939350.jpg) no-repeat center center fixed;
 background-size:cover !important;
-background-position: right 0px bottom -45vh;
 }
 
 .highcharts-container text {

@@ -12,9 +12,8 @@ background:
       rgba(77,77,77, 0.8)
     ),
     /* bottom, image */
-    url(HOLC_San_Antonio_City_Survey_Report_1_Exhibit_B_Racial_Concentrations_2.jpg);
+    url(HOLC_San_Antonio_City_Survey_Report_1_Exhibit_B_Racial_Concentrations_2.jpg) no-repeat center center fixed;
 background-size:cover !important;
-background-position: right 0px bottom -13vh;
 }
 
 .highcharts-container text {
