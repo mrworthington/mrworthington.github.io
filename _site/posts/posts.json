@@ -2,7 +2,7 @@
   {
     "path": "posts/covid_atx/",
     "title": "Analyzing COVID-19 in Austin",
-    "description": "Austin Public Heath has been profiled numerous times throughout the pandemic as being relentless in their efforts to get good data, despite multiple challenges and barriers. In this post, I take a look at local COVID data for Austin that has been collected by Austin Public Health.",
+    "description": "**Note to readers: this is a test post!** Austin Public Heath has been profiled numerous times throughout the pandemic as being relentless in their efforts to get good data, despite multiple challenges and barriers. In this post, I take a look at local COVID data for Austin that has been collected by Austin Public Health.",
     "author": [
       {
         "name": "Matt Worthington",
@@ -12,8 +12,8 @@
     "date": "2020-05-20",
     "categories": [],
     "preview": "posts/covid_atx/ryan-magsino-sohLeI-k-HU-unsplash.jpg",
-    "last_modified": "2020-07-31T06:43:43-07:00",
-    "input_file": "covid_atx_analysis.utf8.md"
+    "last_modified": "2020-08-03T15:58:55-07:00",
+    "input_file": {}
   },
   {
     "path": "posts/school-finance-analysis/",

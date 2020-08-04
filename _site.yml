@@ -4,6 +4,7 @@ description: |
   Notes From A Spreadsheet
 output_dir: "_site"
 base_url: https://data.mrworthington.com
+google_analytics: "UA-52682113-1"
 navbar:
   right:
     - text: "Home"
