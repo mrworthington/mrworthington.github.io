@@ -1,193 +1,98 @@
 ---
-title: "Analyzing COVID-19 in Austin"
+title: "How San Antonio left Edgewood to fend for itself"
 description: |
-  Austin Public Heath has been profiled numerous times throughout the pandemic as being relentless in their efforts to get good data, despite multiple challenges and barriers. In this post, I take a look at local COVID data for Austin that has been collected by Austin Public Health. 
+  Reforms of the mid- and late-20th century offered opportunities for some school districts to shore up their property tax base and create more secure funding. Edgewood, however, would not be one of these.
 author:
   - name: Matt Worthington 
     url: https://mrworthington.com/about
-    affiliation: Me, Myself, and I
-    affiliation_url: https://mrworthington.com
-date: 05-20-2020
+    affiliation: Folo Media (Formerly)
+    affiliation_url: https://www.folomedia.org/past-and-present/
+date: 11-17-2017
 creative_commons: CC BY-NC
 output:
   distill::distill_article:
     css: hospital_header.css
     self_contained: false
-preview: ryan-magsino-sohLeI-k-HU-unsplash.jpg
+preview: edgewood1800.jpg
 twitter:
   creator: "@mrworthington"
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-library(tidyverse)
-library(janitor)
-library(gfonts)
-library(flextable)
-library(tinter)
-library(geojsonsf)
-library(highcharter)
-library(tigris)
-library(geojson)
-library(sf)
+# How San Antonio left Edgewood to fend for itself
 
-options(tigris_use_cache=TRUE)
+_This is the third installment in a series of essays on the legacy of a court battle that began in San Antonio, ended in the Supreme Court, and determined that American children have no constitutional right to an education. Read the [__first_](https://www.folomedia.org/americans-no-right-education/)_ and [__second_](https://www.folomedia.org/san-antonio-segregated-schools/)_ essays._
 
-# Learn more about creating blogs with Distill at:
-# https://rstudio.github.io/distill/blog.html
+By 1960, residential and public housing segregation had effectively consolidated San Antonio's Hispanic residents on the West Side, where more than half lived in 18 of the city's 92 census tracts. In nine of those tracts, nearly half of the housing was categorized by the federal government as "deteriorating" or "dilapidated," the latter of which was deemed hazardous to occupants' health and safety.
 
+With unemployment rates nearly double the city's, and with almost half of its residents without stable employment, West Side median incomes ranged from 29 to 60 percent of white incomes. Many industries limited the type of jobs black and Hispanic workers could do. As a result, nearly half the population on the West Side lived below the federal poverty line, which left a quarter of residents chronically hungry.
+
+Interviews from a 1968 United States Commission on Civil Rights investigation reveal widespread discrimination against Hispanic people in San Antonio. Parents and students expressed frustration as they saw another generation of bright and capable children denied the opportunity to thrive. One student at Lanier High School described college as "an impossible dream."
+
+Lanier High School in San Antonio ISD would struggle with internal inequality within its district, but neighboring Edgewood ISD had been thoroughly isolated.
+
+Edgewood became the poster child for what writer Jonathan Kozol would call "Savage Inequalities" in his 1991 book of the same name. It was not only the poorest district in Texas at the time, but the poorest district in America's 16 largest cities.
+
+What is most troubling is that 70 years prior, some in Texas had predicted exactly this.
+
+### The district nobody wanted
+
+In a 1921 report, the Texas Department of Education noticed that some of the state's 7,000-plus school districts were too small and too poor to function alone. Without being absorbed by larger districts through consolidation, these districts would be unsustainable.
+
+In response, State Superintendent of Public Instruction (a position replaced by the Education Commissioner in 1949) Annie Blanton recommended a statewide analysis of each district complete with strategic proposals for consolidation to ensure districts would have enough money.
+
+Blanton noted, however, that merging districts was easier said than done.
+
+"The principal obstacles to school consolidation are to be found in local prejudices, local jealousies, and in real estate considerations," Blanton wrote. The primary reason Blanton gave for doubting the possibility of consolidation was that "certain wealthy property owners oppose these plans." They did not want to see higher taxes, nor did they want to see others benefit from higher property values afforded by a strong school district. In short: They wanted to keep their "advantage."
+
+The best chance for consolidation came in 1947, when the State Legislature passed a massive overhaul of public education with the [Gilmer-Aikin Act][3]. Among its reforms was minimum funding measures designed to equalize resources and a call for consolidation of the state's 4,500 districts.
+
+The state had made consolidation recommendations to each county in the 1930s, but Gilmer-Aikin's passing left the decision of consolidating up to local school districts who negotiated directly with one another.
+
+"They were looking so carefully at property values," says Dr. Christine Drennon, director of Trinity University's Urban Studies program. "These negotiations, when they made it to paper, were financial. They were about: How much property do you bring to this agreement? What's your debt? How many kids you got? And is this a good financial agreement?"
+
+It was a deal Edgewood could never close. The tiny, poor district wanted consolidation, but other districts were leery. Ranked near the bottom of Texas property values and per-pupil spending by a [public report][4] in 1972, newspapers also reported the district had debts totalling $500,000. If a district inherited Edgewood, it also meant inheriting its history of challenges.
+
+Those challenges included housing that had degraded into slum conditions, tuberculosis outbreaks, segregation, lacking infrastructure, few businesses, and thousands of children living in tax-exempt public housing. [In a previous essay](https://www.folomedia.org/san-antonio-segregated-schools/), Folo Media explored how those conditions came to be, and how the residents were trapped in Edgewood by exclusionary 20th century housing practices.
+
+"Nobody wanted Edgewood," said Chandra Villanueva, a senior policy analyst at the Center for Public Policy Priorities in Austin. "They became [an independent] district because nobody else would take them."
+
+Some districts reached merger agreements — to become Northside, San Antonio and Northeast — and a few chose to remain exclusive, like Alamo Heights and Harlandale. Edgewood was left to fend for itself.
+
+To Villanueva, the story that played out in Edgewood looks predictable. "When you develop a school finance system that's based on local property values at the exact same time that you're explicitly segregating neighborhoods on race, then you can't act surprised 50 years later — 70 years later — when things are unequal.
+
+"[It] was very intentional the way that we set up school districts and funding at a time when it was OK to be explicitly racist. And we are experiencing the fallout from that system."
+
+```{r fig.cap="Figure from [Folo Media](https://folomedia.org). A 1968 Civil Rights Commission Report noted that with Kelly Air Force Base encompassing 1/4 of Edgewood ISD's property and 13.5 percent of Edgewood students living in tax-exempt public housing, the district had significantly limited opportunity to generate money through property taxes. **Note:** Kelly AFB boundaries are only estimates.", fig.align='center', out.extra="class=external", layout="l-body"}
+knitr::include_graphics("KellyEdgewoodMap-768x1021.png")
 ```
 
 
+### The Kelly Paradox
 
-```{r include=FALSE}
+Technically, Edgewood in the 1960s had substantial property wealth. Kelly Air Force Base — the city's largest employer and military installation at that time — was right around the corner from where most Edgewood families lived.
 
-tx2036_hc <- hc_theme_merge(
-  hc_theme_smpl(),
-  hc_theme(chart = list(backgroundColor = "#fff", 
-                        style = list(fontFamily = '"Ringside Narrow SSm A", "Ringside Narrow SSm B", -apple-system, sans-serif !important', 
-                                     fontSize = "28px", 
-                                     color="#4d4d4d",fontWeight="800", textTransform="uppercase")),
-           title = list(style = list(fontFamily = '-apple-system, sans-serif !important', 
-                                     fontWeight = "bold",
-                                     color="#2d2d2d"),
-                        align = "left"), 
-           subtitle = list(style = list(fontFamily = '"Ringside Narrow SSm A", "Ringside Narrow SSm B", -apple-system, sans-serif !important',
-                                        color="#7d7d7d",
-                                        textTransform="initial",
-                                        fontWeight="400",
-                                        fontSize = "14px"),
-                           align = "left"), 
-           legend = list(align = "right", 
-                         style = list(fontFamily = '"Ringside Narrow SSm A", "Ringside Narrow SSm B", -apple-system, sans-serif !important', color="#6d6d6d"),
-                         itemStyle = list(fontFamily = '"Ringside Narrow SSm A", "Ringside Narrow SSm B", -apple-system, sans-serif !important', color = '#6d6d6d'),
-                         itemHoverStyle = list(color = 'gray'),   
-                         verticalAlign = "top"),
-           credits = list(style = list(color = "#fff")),
-           xAxis = list(labels =list(style = list(fontFamily = '"Ringside Narrow SSm A", "Ringside Narrow SSm B", -apple-system, sans-serif !important', color="#2d2d2d")), 
-                        title = list(style = list(color = "#4d4d4d", fontSize = "12px", 
-                                                  color="#4d4d4d",fontWeight="500")),
-                        gridLineWidth = 0,
-                        gridLineColor = "#9d9d9d", 
-                        lineColor = 'rgba(0,0,0,0.7)', 
-                        minorGridLineColor = 'rgba(0,0,0,0.7)', 
-                        tickColor = "#9d9d9d", 
-                        tickWidth = 1), 
-           yAxis = list(labels =list(style = list(fontFamily = '"Ringside Narrow SSm A", "Ringside Narrow SSm B", -apple-system, sans-serif !important', color="#2d2d2d")), 
-                        title = list(style = list(color = "#fff", fontSize = "12px", 
-                                                  color="#fff",fontWeight="500")), 
-                        gridLineWidth = .5,
-                        gridLineColor = 'rgba(0,0,0,0.15)', 
-                        lineColor = 'rgba(0,0,0,0.15)', 
-                        minorGridLineColor = 'rgba(0,0,0,0.15)', 
-                        tickColor = "#9d9d9d", 
-                        tickWidth = 2)))
+A 1969 analysis of the local economy showed that federal spending in the greater San Antonio area was just under $1.2 billion and was responsible for more than 34,000 jobs in the city.
 
-   myMenuItems <- c("downloadCSV", "downloadCSV", "separator", "downloadPNG", "downloadJPEG", "downloadPDF")
+Yet, despite thousands of jobs and stable sources of federal cash flowing through the Edgewood area, analysts and researchers sent to study San Antonio repeatedly cited Kelly AFB as a problem for a community that had more misery than it could bear.
 
+For starters, Kelly AFB, while providing jobs for families, did not yield property taxes for the district. (Nor did the public housing that served 13 percent of Edgewood students.)
 
-```
+Another problem was employment inequity on the base itself. By December 1968, 126 formal complaints had been registered at Kelly and six studies were published analyzing patterns of racial discrimination documented between 1917-1966.
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, layout="l-body-outset", fig.height=8}
+Of the six reports, each concluded significant imbalances in higher-wage jobs among ethnic groups on base. While minorities accounted for over half the employees on base, whites maintained 85.4 percent of the 1,254 supervisor jobs and 90 percent of high-wage non-supervisor personnel despite having no quantifiable educational or supervisory advantage. An internal report of Kelly's Equal Employment Opportunity subcommittee called these figures: "inequities of staggering magnitude."
 
-library(tidyverse)
-library(janitor)
-library(gfonts)
-library(flextable)
-library(tinter)
-library(geojsonsf)
-library(highcharter)
-library(tigris)
-library(geojson)
-library(sf)
+Edgewood's isolation emerged as the consequence of a cycle of segregation and exclusion. What could be summarized as an issue of "wealth," clean data and hard numbers, was rooted in something far more human and racially motivated. In the next essay, Folo Media will take a deeper look at the findings of the U.S. Civil Rights Commission's investigation into discrimination against Mexican-Americans in San Antonio and the American Southwest.
 
-tx_zips <- tigris::zctas(state="TX",cb=TRUE) 
-
-sf_counties <- tigris::counties(state="TX") %>% filter(GEOID=="48453")
-
-geo_travis <- geojsonsf::sf_geojson(sf_counties)
-
-# For ArcGIS Data, The service ID is the key that goes after the datasets directory. Then use the 'ID' provided to pull the data into whatever format you want. For ATX, visit this site: https://services.arcgis.com/0L95CJ0VTaxqcmED/ArcGIS/rest/services/web0723/FeatureServer
-
-atx_covid_zips_cases <- readr::read_csv("https://opendata.arcgis.com/datasets/4d913cdf3d894c3898696a7216e44180_02.csv") %>% 
-  janitor::clean_names() %>% 
-  dplyr::mutate(zipcode=as.character(zipcode))
-
-atx_zips_by_cases_sf <- atx_covid_zips_cases %>%
-  dplyr::left_join(tx_zips, by=c("zipcode"="GEOID10")) %>% 
-  dplyr::select(zipcode, count, geometry) %>% 
-  sf::st_as_sf()
-
-# Have tried adding `st_transform(102739)` here (right after st_as_sf()), but despite correctly rendering in ggplot2 or elsewhere, it seems the transformation doesn't stick when the shapefile is converted to geojson format.
-
-geo_zips_travis <- sf_geojson(atx_zips_by_cases_sf)
-
-crs <- '{
-  "type": "name",
-    "properties": {
-      "name": "urn:ogc:def:crs:EPSG:102739"
-  }
-}'
-
-geo_zips_travis <- geo_zips_travis %>% geojson::crs_add(crs)
-
- # In the highcharts, library, there is a function called hc-transform that helps you add this inside of custom geojson objects. I just haven't been able to find a way to add the hc-transform into custom geojson objects. Here's a sample of hc-transform from one of the maps in highcharts own maps library:
- # "hc-transform": {
- #    "default": {
- #      "crs": "+proj=lcc +lat_1=32.13333333333333 +lat_2=33.96666666666667 +lat_0=31.66666666666667 +lon_0=-98.5 +x_0=600000 +y_0=2000000 +ellps=GRS80 +units=m +no_defs",
- #      "scale": 0.000561591402519,
- #      "jsonres": 15.5,
- #      "jsonmarginX": -999,
- #      "jsonmarginY": 9851,
- #      "xoffset": -169837.133029,
- #      "yoffset": 2545161.1438
- #    }
- #  },
-
-geo_zips_travis <- jsonlite::fromJSON(geo_zips_travis, simplifyVector = FALSE)
-
-# stops <- color_stops(n = 10, colors = c("#3A4A9F", "#FFFFFF", "#F26852"))
-
-highchart() %>%
-  hc_add_series_map(geo_zips_travis,atx_covid_zips_cases, value = "count", joinBy = "zipcode", name = "COVID-19 in Austin") %>% 
-  hc_add_series(mapData = geo_travis, showInLegend = FALSE, nullColor = "transparent", borderColor = "#000",
-                borderWidth = 3) %>%
-  hc_title(
-    text ="Texas Effective Reproduction Rate · R<sub>t</sub>",
-    useHTML = TRUE) %>% 
-  hc_subtitle(
-    text ="From R<sub>t</sub> Live: R<sub>t</sub>  is the average number of people who become infected by an infectious person.",
-    useHTML = TRUE) %>%
-  hc_tooltip(table = FALSE, sort = FALSE,
-             pointFormat = "Zip: {point.zipcode}<br>Confirmed Cases: {point.count:,.0f}") %>% 
-  hc_credits(
-    enabled = TRUE,
-    text = "Source: rt.live Analysis",
-    href = "https://rt.live") %>%
-  hc_add_theme(tx2036_hc) %>%
-  hc_colorAxis(minColor = "#f7fbff", maxColor = "#08306b") %>% 
-  hc_size(height = 700, width = 500) %>% 
-        hc_exporting(enabled=TRUE, scale=2, sourceWidth= 1200, sourceHeight = 600, 
-                     allowHTML = TRUE,
-                     buttons = list(contextButton = list(menuItems = myMenuItems, 
-                                                         title = "Export This Chart",
-                                                         symbol = 'menuball', 
-                                                         symbolStrokeWidth = 1,
-                                                         symbolFill = 'rgba(93,165,218, 0.9)',
-                                                         symbolStroke ='#4d4d4d',
-                                                         theme = list(fill='#ffffff'))),
-                     chartOptions = list(title =  list(style = list(fontWeight = '800', fontSize = '22px', textTransform = "uppercase")),
-                                         subtitle =  list(style = list(fontSize = '14px'))))
-
-```
+[3]: https://tshaonline.org/handbook/online/articles/mlg01
+[4]: https://searchworks.stanford.edu/view/321695
 
 ## Acknowledgments {.appendix}
 
-This is a place to recognize people and institutions. It may also be a good place
-to acknowledge and cite software that makes your work possible.
+This article was produced during my time at Folo Media during 2017. Folo Media was a nonprofit newsroom focused on the challenges of inequity and neighborhood segregation in San Antonio, Texas. The newsroom ran from the spring of 2017 through early 2018, and during that span published more than 100 stories covering a range of issues, such as: housing, education, racial segregation, non-profit solutions, and much more.
+
+If you are interested in following the work of those who helped lead Folo Media's work, I encourage you to keep up with [the American Journalism Project](http://www.theajp.org), [the H.E.Butt Foundation's *Echoes* Magazine](https://echoes.hebfdn.org), and [the San Antonio Heron](https://saheron.com).
 
 ## Author Contributions {.appendix}
 
-We strongly encourage you to include an author contributions statement briefly 
-describing what each author did.
+[Bekah McKneel](http://bekahmcneel.com) (formerly of Folo Media) contributed to this report. She is awesome and I would encourage you to check out her work.
 

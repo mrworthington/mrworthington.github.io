@@ -126,11 +126,7 @@ _Documents from this time period variously use the terms “Spanish-American,”
 
 ## Acknowledgments {.appendix}
 
-This is a place to recognize people and institutions. It may also be a good place
-to acknowledge and cite software that makes your work possible.
+This article was produced during my time at Folo Media during 2017. Folo Media was a nonprofit newsroom focused on the challenges of inequity and neighborhood segregation in San Antonio, Texas. The newsroom ran from the spring of 2017 through early 2018, and during that span published more than 100 stories covering a range of issues, such as: housing, education, racial segregation, non-profit solutions, and much more.
 
-## Author Contributions {.appendix}
-
-We strongly encourage you to include an author contributions statement briefly 
-describing what each author did.
+If you are interested in following the work of those who helped lead Folo Media's work, I encourage you to keep up with [the American Journalism Project](http://www.theajp.org), [the H.E.Butt Foundation's *Echoes* Magazine](https://echoes.hebfdn.org), and [the San Antonio Heron](https://saheron.com).
 
