@@ -12,6 +12,9 @@ background:
     ),
     /* bottom, image */
     url(ryan-magsino-sohLeI-k-HU-unsplash.jpg) no-repeat center center fixed;
+-webkit-background-size: cover !important;
+-moz-background-size: cover !important;
+-o-background-size: cover !important;
 background-size:cover !important;
 }
 
