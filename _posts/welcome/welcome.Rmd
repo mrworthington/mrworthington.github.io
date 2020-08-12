@@ -330,6 +330,63 @@ r_naught <- vroom("https://d14wlfuexuxgcm.cloudfront.net/covid/rt.csv") %>%
     
 ```
 
+```{r}
+library(tidyverse)
+library(httr)
+library(highcharter)
+library(jsonlite)
+library(geojsonio)
+
+atx_covid_zips_cases <- read_csv("https://opendata.arcgis.com/datasets/4d913cdf3d894c3898696a7216e44180_02.csv") %>% 
+  clean_names() %>% 
+  mutate(zipcode=as.character(zipcode))
+
+atx_zips_by_cases_sf <- atx_covid_zips_cases %>%
+  left_join(tx_zips, by=c("zipcode"="GEOID10")) %>% 
+  select(zipcode, count, geometry) %>% 
+  st_as_sf()
+
+geo_zips_travis <- sf_geojson(atx_zips_by_cases_sf)
+# is text
+
+geo_zips_travis <- jsonlite::fromJSON(geo_zips_travis, simplifyVector = FALSE)
+# stops <- color_stops(n = 10, colors = c("#3A4A9F", "#FFFFFF", "#F26852"))
+
+austin_geo_json <- geojsonio::geojson_read(x="https://chronicdata.cdc.gov/resource/6vp6-wxuq.geojson",parse = TRUE)
+
+highchart() %>%
+  hc_add_series(mapData = austin_geo_json, showInLegend = FALSE, nullColor = "#7d7d7d",
+                borderWidth = 0)# %>%
+  hc_add_series_map(geo_zips_travis,atx_covid_zips_cases, value = "count", joinBy = "zipcode", name = "COVID-19 in Austin") %>% 
+  hc_title(
+    text ="Texas Effective Reproduction Rate · R<sub>t</sub>",
+    useHTML = TRUE) %>% 
+  hc_subtitle(
+    text ="From R<sub>t</sub> Live: R<sub>t</sub>  is the average number of people who become infected by an infectious person.",
+    useHTML = TRUE) %>%
+  hc_tooltip(table = FALSE, sort = FALSE,
+             pointFormat = "Zip: {point.zipcode}<br>Confirmed Cases: {point.count:,.0f}") %>% 
+  hc_credits(
+    enabled = TRUE,
+    text = "Source: rt.live Analysis",
+    href = "https://rt.live") %>%
+   hc_add_theme(tx2036_hc) %>%
+   hc_colorAxis(minColor = "#f7fbff", maxColor = "#08306b") %>% 
+   hc_exporting(enabled=TRUE,
+                buttons = list(contextButton = list(menuItems = myMenuItems)))
+                buttons = list(contextButton = list(menuItems = myMenuItems))) %>% 
+   hc_size(height = 650)
+
+ausgeojson <- GET("https://chronicdata.cdc.gov/resource/6vp6-wxuq.geojson") %>%
+  content() #%>%
+  # fromJSON(simplifyVector = FALSE)# %>%
+  # as.json()
+
+ausmap <- highchart(type = "map") %>%
+  hc_add_series_map(mapData = ausgeojson, showInLegend = FALSE)
+ausmap
+```
+
 
 ## Acknowledgments {.appendix}
 

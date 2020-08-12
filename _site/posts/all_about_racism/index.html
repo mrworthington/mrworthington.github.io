@@ -1411,6 +1411,55 @@ d-title h1 {
 font-weight: 800;
 }
 
+details {
+  background-color: hsla(206, 95%, 20%, 0.2);
+  cursor: pointer;
+  color: #2d2d2d;
+  margin-bottom:1vh;
+  padding: 1em;
+  border: none;
+  text-align: left;
+  outline: none;
+}
+
+.active, details:hover {
+  transition: max-height 0.2s ease-out;
+  /* background-color: #acc2c2; */
+}
+
+details {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  border-radius: 4px;
+}
+
+details.active {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+summary::-webkit-details-marker {
+  display: none
+}
+
+summary::after {
+  float: right;
+  font-family: "Font Awesome 5 Free";
+  content: "\f0fe";
+}
+
+details[open] summary::after {
+  float: right;
+  font-family: "Font Awesome 5 Free";
+  content: "\f146";
+}
+
+details h4 {
+  margin: 0;
+  line-height: inherit;
+}
+
 code {
 color: #2A7DE1;
 font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
@@ -1555,6 +1604,11 @@ body {
 <p><em>This is the fourth and final installment in a series of essays on the legacy of Rodriguez v. San Antonio ISD — a court battle that began in San Antonio and ended in the Supreme Court — and determined that American children have no constitutional right to an education. Read the <a href="https://www.folomedia.org/americans-no-right-education/">first</a>, <a href="https://www.folomedia.org/san-antonio-segregated-schools/">second</a> and <a href="https://www.folomedia.org/san-antonio-left-edgewood-fend/">third</a> essays.</em></p>
 <p>In 1968, Bexar County Commissioner A.J. Plough sat down with CBS News to discuss the plight of Latinos living in hunger and poverty on San Antonio’s West Side.</p>
 <p><strong>Plough: "</strong>Well, why are they not getting enough food? Because the father won’t work. And I mean, won’t work. If they won’t work, do you expect the taxpayer to raise all the kids … ’cause their daddies won’t work? First, let’s do something with the daddies and then, yes, take care of the kids.</p>
+<aside style="margin-bottom:-125px">
+<iframe height="150" src="https://www.youtube-nocookie.com/embed/h94bq4JfMAA?controls=0&amp;start=744&amp;end=813" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+Clip: AJ Plough Interview from 1968 CBS Documentary “Hunger in America”
+</aside>
 <p>The reporter asked how chronically hungry students could be expected to learn on an empty stomach.</p>
 <p>“Well, what do you mean learn properly in school? Do you really need school… other than, say, an eighth grade education?” Plough said, later adding, “People keep talking about this education, ‘a college education.’ It’s not necessary.”</p>
 <p>Meanwhile, the same disparities that prompted the CBS interview caught the attention of the United States Commission on Civil Rights, which held hearings that same year in San Antonio to collect information regarding civil rights violations against Mexican-American families in the Southwest. What they found reveals how racism shaped society in the 20th century here and across the United States.</p>

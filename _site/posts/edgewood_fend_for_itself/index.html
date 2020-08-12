@@ -1408,6 +1408,55 @@ d-title h1 {
 font-weight: 800;
 }
 
+details {
+  background-color: hsla(206, 95%, 20%, 0.2);
+  cursor: pointer;
+  color: #2d2d2d;
+  margin-bottom:1vh;
+  padding: 1em;
+  border: none;
+  text-align: left;
+  outline: none;
+}
+
+.active, details:hover {
+  transition: max-height 0.2s ease-out;
+  /* background-color: #acc2c2; */
+}
+
+details {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  border-radius: 4px;
+}
+
+details.active {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+summary::-webkit-details-marker {
+  display: none
+}
+
+summary::after {
+  float: right;
+  font-family: "Font Awesome 5 Free";
+  content: "\f0fe";
+}
+
+details[open] summary::after {
+  float: right;
+  font-family: "Font Awesome 5 Free";
+  content: "\f146";
+}
+
+details h4 {
+  margin: 0;
+  line-height: inherit;
+}
+
 code {
 color: #2A7DE1;
 font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
@@ -1547,8 +1596,7 @@ body {
 </div>
 
 <div class="d-article">
-<h1 id="how-san-antonio-left-edgewood-to-fend-for-itself">How San Antonio left Edgewood to fend for itself</h1>
-<p><em>This is the third installment in a series of essays on the legacy of a court battle that began in San Antonio, ended in the Supreme Court, and determined that American children have no constitutional right to an education. Read the <a href="https://www.folomedia.org/americans-no-right-education/">__first_</a></em> and <a href="https://www.folomedia.org/san-antonio-segregated-schools/">__second_</a>_ essays._</p>
+<p><em>This is the third installment in a series of essays on the legacy of a court battle that began in San Antonio, ended in the Supreme Court, and determined that American children have no constitutional right to an education. Read the <a href="https://www.folomedia.org/americans-no-right-education/"><em>first</em></a> and <a href="https://www.folomedia.org/san-antonio-segregated-schools/"><em>second</em></a> essays.</em></p>
 <p>By 1960, residential and public housing segregation had effectively consolidated San Antonio’s Hispanic residents on the West Side, where more than half lived in 18 of the city’s 92 census tracts. In nine of those tracts, nearly half of the housing was categorized by the federal government as “deteriorating” or “dilapidated,” the latter of which was deemed hazardous to occupants’ health and safety.</p>
 <p>With unemployment rates nearly double the city’s, and with almost half of its residents without stable employment, West Side median incomes ranged from 29 to 60 percent of white incomes. Many industries limited the type of jobs black and Hispanic workers could do. As a result, nearly half the population on the West Side lived below the federal poverty line, which left a quarter of residents chronically hungry.</p>
 <p>Interviews from a 1968 United States Commission on Civil Rights investigation reveal widespread discrimination against Hispanic people in San Antonio. Parents and students expressed frustration as they saw another generation of bright and capable children denied the opportunity to thrive. One student at Lanier High School described college as “an impossible dream.”</p>

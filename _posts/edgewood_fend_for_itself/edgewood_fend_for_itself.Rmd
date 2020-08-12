@@ -18,9 +18,7 @@ twitter:
   creator: "@mrworthington"
 ---
 
-# How San Antonio left Edgewood to fend for itself
-
-_This is the third installment in a series of essays on the legacy of a court battle that began in San Antonio, ended in the Supreme Court, and determined that American children have no constitutional right to an education. Read the [__first_](https://www.folomedia.org/americans-no-right-education/)_ and [__second_](https://www.folomedia.org/san-antonio-segregated-schools/)_ essays._
+_This is the third installment in a series of essays on the legacy of a court battle that began in San Antonio, ended in the Supreme Court, and determined that American children have no constitutional right to an education. Read the [*first*](https://www.folomedia.org/americans-no-right-education/) and [*second*](https://www.folomedia.org/san-antonio-segregated-schools/) essays._
 
 By 1960, residential and public housing segregation had effectively consolidated San Antonio's Hispanic residents on the West Side, where more than half lived in 18 of the city's 92 census tracts. In nine of those tracts, nearly half of the housing was categorized by the federal government as "deteriorating" or "dilapidated," the latter of which was deemed hazardous to occupants' health and safety.
 
