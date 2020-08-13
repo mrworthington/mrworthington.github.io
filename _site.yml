@@ -21,8 +21,9 @@ navbar:
       href: https://twitter.com/mrworthington
 collections:
   posts:
+    share: [twitter, facebook, linkedin]
+
     # disqus: data-mrworthington
-    #share: [twitter, facebook, linkedin]
 
 output:
   distill::distill_article:

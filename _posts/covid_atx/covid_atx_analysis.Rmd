@@ -1,19 +1,24 @@
 ---
 title: "Analyzing COVID-19 in Austin"
 description: |
-  **Note to readers: this is a test post!** Austin Public Heath has been profiled numerous times throughout the pandemic as being relentless in their efforts to get good data, despite multiple challenges and barriers. In this post, I take a look at local COVID data for Austin that has been collected by Austin Public Health. 
+  Austin has been profiled numerous times throughout the pandemic as being relentless in its efforts to get good COVID-19 data, despite multiple challenges and barriers. This is the first of many posts where I take a look at local COVID-19 data for Austin and explore themes of risk, resilience, and disparities as it pertains to COVID-19 in Austin.
 author:
   - name: Matt Worthington 
     url: https://mrworthington.com/about
     affiliation: Me, Myself, and I
     affiliation_url: https://mrworthington.com
-date: 05-20-2020
+date: 08-13-2020
 creative_commons: CC BY-NC
 output:
   distill::distill_article:
     css: hospital_header.css
     self_contained: false
 preview: ryan-magsino-sohLeI-k-HU-unsplash.jpg
+categories:
+  - 'COVID-19'
+  - Austin
+  - Public Health
+  - Data
 twitter:
   creator: "@mrworthington"
 ---
@@ -31,6 +36,9 @@ library(gt)
 library(highcharter)
 library(janitor)
 library(Knoema)
+library(lubridate)
+library(patchwork)
+library(png)
 library(rcartocolor)
 library(readxl)
 library(RSocrata)
@@ -39,23 +47,144 @@ library(tidycensus)
 library(tidyverse)
 library(tigris)
 library(tinter)
+library(tmap)
+library(tmaptools)
+library(vroom)
+library(r2d3)
 readRenviron("~/.Renviron")
 census_api_key <- Sys.getenv("CENSUS_API_KEY")
 census_api_key(key=census_api_key)
 options(tigris_use_cache=TRUE)
 ```
 
-Approaching the six-month mark of COVID-19 in Texas, one of the more common topics of discussion I hear is what the effects of coronavirus on our communities reveals about the world that existed before. And where we knew little about COVID-19 back in March, since that time a lot has been documented about what increases the risk of not only becoming severely ill, but also what increases the risk of being exposed to COVID-19 before you even get sick---such as having a job that requires you to be physically present for work (as opposed to working remotely from home) or not having access to a reliable internet connection[^1]. 
+Approaching the six-month mark of COVID-19 in Texas, one of the more common topics of discussion I hear is what the effects of coronavirus on our communities reveals about the world that existed before. And where we knew little about COVID-19 back in March, since that time a lot has been documented about what increases the risk of not only becoming severely ill, but also what increases the risk of being exposed to COVID-19 before you even get sick---such as having a job that requires you to be physically present for work (as opposed to working remotely from home) or not having access to a reliable internet connection. 
+
+That said, I want to explore some of these things in a series of blog posts--to see who is not only getting COVID, but also *where* folks are most at risk of being exposed to COVID and where they're most at risk of not bouncing back. The trouble in answering these questions is that getting good data is difficult and, once you have it, organizing the data in a way that is useful and meaningful for others is even harder. So, I'm going to pace myself and search for datasets that can inform our conversation. For the purposes of these blog posts, I'm just going to focus on looking at the city-wide data in Austin---where I live---because I know all the data exists with regards to the questions I have pulled together. If you have questions, I invite you to ask them as well and I'll do my best to find data that can help provided some meaningful insight.
+ 
+<aside>
+
+The Texas Tribune had [a good write-up on the caveats of state-wide data](https://www.texastribune.org/2020/08/04/texas-coronavirus-data/) that I' would recommend reading on this topic.  
+</aside>
+
+## Who is getting COVID-19 in Austin?
+
+Before we do any exploration of the more complicated questions identified, the best starting point would be exploring where COVID is occuring most in Austin. So let's look at that before digging into other questions and start by pulling [Austin Public Health's data](https://www.arcgis.com/home/item.html?id=08e581f856cb4ceaa56adf4493d77264&sublayer=0&view=list&sortOrder=true&sortField=defaultFSOrder#overview)---which organizes cases at the zip code level and updated frequently---to map out cases. We don't have access to where deaths occur most often, but cases at the zip code level is more than you can find in a lot of places. So we'll use what we have.
+
+Here's where cases are occuring most often right now:
+
+```{r mapping assets, include=FALSE}
+I35 <- st_read("spatial/I35_HighwayATX.shp") %>% 
+  st_transform(crs = 4326)
+
+arterials <- st_read("spatial/arterials/CENART.shp") %>% 
+  st_transform(crs = 4326) %>% 
+  filter(NAME != "IH 35",
+         str_detect(TYPE, "HWY|BLVD"),
+         SIZE == "MAJOR")
+
+capcog <- st_read("spatial/CAPCOG_Counties.shp") %>% 
+  st_transform(crs = 4326) %>% 
+  filter(COUNTY != "TRAVIS")
+
+img <- readPNG("spatial/I35.png")
+
+tx_zips <- tigris::zctas(state="TX",cb=TRUE) 
+
+sf_counties <- tigris::counties(state="TX") %>% filter(GEOID=="48453")
+```
+
+```{r echo=FALSE, fig.height=4, message=FALSE, warning=FALSE, layout="l-page", paged.print=FALSE}
+
+# For ArcGIS Data, The service ID is the key that goes after the datasets directory. Then use the 'ID' provided to pull the data into whatever format you want. For ATX, visit this site: https://services.arcgis.com/0L95CJ0VTaxqcmED/ArcGIS/rest/services/web0723/FeatureServer
+
+atx_covid_zips_cases <- readr::read_csv("https://opendata.arcgis.com/datasets/4d913cdf3d894c3898696a7216e44180_02.csv") %>% 
+  janitor::clean_names() %>% 
+  dplyr::mutate(zipcode=as.character(zipcode))
+
+atx_zips_by_cases_sf <- atx_covid_zips_cases %>%
+  dplyr::left_join(tx_zips, by=c("zipcode"="GEOID10")) %>% 
+  dplyr::select(zipcode, count, geometry) %>% 
+  filter(count > 2) %>% 
+  drop_na(count) %>% 
+  sf::st_as_sf() %>% 
+  st_transform(crs="ESRI:102339")
+
+cuts <- c(0,250,500,750,1000,1250,1500,1750)
+
+tmap_mode("plot")
+
+tm_shape(atx_zips_by_cases_sf, bbox = sf_counties, unit = "miles") +
+  tm_fill("count",title="Cases", 
+          breaks =cuts, 
+          fontfamily = "Graphik Regular",
+          legend.hist = FALSE,
+          palette = tinter("#5da5da", steps = 5)) +
+tm_shape(sf_counties) +
+  tm_borders(lwd = 2) +
+tm_shape(I35, name = "I-35") +
+  tm_lines(lwd = 3, col = "NAME", 
+           palette="#d73a49", 
+           title.col="Streets") +
+tm_shape(arterials) +
+  tm_lines(lwd = .5, col = "#9d9d9d") +
+  tm_compass(type = "arrow",
+             size= 1.5, bg.alpha = .6,
+             color.dark = "#9d9d9d",
+             position = c("right", "TOP")) +
+  tm_scale_bar(color.dark = "gray60", size = .5, breaks = c(5,10),
+               position = c("right", "bottom")) + 
+  tm_layout(main.title = "COVID-19 Cases in Austin",
+            main.title.size = 1.2,   
+            main.title.fontfamily  = "Graphik Bold",
+            main.title.position = c("center", "top"),
+            title = " As of: Aug 13",
+            title.size = 0.7,   
+            title.fontfamily  = "Graphik Light",
+            title.position = c("center", "top"),
+            title.bg.color = "#2d2d2d",
+            title.color = "white",
+            fontfamily = "Graphik Regular",
+            legend.outside = FALSE,
+            legend.position = c("left", "bottom"),
+            legend.title.fontfamily  = "Graphik Bold",
+            legend.title.size = 1,
+            legend.text.size = .5,
+            legend.frame =  TRUE,
+            legend.bg.color = "white",
+            attr.outside = FALSE,
+            asp = 0,
+            bg.color = "transparent",
+            inner.margins=c(.04,.03, .02, .01), 
+            frame=FALSE) +
+    tm_credits(text = "Data: Austin Public Health | Map: Matt Worthington ", 
+             bg.color = "white",
+             bg.alpha = NA,
+             fontfamily = "Graphik Book",
+             align= "right",
+             position = c("RIGHT", "BOTTOM"),
+             size = .4)
+
+```
+
+The first thing to notice is that cases are largely consolidated east of I-35. Without additional context, it's worth wondering what role an interstate plays in shielding folks on one side from Coronavirus. With additional context about how the city was intentionally segregated through a "master plan" developed in 1928 that used I-35 as a form of physical division, it's worth paying attention to the dynamics of I-35 and including it as a geographical marker throughout future analyses. 
+
+In the next few blog posts, I'll be writing about risk + resilience. Originally, I wanted to include everything here, but the charts and analysis became pretty extensive. For fear of exhausting everyone, including myself. We'll take these questions piece by piece. 
+
+**Next Blogpost:** Who should be most worried about getting COVID?
+
+**Note about this series:** If you're interested in asking specific questions to explore in this, reach out to me via Facebook or Twitter and I'll do my best to find data that can help provide some kind of meaningful answer.
+
+**Where can I find the code for this blog?** Once I clean up the mess in this repo, I'll make it public on github. For now, I'm happy to share individual the Rmarkdown file used to produce each article.
 
 <details>
-<summary><strong>TLDR | </strong>Can You Do This Analysis at the Statwide Level?</summary>
-Yes and no. I originally wanted to look at the statewide data that could answer these questions, but parts of the state's existing COVID data cannot be aggregated at anything beyond the statewide level for reasons outside of their control. 
+<summary><strong>TLDR | </strong>Why not do this at the statewide level?</summary>
+Originally, I considered focusing these articles at the statewide level for Texas, but I kept running into issues around finding data that could meaningfully answer some of my questions. The reasons for this are many, but some of the state's existing COVID-19 data cannot be aggregated at anything beyond the statewide level for reasons outside of their control. 
 
 #### Example - Test Positivity
 
 For example, county-level test positivity is one of those things that has been difficult because COVID-19 lab testing has largely been decentralized, with over 97% of tests being conducted in commercial labs. Consequently, this means the state has to then coordinate data from over 4 million tests conducted outside of state testing labs. 
 
-```{r}
+```{r testing_gt_table, echo=FALSE, message=FALSE, warning=FALSE}
 
 src <- "https://www.dshs.state.tx.us/coronavirus/TexasCOVID19CaseCountData.xlsx" # URL for Daily COVID Data
 lcl <- basename(src)
@@ -89,7 +218,6 @@ read_excel(lcl, sheet = "Tests", skip=1) %>%
 
 ```
 
-
 And given that these commercial labs aren't actually part of a state agency, this means they have to learn new reporting rhythms and do work that, perhaps, they didn't plan for or know they needed to do--such as keep all of the positives and negatives for each county, record those in a database by the county of origin, deduplicate them by the person who got the test, and then share all of that information back to the state in a manner that is uniform with all the other private labs in the state. 
 
 That said, not being able to compare how much a county is testing with how much they're testing positive weakens a potential analysis and limits how much you can explore the dynamics between risk factors and things like test positivity.
@@ -98,424 +226,12 @@ That said, not being able to compare how much a county is testing with how much 
 
 Another example of this information is demographic data about cases and fatalities. That information also doesn't exist broken down by county--sometimes due to HIPAA requirements. 
 
-So if you wanted to analyze geographic COVID-19 trends between counties across multiple pieces of data such as demographic, known risk-factors, and testing trends, you'd have a hard time accomplishing that because it currently doesn't exist.
+So if you wanted to analyze geographic COVID-19 trends between counties across multiple pieces of data such as demographic, known risk-factors, and other trends, you'd have a hard time accomplishing that because it currently doesn't exist.
 
-For that reason, I've chosen to just focus on using city-level data given that cities have broader *and* more granular access to information about their communities. 
+For that reason, I've chosen to just focus on using city-level data given that cities tend to have better access to local information about their communities. 
 
 </details>
 
-I wanted to explore some of these things--to see who is not only getting COVID, but also *where* folks are most at risk of being exposed to COVID and where they're most at risk of developing a severe illness because they are infected with COVID. Here's the problem, though: the trouble of getting good coronavirus data is difficult. It means how we analyze this question is somewhat pre-defined. For the purposes of this blog post, I'm just going to focus on looking at the city-wide data in Austin--where I live---because I know all the data exists with regards to the questions being asked.
-
-<aside>
-The Texas Tribune had [a good write-up on the caveats of state-wide data](https://www.texastribune.org/2020/08/04/texas-coronavirus-data/) that I' would recommend reading on this topic.  
+<aside style="margin-bottom:-150px">
+For those unfamiliar, I would highly recommend reading through [this analysis by the Austin Statesman](https://projects.statesman.com/news/economic-mobility/) on the role of I-35 in the city's history of racial segregation, as a starting point. Other histories have been documented elsewhere, but this is a good starting point.
 </aside>
-
-[^1]: Chiou, L., & Tucker, C. (2020). Social Distancing, Internet Access and Inequality (Working Paper No. 26982). National Bureau of Economic Research. https://doi.org/10.3386/w26982
-
-### What Are The Known Risk Factors for COVID-19?
-
-This website from the CDC's documents known factors that would make someone "**at increased risk**" of developing a severe illness from COVID-19. Of this list, the CDC's *500 Cities Project: Local data for better health* has annual records containing four of these metrics (noted in bold text) down to the census tract level in Austin, with the latest available coming from a 2017 survey.
-
-* **Cancer** 
-* **Chronic kidney disease**
-* **COPD (chronic obstructive pulmonary disease)**
-* Immunocompromised state (weakened immune system) from solid organ transplant
-* Obesity (body mass index [BMI] of 30 or higher)
-* Serious heart conditions, such as heart failure, **coronary artery disease**, or cardiomyopathies
-* Sickle cell disease
-* **Type 2 diabetes mellitus**
-
-
-```{r echo=FALSE, message=FALSE, warning=FALSE, include=FALSE, fig.height=6}
-
-county_health <- Knoema('fywtqfb', type="DataTable", client.id = "OthyVHY", client.secret = "DrxLCJnjk4uYlw",
-                        list('Region' = '48001;48003;48005;48007;48009;48011;48013;48015;48017;48019;48021;48023;48025;48027;48029;48031;48033;48035;48037;48039;48041;48043;48045;48047;48049;48051;48053;48055;48057;48059;48061;48063;48065;48067;48069;48071;48073;48075;48077;48079;48081;48083;48085;48087;48089;48091;48093;48095;48097;48099;48101;48103;48105;48107;48109;48111;48113;48115;48117;48119;48121;48123;48125;48127;48129;48131;48133;48135;48137;48139;48141;48143;48145;48147;48149;48151;48153;48155;48157;48159;48161;48163;48165;48167;48169;48171;48173;48175;48177;48179;48181;48183;48185;48187;48189;48191;48193;48195;48197;48199;48201;48203;48205;48207;48209;48211;48213;48215;48217;48219;48221;48223;48225;48227;48229;48231;48233;48235;48237;48239;48241;48243;48245;48247;48249;48251;48253;48255;48257;48259;48261;48263;48265;48267;48269;48271;48273;48275;48277;48279;48281;48283;48285;48287;48289;48291;48293;48295;48297;48299;48301;48303;48305;48307;48309;48311;48313;48315;48317;48319;48321;48323;48325;48327;48329;48331;48333;48335;48337;48339;48341;48343;48345;48347;48349;48351;48353;48355;48357;48359;48361;48363;48365;48367;48369;48371;48373;48375;48377;48379;48381;48383;48385;48387;48389;48391;48393;48395;48397;48399;48401;48403;48405;48407;48409;48411;48413;48415;48417;48419;48421;48423;48425;48427;48429;48431;48433;48435;48437;48439;48441;48443;48445;48447;48449;48451;48453;48455;48457;48459;48461;48463;48465;48467;48469;48471;48473;48475;48477;48479;48481;48483;48485;48487;48489;48491;48493;48495;48497;48499;48501;48503;48505;48507', 'Indicator' = 'KN.I95', 'Measure' = 'KN.M6', 'Race' = 'KN.G1'), host='datalab.texas2036.org') %>% as_tibble()
-
-# county_health_tbl <- county_health
-
-tx_county_pop <- get_acs(geography="county", survey="acs5", 
-                         variables = "B01003_001", state="TX", 
-                         year=2018, geometry = TRUE) %>% 
-                 select(-moe,-variable)
-
-ts_county_cases <- read_csv("https://raw.githubusercontent.com/texas-2036/covid_tracker/master/clean_data/dshs/testing/county_table.csv") %>% 
-  filter(date==max(date)) %>%
-  rename(name=county)
-
-tx2036_hc <- hc_theme_merge(
-  hc_theme_smpl(),
-  hc_theme(chart = list(backgroundColor = "#fff", 
-                        style = list(fontFamily = 'Roboto', 
-                                     fontSize = "28px",  fontWeight = "bold",
-                                     color="#4d4d4d", textTransform="initial")),
-           title = list(style = list(fontFamily = 'Roboto', 
-                                     fontWeight="bold",
-                                     color="#2d2d2d"),
-                        align = "left"), 
-           subtitle = list(style = list(fontFamily = 'Roboto',
-                                        color="#7d7d7d",
-                                        textTransform="initial",
-                                        fontWeight="400",
-                                        fontSize = "14px"),
-                           align = "left"), 
-           legend = list(align = "right", 
-                         style = list(fontFamily = 'Roboto', color="#6d6d6d"),
-                         itemStyle = list(fontFamily = 'Roboto', color = '#6d6d6d'),
-                         itemHoverStyle = list(color = 'gray'),   
-                         verticalAlign = "top"),
-           credits = list(style = list(color = "#fff")),
-           xAxis = list(labels =list(style = list(fontFamily = 'Roboto', color="#2d2d2d")), 
-                        title = list(style = list(color = "#4d4d4d", fontSize = "12px", 
-                                                  color="#4d4d4d",fontWeight="500")),
-                        gridLineWidth = 0,
-                        gridLineColor = "#9d9d9d", 
-                        lineColor = 'rgba(0,0,0,0.7)', 
-                        minorGridLineColor = 'rgba(0,0,0,0.7)', 
-                        tickColor = "#9d9d9d", 
-                        tickWidth = 1), 
-           yAxis = list(labels =list(style = list(fontFamily = 'Roboto', color="#2d2d2d")), 
-                        title = list(style = list(color = "#fff", fontSize = "12px", 
-                                                  color="#fff",fontWeight="500")), 
-                        gridLineWidth = .5,
-                        gridLineColor = 'rgba(0,0,0,0.15)', 
-                        lineColor = 'rgba(0,0,0,0.15)', 
-                        minorGridLineColor = 'rgba(0,0,0,0.15)', 
-                        tickColor = "#9d9d9d", 
-                        tickWidth = 2)))
-
-
-
-myMenuItems <- c("downloadPNG", "downloadJPEG", "downloadPDF", "downloadCSV" )
-
-
-  # hc_add_series(mapData = "countries/us/us-tx-all", showInLegend = FALSE, nullColor = "#7d7d7d", borderWidth = 0) #%>%
-hcmap("countries/us/us-tx-all", data = ts_county_cases, value = "total_confirmed_cases",joinBy = "name",
-      name = "Fake data",ndataLabels = list(enabled = TRUE, format = "{point.name}"), borderColor = "#FAFAFA",borderWidth = 0.1) %>%
-  hc_title(text = "Texas") %>% 
-  hc_subtitle(text = "You can use the same functions to modify your map!") %>% 
-  hc_tooltip(formatter = JS("function() {
-  return ('<br><b>County:</b> ' + this.point.name +
-          '<br><b>Cases:</b> ' + this.point.total_confirmed_cases + ' Cases'
-  )}")) %>% 
-  hc_size(height=800) %>% 
-  hc_add_theme(tx2036_hc)  %>% 
-        hc_exporting(enabled=TRUE, scale=2, sourceWidth= 1200, sourceHeight = 600, 
-                     allowHTML = TRUE,
-                     buttons = list(contextButton = list(menuItems = myMenuItems, 
-                                                         title = "Export This Chart",
-                                                         symbol = 'menuball', 
-                                                         symbolStrokeWidth = 1,
-                                                         symbolFill = 'rgba(93,165,218, 0.9)',
-                                                         symbolStroke ='#4d4d4d',
-                                                         theme = list(fill='#ffffff'))),
-                     chartOptions = list(title =  list(style = list(fontWeight = '800', fontSize = '22px')),
-                                         subtitle =  list(style = list(fontSize = '14px'))))
-  
-
-# # end of flextable part
-# tx_map <- ts_county_cases_sf %>%
-#   ggplot() +
-#   geom_sf(data=sf_counties %>% filter(str_detect(GEOID,"48")),color="#dddddd", fill="#f2f2f2", lwd=.3) +
-#   geom_sf_interactive(aes(fill=cases, tooltip=tooltip, data_id = county), lwd=.3) +
-#   scale_fill_gradientn(colours = tinter("#5da5da", steps = 5), labels = function(x) paste0(x,"Cases")) +
-#   coord_sf(datum=NA) +
-#   hrbrthemes::theme_ipsum_es(base_family="Work Sans") +
-#   theme(plot.title = element_text(family="Work Sans", face = "bold"),
-#         plot.subtitle = element_text(family="Work Sans", face = "plain"),
-#         plot.caption = element_text(family="Work Sans", face = "plain")) + 
-#   labs(title="Confirmed COVID-19 Cases By County - Texas",
-#        subtitle="As of March 26th, 2020",
-#        caption="SOURCE: New York Times COVID-19 Database")
-# girafe(ggobj = tx_map, fonts = list(sans = "Work Sans"), width_svg = 12, height_svg = 8,
-#        options = list(
-#          opts_tooltip(css = "padding:5px;background:white;border-radius:2px 2px 2px 2px;"),
-#          opts_hover_inv(css = "opacity:0.8;"),
-#          opts_hover(css = "stroke-width:2;")
-#        ))
-```
-
-```{r eval=FALSE, message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE, layout="l-page"}
-
-ts_county_cases <- read.socrata("https://chronicdata.cdc.gov/resource/6vp6-wxuq.csv") 
-
-counties <- c("Travis", "Bastrop", "Williamson", "Hays")
-
-aus_tracts <- map_df(counties, 
-                       ~tigris::tracts(state="TX", county=.x), id="county")
-
-aus_tract_data <- ts_county_cases %>% 
-  as_tibble() %>% 
-  filter(stateabbr=="TX",
-         cityname=="Austin",
-         year=="2017",
-         categoryid=="HLTHOUT",
-         geographiclevel=="Census Tract") %>% 
-  mutate(tractfips=as.character(tractfips))
-
-atx_zips_by_cases_sf <- aus_tract_data %>%
-  dplyr::left_join(aus_tracts, by=c("tractfips"="GEOID")) %>% 
-  dplyr::select(1:5,tractfips,tract_name=NAMELSAD,short_question_text,category, measure, data_value, data_value_unit,geometry) %>%
-  rename(`Tract Name`=tract_name,`Topic`=short_question_text) %>% 
-  mutate(`Data Value`=paste0(data_value, data_value_unit)) %>% 
-  drop_na(data_value) %>% 
-  sf::st_as_sf() %>% 
-  st_transform(crs="ESRI:102339")
-
-# flextable part -----
-fun_flextable <- function(dat){
-  ft <- flextable(dat, col_keys = c("Tract Name", "Topic", "Data Value"), 
-                  defaults = list(fontname = "Roboto"), 
-                  theme_fun = theme_vanilla)
-  ft <- fontsize(ft, part = "all", size = 20)
-  ft <- bold(ft, part = "header", bold = TRUE)
-  ft <- color(ft, color = "black", part = "all")
-  ft <- set_table_properties(ft, layout = "autofit")
-  as.character(htmltools_value(ft))
-}
-temp_dat <- as.data.frame(atx_zips_by_cases_sf)[,c("Tract Name", "Topic", "Data Value")]
-temp_dat <- split(temp_dat, seq_len(nrow(temp_dat)))
-atx_zips_by_cases_sf$tooltip <- map_chr(temp_dat, fun_flextable)
-# end of flextable part
-
-tx_map <- atx_zips_by_cases_sf %>%
-  ggplot() +
-  geom_sf(aes(fill=data_value), color="#6d6d6d", lwd=.3) +
-  # geom_sf_interactive(aes(fill=data_value, tooltip=tooltip, data_id = tractfips), color="#6d6d6d", lwd=.3) +
-  # geom_sf(data=sf_counties, color="#1d1d1d", fill=NA, lwd=1) +
-  scale_fill_gradientn(colours = tinter("#5da5da", steps = 5), labels = function(x) paste0(x,"%")) +
-  coord_sf(datum=NA) +
-  facet_wrap(~Topic, scales = "free")+
-  hrbrthemes::theme_ipsum_es(base_family="Roboto") +
-  theme(plot.title = element_text(family="Roboto", face = "bold"),
-        plot.subtitle = element_text(family="Roboto", face = "plain"),
-        plot.caption = element_text(family="Roboto", face = "plain")) + 
-  labs(title="The Health of Austin's Metro Area Favors Those West of I-35",
-       subtitle="Data: The 500 Cities Project: Local data for Better Health | Year - 2017",
-       caption="SOURCE: Austin Public Health")
-
-g <- purrr::map(atx_zips_by_cases_sf$Topic,
-           function(x) {
-             ggplot() +
-               geom_sf(data = filter(atx_zips_by_cases_sf, Topic == x), aes(fill=data_value), color="#6d6d6d", lwd=.3) +
-               hrbrthemes::theme_ipsum_es(base_family="Roboto") +
-               coord_sf(datum=NA) +
-               scale_fill_gradientn(colours = tinter("#5da5da", steps = 5), labels = function(x) paste0(x,"%")) +
-               # guides(fill = FALSE) +
-               ggtitle(x)
-           })
-
-g2 <- cowplot::plot_grid(plotlist = g)
-
-girafe(ggobj = tx_map, fonts = list(sans = "Roboto"), width_svg = 15, height_svg = 8,
-       options = list(
-         opts_tooltip(css = "padding:5px;background:white;border-radius:2px 2px 2px 2px;"),
-         opts_hover_inv(css = "opacity:0.8;"),
-         opts_hover(css = "stroke-width:2;")
-       ))
-
-tx_map
-g2
-
-```
-
-
-Dillon Ipsum I'll tell you something else and don't you ever forget this. I'm starting to feel like I have some sort of repellent that repels females away and sends them running. I don't want to step on your fingers or anything but you might want to slice those a little thinner because cucumber sandwiches are pretty delicate. Did I just lose a lot of man points for that? Crucifictorious. You can't fake boosterism, Eric, it comes from the heart. That's the beauty of it. Yeah, when we drive on the football field...we usually don't drive on our football field. Lyla, your dad's a sinner, I'm a weak man, but it was one mistake. He's one of those "I'll tell you something" guys, isn't he? Hey look, y'all keep tryin', but you ain't gonna catch me. Hey, don't hate, accelerate! Now, for as long as I know Tim Riggins, there's only two phrases that can put a smile on his face. Number 1: We're going to State. And Number 2: The results are in - you are not the father. Texas forever.
-
-</details>
-
-<details>
-  <summary><strong>Policy Impacts | </strong>Urban Texas</summary>
-
-At veto and remember you gotta win Friday night to make the playoffs. I guess we're fixin' to find out. Lemme tell you something. I'll tell you what. Tonight is your night. You have an opportunity to go out there and accept the challenge. You have the opportunity to be a part of the team. If anybody's internal, I'm internal. I'm not here to make friends. This ain't my home. This ain't my school. It never will be. Moby Dick is actually the perfect metaphor for this town. You need to learn this offense, son. If you look at a girl like a geometry proof the answer is right in front of you. It's your job to find the missing variable. You gotta solve for x. Yeah, um, that's actually algebra. That's actually not the point. Do you understand? My truck ain't running. I don't hate you, Lyla. It'd be a lot easier if I did. All right, listen up. You're a lousy ping-pong player. He's all bard and no bite. Oh, hell. Take a knee. Alright, y'all. Today we're champions. Feels good, right? Enjoy it while it lasts, 'cause tomorrow we're targets.
-
-Dillon Ipsum I'll tell you something else and don't you ever forget this. I'm starting to feel like I have some sort of repellent that repels females away and sends them running. I don't want to step on your fingers or anything but you might want to slice those a little thinner because cucumber sandwiches are pretty delicate. Did I just lose a lot of man points for that? Crucifictorious. You can't fake boosterism, Eric, it comes from the heart. That's the beauty of it. Yeah, when we drive on the football field...we usually don't drive on our football field. Lyla, your dad's a sinner, I'm a weak man, but it was one mistake. He's one of those "I'll tell you something" guys, isn't he? Hey look, y'all keep tryin', but you ain't gonna catch me. Hey, don't hate, accelerate! Now, for as long as I know Tim Riggins, there's only two phrases that can put a smile on his face. Number 1: We're going to State. And Number 2: The results are in - you are not the father. Texas forever.
-
-</details>
-
-```{r echo=FALSE, message=FALSE, warning=FALSE, layout="l-page", fig.height=6}
-
-library(tidyverse)
-library(janitor)
-library(gfonts)
-library(ggiraph)
-library(flextable)
-library(tinter)
-# library(geojsonsf)
-# library(highcharter)
-library(tigris)
-# library(geojson)
-library(sf)
-
-tx_zips <- tigris::zctas(state="TX",cb=TRUE) 
-
-sf_counties <- tigris::counties(state="TX") %>% filter(GEOID=="48453")
-
-# For ArcGIS Data, The service ID is the key that goes after the datasets directory. Then use the 'ID' provided to pull the data into whatever format you want. For ATX, visit this site: https://services.arcgis.com/0L95CJ0VTaxqcmED/ArcGIS/rest/services/web0723/FeatureServer
-
-atx_covid_zips_cases <- readr::read_csv("https://opendata.arcgis.com/datasets/4d913cdf3d894c3898696a7216e44180_02.csv") %>% 
-  janitor::clean_names() %>% 
-  dplyr::mutate(zipcode=as.character(zipcode))
-
-atx_zips_by_cases_sf <- atx_covid_zips_cases %>%
-  dplyr::left_join(tx_zips, by=c("zipcode"="GEOID10")) %>% 
-  dplyr::select(zipcode, count, geometry) %>% 
-  sf::st_as_sf() %>% 
-  st_transform(crs="ESRI:102339")
-
-# flextable part -----
-fun_flextable <- function(dat){
-  ft <- flextable(dat, col_keys = c("zipcode", "count"), 
-                  defaults = list(fontname = "Roboto"), 
-                  theme_fun = theme_vanilla)
-  ft <- fontsize(ft, part = "all", size = 20)
-  ft <- bold(ft, part = "header", bold = TRUE)
-  ft <- color(ft, color = "black", part = "all")
-  ft <- set_table_properties(ft, layout = "autofit")
-  as.character(htmltools_value(ft))
-}
-temp_dat <- as.data.frame(atx_zips_by_cases_sf)[,c("zipcode", "count")]
-temp_dat <- split(temp_dat, seq_len(nrow(temp_dat)))
-atx_zips_by_cases_sf$tooltip <- map_chr(temp_dat, fun_flextable)
-# end of flextable part
-
-tx_map <- atx_zips_by_cases_sf %>%
-  ggplot() +
-  geom_sf_interactive(aes(fill=count, tooltip=tooltip, data_id = zipcode), color="#6d6d6d", lwd=.3) +
-  geom_sf(data=sf_counties, color="#1d1d1d", fill=NA, lwd=1) +
-  scale_fill_gradientn(colours = tinter("#5da5da", steps = 5), labels = function(x) paste0(x,"Cases")) +
-  coord_sf(datum=NA) +
-  hrbrthemes::theme_ipsum_es(base_family="Roboto") +
-  theme(plot.title = element_text(family="Roboto", face = "bold"),
-        plot.subtitle = element_text(family="Roboto", face = "plain"),
-        plot.caption = element_text(family="Roboto", face = "plain")) + 
-  labs(title="Confirmed COVID-19 Cases In Austin, TX",
-       subtitle="As of July 29th, 2020",
-       caption="SOURCE: Austin Public Health")
-
-girafe(ggobj = tx_map, fonts = list(sans = "Roboto"), width_svg = 12, height_svg = 8,
-       options = list(
-         opts_tooltip(css = "padding:5px;background:white;border-radius:2px 2px 2px 2px;"),
-         opts_hover_inv(css = "opacity:0.8;"),
-         opts_hover(css = "stroke-width:2;")
-       ))
-
-
-
-```
-
-```{r echo=FALSE, message=FALSE, warning=FALSE, layout="l-page"}
-library(highcharter)
-library(vroom)
-library(lubridate)
-library(janitor)
-tx2036_hc <- hc_theme_merge(
-  hc_theme_smpl(),
-  hc_theme(chart = list(backgroundColor = "#fff", 
-                        style = list(fontFamily = 'Roboto', 
-                                     fontSize = "28px",  fontWeight = "bold",
-                                     color="#4d4d4d", textTransform="initial")),
-           title = list(style = list(fontFamily = 'Roboto', 
-                                     fontWeight="bold",
-                                     color="#2d2d2d"),
-                        align = "left"), 
-           subtitle = list(style = list(fontFamily = 'Roboto',
-                                        color="#7d7d7d",
-                                        textTransform="initial",
-                                        fontWeight="400",
-                                        fontSize = "14px"),
-                           align = "left"), 
-           legend = list(align = "right", 
-                         style = list(fontFamily = 'Roboto', color="#6d6d6d"),
-                         itemStyle = list(fontFamily = 'Roboto', color = '#6d6d6d'),
-                         itemHoverStyle = list(color = 'gray'),   
-                         verticalAlign = "top"),
-           credits = list(style = list(color = "#fff")),
-           xAxis = list(labels =list(style = list(fontFamily = 'Roboto', color="#2d2d2d")), 
-                        title = list(style = list(color = "#4d4d4d", fontSize = "12px", 
-                                                  color="#4d4d4d",fontWeight="500")),
-                        gridLineWidth = 0,
-                        gridLineColor = "#9d9d9d", 
-                        lineColor = 'rgba(0,0,0,0.7)', 
-                        minorGridLineColor = 'rgba(0,0,0,0.7)', 
-                        tickColor = "#9d9d9d", 
-                        tickWidth = 1), 
-           yAxis = list(labels =list(style = list(fontFamily = 'Roboto', color="#2d2d2d")), 
-                        title = list(style = list(color = "#fff", fontSize = "12px", 
-                                                  color="#fff",fontWeight="500")), 
-                        gridLineWidth = .5,
-                        gridLineColor = 'rgba(0,0,0,0.15)', 
-                        lineColor = 'rgba(0,0,0,0.15)', 
-                        minorGridLineColor = 'rgba(0,0,0,0.15)', 
-                        tickColor = "#9d9d9d", 
-                        tickWidth = 2)))
-
-key_events <- vroom("https://docs.google.com/spreadsheets/d/e/2PACX-1vQ2q_c5RpywszCamM3VINgAwZ51OJoPfBFflEvXpuAqAZrw9SDovcGnfDOlF7uwzCnZf5XMkEluhlUb/pub?output=csv") %>% 
-  clean_names() %>% 
-  mutate(date=as_date(date))
-
-r_naught <- vroom("https://d14wlfuexuxgcm.cloudfront.net/covid/rt.csv") %>% 
-  filter(region=="TX")
-
- key_events_fltr <- key_events %>%
-      filter(!str_detect(event,"Stimulus"))
-    
-    dates <- key_events_fltr$date
-    events <- key_events_fltr$event
-    
-    plotLines <- map2(key_events_fltr$date,key_events_fltr$event,
-                      ~list(label = list(text = .y,
-                                         style = list(color = "rgba(0, 0, 0, 0.6)", 
-                                                      fontSize='12px',textTransform='initial')),
-                            color = "rgba(0, 0, 0, 0.6)",
-                            width = 1,
-                            dashStyle = "Dash",
-                            value = datetime_to_timestamp(as.Date(.x, tz="UTC"))))
-    
-   myMenuItems <- c("downloadPNG", "downloadJPEG", "downloadPDF", "downloadCSV" )
-    
-   r_naught %>% 
-      hchart("line", hcaes(x = date, y = mean), animation=FALSE,
-             tooltip = FALSE,
-             threshold = 1, color = "#F26852", negativeColor = "#FFD100") %>%
-      hc_add_series(r_naught, type = "arearange",
-                    hcaes(x = date, low = lower_80,
-                          high = upper_80),
-                    threshold = 1, color = "#F26852", negativeColor = "#FFD100",
-                    linkedTo = "r_naught") %>%
-      hc_plotOptions(arearange = list(fillOpacity=.3)) %>%
-      hc_title(
-        text ="Texas Effective Reproduction Rate · R<sub>t</sub>",
-        useHTML = TRUE) %>% 
-      hc_subtitle(
-        text ="From R<sub>t</sub> Live: R<sub>t</sub>  is the average number of people who become infected by an infectious person.</br></br><span style='color: #F26852'>If it’s above 1.0, COVID-19 will spread quickly.</span> <span style='color: #FFD100'>If it’s below 1.0, infections will slow.</span>",
-        useHTML = TRUE) %>%
-      hc_yAxis(title = list(text="Effective Reproduction Rate (R<sub>t</sub>)"),
-               min = min(r_naught$lower_80), 
-               max = max(r_naught$upper_80)) %>% 
-      hc_xAxis(title=NULL,
-               plotLines = plotLines) %>% 
-      hc_tooltip(table = FALSE, sort = FALSE,
-                 pointFormat = "Effective Reproduction Rate · R<sub>t</sub>: {point.mean:,.2f}<br>") %>% 
-      hc_credits(
-        enabled = TRUE,
-        text = "Source: rt.live Analysis",
-        href = "https://rt.live") %>%
-      hc_add_theme(tx2036_hc)  %>% 
-      hc_size(height = NULL, width = 800) %>%
-        hc_exporting(enabled=TRUE, scale=2, sourceWidth= 1200, sourceHeight = 600, 
-                     allowHTML = TRUE,
-                     buttons = list(contextButton = list(menuItems = myMenuItems, 
-                                                         title = "Export This Chart",
-                                                         symbol = 'menuball', 
-                                                         symbolStrokeWidth = 1,
-                                                         symbolFill = 'rgba(93,165,218, 0.9)',
-                                                         symbolStroke ='#4d4d4d',
-                                                         theme = list(fill='#ffffff'))),
-                     chartOptions = list(title =  list(style = list(fontWeight = '800', fontSize = '22px')),
-                                         subtitle =  list(style = list(fontSize = '14px'))))
-   
-   
-    
-```
-
-
