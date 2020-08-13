@@ -170,6 +170,10 @@ tm_shape(arterials) +
 
 The first thing to notice is that cases are largely consolidated east of I-35. Without additional context, it's worth wondering what role an interstate plays in shielding folks on one side from Coronavirus. With additional context about how the city was intentionally segregated through a "master plan" developed in 1928 that used I-35 as a form of physical division, it's worth paying attention to the dynamics of I-35 and including it as a geographical marker throughout future analyses. 
 
+<aside style="margin-bottom:-150px">
+For those unfamiliar, I would highly recommend reading through [this analysis by the Austin Statesman](https://projects.statesman.com/news/economic-mobility/) on the role of I-35 in the city's history of racial segregation, as a starting point. Other histories have been documented elsewhere, but this is a good starting point.
+</aside>
+
 In the next few blog posts, I'll be writing about risk + resilience. Originally, I wanted to include everything here, but the charts and analysis became pretty extensive. For fear of exhausting everyone, including myself. We'll take these questions piece by piece. 
 
 **Next Blogpost:** Who should be most worried about getting COVID?
@@ -234,6 +238,6 @@ For that reason, I've chosen to just focus on using city-level data given that c
 
 </details>
 
-<aside style="margin-bottom:-150px">
-For those unfamiliar, I would highly recommend reading through [this analysis by the Austin Statesman](https://projects.statesman.com/news/economic-mobility/) on the role of I-35 in the city's history of racial segregation, as a starting point. Other histories have been documented elsewhere, but this is a good starting point.
-</aside>
+## Photo Credit {.appendix}
+
+<span>Photo by <a href="https://unsplash.com/@rymagsino?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Ryan Magsino</a> on <a href="https://unsplash.com/s/photos/austin-ryan?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>

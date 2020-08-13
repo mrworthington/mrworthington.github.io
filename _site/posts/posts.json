@@ -9,18 +9,11 @@
         "url": "https://mrworthington.com/about"
       }
     ],
-    "date": "2020-08-13",
-    "categories": [
-      "COVID19",
-      "Public Health",
-      "Austin Public Health",
-      "I35",
-      "Austin",
-      "Public Data"
-    ],
+    "date": "2020-08-12",
+    "categories": [],
     "preview": "posts/covid_atx/ryan-magsino-sohLeI-k-HU-unsplash.jpg",
-    "last_modified": "2020-08-13T15:24:24-07:00",
-    "input_file": "covid_atx_analysis.utf8.md"
+    "last_modified": "2020-08-13T15:15:14-07:00",
+    "input_file": {}
   },
   {
     "path": "posts/school-finance-analysis/",
@@ -62,7 +55,7 @@
       "Charter Schools"
     ],
     "preview": "posts/public-ed-testimony/meggyn-pomerleau-2SGDohBsYPg-unsplash-2.jpg",
-    "last_modified": "2020-07-23T15:25:29-07:00",
+    "last_modified": "2020-08-13T15:32:48-07:00",
     "input_file": {}
   },
   {

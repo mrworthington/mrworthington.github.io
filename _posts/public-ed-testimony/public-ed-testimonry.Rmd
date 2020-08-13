@@ -69,3 +69,7 @@ Thank you.
 [^8]: Data: [Texas Education Agency - State Aid Template 2017-18 and 2018-19 Biennium](https://tea.texas.gov/financialstandardreports/); accessed online.
 
 [^9]: Data: [Texas Education Agency - State Aid Template 2017-18 and 2018-19 Biennium](https://tea.texas.gov/financialstandardreports/); accessed online.
+
+## Photo Credit {.appendix}
+
+<span>Photo by <a href="https://unsplash.com/@meggyn?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Meggyn Pomerleau</a> on <a href="https://unsplash.com/@meggyn?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>

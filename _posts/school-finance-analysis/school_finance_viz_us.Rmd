@@ -724,15 +724,17 @@ gg <- ggplot(arrange(fullest25e,Source,YEAR), aes(x = YEAR, y =Percent, fill = S
 ggsave("SFNationalMapOT.png", plot = gg, device = "png", dpi=300,  width = 20, height = 12)
 ```
 
-*** 
-
-# Bonus School Finance Map
+## Bonus School Finance Map
 
 While I had limited time to produce the code-through for the first map, here's an extra map that shows how much each state's per pupil funding compares to the national average since 1992. One note about this one is that it uses the All-Consumer series inflation index from the Bureau of Labor & Statistics for 1992, while the 1993 data onward uses the BLS Education Index.
 
 ```{r echo=FALSE, layout="l-page"}
 knitr::include_graphics("SFNationalMapPP.png")
 ```
+
+## Photo Credit {.appendix}
+
+<span>Photo by <a href="https://unsplash.com/@twinsfisch?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Isabella and Louisa Fischer</a> on <a href="https://unsplash.com/s/photos/isabella-louisa-school?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
 
 ## Corrections {.appendix}
 
