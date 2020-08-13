@@ -15,10 +15,12 @@ output:
     self_contained: false
 preview: ryan-magsino-sohLeI-k-HU-unsplash.jpg
 categories:
-  - 'COVID-19'
-  - Austin
+  - COVID19
   - Public Health
-  - Data
+  - Austin Public Health
+  - I35
+  - Austin
+  - Public Data
 twitter:
   creator: "@mrworthington"
 ---
