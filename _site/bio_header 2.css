@@ -1,0 +1,15 @@
+d-title {
+padding-top: 12rem;
+font-weight: 800;
+color: #fff;
+background: 
+    /* top, transparent red, faked with gradient */ 
+    linear-gradient(
+rgba(93,165,218, 0.5), 
+rgba(93,165,218, 0.5)
+    ),
+    /* bottom, image */
+    url(static/bio.jpg);
+background-size:cover !important;
+background-position: right 0px bottom -3vh;
+}
