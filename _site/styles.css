@@ -148,8 +148,9 @@ details[open] summary::after {
 }
 
 details h4 {
-  margin: 0;
-  line-height: inherit;
+margin: 0;
+color: #2d2d2d !important;
+line-height: inherit;
 }
 
 code {
