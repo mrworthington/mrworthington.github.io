@@ -22,7 +22,6 @@ navbar:
 collections:
   posts:
     share: [twitter, facebook, linkedin]
-
     # disqus: data-mrworthington
 
 output:
