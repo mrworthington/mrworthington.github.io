@@ -2,25 +2,18 @@
   {
     "path": "posts/covid_atx/",
     "title": "Analyzing COVID-19 in Austin",
-    "description": "Austin has been profiled numerous times throughout the pandemic as being relentless in its efforts to get good COVID-19 data, despite multiple challenges and barriers. This is the first in a set of posts where I take a look at local COVID-19 data for Austin and explore themes of risk, resilience, and disparities as it pertains to COVID-19 in Austin.",
+    "description": "Austin has been profiled numerous times throughout the pandemic as being relentless in its efforts to get good COVID-19 data, despite multiple challenges and barriers. This is the first of many posts where I take a look at local COVID-19 data for Austin and explore themes of risk, resilience, and disparities as it pertains to COVID-19 in Austin.",
     "author": [
       {
         "name": "Matt Worthington",
         "url": "https://mrworthington.com/about"
       }
     ],
-    "date": "2020-08-13",
-    "categories": [
-      "COVID19",
-      "Public Health",
-      "Austin Public Health",
-      "I35",
-      "Austin",
-      "Public Data"
-    ],
+    "date": "2020-08-12",
+    "categories": [],
     "preview": "posts/covid_atx/ryan-magsino-sohLeI-k-HU-unsplash.jpg",
-    "last_modified": "2020-08-13T15:56:03-07:00",
-    "input_file": "covid_atx_analysis.utf8.md"
+    "last_modified": "2020-08-13T15:15:14-07:00",
+    "input_file": {}
   },
   {
     "path": "posts/school-finance-analysis/",
