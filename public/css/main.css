@@ -1845,7 +1845,7 @@
 				display: block;
 				height: 2px;
 				margin: 0.0em 0 0.0em 0;
-				width: 20%;
+				width: 15%;
 			}
 			
 		.tiles p {
@@ -2833,14 +2833,14 @@
 				display: block;
 				height: 100%;
 				left: 0;
-				opacity: 0.85;
+				opacity: 0.9;
 				position: absolute;
 				width: 100%;
 				z-index: 2;
 			}
 
 			.tiles article:after {
-				background-color: rgba(36, 41, 67, 0.25);
+				background-color: rgba(36, 41, 67, 0.65);
 				content: '';
 				display: block;
 				height: 100%;
@@ -3539,11 +3539,11 @@
 					text-transform: uppercase;
 				}
 
-		#banner.major {
-			height: 60vh;
-			min-height: 30em;
-			max-height: 50em;
-		}
+        #banner.major {
+          height: 50vh;
+          min-height: 23em;
+          max-height: 50em;
+        }
 
 			#banner.major.alt {
 				opacity: 0.75;

@@ -1,7 +1,7 @@
 # Site settings
 baseURL = "/"
 languageCode = "en-us"
-title = "Matt Worthington"
+title = "Matt Worthington | Portfolio"
 theme = "forty"
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
@@ -66,15 +66,17 @@ disqusShortname = ""
     # To change the background image on the homepage banner, replace 'banner.jpg' in
     # the 'static/img' folder.
     title = "Matt Worthington"
-    subtitle = "Data Science | Data Visualization | Public Data"
+    subtitle = "Data Science | Data Visualization | Data For Good"
     #buttonText = "Check out some of my work below."
 
   # Section Type Two
   [params.two]
     enable = true
-    title = "Data For Good"
-    subtitle = """Data is a powerful tool that can be leveraged for the public good.
-    As analytics professional with an extensive background working in public schools and the nonprofit sector, I spend a significant amount of time and energy solving problems that benefit the public through data science--from increasing the accessibility of publicly available data to developing models that distill complex policies into human-friendly graphics. Whether it's spatial analysis, cleaning messy data, or translating hairy concepts into visualizations that are easy to interpret, I love working on projects that help people and expand opportunity. """
+    title = "About Me"
+    subtitle = """As analytics professional with an extensive background working in public schools and the nonprofit sector, 
+    I spend a significant amount of time and energy solving problems that benefit the public using data science tools---from 
+    increasing the accessibility of publicly available data to developing models that distill complex policies into human-friendly graphics. 
+    Check out some of my favorite projects below and holler if you would like my help."""
     buttonText = "Take A Look"
     
 
