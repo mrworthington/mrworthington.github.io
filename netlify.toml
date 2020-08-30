@@ -1,11 +1,11 @@
 
 [context.production]
-    command = ""
-    publish = ""
+    command = "hugo"
+    publish = "_site"
 
 [context.production.environment]
-    RUBY_VERSION = ""
-    HUGO_VERSION = ""
+    RUBY_VERSION = "2.2.9"
+    HUGO_VERSION = "0.36"
 
 [context.deploy-preview.environment]
     RUBY_VERSION = "2.2.9"
