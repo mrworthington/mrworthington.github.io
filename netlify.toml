@@ -23,6 +23,6 @@
     command = "hugo"
     publish = "public"
 
-[context.portfolio]
+[context.portfolio.environment]
     RUBY_VERSION = "2.2.9"
     HUGO_VERSION = "0.36"
