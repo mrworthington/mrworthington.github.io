@@ -73,8 +73,8 @@ disqusShortname = ""
   [params.two]
     enable = true
     title = "Data For Good"
-    subtitle = """I am the Manager of Data & Analytics at Texas 2036, where I lead our work around a series of data products that we make available to the public. 
-    In addition, I serve as a commission member for the City of Austin’s Early Childhood Council. Check out some of my favorite projects below."""
+    subtitle = """Data is a powerful tool that can be leveraged for the public good.
+    As analytics professional with an extensive background working in public schools and the nonprofit sector, I spend a significant amount of time and energy solving problems that benefit the public through data science--from increasing the accessibility of publicly available data to developing models that distill complex policies into human-friendly graphics. Whether it's spatial analysis, cleaning messy data, or translating hairy concepts into visualizations that are easy to interpret, I love working on projects that help people and expand opportunity. """
     buttonText = "Take A Look"
     
 
