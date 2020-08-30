@@ -1,6 +1,6 @@
 
 [context.production]
-    command = "hugo"
+    command = ""
     publish = "_site"
 
 [context.production.environment]
