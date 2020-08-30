@@ -1,0 +1,19 @@
+[context.production]
+    command = ""
+    publish = ""
+
+[context.production.environment]
+    RUBY_VERSION = ""
+    HUGO_VERSION = ""
+
+[context.deploy-preview.environment]
+    RUBY_VERSION = "2.2.9"
+    HUGO_VERSION = "0.36"
+
+[context.branch-deploy]
+    command = "hugo"
+    publish = "public"
+
+[context.branch-deploy.environment]
+    RUBY_VERSION = "2.2.9"
+    HUGO_VERSION = "0.36"

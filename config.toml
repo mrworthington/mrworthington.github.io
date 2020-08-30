@@ -1,0 +1,204 @@
+# Site settings
+baseURL = "/"
+languageCode = "en-us"
+title = "Matt Worthington"
+theme = "forty"
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
+
+# Enter your tracking code to enable Google Analytics
+googleAnalytics = ""
+
+# Enter your disqus shortname to enable comments
+disqusShortname = ""
+
+[params]
+  # You can use Markdown syntax for urls [text](//url.to/source)
+  # To create multi-line text in strings use the """example Text""" format
+  #
+  # All icons using Fontawesome's icon font. Look at fontawesome.io/icons
+  # for more icons. The icons are represented by their corresponding
+  # CSS class.
+
+  # Provide your metadata here.
+  name = "Matt Worthington"
+  description = "Data Scientist | Data Visualization | Developer | Educator"
+
+  # Link custom assets relative to /static
+  custom_css = ["https://cloud.typography.com/6771036/7342412/css/fonts.css"]
+  custom_js  = ["https://kit.fontawesome.com/5fa99da22f.js"]
+  favicon    = "favicon.ico"
+
+  # Just a custom image variable, please define it in .md files for content.
+  image = ""
+
+  # 404 error customization
+  [params.error404]
+    heading = "Page couldn't be found"
+    text = "Please visit [this page](/)"
+
+  # Navigation Section
+  [params.navigation]
+    title = "Home"
+    menu = ""
+    # Optional logo as brand stored in img/
+    # logo = "logo.png"
+
+    [[params.navigation.links]]
+      name = "Portfolio Home"
+      url = "#"
+
+
+    # Add custom links here by uncommenting code below. To remove links just delete
+    # the [[params.navigation.links]] map associated with that link. Copy and paste
+    # code below if you need more links. Buttons work in the same way.
+    # [[params.navigation.links]]
+    #    name = "NameOfLink"
+    #    url = "UrlOfLink"
+
+    # Button Style 1
+    [[params.navigation.button1]]
+      name = "Blog Home"
+      url = "https://mrworthington.com"
+
+
+  # Banner section
+  [params.banner]
+    # To change the background image on the homepage banner, replace 'banner.jpg' in
+    # the 'static/img' folder.
+    title = "Matt Worthington"
+    subtitle = "Data Science | Data Visualization | Public Data"
+    #buttonText = "Check out some of my work below."
+
+  # Section Type Two
+  [params.two]
+    enable = true
+    title = "Data For Good"
+    subtitle = """I am the Manager of Data & Analytics at Texas 2036, where I lead our work around a series of data products that we make available to the public. 
+    In addition, I serve as a commission member for the City of Austin’s Early Childhood Council. Check out some of my favorite projects below."""
+    buttonText = "Take A Look"
+    
+
+  # Tiles Section
+  [params.tiles]
+    enable = true
+    # Display your showcases here.
+
+    [[params.tiles.showcase]]
+      title = "Pre-K Funding Shiny App"
+      subtitle = "Built in R with shiny and ggplot2, this app was used to model partnerships that could expand pre-kiindergarten seats in central Texas."
+      image = "pic01.jpg"
+      url = "https://uwatx.shinyapps.io/Funding_Tool/"
+      
+    [[params.tiles.showcase]]
+      title = "Texas COVID-19 Data Resource"
+      subtitle = "Built in R with shiny and highcharter, this app tracks COVID-19's toll taken on the lives of Texans and the deep economic hardships endured across Texas."
+      image = "pic02.jpg"
+      url = "https://texas2036.shinyapps.io/covid_tracker/"
+
+    [[params.tiles.showcase]]
+      title = "211 Call Explorer"
+      subtitle = "Built largely in R with shiny, shinydashboard, highcharter, and leaflet, this project allowed United Way to explore 211 caller data."
+      image = "pic03.jpg"
+      url = "https://mrworthington.shinyapps.io/211Explorer/"
+
+    [[params.tiles.showcase]]
+      title = "Child Poverty Analysis"
+      subtitle = "Build in R, this project was used flexdashboard, tidycensus, purrr, and ggplot2 to build out a comprehensive look at childhood poverty over time among the Capital Area Council of Government counties."
+      image = "pic04.jpg"
+      url = "https://unitedwayaustin.github.io/cp-dashboard/"
+
+#    [[params.tiles.showcase]]
+#      title = "Fort Worth"
+#      subtitle = "Ipsum Dolor Sit Amet"
+#      image = "pic05.jpg"
+#      url = "blogs/ipsum"
+
+#    [[params.tiles.showcase]]
+#      title = "El Paso"
+#      subtitle = "Feugiat Amet Tempus"
+#      image = "pic06.jpg"
+#      url = "blogs/ipsum"
+    # You can make more showcases by copy and pasting the code above
+
+#  [params.blog]
+    # All blogs defined in their own files. You can find example blogs
+    # at 'exampleSite/content/blogs'. Copy the 'blogs' folder into the 'content' directory
+    # at the root of this Hugo site.
+    # For more informtion take a look at the README.
+    # To add more blogs just copy and paste the code.
+
+
+
+
+  # Contact section
+  [params.contact]
+    enable = true
+    buttonSend = "Send message"
+    buttonClear = "Clear"
+
+    # Since this template is static, the contact form uses www.formspree.io as a
+    # proxy. The form makes a POST request to their servers to send the actual
+    # email. Visitors can send up to a 1000 emails each month for free.
+    #
+    # What you need to do for the setup?
+    #
+    # - set your email address under 'email' below and uncomment
+    # - upload the generated site to your server
+    # - send a dummy email yourself to confirm your account
+    # - click the confirm link in the email from www.formspree.io
+    # - you're done. Happy mailing!
+     formEmail = "worthington.matthew@gmail.com"
+
+    # Contact Section
+    # You can add multiple emails, phone numbers, or addresses
+    # by copying the corresponding map with frontmatter code.
+    [[params.contact.email]]
+    title = "Email"
+    email = "worthington.matthew@gmail.com"
+
+    [[params.contact.phone]]
+    title = "Email or Tweet at Me"
+    phone = ""
+
+    [[params.contact.address]]
+    title = "Austin, TX"
+    #street = "Street"
+    #city = "Austin, TX"
+    #country = "Country"
+
+  # Footer section
+  [params.footer]
+    enable = true
+    copyright = "Matt Worthington"
+
+    # Uses font awesome icons
+    [[params.footer.social]]
+      icon = "fa-twitter"
+      url= "https://www.twitter.com"
+      label = "Twitter"
+    
+    [[params.footer.social]]
+      icon = "fa-github"
+      url= "https://www.github.com"
+      label = "GitHub"
+
+    [[params.footer.social]]
+      icon = "fa-linkedin"
+      url= "https://www.linkedin.com"
+      label = "LinkedIn"
+
+    [[params.footer.quicklinks]]
+      text = "Design"
+      url= "https://html5up.net/"
+      alt = "HTML5 UP"
+      
+    [[params.footer.quicklinks]]
+      text = "Hugo Integration"
+      url= "https://github.com/rstudio/blogdown"
+      alt = "blogdown"
+    
+    [[params.footer.quicklinks]]
+      text = "Unsplash Photo"
+      url= "https://unsplash.com/photos/pexByC8iQE4"
+      alt = "Dan Gold"
+      
