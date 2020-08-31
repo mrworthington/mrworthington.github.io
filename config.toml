@@ -73,7 +73,7 @@ disqusShortname = ""
   [params.two]
     enable = true
     title = "About Me"
-    subtitle = """As analytics professional with an extensive background working in public schools and the nonprofit sector, 
+    subtitle = """As an analytics professional with an extensive background working in public schools and the nonprofit sector, 
     I spend a significant amount of time and energy solving problems that benefit the public using data science tools---from 
     increasing the accessibility of publicly available data to developing models that distill complex policies into human-friendly graphics. 
     Check out some of my favorite projects below and holler if you would like my help."""
