@@ -105,7 +105,7 @@ disqusShortname = ""
 
     [[params.tiles.showcase]]
       title = "Child Poverty Analysis"
-      subtitle = "Build in R, this project was used flexdashboard, tidycensus, purrr, and ggplot2 to build out a comprehensive look at childhood poverty over time among the Capital Area Council of Government counties."
+      subtitle = "Built in R, this project was used flexdashboard, tidycensus, purrr, and ggplot2 to build out a comprehensive look at childhood poverty over time among the Capital Area Council of Government counties."
       image = "pic04.jpg"
       url = "https://unitedwayaustin.github.io/cp-dashboard/"
 
