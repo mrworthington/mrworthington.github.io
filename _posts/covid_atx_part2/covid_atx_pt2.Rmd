@@ -1,0 +1,754 @@
+---
+title: "Who's Most at Risk of Getting COVID in Austin?"
+description: |
+  In the last blog post, we looked at where COVID-19 cases were heavily concentrated in Austin. In this post, we'll take a look at where those most at risk of developing a severe illness from COVID-19 live.
+author:
+  - name: Matt Worthington 
+    url: https://mrworthington.com/about
+    affiliation: Me, Myself, and I
+    affiliation_url: https://mrworthington.com
+date: 08-13-2020
+draft: true
+creative_commons: CC BY-NC
+output:
+  distill::distill_article:
+    css: hospital_header.css
+    self_contained: false
+preview: photo-1592348283784-d77b2a566d31.jpg
+categories:
+  - COVID19
+  - Public Health
+  - Austin Public Health
+  - I35
+  - Austin
+  - Public Data
+twitter:
+  creator: "@mrworthington"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(flextable)
+library(geojson)
+library(geojsonsf)
+library(gfonts)
+library(gghighlight)
+library(gt)
+library(highcharter)
+library(janitor)
+library(Knoema)
+library(lubridate)
+library(patchwork)
+library(png)
+library(rcartocolor)
+library(readxl)
+library(RSocrata)
+library(sf)
+library(tidycensus)
+library(tidyverse)
+library(tigris)
+library(tinter)
+library(tmap)
+library(tmaptools)
+library(vroom)
+readRenviron("~/.Renviron")
+census_api_key <- Sys.getenv("CENSUS_API_KEY")
+census_api_key(key=census_api_key)
+options(tigris_use_cache=TRUE)
+```
+
+# Next Blog Post Content
+
+```{r hc_theme}
+mworth_hc <- hc_theme_merge(
+  hc_theme_smpl(),
+  hc_theme(chart = list(backgroundColor = "#fff", 
+                        style = list(fontFamily = 'Roboto', 
+                                     fontSize = "28px",  fontWeight = "bold",
+                                     color="#4d4d4d", textTransform="initial")),
+           title = list(style = list(fontFamily = 'Roboto', 
+                                     fontWeight="bold",
+                                     color="#2d2d2d"),
+                        align = "left"), 
+           subtitle = list(style = list(fontFamily = 'Roboto',
+                                        color="#7d7d7d",
+                                        textTransform="initial",
+                                        fontWeight="400",
+                                        fontSize = "14px"),
+                           align = "left"), 
+           legend = list(align = "right", 
+                         style = list(fontFamily = 'Roboto', color="#6d6d6d"),
+                         itemStyle = list(fontFamily = 'Roboto', color = '#6d6d6d'),
+                         itemHoverStyle = list(color = 'gray'),   
+                         verticalAlign = "top"),
+           credits = list(style = list(color = "#fff")),
+           xAxis = list(labels =list(style = list(fontFamily = 'Roboto', color="#2d2d2d")), 
+                        title = list(style = list(color = "#4d4d4d", fontSize = "12px", 
+                                                  color="#4d4d4d",fontWeight="500")),
+                        gridLineWidth = 0,
+                        gridLineColor = "#9d9d9d", 
+                        lineColor = 'rgba(0,0,0,0.7)', 
+                        minorGridLineColor = 'rgba(0,0,0,0.7)', 
+                        tickColor = "#9d9d9d", 
+                        tickWidth = 1), 
+           yAxis = list(labels =list(style = list(fontFamily = 'Roboto', color="#2d2d2d")), 
+                        title = list(style = list(color = "#fff", fontSize = "12px", 
+                                                  color="#fff",fontWeight="500")), 
+                        gridLineWidth = .5,
+                        gridLineColor = 'rgba(0,0,0,0.15)', 
+                        lineColor = 'rgba(0,0,0,0.15)', 
+                        minorGridLineColor = 'rgba(0,0,0,0.15)', 
+                        tickColor = "#9d9d9d", 
+                        tickWidth = 2)))
+```
+
+```{r include=FALSE}
+I35 <- st_read("spatial/I35_HighwayATX.shp") %>% 
+  st_transform(crs = 4326)
+
+arterials <- st_read("spatial/arterials/CENART.shp") %>% 
+  st_transform(crs = 4326) %>% 
+  filter(NAME != "IH 35",
+         str_detect(TYPE, "HWY|BLVD"),
+         SIZE == "MAJOR")
+
+capcog <- st_read("spatial/CAPCOG_Counties.shp") %>% 
+  st_transform(crs = 4326) %>% 
+  filter(COUNTY != "TRAVIS")
+
+img <- readPNG("spatial/I35.png")
+
+tx_zips <- tigris::zctas(state="TX",cb=TRUE) 
+
+sf_counties <- tigris::counties(state="TX") %>% filter(GEOID=="48453")
+
+src <- "https://www.dshs.state.tx.us/coronavirus/TexasCOVID19CaseCountData.xlsx" # Read URL
+lcl <- basename(src)
+download.file(url = src, destfile = lcl)
+
+lcl <- "TexasCOVID19CaseCountData.xlsx"
+```
+
+
+In the last blog post, we looked briefly at where people in Austin have gotten COVID-19 by the ZIP code. I-35 was also highlighted as a notable boundary in where COVID-19 is concentrated most in Travis County, with everything east of I-35 being saddled with the largest concentrations of COVID-19 while areas west of I-35---while certainly dealing with COVID-19 like everywhere else---were not as burdened with case loads. While we'll certainly look at that question a bit more, but 
+
+## Risk, Resilience, + COVID-19
+
+Today, we're mostly going to explore the intersection of those most at risk and the geographic case disparities referenced above from [the initial post about COVID-19 and Austin](https://www.mrworthington.com/posts/covid_atx/). To define the groups who should be most concerned about getting COVID-19, we'll use [this website](https://www.cdc.gov/coronavirus/2019-ncov/need-extra-precautions/people-with-medical-conditions.html) from the CDC. It documents factors known to increase someone's risk of developing a severe illness from COVID-19 and documents others that *might* put someone at increased risk. 
+
+I've pulled this subset of factors from the larger list, which has geographic data (also from the CDC) we can use to analyze where these conditions are experienced most often in Austin and compare that with what we already know about COVID-19. Here's the list:
+
+::: l-body-outset
+| Risk Level                                   | Conditions                                                                                        |
+| :------------------------------------------- | :------------------------------------------------------------------------------------------------ |
+| **Known To Increase Risk of Severe Illness** | Cancer, COPD, Chronic kidney disease, Type 2 diabetes mellitus, Obesity, & Coronary Heart Disease |
+| **Might Increase Risk of Severe Illness**    | Asthma, Smoking, & High blood pressure                                                            |
+:::
+
+
+
+
+
+
+ the CDC has very detailed data from 2017 for four of the known factors. the US Census has incorporated three of these factors as part of a new [Community Resilience](https://www.census.gov/data/experimental-data-products/community-resilience-estimates.html) they just launched at the end of June. This dataset attempts to illustrate which communities are most likely and least likely to endure a disaster of any kind. 
+
+
+#### Who is dying most often from COVID-19?
+
+In addition to this list, there are demographic data we can use to assess which groups are dying most often from COVID-19 in Austin. Given that Austin is in Texas, we can use statewide data collected from death certificates to get a broader understanding of who is dying most often from COVID-19. However, we'll also need to compare those numbers with statewide demographic data from the Census Bureau to assess which groups are experiencing death at unusually high rates. The only exception to this age data, given that it's widely known that COVID-19 is particularly fatal for the population aged 65 and older, which in Texas accounts for 71% percent of all deaths. It's worth noting if you go back to ages 50 and older account, the share of deaths jumps up to 92% for statewide deaths. For now, however, now we'll stick to the population aged 65 and older. We'll include that in the list, but to get other factors, we'll have to compare deaths to the population:
+
+```{r process demographic data, include=FALSE}
+dshs_state_ages <- read_excel(lcl, sheet = "Cases by Age Group", skip=1) %>% 
+  clean_names() %>% 
+  select(group=age_groupings, cases=number, pct=3) %>% 
+  filter(!is.na(cases),
+         group!="Total") %>% 
+  mutate(pct=gsub("%","",x=pct)) %>% 
+  mutate(cases=as.numeric(cases),
+         report_type="cases",
+         pct=as.numeric(pct),
+         demographic_type="ages")
+  
+dshs_state_gender <- read_excel(lcl, sheet="Cases by Gender", skip=1) %>% 
+  clean_names() %>% 
+  select(group=gender, cases=number, pct=3) %>% 
+  filter(!is.na(cases),
+         group!="Total") %>% 
+  mutate(pct=gsub("%","",x=pct)) %>% 
+  mutate(cases=as.numeric(cases),
+         report_type="cases",
+         pct=as.numeric(pct),
+         demographic_type="gender")
+
+dshs_state_race <- read_excel(lcl, sheet="Cases by RaceEthnicity", skip=1) %>% 
+  clean_names() %>% 
+  select(group=race_ethnicity, cases=number, pct=3) %>% 
+  filter(!is.na(cases),
+         group!="Total") %>%   
+  mutate(pct=gsub("%","",x=pct)) %>% 
+  mutate(cases=as.numeric(cases),
+         report_type="cases",
+         pct=as.numeric(pct),
+         demographic_type="race")
+
+dshs_state_ages_fates <- read_excel(lcl, sheet = "Fatalities by Age Group", skip=1) %>% 
+  clean_names() %>% 
+  select(group=age_groupings, cases=number, pct=3) %>% 
+  filter(!is.na(cases),
+         group!="Total") %>% 
+  mutate(pct=gsub("%","",x=pct)) %>% 
+  mutate(cases=as.numeric(cases),
+         report_type="fatalities",
+         pct=as.numeric(pct),
+         demographic_type="ages")
+  
+dshs_state_gender_fates <- read_excel(lcl, sheet = "Fatalities by Gender", skip=1) %>% 
+  clean_names() %>% 
+  select(group=gender, cases=number, pct=3) %>% 
+  filter(!is.na(cases),
+         group!="Total") %>% 
+  mutate(pct=gsub("%","",x=pct)) %>% 
+  mutate(cases=as.numeric(cases),
+         report_type="fatalities",
+         pct=as.numeric(pct),
+         demographic_type="gender")
+
+dshs_state_race_fates <- read_excel(lcl, sheet = "Fatalities by Race-Ethnicity", skip=1) %>% 
+  clean_names() %>% 
+  select(group=race_ethnicity, cases=number, pct=3) %>% 
+  filter(!is.na(cases),
+         group!="Total") %>% 
+  mutate(pct=gsub("%","",x=pct)) %>% 
+  mutate(cases=as.numeric(cases),
+         report_type="fatalities",
+         pct=as.numeric(pct),
+         demographic_type="race")
+
+dshs_demographic_data <- bind_rows(dshs_state_ages,
+                                   dshs_state_gender,
+                                   dshs_state_race,
+                                   dshs_state_ages_fates,
+                                   dshs_state_gender_fates,
+                                   dshs_state_race_fates) %>% 
+  select(4,5,1,everything())  %>% 
+  mutate(state="Texas",
+         pct=pct/100,     ##NOTE: Comment Out/In As Needed Depending on Format of "pct" column
+         fips="48") %>% 
+  select(state,fips,everything()) %>%
+  rename(count=cases)
+```
+
+```{r layout="l-page", fig.height=4.5, fig.width=11}
+
+vars <- load_variables(2018,"acs5/profile", cache=TRUE)
+
+demvars <-  c(White = "B02001_002",
+              Black = "B02001_003",
+              Asian = "B02001_005",
+              Hispanic = "B03001_003",
+              Male = "B01001_002",
+              Female = "B01001_026")
+
+dem_pop_data <- get_acs(geography = "state", variables = demvars,
+                  state = "TX", geometry = FALSE,
+                  summary_var = "B01003_001") %>% 
+  mutate(pop_pct = round(estimate/summary_est, digits=4)) %>% 
+  select(state=NAME, group=variable, pop_pct)
+
+fatality_data <- dshs_demographic_data %>% 
+  filter(report_type=="fatalities" & demographic_type != "ages" & group!="Unknown" & group!="Other") %>% 
+  left_join(dem_pop_data, by="group") %>% 
+  mutate(excess_death = pop_pct-pct)
+
+ann_filtr1 <- data.frame(group = "Hispanic", pct= .455, lab = "Text",
+                       demographic_type = factor("Race",levels = c("Gender","Race")))
+ann_filtr2 <- data.frame(group = "Hispanic", pct= .2, lab = "Text",
+                       demographic_type = factor("Race",levels = c("Gender","Race")))
+
+ann_filtr3 <- data.frame(group = "Male", pct= .545, lab = "Text",
+                       demographic_type = factor("Gender",levels = c("Gender","Race")))
+ann_filtr4 <- data.frame(group = "Male", pct= .25, lab = "Text",
+                       demographic_type = factor("Gender",levels = c("Gender","Race")))
+fatality_data %>% 
+  mutate(demographic_type=str_to_title(demographic_type)) %>% 
+  ggplot(aes(y=reorder(group, pct), x=pct)) +
+  geom_bar(aes(fill=demographic_type), stat="identity", na.rm=TRUE, width=.9) +
+  geom_bar(aes(y=reorder(group, pct), x=pop_pct), fill="#e5e5e5", color = "#3d3d3d", 
+           alpha=.6, lwd = .5, linetype = 2, stat="identity", na.rm=TRUE, width=.9) +
+  geom_text(data=ann_filtr1, aes(label="Deaths"), color="white", family = "Gotham Bold") +
+  geom_text(data=ann_filtr2, aes(label="Population Share"), color="#3d3d3d", family = "Gotham Bold") +
+  geom_text(data=ann_filtr3, aes(label="Deaths"), color="white", family = "Gotham Bold") +
+  geom_text(data=ann_filtr4, aes(label="Population Share"), color="#3d3d3d", family = "Gotham Bold") +
+  hrbrthemes::theme_ipsum(base_family = "Gotham Book", base_size=10) +
+  hrbrthemes::scale_x_percent() +
+  ggthemes::scale_fill_economist() +
+  labs(title = "Men and Hispanics Texans Are Disproportionately Dying From COVID-19",
+       subtitle = "Bordered Opaque Boxes = Share of Population | Bars in Full Color = Deaths from COVID-19",
+       caption = "SOURCE: Texas Department of State Health Services\nDATA: 'Accessible Dashboard Data'\nURL:https://www.dshs.state.tx.us/coronavirus/additionaldata/",
+       y = NULL, x=NULL) +
+  ggforce::facet_col(~demographic_type, 
+                     scales = 'free_y',
+                     space = 'free', 
+                     strip.position = 'top')+
+  theme(plot.margin = margin(0.5, 0.5, 0.5, 0.5, unit = "cm"),
+        plot.title = element_text(family="Gotham-Black", size=16),
+        plot.subtitle = ggtext::element_markdown(size=12),
+        plot.caption = element_text(family="Gotham-Light", hjust="0"),
+        strip.text = element_text(family="Gotham-Ultra", color = "#8d8d8d"),
+        panel.spacing = unit(1, "lines"),
+        axis.title.y = element_blank(),
+        legend.position = "none")
+
+```
+
+**Next Blogpost:** Who should be most worried about getting COVID?
+
+**Note about this series:** If you're interested in asking specific questions to explore in this, reach out to me via Facebook or Twitter and I'll do my best to find data that can help provide some kind of meaningful answer.
+
+**Where can I find the code for this blog?** Once I clean up the mess in this repo, I'll make it public on github. For now, I'm happy to share individual the Rmarkdown file used to produce each article.
+
+<details>
+<summary><strong>TLDR | </strong>Why not do this at the statewide level?</summary>
+Originally, I considered focusing these articles at the statewide level for Texas, but I kept running into issues around finding data that could meaningfully answer some of my questions. The reasons for this are many, but some of the state's existing COVID-19 data cannot be aggregated at anything beyond the statewide level for reasons outside of their control. 
+
+#### Example - Test Positivity
+
+For example, county-level test positivity is one of those things that has been difficult because COVID-19 lab testing has largely been decentralized, with over 97% of tests being conducted in commercial labs. Consequently, this means the state has to then coordinate data from over 4 million tests conducted outside of state testing labs. 
+
+```{r testing_gt_table, echo=FALSE, message=FALSE, warning=FALSE}
+
+src <- "https://www.dshs.state.tx.us/coronavirus/TexasCOVID19CaseCountData.xlsx" # URL for Daily COVID Data
+lcl <- basename(src)
+download.file(url = src, destfile = lcl) # Downloads the Data
+
+read_excel(lcl, sheet = "Tests", skip=1) %>% 
+  clean_names() %>% 
+  slice(1:2) %>% 
+  gt() %>%
+  tab_header(title = md("**Number of People Tested for SARS-CoV-2 in Texas, By Lab Type**"),
+             subtitle = "Source: Texas Department of State Health Services | As of August 10th at 3:00PM CST") %>%
+  tab_source_note(
+    source_note = "*Unable to deduplicate figures for Commercial labs."
+  ) %>% 
+  tab_footnote(footnote = md("[Data: From the 'Accessible Dashboard Data' File, under the 'Tests' tab.](https://www.dshs.state.tx.us/coronavirus/additionaldata/)"), locations = cells_title("subtitle")) %>% 
+    fmt_number(columns="count", suffixing=TRUE) %>% 
+  cols_label(location=md("**Location**"),
+             count=md("**Tests Processed**")) %>% 
+  summary_rows(
+    columns = vars(count),
+    fns = list(
+      `Total Tests` = ~sum(.)),
+    formatter = fmt_number,
+    decimals=0,
+    use_seps = TRUE
+) %>% 
+  tab_options(
+    grand_summary_row.background.color = "#f5f5f5",
+    heading.title.font.weight = "800",
+  )
+
+```
+
+And given that these commercial labs aren't actually part of a state agency, this means they have to learn new reporting rhythms and do work that, perhaps, they didn't plan for or know they needed to do--such as keep all of the positives and negatives for each county, record those in a database by the county of origin, deduplicate them by the person who got the test, and then share all of that information back to the state in a manner that is uniform with all the other private labs in the state. 
+
+That said, not being able to compare how much a county is testing with how much they're testing positive weakens a potential analysis and limits how much you can explore the dynamics between risk factors and things like test positivity.
+
+#### Example - Demographic Data
+
+Another example of this information is demographic data about cases and fatalities. That information also doesn't exist broken down by county--sometimes due to HIPAA requirements. 
+
+So if you wanted to analyze geographic COVID-19 trends between counties across multiple pieces of data such as demographic, known risk-factors, and other trends, you'd have a hard time accomplishing that because it currently doesn't exist.
+
+For that reason, I've chosen to just focus on using city-level data given that cities tend to have better access to local information about their communities. 
+
+#### What may increase your risk of being exposed to COVID-19?
+
+In total right now, we now have 7 things things that either put you at risk for developing a severe illness (_Cancer, Chronic kidney disease, COPD, and Type 2 Diabetes_) or classify as groups within Texas that disproportionately fall victim to COVID-19 (. If we consider things that may increase your risk of exposure, we'll be able to get a look at Austin and determine where folks live who higher risk of exposure, a higher risk of developing a severe illness from COVID-19, or are in a group that is disproportionately dying from COVID-19.
+
+For determining who is at risk of exposure, we can look at actions that decrease exposure--such as staying home more than usual or working from home--but it's probably better to consider what things enable those actions. For that, we look at having a fast and reliable internet connection at home, which has been highlighted as a major factor in navigating COVID-19[^1] and something that can decrease the risk of exposure[^2][^3] to COVID-19. If you do have a good internet connection, you can order groceries online, work from home if your employer allows, or you take classes online[^4]. If you don't, you can't afford to just stay home---even if you wanted to---and social distancing becomes complicated if everyone in your community also doesn't have good internet access. To do anything or meet your needs, you would have to do pretty much everything in person---from grocery shopping to accessing basic health care. This excerpt from a Forbes interview with a 911 Coordinator in Kentucky explains the challenges for rural Appalachians navigating COVID-19 without internet:
+
+> “One of the biggest issues that we face in rural Appalachia is a lack of broadband and internet connectivity,” says Graham. “You hear so much about people telecommuting or using telehealth services, but that's not an option for a lot of rural Americans. We don't have the connectivity to do that even if we had the kind of jobs that allowed it.”[^5]
+
+That said, having a sufficient broadband internet connection will also be considered in our list. Because if you're at high-risk of developing a severe illness from COVID-19 or are in a group that is disproportionately dying from COVID, having a good internet would enable you to reduce your risk of being exposed. 
+
+```{r layout="l-page", fig.height=4.5}
+broadband_adoption_travis <- get_acs(geography = "tract", variables = "DP02_0152P",
+                           state = "TX", county = "Travis County", geometry = TRUE) %>% 
+  clean_names()
+
+broadband_access_travis <- vroom("fcc_tract_advertised_data.csv") %>% 
+  mutate(geoid=as.character(geoid))
+
+broadband_travis <- broadband_adoption_travis %>% 
+  left_join(broadband_access_travis, by="geoid") %>% 
+  select(geoid, broadband_adoption=estimate, broadband_access=with, geometry) %>% 
+  mutate(broadband_access=round(broadband_access*100, digits=2)) %>% 
+  pivot_longer(cols = starts_with("broadband"), names_to="broadband_type", values_to = "value") %>% 
+  select(geoid, broadband_type, value, geometry) %>% 
+  st_as_sf() %>% 
+  st_transform(4326)
+  
+
+st_bbox(broadband_travis)
+
+groups <- unique(broadband_travis$broadband_type)
+names <- c("broadband_adoption"="Adoption Rates", "broadband_access"="Access Rate")
+colors <- c("#56B1F7", "#56B1F7")
+captions <- c("Data: Community Resilience Estimates\nSource: U.S. Census Bureau. 2020.", "Data: Advertised Fixed Broadband Deployment\n Source: FCC Form 477 (June 2019, v1 Release)")
+
+plots <- pmap(list(groups, names, colors, captions), function(groups, names, colors, captions){
+    broadband_travis %>% 
+      filter(broadband_type==groups) %>% 
+      ggplot() +
+      geom_sf(aes(fill=value), 
+              color = "#eceff1",
+              lwd=.1) +
+      geom_sf(data = capcog, color = "#2d2d2d", fill="#f5f5f5") +
+      geom_sf(data = arterials, color = "#6d6d6d", lwd = .1) +
+      geom_sf(data = I35, color = "red") +
+      scale_fill_gradientn(colours = tinter(colors, steps = 10), 
+                           labels = function(x) paste0(x,"%")) +
+      scale_size(guide = "legend") +
+      hrbrthemes::theme_ipsum(base_family = "Graphik Regular", base_size = 8) +
+      theme(legend.position = "bottom",
+            plot.margin = unit(c(0,3,0,3), "pt"),
+            plot.caption = element_text(family = "Graphik Regular", hjust = 0.5, size=6,
+                                        margin = unit(c(-1,0,10,0), "pt")),
+            plot.title = element_text(family = "Graphik Bold", hjust = 0.5, size=10),
+            plot.subtitle = element_text(color="red", family = "Graphik Regular", hjust = 0.5, size=7,
+                                         margin = unit(c(-6,0,6,0), "pt"))) +
+      coord_sf(datum=NA, xlim=c(-98.17298, -97.36954), ylim=c(30.02450, 30.62825), expand = FALSE) +
+      labs(title=names,
+           subtitle = "I-35 = Road in Red",
+           caption=captions,
+           fill=NULL) +
+      guides(fill = guide_colourbar(barwidth = 7, barheight = .5, direction="horizontal", nbin = 10,
+                                    draw.ulim = TRUE, draw.llim = TRUE, frame.colour = "black", 
+                                    frame.linewidth = 0.5, frame.linetype = 1),
+             colour = FALSE)})
+
+
+(plots[[1]] | plots[[2]]) +
+  plot_annotation(title = 'The Landscape of Broadband Access + Adoption in Travis County',
+                  subtitle = "Austin's urban core has the highest access,\nbut east and southeast Travis county has a noticeable gap in adoption.",
+                  theme = theme(plot.title = element_text(size = 16, hjust = 0.5, family = "Graphik Bold"),
+                                plot.subtitle = element_text(size = 10, hjust = 0.5, family = "Graphik Light",
+                                                          margin = unit(c(0,0,10,0), "pt")),
+                                plot.caption = element_text(size = 8, hjust = 0.5, family = "Graphik Regular"),
+                                plot.margin = unit(c(5,0,0,0), "pt")))
+```
+
+### Mapping These Factors in Austin
+
+Looking at Austin, the question is: _where do all these factors collide?_ Where are people at risk of exposure because they don't have sufficient access to internet or low adoption rates? Where do black, hispanic, and male Austinites mostly reside? And where do Austinites with health conditions that can increase their risk of developing a severe illness from COVID-19 live?
+
+```{r echo=FALSE, fig.height=4.5, layout="l-page"}
+
+# ts_county_cases <- read.socrata("https://chronicdata.cdc.gov/resource/6vp6-wxuq.csv")
+
+ts_county_cases <- read_csv("cdc_500_cities_atx.csv")
+
+counties <- c("Travis", "Bastrop", "Williamson", "Hays")
+
+aus_tracts <- map_df(counties, 
+                       ~tigris::tracts(state="TX", county=.x), id="county")
+
+aus_tract_data <- ts_county_cases %>% 
+  as_tibble() %>% 
+  filter(stateabbr=="TX",
+         cityname=="Austin",
+         year=="2017",
+         # categoryid=="HLTHOUT",
+         geographiclevel=="Census Tract") %>% 
+  filter(str_detect(short_question_text, "COPD|Cancer|Kidney|Diabetes|Obesity|Smoking|Asthma|High Blood Pressure|Coronary Heart Disease")) %>%
+  mutate(tractfips=as.character(tractfips))
+# 
+# aus_tract_data_csv <- aus_tract_data %>%
+#   write_csv("cdc_500_cities_atx.csv")
+
+atx_zips_by_cases_sf <- aus_tract_data %>%
+  dplyr::left_join(aus_tracts, by=c("tractfips"="GEOID")) %>% 
+  dplyr::select(1:5,tractfips,tract_name=NAMELSAD,short_question_text,category, measure, data_value, data_value_unit,geometry) %>%
+  rename(`Tract Name`=tract_name,`Topic`=short_question_text) %>% 
+  mutate(`Data Value`=paste0(data_value, data_value_unit)) %>% 
+  drop_na(data_value) %>% 
+  sf::st_as_sf() %>% 
+  st_transform(crs="ESRI:102339")
+
+tmap_mode("plot")
+
+tm_shape(atx_zips_by_cases_sf, bbox=atx_zips_by_cases_sf, unit="miles") +
+  tm_fill("data_value", 
+          title = "% of Population",
+          legend.format = lst(suffix="%"),
+          legend.hist = FALSE,
+          palette = tinter("#56B1F7", steps = 5),
+          fontfamily = "Gotham Book") +
+  tm_facets(by="Topic",
+            free.scales = TRUE) +
+# tm_shape(atx_zips_by_cases_sf) + 
+#   tm_borders(col = "#9d9d9d", lwd = .3, lty = "solid") +
+tm_shape(sf_counties) +
+  tm_borders(lwd = 2) +
+tm_shape(I35, name = "I-35") +
+  tm_lines(lwd = 3, col = "NAME",  palette="#d73a49", title.col="Streets") +
+tm_shape(arterials) +
+  tm_lines(lwd = .5) +
+  tm_compass(type = "arrow",
+             size= 1, bg.alpha = .6,
+             color.dark = "#9d9d9d",
+             position = c("right", "TOP")) +
+  tm_scale_bar(color.dark = "gray60",
+               size = .5,
+               breaks = c(0,5,10),
+               position = c("right", "bottom")) +
+  tm_layout(main.title = "COVID-19 High-Risk Chronic Health Condition Prevalence",
+            main.title.size = 1.2,   
+            main.title.fontfamily  = "Gotham Ultra",
+            main.title.position = c("center", "top"),
+            fontfamily = "Gotham Narrow Book",
+            legend.outside = FALSE,
+            legend.position = c("left", "bottom"),
+            legend.title.fontfamily  = "Gotham Narrow Black",
+            legend.title.size = .7,
+            legend.text.size = .5,
+            legend.frame =  TRUE,
+            legend.bg.color = "white",
+            panel.label.size = 1, 
+            panel.label.fontfamily = "Gotham Light",
+            panel.label.color = 'white',
+            panel.label.bg.color = '#4d4d4d', 
+            panel.label.height = 1.1,
+            attr.outside = FALSE,
+            asp = 0,
+            bg.color = "transparent",
+            inner.margins=c(.04,.03, .02, .01), 
+            frame=FALSE) +
+    tm_credits(text = "Data: CDC 500 Cities Project | Map: Matt Worthington ", 
+             bg.color = "white",
+             bg.alpha = NA,
+             fontfamily = "Gotham Book",
+             align= "right",
+             position = c("RIGHT", "BOTTOM"),
+             size = .3)
+
+```
+
+```{r echo=FALSE, fig.height=3, layout="l-page"}
+demvars <-  c(White = "B02001_002",
+              Black = "B02001_003",
+              Asian = "B02001_005",
+              Hispanic = "B03001_003",
+              Male = "B01001_002",
+              Female = "B01001_026")
+
+travis <- get_acs(geography = "tract", variables = demvars,
+                  state = "TX", county = "Travis County", geometry = TRUE,
+                  summary_var = "B01003_001") %>% 
+  mutate(pop_pct = round(100* estimate/summary_est, digits=2))
+
+travis_race <- travis %>%
+  filter(!str_detect(variable,"Female|Asian|White"))
+
+bbox_new <- st_bbox(travis_race)
+
+tm_shape(travis_race, bbox=atx_zips_by_cases_sf, unit="miles") +
+  tm_fill("pop_pct",
+          title = "% of Population",
+          # breaks ="equal", 
+          legend.hist = FALSE,
+          palette = tinter("#5da5da", steps = 5),
+          fontfamily = "Gotham Book") +
+  tm_facets(by="variable", ncol = 3,
+            free.scales = TRUE) +
+  # tm_shape(travis_race, bbox=travis_race) +
+  # tm_borders(col = "#f5f5f5", lwd = .3, lty = "solid") +
+tm_shape(sf_counties, bbox=bbox_new) +
+  tm_borders(lwd = 2) +
+tm_shape(I35, bbox=bbox_new, name = "I-35") +
+  tm_lines(col = "NAME",  
+           lwd = 3, 
+           palette="#d73a49", 
+           title.col="Streets") +
+tm_shape(arterials, bbox=bbox_new) +
+  tm_lines(lwd = .5) +
+  tm_compass(type = "arrow",
+             size= 1, bg.alpha = .6,
+             color.dark = "#9d9d9d",
+             position = c("right", "top")) +
+  tm_scale_bar(color.dark = "gray60", 
+               breaks = c(0,5,10),
+               position = c("right", "bottom")) + 
+  tm_layout(main.title = "COVID-19 High-Fatality Populations in Austin",
+            main.title.size = 1.2,   
+            main.title.fontfamily  = "Gotham Ultra",
+            main.title.position = c("center", "top"),
+            fontfamily = "Gotham Narrow Book",
+            legend.outside = FALSE,
+            legend.position = c("left", "bottom"),
+            legend.title.fontfamily  = "Gotham Narrow Black",
+            legend.title.size = .6,
+            legend.text.size = .4,
+            legend.height = .4,
+            legend.frame =  TRUE,
+            legend.bg.color = "white",
+            panel.label.size = 1, 
+            panel.label.fontfamily = "Gotham Light",
+            panel.label.color = 'white',
+            panel.label.bg.color = '#4d4d4d', 
+            panel.label.height = 1.1,
+            attr.outside = FALSE,
+            asp = 0,
+            legend.stack = "vertical",
+            bg.color = "transparent",
+            inner.margins=c(.04,.03, .02, .01), 
+            frame=FALSE) +
+    tm_credits(text = "Data: Austin Public Health | Map: Matt Worthington ", 
+             bg.color = "white",
+             bg.alpha = NA,
+             fontfamily = "Gotham Book",
+             align= "right",
+             position = c("RIGHT", "BOTTOM"),
+             size = .3)
+```
+
+```{r, layout="l-page"}
+travis_age_df <- get_acs(geography = "tract", variables = "DP05_0030P",
+                        state = "TX", county = "Travis County", geometry = TRUE)
+
+aus_tracts <- aus_tracts %>% 
+  rename(state=1, county=2, tract=3)
+
+travis_risk_resilience <- vroom("https://www2.census.gov/data/experimental-data-products/community-resilience-estimates/2020/cre-2018-a11.csv") %>% 
+  filter(state=="48" & county =="453") %>% 
+  left_join(aus_tracts, by=c("state","county","tract")) %>% 
+  st_as_sf() %>% 
+  st_transform(crs=4326)
+
+st_bbox(travis_risk_resilience)
+
+groups <- unique(travis_risk_resilience$rfgrp)
+names <- c("0RF"="Zero Risk Factors", "1-2RF"="1-2 Risk Factors", "3PLRF"="3+ Risk Factors")
+colors <- c("#56B1F7", "#56B1F7", "#56B1F7")
+
+plots <- pmap(list(groups, names, colors), function(groups, names, colors){
+    travis_risk_resilience %>% 
+      filter(rfgrp==groups) %>% 
+      ggplot() +
+      geom_sf(aes(fill=predrt), 
+              color = "#eceff1",
+              lwd=.1) +
+      geom_sf(data = capcog, color = "#2d2d2d", fill="#f5f5f5") +
+      geom_sf(data = arterials, color = "#6d6d6d", lwd = .1) +
+      geom_sf(data = I35, color = "red") +
+      scale_fill_gradientn(colours = tinter(colors, steps = 10), 
+                           # limits = c(0,85),
+                           labels = function(x) paste0(x,"%")) +
+      scale_size(guide = "legend") +
+      hrbrthemes::theme_ipsum(base_family = "Graphik Regular", base_size = 8) +
+      theme(legend.position = "bottom",
+            plot.margin = unit(c(0,3,0,3), "pt"),
+            plot.title = element_text(family = "Graphik Bold", hjust = 0.5, size=10)) +
+      coord_sf(datum=NA, xlim=c(-98.17298, -97.36954), ylim=c(30.02450, 30.62825), expand = FALSE) +
+      labs(title=names,
+           fill=NULL) +
+      guides(fill = guide_colourbar(barwidth = 7, barheight = .5, direction="horizontal", nbin = 10,
+                                    draw.ulim = TRUE, draw.llim = TRUE, frame.colour = "black", 
+                                    frame.linewidth = 0.5, frame.linetype = 1),
+             colour = FALSE)})
+
+library(patchwork)
+
+(plots[[1]] | plots[[2]] | plots[[3]]) +
+  plot_annotation(title = 'Bouncing Back From A Disaster is Complicated East of I-35',
+                  subtitle = 'Community Resilience Estimates measure the ability of\na population to recover from the impacts of disasters.',
+                  caption = 'Source: Community Resilience Estimates, U.S. Census Bureau. 2020.',
+                  theme = theme(plot.title = element_text(size = 16, hjust = 0.5, family = "Graphik Bold"),
+                                plot.subtitle = element_text(size = 10, hjust = 0.5, family = "Graphik Light",
+                                                          margin = unit(c(0,0,10,0), "pt")),
+                                plot.caption = element_text(size = 8, hjust = 0.5, family = "Graphik Regular"),
+                                plot.margin = unit(c(0,0,0,0), "pt")))
+```
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE, layout="l-page"}
+
+ts_county_cases <- read.socrata("https://chronicdata.cdc.gov/resource/6vp6-wxuq.csv") 
+
+counties <- c("Travis", "Bastrop", "Williamson", "Hays")
+
+aus_tracts <- map_df(counties, 
+                       ~tigris::tracts(state="TX", county=.x), id="county")
+
+aus_tract_data <- ts_county_cases %>% 
+  as_tibble() %>% 
+  filter(stateabbr=="TX",
+         cityname=="Austin",
+         year=="2017",
+         categoryid=="HLTHOUT",
+         geographiclevel=="Census Tract") %>% 
+  mutate(tractfips=as.character(tractfips))
+
+atx_zips_by_cases_sf <- aus_tract_data %>%
+  dplyr::left_join(aus_tracts, by=c("tractfips"="GEOID")) %>% 
+  dplyr::select(1:5,tractfips,tract_name=NAMELSAD,short_question_text,category, measure, data_value, data_value_unit,geometry) %>%
+  rename(`Tract Name`=tract_name,`Topic`=short_question_text) %>% 
+  mutate(`Data Value`=paste0(data_value, data_value_unit)) %>% 
+  drop_na(data_value) %>% 
+  sf::st_as_sf() %>% 
+  st_transform(crs="ESRI:102339")
+
+# flextable part -----
+fun_flextable <- function(dat){
+  ft <- flextable(dat, col_keys = c("Tract Name", "Topic", "Data Value"), 
+                  defaults = list(fontname = "Roboto"), 
+                  theme_fun = theme_vanilla)
+  ft <- fontsize(ft, part = "all", size = 20)
+  ft <- bold(ft, part = "header", bold = TRUE)
+  ft <- color(ft, color = "black", part = "all")
+  ft <- set_table_properties(ft, layout = "autofit")
+  as.character(htmltools_value(ft))
+}
+temp_dat <- as.data.frame(atx_zips_by_cases_sf)[,c("Tract Name", "Topic", "Data Value")]
+temp_dat <- split(temp_dat, seq_len(nrow(temp_dat)))
+atx_zips_by_cases_sf$tooltip <- map_chr(temp_dat, fun_flextable)
+# end of flextable part
+
+tx_map <- atx_zips_by_cases_sf %>%
+  ggplot() +
+  geom_sf(aes(fill=data_value), color="#6d6d6d", lwd=.3) +
+  # geom_sf_interactive(aes(fill=data_value, tooltip=tooltip, data_id = tractfips), color="#6d6d6d", lwd=.3) +
+  # geom_sf(data=sf_counties, color="#1d1d1d", fill=NA, lwd=1) +
+  scale_fill_gradientn(colours = tinter("#5da5da", steps = 5), labels = function(x) paste0(x,"%")) +
+  coord_sf(datum=NA) +
+  facet_wrap(~Topic, scales = "free")+
+  hrbrthemes::theme_ipsum_es(base_family="Roboto") +
+  theme(plot.title = element_text(family="Roboto", face = "bold"),
+        plot.subtitle = element_text(family="Roboto", face = "plain"),
+        plot.caption = element_text(family="Roboto", face = "plain")) + 
+  labs(title="The Health of Austin's Metro Area Favors Those West of I-35",
+       subtitle="Data: The 500 Cities Project: Local data for Better Health | Year - 2017",
+       caption="SOURCE: Austin Public Health")
+
+g <- purrr::map(atx_zips_by_cases_sf$Topic,
+           function(x) {
+             ggplot() +
+               geom_sf(data = filter(atx_zips_by_cases_sf, Topic == x), aes(fill=data_value), color="#6d6d6d", lwd=.3) +
+               hrbrthemes::theme_ipsum_es(base_family="Roboto") +
+               coord_sf(datum=NA) +
+               scale_fill_gradientn(colours = tinter("#5da5da", steps = 5), labels = function(x) paste0(x,"%")) +
+               # guides(fill = FALSE) +
+               ggtitle(x)
+           })
+```
+
+[^1]: NW, 1615 L. St, Suite 800Washington, & Inquiries, D. 20036USA202-419-4300 | M.-857-8562 | F.-419-4372 | M. (2020, April 30). 53% of Americans Say the Internet Has Been Essential During the COVID-19 Outbreak. Pew Research Center: Internet, Science & Tech. https://www.pewresearch.org/internet/2020/04/30/53-of-americans-say-the-internet-has-been-essential-during-the-covid-19-outbreak/  
+[^2]: Chiou, L., & Tucker, C. (2020). Social Distancing, Internet Access and Inequality (Working Paper No. 26982). National Bureau of Economic Research. https://doi.org/10.3386/w26982  
+[^3]: How limited broadband affects older adults during COVID-19. (2020, March 26). Center on Rural Innovation (CORI). https://ruralinnovation.us/covid19-broadband-health-care/  
+[^4]: Jechow, A. (n.d.). Austin ISD Is Rolling Out 110 Buses Equipped With Wi-Fi For Neighborhoods With Limited Online Access. Retrieved August 12, 2020, from https://www.kut.org/post/austin-isd-rolling-out-110-buses-equipped-wi-fi-neighborhoods-limited-online-access  
+[^5]: Estes, C. (n.d.). How The COVID-19 Coronavirus Pandemic Is Impacting Rural America. Forbes. Retrieved August 12, 2020, from https://www.forbes.com/sites/claryestes/2020/03/17/coronavirus-and-rural-america/
+
+</details>
+
+## Photo Credit {.appendix}
+
+<span>Photo by <a href="https://unsplash.com/@rymagsino?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Ryan Magsino</a> on <a href="https://unsplash.com/s/photos/austin-ryan?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>

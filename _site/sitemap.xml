@@ -2,42 +2,46 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" version="1.0">
   <url>
     <loc>https://mrworthington.com/about.html</loc>
-    <lastmod>2020-08-30T12:40:06-07:00</lastmod>
+    <lastmod>2020-10-28T11:08:03-05:00</lastmod>
   </url>
   <url>
     <loc>https://mrworthington.com/</loc>
-    <lastmod>2020-08-30T12:40:07-07:00</lastmod>
+    <lastmod>2020-09-01T15:14:56-05:00</lastmod>
+  </url>
+  <url>
+    <loc>https://mrworthington.com/README.html</loc>
+    <lastmod>2020-09-01T15:14:54-05:00</lastmod>
   </url>
   <url>
     <loc>https://mrworthington.com/resume.html</loc>
-    <lastmod>2020-08-30T12:40:07-07:00</lastmod>
+    <lastmod>2020-09-01T15:14:56-05:00</lastmod>
   </url>
   <url>
     <loc>https://mrworthington.com/posts/covid_atx/</loc>
-    <lastmod>2020-08-30T12:40:05-07:00</lastmod>
+    <lastmod>2020-09-01T15:14:54-05:00</lastmod>
   </url>
   <url>
     <loc>https://mrworthington.com/posts/school-finance-analysis/</loc>
-    <lastmod>2020-08-30T12:40:06-07:00</lastmod>
+    <lastmod>2020-09-01T15:14:55-05:00</lastmod>
   </url>
   <url>
     <loc>https://mrworthington.com/posts/public-ed-testimony/</loc>
-    <lastmod>2020-08-30T12:40:05-07:00</lastmod>
+    <lastmod>2020-09-01T15:14:55-05:00</lastmod>
   </url>
   <url>
     <loc>https://mrworthington.com/posts/all_about_racism/</loc>
-    <lastmod>2020-08-30T12:40:05-07:00</lastmod>
+    <lastmod>2020-09-01T15:14:54-05:00</lastmod>
   </url>
   <url>
     <loc>https://mrworthington.com/posts/edgewood_fend_for_itself/</loc>
-    <lastmod>2020-08-30T12:40:05-07:00</lastmod>
+    <lastmod>2020-09-01T15:14:55-05:00</lastmod>
   </url>
   <url>
     <loc>https://mrworthington.com/posts/how_sa_segregated_schools/</loc>
-    <lastmod>2020-08-30T12:40:05-07:00</lastmod>
+    <lastmod>2020-09-01T15:14:55-05:00</lastmod>
   </url>
   <url>
     <loc>https://mrworthington.com/posts/why_americans_no_ed/</loc>
-    <lastmod>2020-08-30T12:40:06-07:00</lastmod>
+    <lastmod>2020-09-01T15:14:55-05:00</lastmod>
   </url>
 </urlset>

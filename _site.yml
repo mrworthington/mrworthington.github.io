@@ -1,10 +1,12 @@
 name: "distill_blog"
 title: "Matt Worthington"
 description: |
-  Notes From A Spreadsheet
+  Notes From A Spreadsheet 
 output_dir: "_site"
 base_url: https://mrworthington.com
+repository_url: https://github.com/mrworthington/mrworthington.github.io
 google_analytics: "UA-52682113-1"
+exclude: "README.md"
 navbar:
   right:
     - text: "Home"
