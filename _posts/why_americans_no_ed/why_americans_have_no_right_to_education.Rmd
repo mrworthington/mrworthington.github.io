@@ -13,6 +13,8 @@ output:
   distill::distill_article:
     css: hospital_header.css
     self_contained: false
+    toc: false
+    toc_depth: 2
 preview: fullsizeoutput_77ff.jpg
 twitter:
   creator: "@mrworthington"
