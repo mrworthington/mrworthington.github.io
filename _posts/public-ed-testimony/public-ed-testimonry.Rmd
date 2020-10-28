@@ -13,6 +13,8 @@ output:
   distill::distill_article:
     css: page_header.css
     self_contained: false
+    toc: true
+    toc_depth: 2
 preview: meggyn-pomerleau-2SGDohBsYPg-unsplash-2.jpg
 categories:
   - School Finance

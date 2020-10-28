@@ -18,79 +18,190 @@
  <!--radix_placeholder_import_source-->
  <!--/radix_placeholder_import_source-->
 
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #545454; font-weight: bold; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #a1024a; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007faa; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #008000; } /* Char */
+code span.cn { color: #d91e18; } /* Constant */
+code span.co { color: #545454; } /* Comment */
+code span.cv { color: #545454; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #aa5d00; } /* DataType */
+code span.dv { color: #a1024a; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #a1024a; } /* Float */
+code span.fu { color: #4254a7; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #545454; font-weight: bold; } /* Information */
+code span.kw { color: #007faa; font-weight: bold; } /* Keyword */
+code span.op { color: #696969; } /* Operator */
+code span.ot { color: #007faa; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #008000; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #008000; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #008000; } /* VerbatimString */
+code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
   <!--radix_placeholder_meta_tags-->
   <title>Visualizing American School Finance</title>
-  
+
   <meta property="description" itemprop="description" content="Analyzing School Finances Revenue Breakdowns For Every State From 1993-2015"/>
-  
+
   <link rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/"/>
-  
+
   <!--  https://schema.org/Article -->
   <meta property="article:published" itemprop="datePublished" content="2018-03-28"/>
   <meta property="article:created" itemprop="dateCreated" content="2018-03-28"/>
   <meta name="article:author" content="Matt Worthington"/>
-  
+
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="Visualizing American School Finance"/>
   <meta property="og:type" content="article"/>
   <meta property="og:description" content="Analyzing School Finances Revenue Breakdowns For Every State From 1993-2015"/>
   <meta property="og:locale" content="en_US"/>
-  
+
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
   <meta property="twitter:title" content="Visualizing American School Finance"/>
   <meta property="twitter:description" content="Analyzing School Finances Revenue Breakdowns For Every State From 1993-2015"/>
   <meta property="twitter:creator" content="@mrworthington"/>
-  
+
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
-  
+
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","subtitle","description","author","date","creative_commons","output","preview","categories","twitter"]}},"value":[{"type":"character","attributes":{},"value":["Visualizing American School Finance"]},{"type":"character","attributes":{},"value":[""]},{"type":"character","attributes":{},"value":["Analyzing School Finances Revenue Breakdowns For Every State From 1993-2015\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Matt Worthington"]},{"type":"character","attributes":{},"value":["https://mrworthington.com/about.html"]},{"type":"character","attributes":{},"value":["Me, Myself, and I"]},{"type":"character","attributes":{},"value":["https://mrworthington.com"]}]}]},{"type":"character","attributes":{},"value":["03-28-2018"]},{"type":"character","attributes":{},"value":["CC BY-NC"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["css","self_contained"]}},"value":[{"type":"character","attributes":{},"value":["page_header.css"]},{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["isabella-and-louisa-fischer-uSPjZzYwXO4-unsplash-2.jpg"]},{"type":"character","attributes":{},"value":["School Finance","Public Education","Charter Schools","US Census Bureau"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["creator"]}},"value":[{"type":"character","attributes":{},"value":["@mrworthington"]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","subtitle","description","author","date","creative_commons","output","preview","categories","twitter"]}},"value":[{"type":"character","attributes":{},"value":["Visualizing American School Finance"]},{"type":"character","attributes":{},"value":[""]},{"type":"character","attributes":{},"value":["Analyzing School Finances Revenue Breakdowns For Every State From 1993-2015\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Matt Worthington"]},{"type":"character","attributes":{},"value":["https://mrworthington.com/about.html"]},{"type":"character","attributes":{},"value":["Me, Myself, and I"]},{"type":"character","attributes":{},"value":["https://mrworthington.com"]}]}]},{"type":"character","attributes":{},"value":["03-28-2018"]},{"type":"character","attributes":{},"value":["CC BY-NC"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["css","self_contained","toc","toc_depth"]}},"value":[{"type":"character","attributes":{},"value":["page_header.css"]},{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]}]}]},{"type":"character","attributes":{},"value":["isabella-and-louisa-fischer-uSPjZzYwXO4-unsplash-2.jpg"]},{"type":"character","attributes":{},"value":["School Finance","Public Education","Charter Schools","US Census Bureau"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["creator"]}},"value":[{"type":"character","attributes":{},"value":["@mrworthington"]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["connectingtoftp 2.png","connectingtoftp.png","ftp-finderprompt 2.png","ftp-finderprompt.png","isabella-and-louisa-fischer-uSPjZzYwXO4-unsplash-2.jpg","page_header 2.css","page_header.css","school_finance_viz_us 2.html","school_finance_viz_us_files/bowser-1.9.3/bowser.min.js","school_finance_viz_us_files/distill-2.2.21/template.v2.js","school_finance_viz_us_files/jquery-1.11.3/jquery.min.js","school_finance_viz_us_files/webcomponents-2.0.0/webcomponents.js","SFNationalMapOT.png","SFNationalMapPP 2.png","SFNationalMapPP.png"]}
+  {"type":"character","attributes":{},"value":["connectingtoftp 2.png","connectingtoftp.png","ftp-finderprompt 2.png","ftp-finderprompt.png","isabella-and-louisa-fischer-uSPjZzYwXO4-unsplash-2.jpg","page_header 2.css","page_header.css","school_finance_viz_us 2.html","school_finance_viz_us_files/bowser-1.9.3/bowser.min 2.js","school_finance_viz_us_files/bowser-1.9.3/bowser.min.js","school_finance_viz_us_files/distill-2.2.21/template.v2 2.js","school_finance_viz_us_files/distill-2.2.21/template.v2.js","school_finance_viz_us_files/jquery-1.11.3/jquery.min 2.js","school_finance_viz_us_files/jquery-1.11.3/jquery.min.js","school_finance_viz_us_files/webcomponents-2.0.0/webcomponents 2.js","school_finance_viz_us_files/webcomponents-2.0.0/webcomponents.js","SFNationalMapOT.png","SFNationalMapPP 2.png","SFNationalMapPP.png"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
   <!--radix_placeholder_distill-->
-  
+
   <style type="text/css">
-  
+
   body {
     background-color: white;
   }
-  
+
   .pandoc-table {
     width: 100%;
   }
-  
+
   .pandoc-table>caption {
     margin-bottom: 10px;
   }
-  
+
   .pandoc-table th:not([align]) {
     text-align: left;
   }
-  
+
   .pagedtable-footer {
     font-size: 15px;
   }
-  
+
+  d-byline .byline {
+    grid-template-columns: 2fr 2fr;
+  }
+
+  d-byline .byline h3 {
+    margin-block-start: 1.5em;
+  }
+
+  d-byline .byline .authors-affiliations h3 {
+    margin-block-start: 0.5em;
+  }
+
+  .authors-affiliations .orcid-id {
+    width: 16px;
+    height:16px;
+    margin-left: 4px;
+    margin-right: 4px;
+    vertical-align: middle;
+    padding-bottom: 2px;
+  }
+
+  d-title .dt-tags {
+    margin-top: 1em;
+    grid-column: text;
+  }
+
+  .dt-tags .dt-tag {
+    text-decoration: none;
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0em 0.4em;
+    margin-right: 0.5em;
+    margin-bottom: 0.4em;
+    font-size: 70%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  d-article table.gt_table td,
+  d-article table.gt_table th {
+    border-bottom: none;
+  }
+
   .html-widget {
     margin-bottom: 2.0em;
   }
-  
+
   .l-screen-inset {
     padding-right: 16px;
   }
-  
+
   .l-screen .caption {
     margin-left: 10px;
   }
-  
+
   .shaded {
     background: rgb(247, 247, 247);
     padding-top: 20px;
@@ -98,43 +209,125 @@
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   }
-  
+
   .shaded .html-widget {
     margin-bottom: 0;
     border: 1px solid rgba(0, 0, 0, 0.1);
   }
-  
+
   .shaded .shaded-content {
     background: white;
   }
-  
+
   .text-output {
     margin-top: 0;
     line-height: 1.5em;
   }
-  
+
   .hidden {
     display: none !important;
   }
-  
+
   d-article {
+    padding-top: 2.5rem;
     padding-bottom: 30px;
   }
-  
+
   d-appendix {
     padding-top: 30px;
   }
-  
+
   d-article>p>img {
     width: 100%;
   }
-  
+
+  d-article h2 {
+    margin: 1rem 0 1.5rem 0;
+  }
+
+  d-article h3 {
+    margin-top: 1.5rem;
+  }
+
   d-article iframe {
     border: 1px solid rgba(0, 0, 0, 0.1);
     margin-bottom: 2.0em;
     width: 100%;
   }
-  
+
+  /* Tweak code blocks */
+
+  d-article div.sourceCode code,
+  d-article pre code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: hidden;
+  }
+
+  d-article div.sourceCode {
+    background-color: white;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 10px;
+    font-size: 12px;
+    border-left: 2px solid rgba(0,0,0,0.1);
+  }
+
+  d-article pre {
+    font-size: 12px;
+    color: black;
+    background: none;
+    margin-top: 0;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  d-article pre a {
+    border-bottom: none;
+  }
+
+  d-article pre a:hover {
+    border-bottom: none;
+    text-decoration: underline;
+  }
+
+  @media(min-width: 768px) {
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: visible !important;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 18px;
+    font-size: 14px;
+  }
+
+  d-article pre {
+    font-size: 14px;
+  }
+
+  }
+
   figure img.external {
     background: white;
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -142,128 +335,107 @@
     padding: 18px;
     box-sizing: border-box;
   }
-  
-  /* CSS for table of contents */
-  
-  .d-toc {
+
+  /* CSS for d-contents */
+
+  .d-contents {
+    grid-column: text;
     color: rgba(0,0,0,0.8);
-    font-size: 0.8em;
-    line-height: 1em;
+    font-size: 0.9em;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+    padding-left: 0.25em;
+    justify-self: start;
   }
-  
-  .d-toc-header {
-    font-size: 0.6rem;
-    font-weight: 400;
-    color: rgba(0, 0, 0, 0.5);
-    text-transform: uppercase;
+
+  @media(min-width: 1000px) {
+    .d-contents.d-contents-float {
+      height: 0;
+      grid-column-start: 1;
+      grid-column-end: 4;
+      justify-self: center;
+      padding-right: 3em;
+      padding-left: 2em;
+    }
+  }
+
+  .d-contents nav h3 {
+    font-size: 18px;
     margin-top: 0;
-    margin-bottom: 1.3em;
+    margin-bottom: 1em;
   }
-  
-  .d-toc a {
-    border-bottom: none;
+
+  .d-contents li {
+    list-style-type: none
   }
-  
-  .d-toc ul {
+
+  .d-contents nav > ul {
     padding-left: 0;
   }
-  
-  .d-toc li>ul {
-    padding-top: 0.8em;
-    padding-left: 16px;
-    margin-bottom: 0.6em;
+
+  .d-contents ul {
+    padding-left: 1em
   }
-  
-  .d-toc ul,
-  .d-toc li {
-    list-style-type: none;
+
+  .d-contents nav ul li {
+    margin-top: 0.6em;
+    margin-bottom: 0.2em;
   }
-  
-  .d-toc li {
-    margin-bottom: 0.9em;
+
+  .d-contents nav a {
+    font-size: 13px;
+    border-bottom: none;
+    text-decoration: none
+    color: rgba(0, 0, 0, 0.8);
   }
-  
-  .d-toc-separator {
-    margin-top: 20px;
-    margin-bottom: 2em;
+
+  .d-contents nav a:hover {
+    text-decoration: underline solid rgba(0, 0, 0, 0.6)
   }
-  
-  .d-article-with-toc {
-    border-top: none;
-    padding-top: 0;
+
+  .d-contents nav > ul > li > a {
+    font-weight: 600;
   }
-  
-  
-  
-  /* Tweak code blocks (note that this CSS is repeated above in an injection
-     into the d-code shadow dom) */
-  
-  d-code {
-    overflow-x: auto !important;
+
+  .d-contents nav > ul > li > ul {
+    font-weight: inherit;
   }
-  
-  pre.d-code code.d-code {
-    padding-left: 10px;
-    font-size: 12px;
-    border-left: 2px solid rgba(0,0,0,0.1);
+
+  .d-contents nav > ul > li > ul > li {
+    margin-top: 0.2em;
   }
-  
-  pre.text-output {
-  
-    font-size: 12px;
-    color: black;
-    background: none;
-    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-    text-align: left;
-    white-space: pre;
-    word-spacing: normal;
-    word-break: normal;
-    word-wrap: normal;
-    line-height: 1.5;
-  
-    -moz-tab-size: 4;
-    -o-tab-size: 4;
-    tab-size: 4;
-  
-    -webkit-hyphens: none;
-    -moz-hyphens: none;
-    -ms-hyphens: none;
-    hyphens: none;
+
+
+  .d-contents nav ul {
+    margin-top: 0;
+    margin-bottom: 0.25em;
   }
-  
-  @media(min-width: 768px) {
-  
-  d-code {
-    overflow-x: visible !important;
+
+  .d-article-with-toc h2:nth-child(2) {
+    margin-top: 0;
   }
-  
-  pre.d-code code.d-code  {
-      padding-left: 18px;
-      font-size: 14px;
-  }
-  pre.text-output {
-    font-size: 14px;
-  }
-  }
-  
+
+
   /* Figure */
-  
+
   .figure {
     position: relative;
     margin-bottom: 2.5em;
     margin-top: 1.5em;
   }
-  
+
   .figure img {
     width: 100%;
   }
-  
+
   .figure .caption {
     color: rgba(0, 0, 0, 0.6);
     font-size: 12px;
     line-height: 1.5em;
   }
-  
+
   .figure img.external {
     background: white;
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -271,21 +443,31 @@
     padding: 18px;
     box-sizing: border-box;
   }
-  
+
   .figure .caption a {
     color: rgba(0, 0, 0, 0.6);
   }
-  
+
   .figure .caption b,
   .figure .caption strong, {
     font-weight: 600;
     color: rgba(0, 0, 0, 1.0);
   }
-  
-  
-  
+
+  /* Citations */
+
+  d-article .citation {
+    color: inherit;
+    cursor: inherit;
+  }
+
+  div.hanging-indent{
+    margin-left: 1em; text-indent: -1em;
+  }
+
+
   /* Tweak 1000px media break to show more text */
-  
+
   @media(min-width: 1000px) {
     .base-grid,
     distill-header,
@@ -301,11 +483,11 @@
       grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
       grid-column-gap: 16px;
     }
-  
+
     .grid {
       grid-column-gap: 16px;
     }
-  
+
     d-article {
       font-size: 1.06rem;
       line-height: 1.7em;
@@ -314,7 +496,7 @@
       font-size: 13px;
     }
   }
-  
+
   @media(min-width: 1180px) {
     .base-grid,
     distill-header,
@@ -330,16 +512,16 @@
       grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
       grid-column-gap: 32px;
     }
-  
+
     .grid {
       grid-column-gap: 32px;
     }
   }
-  
-  
+
+
   /* Get the citation styles for the appendix (not auto-injected on render since
      we do our own rendering of the citation appendix) */
-  
+
   d-appendix .citation-appendix,
   .d-appendix .citation-appendix {
     font-size: 11px;
@@ -356,111 +538,401 @@
     white-space: pre-wrap;
     word-wrap: break-word;
   }
-  
-  
+
+  /* Include appendix styles here so they can be overridden */
+
+  d-appendix {
+    contain: layout style;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-top: 60px;
+    margin-bottom: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    color: rgba(0,0,0,0.5);
+    padding-top: 60px;
+    padding-bottom: 48px;
+  }
+
+  d-appendix h3 {
+    grid-column: page-start / text-start;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 1em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.65);
+  }
+
+  d-appendix h3 + * {
+    margin-top: 1em;
+  }
+
+  d-appendix ol {
+    padding: 0 0 0 15px;
+  }
+
+  @media (min-width: 768px) {
+    d-appendix ol {
+      padding: 0 0 0 30px;
+      margin-left: -30px;
+    }
+  }
+
+  d-appendix li {
+    margin-bottom: 1em;
+  }
+
+  d-appendix a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  d-appendix > * {
+    grid-column: text;
+  }
+
+  d-appendix > d-footnote-list,
+  d-appendix > d-citation-list,
+  d-appendix > distill-appendix {
+    grid-column: screen;
+  }
+
+  /* Include footnote styles here so they can be overridden */
+
+  d-footnote-list {
+    contain: layout style;
+  }
+
+  d-footnote-list > * {
+    grid-column: text;
+  }
+
+  d-footnote-list a.footnote-backlink {
+    color: rgba(0,0,0,0.3);
+    padding-left: 0.5em;
+  }
+
+
+
+  /* Anchor.js */
+
+  .anchorjs-link {
+    /*transition: all .25s linear; */
+    text-decoration: none;
+    border-bottom: none;
+  }
+  *:hover > .anchorjs-link {
+    margin-left: -1.125em !important;
+    text-decoration: none;
+    border-bottom: none;
+  }
+
   /* Social footer */
-  
+
   .social_footer {
     margin-top: 30px;
     margin-bottom: 0;
     color: rgba(0,0,0,0.67);
   }
-  
+
   .disqus-comments {
     margin-right: 30px;
   }
-  
+
   .disqus-comment-count {
     border-bottom: 1px solid rgba(0, 0, 0, 0.4);
     cursor: pointer;
   }
-  
+
   #disqus_thread {
     margin-top: 30px;
   }
-  
+
   .article-sharing a {
     border-bottom: none;
     margin-right: 8px;
   }
-  
+
   .article-sharing a:hover {
     border-bottom: none;
   }
-  
+
   .sidebar-section.subscribe {
     font-size: 12px;
     line-height: 1.6em;
   }
-  
+
   .subscribe p {
     margin-bottom: 0.5em;
   }
-  
-  
+
+
   .article-footer .subscribe {
     font-size: 15px;
     margin-top: 45px;
   }
-  
-  
+
+
   .sidebar-section.custom {
     font-size: 12px;
     line-height: 1.6em;
   }
-  
+
   .custom p {
     margin-bottom: 0.5em;
   }
-  
-  
+
+  /* Styles for listing layout (hide title) */
+  .layout-listing d-title, .layout-listing .d-title {
+    display: none;
+  }
+
+  /* Styles for posts lists (not auto-injected) */
+
+
+  .posts-with-sidebar {
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+
+  .posts-list .description h2,
+  .posts-list .description p {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .posts-list .description h2 {
+    font-weight: 700;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .posts-list h2.post-tag {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 12px;
+  }
+  .posts-list {
+    margin-top: 60px;
+    margin-bottom: 24px;
+  }
+
+  .posts-list .post-preview {
+    text-decoration: none;
+    overflow: hidden;
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 24px 0;
+  }
+
+  .post-preview-last {
+    border-bottom: none !important;
+  }
+
+  .posts-list .posts-list-caption {
+    grid-column: screen;
+    font-weight: 400;
+  }
+
+  .posts-list .post-preview h2 {
+    margin: 0 0 6px 0;
+    line-height: 1.2em;
+    font-style: normal;
+    font-size: 24px;
+  }
+
+  .posts-list .post-preview p {
+    margin: 0 0 12px 0;
+    line-height: 1.4em;
+    font-size: 16px;
+  }
+
+  .posts-list .post-preview .thumbnail {
+    box-sizing: border-box;
+    margin-bottom: 24px;
+    position: relative;
+    max-width: 500px;
+  }
+  .posts-list .post-preview img {
+    width: 100%;
+    display: block;
+  }
+
+  .posts-list .metadata {
+    font-size: 12px;
+    line-height: 1.4em;
+    margin-bottom: 18px;
+  }
+
+  .posts-list .metadata > * {
+    display: inline-block;
+  }
+
+  .posts-list .metadata .publishedDate {
+    margin-right: 2em;
+  }
+
+  .posts-list .metadata .dt-authors {
+    display: block;
+    margin-top: 0.3em;
+    margin-right: 2em;
+  }
+
+  .posts-list .dt-tags {
+    display: block;
+    line-height: 1em;
+  }
+
+  .posts-list .dt-tags .dt-tag {
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0.3em 0.4em;
+    margin-right: 0.2em;
+    margin-bottom: 0.4em;
+    font-size: 60%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .posts-list img {
+    opacity: 1;
+  }
+
+  .posts-list img[data-src] {
+    opacity: 0;
+  }
+
+  .posts-more {
+    clear: both;
+  }
+
+
+  .posts-sidebar {
+    font-size: 16px;
+  }
+
+  .posts-sidebar h3 {
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  .sidebar-section {
+    margin-bottom: 30px;
+  }
+
+  .categories ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .categories li {
+    color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 0;
+  }
+
+  .categories li>a {
+    border-bottom: none;
+  }
+
+  .categories li>a:hover {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  }
+
+  .categories .active {
+    font-weight: 600;
+  }
+
+  .categories .category-count {
+    color: rgba(0, 0, 0, 0.4);
+  }
+
+
+  @media(min-width: 768px) {
+    .posts-list .post-preview h2 {
+      font-size: 26px;
+    }
+    .posts-list .post-preview .thumbnail {
+      float: right;
+      width: 30%;
+      margin-bottom: 0;
+    }
+    .posts-list .post-preview .description {
+      float: left;
+      width: 45%;
+    }
+    .posts-list .post-preview .metadata {
+      float: left;
+      width: 20%;
+      margin-top: 8px;
+    }
+    .posts-list .post-preview p {
+      margin: 0 0 12px 0;
+      line-height: 1.5em;
+      font-size: 16px;
+    }
+    .posts-with-sidebar .posts-list {
+      float: left;
+      width: 75%;
+    }
+    .posts-with-sidebar .posts-sidebar {
+      float: right;
+      width: 20%;
+      margin-top: 60px;
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+  }
+
+
   /* Improve display for browsers without grid (IE/Edge <= 15) */
-  
+
   .downlevel {
     line-height: 1.6em;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
     margin: 0;
   }
-  
+
   .downlevel .d-title {
     padding-top: 6rem;
     padding-bottom: 1.5rem;
   }
-  
+
   .downlevel .d-title h1 {
     font-size: 50px;
     font-weight: 700;
     line-height: 1.1em;
     margin: 0 0 0.5rem;
   }
-  
+
   .downlevel .d-title p {
     font-weight: 300;
     font-size: 1.2rem;
     line-height: 1.55em;
     margin-top: 0;
   }
-  
+
   .downlevel .d-byline {
     padding-top: 0.8em;
     padding-bottom: 0.8em;
     font-size: 0.8rem;
     line-height: 1.8em;
   }
-  
+
   .downlevel .section-separator {
     border: none;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
   }
-  
+
   .downlevel .d-article {
     font-size: 1.06rem;
     line-height: 1.7em;
     padding-top: 1rem;
     padding-bottom: 2rem;
   }
-  
-  
+
+
   .downlevel .d-appendix {
     padding-left: 0;
     padding-right: 0;
@@ -472,11 +944,11 @@
     padding-top: 40px;
     padding-bottom: 48px;
   }
-  
+
   .downlevel .footnotes ol {
     padding-left: 13px;
   }
-  
+
   .downlevel .base-grid,
   .downlevel .distill-header,
   .downlevel .d-title,
@@ -493,7 +965,7 @@
     padding-left: 40px;
     padding-right: 40px;
   }
-  
+
   @media(min-width: 768px) {
     .downlevel .base-grid,
     .downlevel .distill-header,
@@ -513,14 +985,14 @@
     max-width: 900px;
   }
   }
-  
+
   .downlevel pre code {
     display: block;
     border-left: 2px solid rgba(0, 0, 0, .1);
     padding: 0 0 0 20px;
     font-size: 14px;
   }
-  
+
   .downlevel code, .downlevel pre {
     color: black;
     background: none;
@@ -531,21 +1003,27 @@
     word-break: normal;
     word-wrap: normal;
     line-height: 1.5;
-  
+
     -moz-tab-size: 4;
     -o-tab-size: 4;
     tab-size: 4;
-  
+
     -webkit-hyphens: none;
     -moz-hyphens: none;
     -ms-hyphens: none;
     hyphens: none;
   }
-  
+
+  .downlevel .posts-list .post-preview {
+    color: inherit;
+  }
+
+
+
   </style>
-  
+
   <script type="application/javascript">
-  
+
   function is_downlevel_browser() {
     if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
                                    window.navigator.userAgent)) {
@@ -554,13 +1032,20 @@
       return window.load_distill_framework === undefined;
     }
   }
-  
+
   // show body when load is complete
   function on_load_complete() {
-  
+
+    // add anchors
+    if (window.anchors) {
+      window.anchors.options.placement = 'left';
+      window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
+    }
+
+
     // set body to visible
     document.body.style.visibility = 'visible';
-  
+
     // force redraw for leaflet widgets
     if (window.HTMLWidgets) {
       var maps = window.HTMLWidgets.findAll(".leaflet");
@@ -573,54 +1058,39 @@
         });
       });
     }
-  
+
     // trigger 'shown' so htmlwidgets resize
     $('d-article').trigger('shown');
   }
-  
+
   function init_distill() {
-  
+
     init_common();
-  
+
     // create front matter
     var front_matter = $('<d-front-matter></d-front-matter>');
     $('#distill-front-matter').wrap(front_matter);
-  
+
     // create d-title
     $('.d-title').changeElementType('d-title');
-  
+
     // create d-byline
     var byline = $('<d-byline></d-byline>');
     $('.d-byline').replaceWith(byline);
-  
+
     // create d-article
     var article = $('<d-article></d-article>');
     $('.d-article').wrap(article).children().unwrap();
-  
+
     // move posts container into article
     $('.posts-container').appendTo($('d-article'));
-  
+
     // create d-appendix
     $('.d-appendix').changeElementType('d-appendix');
-  
-    // create d-bibliography
-    var bibliography = $('<d-bibliography></d-bibliography>');
-    $('#distill-bibliography').wrap(bibliography);
-  
+
     // flag indicating that we have appendix items
     var appendix = $('.appendix-bottom').children('h3').length > 0;
-  
-    // replace citations with <d-cite>
-    $('.citation').each(function(i, val) {
-      appendix = true;
-      var cites = $(this).attr('data-cites').split(" ");
-      var dt_cite = $('<d-cite></d-cite>');
-      dt_cite.attr('key', cites.join());
-      $(this).replaceWith(dt_cite);
-    });
-    // remove refs
-    $('#refs').remove();
-  
+
     // replace footnotes with <d-footnote>
     $('.footnote-ref').each(function(i, val) {
       appendix = true;
@@ -636,49 +1106,31 @@
     });
     // remove footnotes
     $('.footnotes').remove();
-  
+
+    // move refs into #references-listing
+    $('#references-listing').replaceWith($('#refs'));
+
     $('h1.appendix, h2.appendix').each(function(i, val) {
       $(this).changeElementType('h3');
     });
     $('h3.appendix').each(function(i, val) {
       var id = $(this).attr('id');
-      $('.d-toc a[href="#' + id + '"]').parent().remove();
+      $('.d-contents a[href="#' + id + '"]').parent().remove();
       appendix = true;
       $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
     });
-  
+
     // show d-appendix if we have appendix content
     $("d-appendix").css('display', appendix ? 'grid' : 'none');
-  
-    // replace code blocks with d-code
-    $('pre>code').each(function(i, val) {
-      var code = $(this);
-      var pre = code.parent();
-      var clz = "";
-      var language = pre.attr('class');
-      if (language) {
-        // map unknown languages to "clike" (without this they just dissapear)
-        if ($.inArray(language, ["bash", "clike", "css", "go", "html",
-                                 "javascript", "js", "julia", "lua", "markdown",
-                                 "markup", "mathml", "python", "svg", "xml"]) == -1)
-          language = "clike";
-        language = ' language="' + language + '"';
-        var dt_code = $('<d-code block' + language + clz + '></d-code>');
-        dt_code.text(code.text());
-        pre.replaceWith(dt_code);
-      } else {
-        code.addClass('text-output').unwrap().changeElementType('pre');
-      }
-    });
-  
+
     // localize layout chunks to just output
     $('.layout-chunk').each(function(i, val) {
-  
+
       // capture layout
       var layout = $(this).attr('data-layout');
-  
+
       // apply layout to markdown level block elements
-      var elements = $(this).children().not('d-code, pre.text-output, script');
+      var elements = $(this).children().not('div.sourceCode, pre, script');
       elements.each(function(i, el) {
         var layout_div = $('<div class="' + layout + '"></div>');
         if (layout_div.hasClass('shaded')) {
@@ -689,39 +1141,60 @@
           $(this).wrap(layout_div);
         }
       });
-  
-  
+
+
       // unwrap the layout-chunk div
       $(this).children().unwrap();
     });
-  
+
+    // remove code block used to force  highlighting css
+    $('.distill-force-highlighting-css').parent().remove();
+
+    // remove empty line numbers inserted by pandoc when using a
+    // custom syntax highlighting theme
+    $('code.sourceCode a:empty').remove();
+
     // load distill framework
     load_distill_framework();
-  
+
     // wait for window.distillRunlevel == 4 to do post processing
     function distill_post_process() {
-  
+
       if (!window.distillRunlevel || window.distillRunlevel < 4)
         return;
-  
+
       // hide author/affiliations entirely if we have no authors
       var front_matter = JSON.parse($("#distill-front-matter").html());
       var have_authors = front_matter.authors && front_matter.authors.length > 0;
       if (!have_authors)
         $('d-byline').addClass('hidden');
-  
-      // table of contents
-      if (have_authors) // adjust border if we are in authors
-        $('.d-toc').parent().addClass('d-article-with-toc');
-  
+
+      // article with toc class
+      $('.d-contents').parent().addClass('d-article-with-toc');
+
       // strip links that point to #
       $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
-  
+
+      // add orcid ids
+      $('.authors-affiliations').find('.author').each(function(i, el) {
+        var orcid_id = front_matter.authors[i].orcidID;
+        if (orcid_id) {
+          var a = $('<a></a>');
+          a.attr('href', 'https://orcid.org/' + orcid_id);
+          var img = $('<img></img>');
+          img.addClass('orcid-id');
+          img.attr('alt', 'ORCID ID');
+          img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
+          a.append(img);
+          $(this).append(a);
+        }
+      });
+
       // hide elements of author/affiliations grid that have no value
       function hide_byline_column(caption) {
         $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
       }
-  
+
       // affiliations
       var have_affiliations = false;
       for (var i = 0; i<front_matter.authors.length; ++i) {
@@ -733,11 +1206,11 @@
       }
       if (!have_affiliations)
         $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
-  
+
       // published date
       if (!front_matter.publishedDate)
         hide_byline_column("Published");
-  
+
       // document object identifier
       var doi = $('d-byline').find('h3:contains("DOI")');
       var doi_p = doi.next().empty();
@@ -757,61 +1230,54 @@
            .html(front_matter.doi)
            .appendTo(doi_p);
       }
-  
+
        // change plural form of authors/affiliations
       if (front_matter.authors.length === 1) {
         var grid = $('.authors-affiliations');
         grid.children('h3:contains("Authors")').text('Author');
         grid.children('h3:contains("Affiliations")').text('Affiliation');
       }
-  
-      // inject pre code styles (can't do this with a global stylesheet b/c a shadow root is used)
-      $('d-code').each(function(i, val) {
-        var style = document.createElement('style');
-        style.innerHTML = 'pre code { padding-left: 10px; font-size: 12px; border-left: 2px solid rgba(0,0,0,0.1); } ' +
-                          '@media(min-width: 768px) { pre code { padding-left: 18px; font-size: 14px; } }';
-        if (this.shadowRoot)
-          this.shadowRoot.appendChild(style);
-      });
-  
+
+      // remove d-appendix and d-footnote-list local styles
+      $('d-appendix > style:first-child').remove();
+      $('d-footnote-list > style:first-child').remove();
+
       // move appendix-bottom entries to the bottom
       $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
       $('.appendix-bottom').remove();
-  
+
       // clear polling timer
       clearInterval(tid);
-  
+
       // show body now that everything is ready
       on_load_complete();
     }
-  
+
     var tid = setInterval(distill_post_process, 50);
     distill_post_process();
-  
+
   }
-  
+
   function init_downlevel() {
-  
+
     init_common();
-  
+
      // insert hr after d-title
     $('.d-title').after($('<hr class="section-separator"/>'));
-  
+
     // check if we have authors
     var front_matter = JSON.parse($("#distill-front-matter").html());
     var have_authors = front_matter.authors && front_matter.authors.length > 0;
-  
+
     // manage byline/border
     if (!have_authors)
       $('.d-byline').remove();
     $('.d-byline').after($('<hr class="section-separator"/>'));
     $('.d-byline a').remove();
-  
+
     // remove toc
-    $('.d-toc-header').remove();
-    $('.d-toc').remove();
-    $('.d-toc-separator').remove();
-  
+    $('.d-contents').remove();
+
     // move appendix elements
     $('h1.appendix, h2.appendix').each(function(i, val) {
       $(this).changeElementType('h3');
@@ -819,62 +1285,62 @@
     $('h3.appendix').each(function(i, val) {
       $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
     });
-  
-  
+
+
     // inject headers into references and footnotes
     var refs_header = $('<h3></h3>');
     refs_header.text('References');
     $('#refs').prepend(refs_header);
-  
+
     var footnotes_header = $('<h3></h3');
     footnotes_header.text('Footnotes');
     $('.footnotes').children('hr').first().replaceWith(footnotes_header);
-  
+
     // move appendix-bottom entries to the bottom
     $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
     $('.appendix-bottom').remove();
-  
+
     // remove appendix if it's empty
     if ($('.d-appendix').children().length === 0)
       $('.d-appendix').remove();
-  
+
     // prepend separator above appendix
     $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
-  
+
     // trim code
     $('pre>code').each(function(i, val) {
       $(this).html($.trim($(this).html()));
     });
-  
+
     // move posts-container right before article
     $('.posts-container').insertBefore($('.d-article'));
-  
+
     $('body').addClass('downlevel');
-  
+
     on_load_complete();
   }
-  
-  
+
+
   function init_common() {
-  
+
     // jquery plugin to change element types
     (function($) {
       $.fn.changeElementType = function(newType) {
         var attrs = {};
-  
+
         $.each(this[0].attributes, function(idx, attr) {
           attrs[attr.nodeName] = attr.nodeValue;
         });
-  
+
         this.replaceWith(function() {
           return $("<" + newType + "/>", attrs).append($(this).contents());
         });
       };
     })(jQuery);
-  
+
     // prevent underline for linked images
     $('a > img').parent().css({'border-bottom' : 'none'});
-  
+
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
@@ -886,35 +1352,35 @@
           var fig = $(this);
           fig.css('width', fig.attr('width') + 'px');
         });
-  
+
       }
     });
-  
+
     // auto-append index.html to post-preview links in file: protocol
     // and in rstudio ide preview
     $('.post-preview').each(function(i, val) {
       if (window.location.protocol === "file:")
         $(this).attr('href', $(this).attr('href') + "index.html");
     });
-  
+
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
         $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
       });
     }
-  
+
     // add class to pandoc style tables
     $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
     $('.kable-table').children('table').addClass('pandoc-table');
-  
+
     // add figcaption style to table captions
     $('caption').parent('table').addClass("figcaption");
-  
+
     // initialize posts list
     if (window.init_posts_list)
       window.init_posts_list();
-  
+
     // implmement disqus comment link
     $('.disqus-comment-count').click(function() {
       window.headroom_prevent_pin = true;
@@ -928,18 +1394,20 @@
       }
     });
   }
-  
+
   document.addEventListener('DOMContentLoaded', function() {
     if (is_downlevel_browser())
       init_downlevel();
     else
       window.addEventListener('WebComponentsReady', init_distill);
   });
-  
+
   </script>
-  
+
   <!--/radix_placeholder_distill-->
+  <script src="school_finance_viz_us_files/header-attrs-2.5/header-attrs.js"></script>
   <script src="school_finance_viz_us_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="school_finance_viz_us_files/anchor-4.2.2/anchor.min.js"></script>
   <script src="school_finance_viz_us_files/bowser-1.9.3/bowser.min.js"></script>
   <script src="school_finance_viz_us_files/webcomponents-2.0.0/webcomponents.js"></script>
   <script src="school_finance_viz_us_files/distill-2.2.21/template.v2.js"></script>
@@ -955,7 +1423,7 @@
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Visualizing American School Finance","description":"Analyzing School Finances Revenue Breakdowns For Every State From 1993-2015","authors":[{"author":"Matt Worthington","authorURL":"https://mrworthington.com/about.html","affiliation":"Me, Myself, and I","affiliationURL":"https://mrworthington.com"}],"publishedDate":"2018-03-28T00:00:00.000-07:00","citationText":"Worthington, 2018"}
+{"title":"Visualizing American School Finance","description":"Analyzing School Finances Revenue Breakdowns For Every State From 1993-2015","authors":[{"author":"Matt Worthington","authorURL":"https://mrworthington.com/about.html","affiliation":"Me, Myself, and I","affiliationURL":"https://mrworthington.com","orcidID":""}],"publishedDate":"2018-03-28T00:00:00.000-05:00","citationText":"Worthington, 2018"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -966,6 +1434,14 @@
 
 <div class="d-title">
 <h1>Visualizing American School Finance</h1>
+<!--radix_placeholder_categories-->
+<div class="dt-tags">
+<div class="dt=tag">School Finance</div>
+<div class="dt=tag">Public Education</div>
+<div class="dt=tag">Charter Schools</div>
+<div class="dt=tag">US Census Bureau</div>
+</div>
+<!--/radix_placeholder_categories-->
 <p><p>Analyzing School Finances Revenue Breakdowns For Every State From 1993-2015</p></p>
 </div>
 
@@ -976,6 +1452,20 @@
 </div>
 
 <div class="d-article">
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#why-visualize-school-finance">Why Visualize School Finance?</a></li>
+<li><a href="#the-code-through">The Code Through</a>
+<ul>
+<li><a href="#bonus-school-finance-map">Bonus School Finance Map</a></li>
+<li><a href="#photo-credit">Photo Credit</a></li>
+<li><a href="#corrections">Corrections</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
 <p>This evening, <a href="https://edtrust.org/resource/funding-gaps-2018/">the Ed Trust is hosting a discussion on twitter at 8PM ET</a> on school funding inequity, so I thought I would do a code-through of a visualization I made this past summer while researching the legacy of a famous school finance Supreme Court case that ended up determining that <a href="https://www.folomedia.org/americans-no-right-education/">Americans had no fundamental right to an education</a>. In short, it shows the shares of funding over time for each of the three main sources of funding for public education in America: federal funding, state funding, and local funding (mostly property taxes).</p>
 <h1 id="why-visualize-school-finance">Why Visualize School Finance?</h1>
 <p>In recent years, much has been debated about school funding, or the lack thereof. Notably, recent studies coming out of places like <a href="https://www.texastribune.org/2018/03/28/texas-am-lori-taylor-public-education-funding/">Texas A&amp;M</a> and <a href="http://usccr.gov/pubs/2018-01-10-Education-Inequity.pdf">the US Commission on Civil Rights</a> have highlighted funding deficits throughout America that not only threaten the futures of currently enrolled public school students, but <a href="https://www.texastribune.org/2018/03/20/texas-notice-credit-rating-downgrade-comptroller-says/">our future economies</a> throughout America.</p>
@@ -1002,628 +1492,645 @@
 <p>After the data downloads into the remote disk, find the files with the following labels highlighted in purple below (i.e., <code>"elsec.93.xls"</code>) and download them into a folder called “data”. Once you do that, save a .Rproj file into the same location and you’ll be able to run the code below without much trouble (I hope).</p>
 <p>One note about my code. By no means am I an expert in R and when I produced this code, I knew way less about the <code>tidyverse</code> than I do now. If any other R folks have feedback, I’m 100% open to ways I can make this code cleaner and more efficient.</p>
 <div class="layout-chunk" data-layout="l-body">
-<pre class="r"><code>
-setwd(&quot;data/&quot;)
+<div class="sourceCode">
+<pre><code><span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span><span class='op'>(</span><span class='st'>"data/"</span><span class='op'>)</span>
 
-#Import Census School Finance Data
-sf1993 &lt;- read_excel(&quot;elsec93.xls&quot;)
-sf1994 &lt;- read_excel(&quot;elsec94.xls&quot;)
-sf1995 &lt;- read_excel(&quot;elsec95.xls&quot;)
-sf1996 &lt;- read_excel(&quot;elsec96.xls&quot;)
-sf1997 &lt;- read_excel(&quot;elsec97.xls&quot;)
-sf1998 &lt;- read_excel(&quot;elsec98.xls&quot;)
-sf1999 &lt;- read_excel(&quot;elsec99.xls&quot;)
-sf2000 &lt;- read_excel(&quot;elsec00.xls&quot;)
-sf2001 &lt;- read_excel(&quot;elsec01.xls&quot;)
-sf2002 &lt;- read_excel(&quot;elsec02.xls&quot;)
-sf2003 &lt;- read_excel(&quot;elsec03.xls&quot;)
-sf2004 &lt;- read_excel(&quot;elsec04.xls&quot;)
-sf2005 &lt;- read_excel(&quot;elsec05.xls&quot;)
-sf2006 &lt;- read_excel(&quot;elsec06.xls&quot;)
-sf2007 &lt;- read_excel(&quot;elsec07.xls&quot;)
-sf2008 &lt;- read_excel(&quot;elsec08.xls&quot;)
-sf2009 &lt;- read_excel(&quot;elsec09.xls&quot;)
-sf2010 &lt;- read_excel(&quot;elsec10.xls&quot;)
-sf2011 &lt;- read_excel(&quot;elsec11.xls&quot;)
-sf2012 &lt;- read_excel(&quot;elsec12.xls&quot;)
-sf2013 &lt;- read_excel(&quot;elsec13.xls&quot;)
-sf2014 &lt;- read_excel(&quot;elsec14.xls&quot;)
-sf2015 &lt;- read_excel(&quot;elsec15.xls&quot;)
+<span class='co'>#Import Census School Finance Data</span>
+<span class='va'>sf1993</span> <span class='op'>&lt;-</span> <span class='fu'>read_excel</span><span class='op'>(</span><span class='st'>"elsec93.xls"</span><span class='op'>)</span>
+<span class='va'>sf1994</span> <span class='op'>&lt;-</span> <span class='fu'>read_excel</span><span class='op'>(</span><span class='st'>"elsec94.xls"</span><span class='op'>)</span>
+<span class='va'>sf1995</span> <span class='op'>&lt;-</span> <span class='fu'>read_excel</span><span class='op'>(</span><span class='st'>"elsec95.xls"</span><span class='op'>)</span>
+<span class='va'>sf1996</span> <span class='op'>&lt;-</span> <span class='fu'>read_excel</span><span class='op'>(</span><span class='st'>"elsec96.xls"</span><span class='op'>)</span>
+<span class='va'>sf1997</span> <span class='op'>&lt;-</span> <span class='fu'>read_excel</span><span class='op'>(</span><span class='st'>"elsec97.xls"</span><span class='op'>)</span>
+<span class='va'>sf1998</span> <span class='op'>&lt;-</span> <span class='fu'>read_excel</span><span class='op'>(</span><span class='st'>"elsec98.xls"</span><span class='op'>)</span>
+<span class='va'>sf1999</span> <span class='op'>&lt;-</span> <span class='fu'>read_excel</span><span class='op'>(</span><span class='st'>"elsec99.xls"</span><span class='op'>)</span>
+<span class='va'>sf2000</span> <span class='op'>&lt;-</span> <span class='fu'>read_excel</span><span class='op'>(</span><span class='st'>"elsec00.xls"</span><span class='op'>)</span>
+<span class='va'>sf2001</span> <span class='op'>&lt;-</span> <span class='fu'>read_excel</span><span class='op'>(</span><span class='st'>"elsec01.xls"</span><span class='op'>)</span>
+<span class='va'>sf2002</span> <span class='op'>&lt;-</span> <span class='fu'>read_excel</span><span class='op'>(</span><span class='st'>"elsec02.xls"</span><span class='op'>)</span>
+<span class='va'>sf2003</span> <span class='op'>&lt;-</span> <span class='fu'>read_excel</span><span class='op'>(</span><span class='st'>"elsec03.xls"</span><span class='op'>)</span>
+<span class='va'>sf2004</span> <span class='op'>&lt;-</span> <span class='fu'>read_excel</span><span class='op'>(</span><span class='st'>"elsec04.xls"</span><span class='op'>)</span>
+<span class='va'>sf2005</span> <span class='op'>&lt;-</span> <span class='fu'>read_excel</span><span class='op'>(</span><span class='st'>"elsec05.xls"</span><span class='op'>)</span>
+<span class='va'>sf2006</span> <span class='op'>&lt;-</span> <span class='fu'>read_excel</span><span class='op'>(</span><span class='st'>"elsec06.xls"</span><span class='op'>)</span>
+<span class='va'>sf2007</span> <span class='op'>&lt;-</span> <span class='fu'>read_excel</span><span class='op'>(</span><span class='st'>"elsec07.xls"</span><span class='op'>)</span>
+<span class='va'>sf2008</span> <span class='op'>&lt;-</span> <span class='fu'>read_excel</span><span class='op'>(</span><span class='st'>"elsec08.xls"</span><span class='op'>)</span>
+<span class='va'>sf2009</span> <span class='op'>&lt;-</span> <span class='fu'>read_excel</span><span class='op'>(</span><span class='st'>"elsec09.xls"</span><span class='op'>)</span>
+<span class='va'>sf2010</span> <span class='op'>&lt;-</span> <span class='fu'>read_excel</span><span class='op'>(</span><span class='st'>"elsec10.xls"</span><span class='op'>)</span>
+<span class='va'>sf2011</span> <span class='op'>&lt;-</span> <span class='fu'>read_excel</span><span class='op'>(</span><span class='st'>"elsec11.xls"</span><span class='op'>)</span>
+<span class='va'>sf2012</span> <span class='op'>&lt;-</span> <span class='fu'>read_excel</span><span class='op'>(</span><span class='st'>"elsec12.xls"</span><span class='op'>)</span>
+<span class='va'>sf2013</span> <span class='op'>&lt;-</span> <span class='fu'>read_excel</span><span class='op'>(</span><span class='st'>"elsec13.xls"</span><span class='op'>)</span>
+<span class='va'>sf2014</span> <span class='op'>&lt;-</span> <span class='fu'>read_excel</span><span class='op'>(</span><span class='st'>"elsec14.xls"</span><span class='op'>)</span>
+<span class='va'>sf2015</span> <span class='op'>&lt;-</span> <span class='fu'>read_excel</span><span class='op'>(</span><span class='st'>"elsec15.xls"</span><span class='op'>)</span>
 
-#Add YEAR Column, No M/D
-sf1993$YEAR &lt;- as.character(&quot;1993&quot;)
-sf1994$YEAR &lt;- as.character(&quot;1994&quot;)
-sf1995$YEAR &lt;- as.character(&quot;1995&quot;)
-sf1996$YEAR &lt;- as.character(&quot;1996&quot;)
-sf1997$YEAR &lt;- as.character(&quot;1997&quot;)
-sf1998$YEAR &lt;- as.character(&quot;1998&quot;)
-sf1999$YEAR &lt;- as.character(&quot;1999&quot;)
-sf2000$YEAR &lt;- as.character(&quot;2000&quot;)
-sf2001$YEAR &lt;- as.character(&quot;2001&quot;)
-sf2002$YEAR &lt;- as.character(&quot;2002&quot;)
-sf2003$YEAR &lt;- as.character(&quot;2003&quot;)
-sf2004$YEAR &lt;- as.character(&quot;2004&quot;)
-sf2005$YEAR &lt;- as.character(&quot;2005&quot;)
-sf2006$YEAR &lt;- as.character(&quot;2006&quot;)
-sf2007$YEAR &lt;- as.character(&quot;2007&quot;)
-sf2008$YEAR &lt;- as.character(&quot;2008&quot;)
-sf2009$YEAR &lt;- as.character(&quot;2009&quot;)
-sf2010$YEAR &lt;- as.character(&quot;2010&quot;)
-sf2011$YEAR &lt;- as.character(&quot;2011&quot;)
-sf2012$YEAR &lt;- as.character(&quot;2012&quot;)
-sf2013$YEAR &lt;- as.character(&quot;2013&quot;)
-sf2014$YEAR &lt;- as.character(&quot;2014&quot;)
-sf2015$YEAR &lt;- as.character(&quot;2015&quot;)</code></pre>
+<span class='co'>#Add YEAR Column, No M/D</span>
+<span class='va'>sf1993</span><span class='op'>$</span><span class='va'>YEAR</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='st'>"1993"</span><span class='op'>)</span>
+<span class='va'>sf1994</span><span class='op'>$</span><span class='va'>YEAR</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='st'>"1994"</span><span class='op'>)</span>
+<span class='va'>sf1995</span><span class='op'>$</span><span class='va'>YEAR</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='st'>"1995"</span><span class='op'>)</span>
+<span class='va'>sf1996</span><span class='op'>$</span><span class='va'>YEAR</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='st'>"1996"</span><span class='op'>)</span>
+<span class='va'>sf1997</span><span class='op'>$</span><span class='va'>YEAR</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='st'>"1997"</span><span class='op'>)</span>
+<span class='va'>sf1998</span><span class='op'>$</span><span class='va'>YEAR</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='st'>"1998"</span><span class='op'>)</span>
+<span class='va'>sf1999</span><span class='op'>$</span><span class='va'>YEAR</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='st'>"1999"</span><span class='op'>)</span>
+<span class='va'>sf2000</span><span class='op'>$</span><span class='va'>YEAR</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='st'>"2000"</span><span class='op'>)</span>
+<span class='va'>sf2001</span><span class='op'>$</span><span class='va'>YEAR</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='st'>"2001"</span><span class='op'>)</span>
+<span class='va'>sf2002</span><span class='op'>$</span><span class='va'>YEAR</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='st'>"2002"</span><span class='op'>)</span>
+<span class='va'>sf2003</span><span class='op'>$</span><span class='va'>YEAR</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='st'>"2003"</span><span class='op'>)</span>
+<span class='va'>sf2004</span><span class='op'>$</span><span class='va'>YEAR</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='st'>"2004"</span><span class='op'>)</span>
+<span class='va'>sf2005</span><span class='op'>$</span><span class='va'>YEAR</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='st'>"2005"</span><span class='op'>)</span>
+<span class='va'>sf2006</span><span class='op'>$</span><span class='va'>YEAR</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='st'>"2006"</span><span class='op'>)</span>
+<span class='va'>sf2007</span><span class='op'>$</span><span class='va'>YEAR</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='st'>"2007"</span><span class='op'>)</span>
+<span class='va'>sf2008</span><span class='op'>$</span><span class='va'>YEAR</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='st'>"2008"</span><span class='op'>)</span>
+<span class='va'>sf2009</span><span class='op'>$</span><span class='va'>YEAR</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='st'>"2009"</span><span class='op'>)</span>
+<span class='va'>sf2010</span><span class='op'>$</span><span class='va'>YEAR</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='st'>"2010"</span><span class='op'>)</span>
+<span class='va'>sf2011</span><span class='op'>$</span><span class='va'>YEAR</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='st'>"2011"</span><span class='op'>)</span>
+<span class='va'>sf2012</span><span class='op'>$</span><span class='va'>YEAR</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='st'>"2012"</span><span class='op'>)</span>
+<span class='va'>sf2013</span><span class='op'>$</span><span class='va'>YEAR</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='st'>"2013"</span><span class='op'>)</span>
+<span class='va'>sf2014</span><span class='op'>$</span><span class='va'>YEAR</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='st'>"2014"</span><span class='op'>)</span>
+<span class='va'>sf2015</span><span class='op'>$</span><span class='va'>YEAR</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='st'>"2015"</span><span class='op'>)</span>
+</code></pre>
+</div>
 </div>
 <h3 id="import-inflation-data-and-tidy-the-data">Import Inflation Data and Tidy The Data</h3>
 <p>At this part, we’re limiting the raw data to the revenue sources, along with a few other identifiers and more granular funding sources that will get accounted into the larger buckets of Federal, State, &amp; Local revenues but are interesting to see in our table nonetheless.</p>
 <div class="layout-chunk" data-layout="l-body">
-<pre class="r"><code>
-#Introduce Inflation
-inflation &lt;- read_csv(&quot;data/inflation.csv&quot;, col_types = cols(YEAR_S = col_character()))
+<div class="sourceCode">
+<pre><code><span class='co'>#Introduce Inflation</span>
+<span class='va'>inflation</span> <span class='op'>&lt;-</span> <span class='fu'>read_csv</span><span class='op'>(</span><span class='st'>"data/inflation.csv"</span>, col_types <span class='op'>=</span> <span class='fu'>cols</span><span class='op'>(</span>YEAR_S <span class='op'>=</span> <span class='fu'>col_character</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
 
-#Select Only Those Variables of Interest
-t1993 &lt;- dplyr::select(sf1993, one_of(c(&quot;STATE&quot;, &quot;ID&quot;, &quot;YEAR&quot;, &quot;NAME&quot;, &quot;SCHLEV&quot;, &quot;V33&quot;, &quot;TOTALREV&quot;, &quot;TFEDREV&quot;, &quot;TSTREV&quot;,&quot;TLOCREV&quot;, &quot;T06&quot;, &quot;U97&quot;, &quot;TOTALEXP&quot;, &quot;TCURELSC&quot;)))
-t1994 &lt;- dplyr::select(sf1994, one_of(c(&quot;STATE&quot;, &quot;IDCENSUS&quot;, &quot;YEAR&quot;, &quot;NAME&quot;, &quot;SCHLEV&quot;, &quot;V33&quot;, &quot;TOTALREV&quot;, &quot;TFEDREV&quot;, &quot;TSTREV&quot;,&quot;TLOCREV&quot;, &quot;T06&quot;, &quot;U97&quot;, &quot;TOTALEXP&quot;, &quot;TCURELSC&quot;)))
-t1995 &lt;- dplyr::select(sf1995, one_of(c(&quot;STATE&quot;, &quot;IDCENSUS&quot;, &quot;YEAR&quot;, &quot;NAME&quot;, &quot;SCHLEV&quot;, &quot;V33&quot;, &quot;TOTALREV&quot;, &quot;TFEDREV&quot;, &quot;TSTREV&quot;,&quot;TLOCREV&quot;, &quot;T06&quot;, &quot;U97&quot;, &quot;TOTALEXP&quot;, &quot;TCURELSC&quot;)))
-t1996 &lt;- dplyr::select(sf1996, one_of(c(&quot;STATE&quot;, &quot;IDCENSUS&quot;, &quot;YEAR&quot;, &quot;NAME&quot;, &quot;SCHLEV&quot;, &quot;V33&quot;, &quot;TOTALREV&quot;, &quot;TFEDREV&quot;, &quot;TSTREV&quot;,&quot;TLOCREV&quot;, &quot;T06&quot;, &quot;U97&quot;, &quot;TOTALEXP&quot;, &quot;TCURELSC&quot;)))
-t1997 &lt;- dplyr::select(sf1997, one_of(c(&quot;STATE&quot;, &quot;IDCENSUS&quot;, &quot;YEAR&quot;, &quot;NAME&quot;, &quot;SCHLEV&quot;, &quot;V33&quot;, &quot;TOTALREV&quot;, &quot;TFEDREV&quot;, &quot;TSTREV&quot;,&quot;TLOCREV&quot;, &quot;T06&quot;, &quot;U97&quot;, &quot;TOTALEXP&quot;, &quot;TCURELSC&quot;)))
-t1998 &lt;- dplyr::select(sf1998, one_of(c(&quot;STATE&quot;, &quot;IDCENSUS&quot;, &quot;YEAR&quot;, &quot;NAME&quot;, &quot;SCHLEV&quot;, &quot;V33&quot;, &quot;TOTALREV&quot;, &quot;TFEDREV&quot;, &quot;TSTREV&quot;,&quot;TLOCREV&quot;, &quot;T06&quot;, &quot;U97&quot;, &quot;TOTALEXP&quot;, &quot;TCURELSC&quot;)))
-t1999 &lt;- dplyr::select(sf1999, one_of(c(&quot;STATE&quot;, &quot;IDCENSUS&quot;, &quot;YEAR&quot;, &quot;NAME&quot;, &quot;SCHLEV&quot;, &quot;V33&quot;, &quot;TOTALREV&quot;, &quot;TFEDREV&quot;, &quot;TSTREV&quot;,&quot;TLOCREV&quot;, &quot;T06&quot;, &quot;U97&quot;, &quot;TOTALEXP&quot;, &quot;TCURELSC&quot;)))
-t2000 &lt;- dplyr::select(sf2000, one_of(c(&quot;STATE&quot;, &quot;IDCENSUS&quot;, &quot;YEAR&quot;, &quot;NAME&quot;, &quot;SCHLEV&quot;, &quot;V33&quot;, &quot;TOTALREV&quot;, &quot;TFEDREV&quot;, &quot;TSTREV&quot;,&quot;TLOCREV&quot;, &quot;T06&quot;, &quot;U97&quot;, &quot;TOTALEXP&quot;, &quot;TCURELSC&quot;)))
-t2001 &lt;- dplyr::select(sf2001, one_of(c(&quot;STATE&quot;, &quot;IDCENSUS&quot;, &quot;YEAR&quot;, &quot;NAME&quot;, &quot;SCHLEV&quot;, &quot;V33&quot;, &quot;TOTALREV&quot;, &quot;TFEDREV&quot;, &quot;TSTREV&quot;,&quot;TLOCREV&quot;, &quot;T06&quot;, &quot;U97&quot;, &quot;TOTALEXP&quot;, &quot;TCURELSC&quot;)))
-t2002 &lt;- dplyr::select(sf2002, one_of(c(&quot;STATE&quot;, &quot;IDCENSUS&quot;, &quot;YEAR&quot;, &quot;NAME&quot;, &quot;SCHLEV&quot;, &quot;V33&quot;, &quot;TOTALREV&quot;, &quot;TFEDREV&quot;, &quot;TSTREV&quot;,&quot;TLOCREV&quot;, &quot;T06&quot;, &quot;U97&quot;, &quot;TOTALEXP&quot;, &quot;TCURELSC&quot;)))
-t2003 &lt;- dplyr::select(sf2003, one_of(c(&quot;STATE&quot;, &quot;IDCENSUS&quot;, &quot;YEAR&quot;, &quot;NAME&quot;, &quot;SCHLEV&quot;, &quot;V33&quot;, &quot;TOTALREV&quot;, &quot;TFEDREV&quot;, &quot;TSTREV&quot;,&quot;TLOCREV&quot;, &quot;T06&quot;, &quot;U97&quot;, &quot;TOTALEXP&quot;, &quot;TCURELSC&quot;)))
-t2004 &lt;- dplyr::select(sf2004, one_of(c(&quot;STATE&quot;, &quot;IDCENSUS&quot;, &quot;YEAR&quot;, &quot;NAME&quot;, &quot;SCHLEV&quot;, &quot;V33&quot;, &quot;TOTALREV&quot;, &quot;TFEDREV&quot;, &quot;TSTREV&quot;,&quot;TLOCREV&quot;, &quot;T06&quot;, &quot;U97&quot;, &quot;TOTALEXP&quot;, &quot;TCURELSC&quot;)))
-t2005 &lt;- dplyr::select(sf2005, one_of(c(&quot;STATE&quot;, &quot;IDCENSUS&quot;, &quot;YEAR&quot;, &quot;NAME&quot;, &quot;SCHLEV&quot;, &quot;V33&quot;, &quot;TOTALREV&quot;, &quot;TFEDREV&quot;, &quot;TSTREV&quot;,&quot;TLOCREV&quot;, &quot;T06&quot;, &quot;U97&quot;, &quot;TOTALEXP&quot;, &quot;TCURELSC&quot;)))
-t2006 &lt;- dplyr::select(sf2006, one_of(c(&quot;STATE&quot;, &quot;IDCENSUS&quot;, &quot;YEAR&quot;, &quot;NAME&quot;, &quot;SCHLEV&quot;, &quot;V33&quot;, &quot;TOTALREV&quot;, &quot;TFEDREV&quot;, &quot;TSTREV&quot;,&quot;TLOCREV&quot;, &quot;T06&quot;, &quot;U97&quot;, &quot;TOTALEXP&quot;, &quot;TCURELSC&quot;)))
-t2007 &lt;- dplyr::select(sf2007, one_of(c(&quot;STATE&quot;, &quot;IDCENSUS&quot;, &quot;YEAR&quot;, &quot;NAME&quot;, &quot;SCHLEV&quot;, &quot;V33&quot;, &quot;TOTALREV&quot;, &quot;TFEDREV&quot;, &quot;TSTREV&quot;,&quot;TLOCREV&quot;, &quot;T06&quot;, &quot;U97&quot;, &quot;TOTALEXP&quot;, &quot;TCURELSC&quot;)))
-t2008 &lt;- dplyr::select(sf2008, one_of(c(&quot;STATE&quot;, &quot;IDCENSUS&quot;, &quot;YEAR&quot;, &quot;NAME&quot;, &quot;SCHLEV&quot;, &quot;V33&quot;, &quot;TOTALREV&quot;, &quot;TFEDREV&quot;, &quot;TSTREV&quot;,&quot;TLOCREV&quot;, &quot;T06&quot;, &quot;U97&quot;, &quot;TOTALEXP&quot;, &quot;TCURELSC&quot;)))
-t2009 &lt;- dplyr::select(sf2009, one_of(c(&quot;STATE&quot;, &quot;IDCENSUS&quot;, &quot;YEAR&quot;, &quot;NAME&quot;, &quot;SCHLEV&quot;, &quot;V33&quot;, &quot;TOTALREV&quot;, &quot;TFEDREV&quot;, &quot;TSTREV&quot;,&quot;TLOCREV&quot;, &quot;T06&quot;, &quot;U97&quot;, &quot;TOTALEXP&quot;, &quot;TCURELSC&quot;)))
-t2010 &lt;- dplyr::select(sf2010, one_of(c(&quot;STATE&quot;, &quot;IDCENSUS&quot;, &quot;YEAR&quot;, &quot;NAME&quot;, &quot;SCHLEV&quot;, &quot;V33&quot;, &quot;TOTALREV&quot;, &quot;TFEDREV&quot;, &quot;TSTREV&quot;,&quot;TLOCREV&quot;, &quot;T06&quot;, &quot;U97&quot;, &quot;TOTALEXP&quot;, &quot;TCURELSC&quot;)))
-t2011 &lt;- dplyr::select(sf2011, one_of(c(&quot;STATE&quot;, &quot;IDCENSUS&quot;, &quot;YEAR&quot;, &quot;NAME&quot;, &quot;SCHLEV&quot;, &quot;V33&quot;, &quot;TOTALREV&quot;, &quot;TFEDREV&quot;, &quot;TSTREV&quot;,&quot;TLOCREV&quot;, &quot;T06&quot;, &quot;U97&quot;, &quot;TOTALEXP&quot;, &quot;TCURELSC&quot;)))
-t2012 &lt;- dplyr::select(sf2012, one_of(c(&quot;STATE&quot;, &quot;IDCENSUS&quot;, &quot;YEAR&quot;, &quot;NAME&quot;, &quot;SCHLEV&quot;, &quot;V33&quot;, &quot;TOTALREV&quot;, &quot;TFEDREV&quot;, &quot;TSTREV&quot;,&quot;TLOCREV&quot;, &quot;T06&quot;, &quot;U97&quot;, &quot;TOTALEXP&quot;, &quot;TCURELSC&quot;)))
-t2013 &lt;- dplyr::select(sf2013, one_of(c(&quot;STATE&quot;, &quot;IDCENSUS&quot;, &quot;YEAR&quot;, &quot;NAME&quot;, &quot;SCHLEV&quot;, &quot;V33&quot;, &quot;TOTALREV&quot;, &quot;TFEDREV&quot;, &quot;TSTREV&quot;,&quot;TLOCREV&quot;, &quot;T06&quot;, &quot;U97&quot;, &quot;TOTALEXP&quot;, &quot;TCURELSC&quot;)))
-t2014 &lt;- dplyr::select(sf2014, one_of(c(&quot;STATE&quot;, &quot;IDCENSUS&quot;, &quot;YEAR&quot;, &quot;NAME&quot;, &quot;SCHLEV&quot;, &quot;V33&quot;, &quot;TOTALREV&quot;, &quot;TFEDREV&quot;, &quot;TSTREV&quot;,&quot;TLOCREV&quot;, &quot;T06&quot;, &quot;U97&quot;, &quot;TOTALEXP&quot;, &quot;TCURELSC&quot;)))
-t2015 &lt;- dplyr::select(sf2015, one_of(c(&quot;STATE&quot;, &quot;IDCENSUS&quot;, &quot;YEAR&quot;, &quot;NAME&quot;, &quot;SCHLEV&quot;, &quot;V33&quot;, &quot;TOTALREV&quot;, &quot;TFEDREV&quot;, &quot;TSTREV&quot;,&quot;TLOCREV&quot;, &quot;T06&quot;, &quot;U97&quot;, &quot;TOTALEXP&quot;, &quot;TCURELSC&quot;)))</code></pre>
+<span class='co'>#Select Only Those Variables of Interest</span>
+<span class='va'>t1993</span> <span class='op'>&lt;-</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>sf1993</span>, <span class='fu'>one_of</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"STATE"</span>, <span class='st'>"ID"</span>, <span class='st'>"YEAR"</span>, <span class='st'>"NAME"</span>, <span class='st'>"SCHLEV"</span>, <span class='st'>"V33"</span>, <span class='st'>"TOTALREV"</span>, <span class='st'>"TFEDREV"</span>, <span class='st'>"TSTREV"</span>,<span class='st'>"TLOCREV"</span>, <span class='st'>"T06"</span>, <span class='st'>"U97"</span>, <span class='st'>"TOTALEXP"</span>, <span class='st'>"TCURELSC"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>t1994</span> <span class='op'>&lt;-</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>sf1994</span>, <span class='fu'>one_of</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"STATE"</span>, <span class='st'>"IDCENSUS"</span>, <span class='st'>"YEAR"</span>, <span class='st'>"NAME"</span>, <span class='st'>"SCHLEV"</span>, <span class='st'>"V33"</span>, <span class='st'>"TOTALREV"</span>, <span class='st'>"TFEDREV"</span>, <span class='st'>"TSTREV"</span>,<span class='st'>"TLOCREV"</span>, <span class='st'>"T06"</span>, <span class='st'>"U97"</span>, <span class='st'>"TOTALEXP"</span>, <span class='st'>"TCURELSC"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>t1995</span> <span class='op'>&lt;-</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>sf1995</span>, <span class='fu'>one_of</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"STATE"</span>, <span class='st'>"IDCENSUS"</span>, <span class='st'>"YEAR"</span>, <span class='st'>"NAME"</span>, <span class='st'>"SCHLEV"</span>, <span class='st'>"V33"</span>, <span class='st'>"TOTALREV"</span>, <span class='st'>"TFEDREV"</span>, <span class='st'>"TSTREV"</span>,<span class='st'>"TLOCREV"</span>, <span class='st'>"T06"</span>, <span class='st'>"U97"</span>, <span class='st'>"TOTALEXP"</span>, <span class='st'>"TCURELSC"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>t1996</span> <span class='op'>&lt;-</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>sf1996</span>, <span class='fu'>one_of</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"STATE"</span>, <span class='st'>"IDCENSUS"</span>, <span class='st'>"YEAR"</span>, <span class='st'>"NAME"</span>, <span class='st'>"SCHLEV"</span>, <span class='st'>"V33"</span>, <span class='st'>"TOTALREV"</span>, <span class='st'>"TFEDREV"</span>, <span class='st'>"TSTREV"</span>,<span class='st'>"TLOCREV"</span>, <span class='st'>"T06"</span>, <span class='st'>"U97"</span>, <span class='st'>"TOTALEXP"</span>, <span class='st'>"TCURELSC"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>t1997</span> <span class='op'>&lt;-</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>sf1997</span>, <span class='fu'>one_of</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"STATE"</span>, <span class='st'>"IDCENSUS"</span>, <span class='st'>"YEAR"</span>, <span class='st'>"NAME"</span>, <span class='st'>"SCHLEV"</span>, <span class='st'>"V33"</span>, <span class='st'>"TOTALREV"</span>, <span class='st'>"TFEDREV"</span>, <span class='st'>"TSTREV"</span>,<span class='st'>"TLOCREV"</span>, <span class='st'>"T06"</span>, <span class='st'>"U97"</span>, <span class='st'>"TOTALEXP"</span>, <span class='st'>"TCURELSC"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>t1998</span> <span class='op'>&lt;-</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>sf1998</span>, <span class='fu'>one_of</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"STATE"</span>, <span class='st'>"IDCENSUS"</span>, <span class='st'>"YEAR"</span>, <span class='st'>"NAME"</span>, <span class='st'>"SCHLEV"</span>, <span class='st'>"V33"</span>, <span class='st'>"TOTALREV"</span>, <span class='st'>"TFEDREV"</span>, <span class='st'>"TSTREV"</span>,<span class='st'>"TLOCREV"</span>, <span class='st'>"T06"</span>, <span class='st'>"U97"</span>, <span class='st'>"TOTALEXP"</span>, <span class='st'>"TCURELSC"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>t1999</span> <span class='op'>&lt;-</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>sf1999</span>, <span class='fu'>one_of</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"STATE"</span>, <span class='st'>"IDCENSUS"</span>, <span class='st'>"YEAR"</span>, <span class='st'>"NAME"</span>, <span class='st'>"SCHLEV"</span>, <span class='st'>"V33"</span>, <span class='st'>"TOTALREV"</span>, <span class='st'>"TFEDREV"</span>, <span class='st'>"TSTREV"</span>,<span class='st'>"TLOCREV"</span>, <span class='st'>"T06"</span>, <span class='st'>"U97"</span>, <span class='st'>"TOTALEXP"</span>, <span class='st'>"TCURELSC"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>t2000</span> <span class='op'>&lt;-</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>sf2000</span>, <span class='fu'>one_of</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"STATE"</span>, <span class='st'>"IDCENSUS"</span>, <span class='st'>"YEAR"</span>, <span class='st'>"NAME"</span>, <span class='st'>"SCHLEV"</span>, <span class='st'>"V33"</span>, <span class='st'>"TOTALREV"</span>, <span class='st'>"TFEDREV"</span>, <span class='st'>"TSTREV"</span>,<span class='st'>"TLOCREV"</span>, <span class='st'>"T06"</span>, <span class='st'>"U97"</span>, <span class='st'>"TOTALEXP"</span>, <span class='st'>"TCURELSC"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>t2001</span> <span class='op'>&lt;-</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>sf2001</span>, <span class='fu'>one_of</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"STATE"</span>, <span class='st'>"IDCENSUS"</span>, <span class='st'>"YEAR"</span>, <span class='st'>"NAME"</span>, <span class='st'>"SCHLEV"</span>, <span class='st'>"V33"</span>, <span class='st'>"TOTALREV"</span>, <span class='st'>"TFEDREV"</span>, <span class='st'>"TSTREV"</span>,<span class='st'>"TLOCREV"</span>, <span class='st'>"T06"</span>, <span class='st'>"U97"</span>, <span class='st'>"TOTALEXP"</span>, <span class='st'>"TCURELSC"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>t2002</span> <span class='op'>&lt;-</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>sf2002</span>, <span class='fu'>one_of</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"STATE"</span>, <span class='st'>"IDCENSUS"</span>, <span class='st'>"YEAR"</span>, <span class='st'>"NAME"</span>, <span class='st'>"SCHLEV"</span>, <span class='st'>"V33"</span>, <span class='st'>"TOTALREV"</span>, <span class='st'>"TFEDREV"</span>, <span class='st'>"TSTREV"</span>,<span class='st'>"TLOCREV"</span>, <span class='st'>"T06"</span>, <span class='st'>"U97"</span>, <span class='st'>"TOTALEXP"</span>, <span class='st'>"TCURELSC"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>t2003</span> <span class='op'>&lt;-</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>sf2003</span>, <span class='fu'>one_of</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"STATE"</span>, <span class='st'>"IDCENSUS"</span>, <span class='st'>"YEAR"</span>, <span class='st'>"NAME"</span>, <span class='st'>"SCHLEV"</span>, <span class='st'>"V33"</span>, <span class='st'>"TOTALREV"</span>, <span class='st'>"TFEDREV"</span>, <span class='st'>"TSTREV"</span>,<span class='st'>"TLOCREV"</span>, <span class='st'>"T06"</span>, <span class='st'>"U97"</span>, <span class='st'>"TOTALEXP"</span>, <span class='st'>"TCURELSC"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>t2004</span> <span class='op'>&lt;-</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>sf2004</span>, <span class='fu'>one_of</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"STATE"</span>, <span class='st'>"IDCENSUS"</span>, <span class='st'>"YEAR"</span>, <span class='st'>"NAME"</span>, <span class='st'>"SCHLEV"</span>, <span class='st'>"V33"</span>, <span class='st'>"TOTALREV"</span>, <span class='st'>"TFEDREV"</span>, <span class='st'>"TSTREV"</span>,<span class='st'>"TLOCREV"</span>, <span class='st'>"T06"</span>, <span class='st'>"U97"</span>, <span class='st'>"TOTALEXP"</span>, <span class='st'>"TCURELSC"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>t2005</span> <span class='op'>&lt;-</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>sf2005</span>, <span class='fu'>one_of</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"STATE"</span>, <span class='st'>"IDCENSUS"</span>, <span class='st'>"YEAR"</span>, <span class='st'>"NAME"</span>, <span class='st'>"SCHLEV"</span>, <span class='st'>"V33"</span>, <span class='st'>"TOTALREV"</span>, <span class='st'>"TFEDREV"</span>, <span class='st'>"TSTREV"</span>,<span class='st'>"TLOCREV"</span>, <span class='st'>"T06"</span>, <span class='st'>"U97"</span>, <span class='st'>"TOTALEXP"</span>, <span class='st'>"TCURELSC"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>t2006</span> <span class='op'>&lt;-</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>sf2006</span>, <span class='fu'>one_of</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"STATE"</span>, <span class='st'>"IDCENSUS"</span>, <span class='st'>"YEAR"</span>, <span class='st'>"NAME"</span>, <span class='st'>"SCHLEV"</span>, <span class='st'>"V33"</span>, <span class='st'>"TOTALREV"</span>, <span class='st'>"TFEDREV"</span>, <span class='st'>"TSTREV"</span>,<span class='st'>"TLOCREV"</span>, <span class='st'>"T06"</span>, <span class='st'>"U97"</span>, <span class='st'>"TOTALEXP"</span>, <span class='st'>"TCURELSC"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>t2007</span> <span class='op'>&lt;-</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>sf2007</span>, <span class='fu'>one_of</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"STATE"</span>, <span class='st'>"IDCENSUS"</span>, <span class='st'>"YEAR"</span>, <span class='st'>"NAME"</span>, <span class='st'>"SCHLEV"</span>, <span class='st'>"V33"</span>, <span class='st'>"TOTALREV"</span>, <span class='st'>"TFEDREV"</span>, <span class='st'>"TSTREV"</span>,<span class='st'>"TLOCREV"</span>, <span class='st'>"T06"</span>, <span class='st'>"U97"</span>, <span class='st'>"TOTALEXP"</span>, <span class='st'>"TCURELSC"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>t2008</span> <span class='op'>&lt;-</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>sf2008</span>, <span class='fu'>one_of</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"STATE"</span>, <span class='st'>"IDCENSUS"</span>, <span class='st'>"YEAR"</span>, <span class='st'>"NAME"</span>, <span class='st'>"SCHLEV"</span>, <span class='st'>"V33"</span>, <span class='st'>"TOTALREV"</span>, <span class='st'>"TFEDREV"</span>, <span class='st'>"TSTREV"</span>,<span class='st'>"TLOCREV"</span>, <span class='st'>"T06"</span>, <span class='st'>"U97"</span>, <span class='st'>"TOTALEXP"</span>, <span class='st'>"TCURELSC"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>t2009</span> <span class='op'>&lt;-</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>sf2009</span>, <span class='fu'>one_of</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"STATE"</span>, <span class='st'>"IDCENSUS"</span>, <span class='st'>"YEAR"</span>, <span class='st'>"NAME"</span>, <span class='st'>"SCHLEV"</span>, <span class='st'>"V33"</span>, <span class='st'>"TOTALREV"</span>, <span class='st'>"TFEDREV"</span>, <span class='st'>"TSTREV"</span>,<span class='st'>"TLOCREV"</span>, <span class='st'>"T06"</span>, <span class='st'>"U97"</span>, <span class='st'>"TOTALEXP"</span>, <span class='st'>"TCURELSC"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>t2010</span> <span class='op'>&lt;-</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>sf2010</span>, <span class='fu'>one_of</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"STATE"</span>, <span class='st'>"IDCENSUS"</span>, <span class='st'>"YEAR"</span>, <span class='st'>"NAME"</span>, <span class='st'>"SCHLEV"</span>, <span class='st'>"V33"</span>, <span class='st'>"TOTALREV"</span>, <span class='st'>"TFEDREV"</span>, <span class='st'>"TSTREV"</span>,<span class='st'>"TLOCREV"</span>, <span class='st'>"T06"</span>, <span class='st'>"U97"</span>, <span class='st'>"TOTALEXP"</span>, <span class='st'>"TCURELSC"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>t2011</span> <span class='op'>&lt;-</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>sf2011</span>, <span class='fu'>one_of</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"STATE"</span>, <span class='st'>"IDCENSUS"</span>, <span class='st'>"YEAR"</span>, <span class='st'>"NAME"</span>, <span class='st'>"SCHLEV"</span>, <span class='st'>"V33"</span>, <span class='st'>"TOTALREV"</span>, <span class='st'>"TFEDREV"</span>, <span class='st'>"TSTREV"</span>,<span class='st'>"TLOCREV"</span>, <span class='st'>"T06"</span>, <span class='st'>"U97"</span>, <span class='st'>"TOTALEXP"</span>, <span class='st'>"TCURELSC"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>t2012</span> <span class='op'>&lt;-</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>sf2012</span>, <span class='fu'>one_of</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"STATE"</span>, <span class='st'>"IDCENSUS"</span>, <span class='st'>"YEAR"</span>, <span class='st'>"NAME"</span>, <span class='st'>"SCHLEV"</span>, <span class='st'>"V33"</span>, <span class='st'>"TOTALREV"</span>, <span class='st'>"TFEDREV"</span>, <span class='st'>"TSTREV"</span>,<span class='st'>"TLOCREV"</span>, <span class='st'>"T06"</span>, <span class='st'>"U97"</span>, <span class='st'>"TOTALEXP"</span>, <span class='st'>"TCURELSC"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>t2013</span> <span class='op'>&lt;-</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>sf2013</span>, <span class='fu'>one_of</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"STATE"</span>, <span class='st'>"IDCENSUS"</span>, <span class='st'>"YEAR"</span>, <span class='st'>"NAME"</span>, <span class='st'>"SCHLEV"</span>, <span class='st'>"V33"</span>, <span class='st'>"TOTALREV"</span>, <span class='st'>"TFEDREV"</span>, <span class='st'>"TSTREV"</span>,<span class='st'>"TLOCREV"</span>, <span class='st'>"T06"</span>, <span class='st'>"U97"</span>, <span class='st'>"TOTALEXP"</span>, <span class='st'>"TCURELSC"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>t2014</span> <span class='op'>&lt;-</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>sf2014</span>, <span class='fu'>one_of</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"STATE"</span>, <span class='st'>"IDCENSUS"</span>, <span class='st'>"YEAR"</span>, <span class='st'>"NAME"</span>, <span class='st'>"SCHLEV"</span>, <span class='st'>"V33"</span>, <span class='st'>"TOTALREV"</span>, <span class='st'>"TFEDREV"</span>, <span class='st'>"TSTREV"</span>,<span class='st'>"TLOCREV"</span>, <span class='st'>"T06"</span>, <span class='st'>"U97"</span>, <span class='st'>"TOTALEXP"</span>, <span class='st'>"TCURELSC"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>t2015</span> <span class='op'>&lt;-</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>sf2015</span>, <span class='fu'>one_of</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"STATE"</span>, <span class='st'>"IDCENSUS"</span>, <span class='st'>"YEAR"</span>, <span class='st'>"NAME"</span>, <span class='st'>"SCHLEV"</span>, <span class='st'>"V33"</span>, <span class='st'>"TOTALREV"</span>, <span class='st'>"TFEDREV"</span>, <span class='st'>"TSTREV"</span>,<span class='st'>"TLOCREV"</span>, <span class='st'>"T06"</span>, <span class='st'>"U97"</span>, <span class='st'>"TOTALEXP"</span>, <span class='st'>"TCURELSC"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
 </div>
 <h3 id="recode-additional-variables-of-interest">Recode Additional Variables of Interest</h3>
 <p>Truth be told, many databases use strange identifiers to identify what those variables represent. In the census dataset, they used some names that are easy to interpret at first glance. For instance, <code>TOTALREV</code> equals “Total Revenue”. However, some variables aren’t easily interpretable. For my purposes, I wanted to create more readable names for some of the variables I pulled in earlier. This code does that.</p>
 <div class="layout-chunk" data-layout="l-body">
-<pre class="r"><code>
-#Recode 1993 Variables
-t1993 &lt;- rename(t1993,  
-                ENROLL = V33,
-                IDCENSUS = ID,
-                PROPTAX = T06,
-                MISCREV = U97)
+<div class="sourceCode">
+<pre><code><span class='co'>#Recode 1993 Variables</span>
+<span class='va'>t1993</span> <span class='op'>&lt;-</span> <span class='fu'>rename</span><span class='op'>(</span><span class='va'>t1993</span>,  
+                ENROLL <span class='op'>=</span> <span class='va'>V33</span>,
+                IDCENSUS <span class='op'>=</span> <span class='va'>ID</span>,
+                PROPTAX <span class='op'>=</span> <span class='va'>T06</span>,
+                MISCREV <span class='op'>=</span> <span class='va'>U97</span><span class='op'>)</span>
 
-#Recode 1994 Variables
-t1994 &lt;- rename(t1994,  
-                ENROLL = V33,
-                PROPTAX = T06,
-                MISCREV = U97)
+<span class='co'>#Recode 1994 Variables</span>
+<span class='va'>t1994</span> <span class='op'>&lt;-</span> <span class='fu'>rename</span><span class='op'>(</span><span class='va'>t1994</span>,  
+                ENROLL <span class='op'>=</span> <span class='va'>V33</span>,
+                PROPTAX <span class='op'>=</span> <span class='va'>T06</span>,
+                MISCREV <span class='op'>=</span> <span class='va'>U97</span><span class='op'>)</span>
 
-#Recode 1995 Variables
-t1995 &lt;- rename(t1995,  
-                ENROLL = V33,
-                PROPTAX = T06,
-                MISCREV = U97)
+<span class='co'>#Recode 1995 Variables</span>
+<span class='va'>t1995</span> <span class='op'>&lt;-</span> <span class='fu'>rename</span><span class='op'>(</span><span class='va'>t1995</span>,  
+                ENROLL <span class='op'>=</span> <span class='va'>V33</span>,
+                PROPTAX <span class='op'>=</span> <span class='va'>T06</span>,
+                MISCREV <span class='op'>=</span> <span class='va'>U97</span><span class='op'>)</span>
 
-#Recode 1996 Variables
-t1996 &lt;- rename(t1996,  
-                ENROLL = V33,
-                PROPTAX = T06,
-                MISCREV = U97)
+<span class='co'>#Recode 1996 Variables</span>
+<span class='va'>t1996</span> <span class='op'>&lt;-</span> <span class='fu'>rename</span><span class='op'>(</span><span class='va'>t1996</span>,  
+                ENROLL <span class='op'>=</span> <span class='va'>V33</span>,
+                PROPTAX <span class='op'>=</span> <span class='va'>T06</span>,
+                MISCREV <span class='op'>=</span> <span class='va'>U97</span><span class='op'>)</span>
 
-#Recode 1997 Variables
-t1997 &lt;- rename(t1997,  
-                ENROLL = V33,
-                PROPTAX = T06,
-                MISCREV = U97)
+<span class='co'>#Recode 1997 Variables</span>
+<span class='va'>t1997</span> <span class='op'>&lt;-</span> <span class='fu'>rename</span><span class='op'>(</span><span class='va'>t1997</span>,  
+                ENROLL <span class='op'>=</span> <span class='va'>V33</span>,
+                PROPTAX <span class='op'>=</span> <span class='va'>T06</span>,
+                MISCREV <span class='op'>=</span> <span class='va'>U97</span><span class='op'>)</span>
 
-#Recode 1998 Variables
-t1998 &lt;- rename(t1998,  
-                ENROLL = V33,
-                PROPTAX = T06,
-                MISCREV = U97)
+<span class='co'>#Recode 1998 Variables</span>
+<span class='va'>t1998</span> <span class='op'>&lt;-</span> <span class='fu'>rename</span><span class='op'>(</span><span class='va'>t1998</span>,  
+                ENROLL <span class='op'>=</span> <span class='va'>V33</span>,
+                PROPTAX <span class='op'>=</span> <span class='va'>T06</span>,
+                MISCREV <span class='op'>=</span> <span class='va'>U97</span><span class='op'>)</span>
 
-#Recode 1999 Variables
-t1999 &lt;- rename(t1999,  
-                ENROLL = V33,
-                PROPTAX = T06,
-                MISCREV = U97)
+<span class='co'>#Recode 1999 Variables</span>
+<span class='va'>t1999</span> <span class='op'>&lt;-</span> <span class='fu'>rename</span><span class='op'>(</span><span class='va'>t1999</span>,  
+                ENROLL <span class='op'>=</span> <span class='va'>V33</span>,
+                PROPTAX <span class='op'>=</span> <span class='va'>T06</span>,
+                MISCREV <span class='op'>=</span> <span class='va'>U97</span><span class='op'>)</span>
 
-#Recode 2000 Variables
-t2000 &lt;- rename(t2000,  
-                ENROLL = V33,
-                PROPTAX = T06,
-                MISCREV = U97)
+<span class='co'>#Recode 2000 Variables</span>
+<span class='va'>t2000</span> <span class='op'>&lt;-</span> <span class='fu'>rename</span><span class='op'>(</span><span class='va'>t2000</span>,  
+                ENROLL <span class='op'>=</span> <span class='va'>V33</span>,
+                PROPTAX <span class='op'>=</span> <span class='va'>T06</span>,
+                MISCREV <span class='op'>=</span> <span class='va'>U97</span><span class='op'>)</span>
 
-#Recode 2001 Variables
-t2001 &lt;- rename(t2001,  
-                ENROLL = V33,
-                PROPTAX = T06,
-                MISCREV = U97)
+<span class='co'>#Recode 2001 Variables</span>
+<span class='va'>t2001</span> <span class='op'>&lt;-</span> <span class='fu'>rename</span><span class='op'>(</span><span class='va'>t2001</span>,  
+                ENROLL <span class='op'>=</span> <span class='va'>V33</span>,
+                PROPTAX <span class='op'>=</span> <span class='va'>T06</span>,
+                MISCREV <span class='op'>=</span> <span class='va'>U97</span><span class='op'>)</span>
 
-#Recode 2002 Variables
-t2002 &lt;- rename(t2002,  
-                ENROLL = V33,
-                PROPTAX = T06,
-                MISCREV = U97)
+<span class='co'>#Recode 2002 Variables</span>
+<span class='va'>t2002</span> <span class='op'>&lt;-</span> <span class='fu'>rename</span><span class='op'>(</span><span class='va'>t2002</span>,  
+                ENROLL <span class='op'>=</span> <span class='va'>V33</span>,
+                PROPTAX <span class='op'>=</span> <span class='va'>T06</span>,
+                MISCREV <span class='op'>=</span> <span class='va'>U97</span><span class='op'>)</span>
 
-#Recode 2003 Variables
-t2003 &lt;- rename(t2003,  
-                ENROLL = V33,
-                PROPTAX = T06,
-                MISCREV = U97)
+<span class='co'>#Recode 2003 Variables</span>
+<span class='va'>t2003</span> <span class='op'>&lt;-</span> <span class='fu'>rename</span><span class='op'>(</span><span class='va'>t2003</span>,  
+                ENROLL <span class='op'>=</span> <span class='va'>V33</span>,
+                PROPTAX <span class='op'>=</span> <span class='va'>T06</span>,
+                MISCREV <span class='op'>=</span> <span class='va'>U97</span><span class='op'>)</span>
 
-#Recode 2004 Variables
-t2004 &lt;- rename(t2004,  
-                ENROLL = V33,
-                PROPTAX = T06,
-                MISCREV = U97)
+<span class='co'>#Recode 2004 Variables</span>
+<span class='va'>t2004</span> <span class='op'>&lt;-</span> <span class='fu'>rename</span><span class='op'>(</span><span class='va'>t2004</span>,  
+                ENROLL <span class='op'>=</span> <span class='va'>V33</span>,
+                PROPTAX <span class='op'>=</span> <span class='va'>T06</span>,
+                MISCREV <span class='op'>=</span> <span class='va'>U97</span><span class='op'>)</span>
 
-#Recode 2005 Variables
-t2005 &lt;- rename(t2005,  
-                ENROLL = V33,
-                PROPTAX = T06,
-                MISCREV = U97)
-#Recode 2006 Variables
-t2006 &lt;- rename(t2006,  
-                ENROLL = V33,
-                PROPTAX = T06,
-                MISCREV = U97)
+<span class='co'>#Recode 2005 Variables</span>
+<span class='va'>t2005</span> <span class='op'>&lt;-</span> <span class='fu'>rename</span><span class='op'>(</span><span class='va'>t2005</span>,  
+                ENROLL <span class='op'>=</span> <span class='va'>V33</span>,
+                PROPTAX <span class='op'>=</span> <span class='va'>T06</span>,
+                MISCREV <span class='op'>=</span> <span class='va'>U97</span><span class='op'>)</span>
+<span class='co'>#Recode 2006 Variables</span>
+<span class='va'>t2006</span> <span class='op'>&lt;-</span> <span class='fu'>rename</span><span class='op'>(</span><span class='va'>t2006</span>,  
+                ENROLL <span class='op'>=</span> <span class='va'>V33</span>,
+                PROPTAX <span class='op'>=</span> <span class='va'>T06</span>,
+                MISCREV <span class='op'>=</span> <span class='va'>U97</span><span class='op'>)</span>
 
-#Recode 2007 Variables
-t2007 &lt;- rename(t2007,  
-                ENROLL = V33,
-                PROPTAX = T06,
-                MISCREV = U97)
+<span class='co'>#Recode 2007 Variables</span>
+<span class='va'>t2007</span> <span class='op'>&lt;-</span> <span class='fu'>rename</span><span class='op'>(</span><span class='va'>t2007</span>,  
+                ENROLL <span class='op'>=</span> <span class='va'>V33</span>,
+                PROPTAX <span class='op'>=</span> <span class='va'>T06</span>,
+                MISCREV <span class='op'>=</span> <span class='va'>U97</span><span class='op'>)</span>
 
-#Recode 2008 Variables
-t2008 &lt;- rename(t2008,  
-                ENROLL = V33,
-                PROPTAX = T06,
-                MISCREV = U97)
+<span class='co'>#Recode 2008 Variables</span>
+<span class='va'>t2008</span> <span class='op'>&lt;-</span> <span class='fu'>rename</span><span class='op'>(</span><span class='va'>t2008</span>,  
+                ENROLL <span class='op'>=</span> <span class='va'>V33</span>,
+                PROPTAX <span class='op'>=</span> <span class='va'>T06</span>,
+                MISCREV <span class='op'>=</span> <span class='va'>U97</span><span class='op'>)</span>
 
-#Recode 2009 Variables
-t2009 &lt;- rename(t2009,  
-                ENROLL = V33,
-                PROPTAX = T06,
-                MISCREV = U97)
+<span class='co'>#Recode 2009 Variables</span>
+<span class='va'>t2009</span> <span class='op'>&lt;-</span> <span class='fu'>rename</span><span class='op'>(</span><span class='va'>t2009</span>,  
+                ENROLL <span class='op'>=</span> <span class='va'>V33</span>,
+                PROPTAX <span class='op'>=</span> <span class='va'>T06</span>,
+                MISCREV <span class='op'>=</span> <span class='va'>U97</span><span class='op'>)</span>
 
-#Recode 2010 Variables
-t2010 &lt;- rename(t2010,  
-                ENROLL = V33,
-                PROPTAX = T06,
-                MISCREV = U97)
+<span class='co'>#Recode 2010 Variables</span>
+<span class='va'>t2010</span> <span class='op'>&lt;-</span> <span class='fu'>rename</span><span class='op'>(</span><span class='va'>t2010</span>,  
+                ENROLL <span class='op'>=</span> <span class='va'>V33</span>,
+                PROPTAX <span class='op'>=</span> <span class='va'>T06</span>,
+                MISCREV <span class='op'>=</span> <span class='va'>U97</span><span class='op'>)</span>
 
-#Recode 2011 Variables
-t2011 &lt;- rename(t2011,  
-                ENROLL = V33,
-                PROPTAX = T06,
-                MISCREV = U97)
+<span class='co'>#Recode 2011 Variables</span>
+<span class='va'>t2011</span> <span class='op'>&lt;-</span> <span class='fu'>rename</span><span class='op'>(</span><span class='va'>t2011</span>,  
+                ENROLL <span class='op'>=</span> <span class='va'>V33</span>,
+                PROPTAX <span class='op'>=</span> <span class='va'>T06</span>,
+                MISCREV <span class='op'>=</span> <span class='va'>U97</span><span class='op'>)</span>
 
-#Recode 2012 Variables
-t2012 &lt;- rename(t2012,  
-                ENROLL = V33,
-                PROPTAX = T06,
-                MISCREV = U97)
+<span class='co'>#Recode 2012 Variables</span>
+<span class='va'>t2012</span> <span class='op'>&lt;-</span> <span class='fu'>rename</span><span class='op'>(</span><span class='va'>t2012</span>,  
+                ENROLL <span class='op'>=</span> <span class='va'>V33</span>,
+                PROPTAX <span class='op'>=</span> <span class='va'>T06</span>,
+                MISCREV <span class='op'>=</span> <span class='va'>U97</span><span class='op'>)</span>
 
-#Recode 2013 Variables
-t2013 &lt;- rename(t2013,  
-                ENROLL = V33,
-                PROPTAX = T06,
-                MISCREV = U97)
+<span class='co'>#Recode 2013 Variables</span>
+<span class='va'>t2013</span> <span class='op'>&lt;-</span> <span class='fu'>rename</span><span class='op'>(</span><span class='va'>t2013</span>,  
+                ENROLL <span class='op'>=</span> <span class='va'>V33</span>,
+                PROPTAX <span class='op'>=</span> <span class='va'>T06</span>,
+                MISCREV <span class='op'>=</span> <span class='va'>U97</span><span class='op'>)</span>
 
-#Recode 2014 Variables
-t2014 &lt;- rename(t2014,  
-                ENROLL = V33,
-                PROPTAX = T06,
-                MISCREV = U97)
+<span class='co'>#Recode 2014 Variables</span>
+<span class='va'>t2014</span> <span class='op'>&lt;-</span> <span class='fu'>rename</span><span class='op'>(</span><span class='va'>t2014</span>,  
+                ENROLL <span class='op'>=</span> <span class='va'>V33</span>,
+                PROPTAX <span class='op'>=</span> <span class='va'>T06</span>,
+                MISCREV <span class='op'>=</span> <span class='va'>U97</span><span class='op'>)</span>
 
-#Recode 2015 Variables
-t2015 &lt;- rename(t2015,  
-                ENROLL = V33,
-                PROPTAX = T06,
-                MISCREV = U97)
+<span class='co'>#Recode 2015 Variables</span>
+<span class='va'>t2015</span> <span class='op'>&lt;-</span> <span class='fu'>rename</span><span class='op'>(</span><span class='va'>t2015</span>,  
+                ENROLL <span class='op'>=</span> <span class='va'>V33</span>,
+                PROPTAX <span class='op'>=</span> <span class='va'>T06</span>,
+                MISCREV <span class='op'>=</span> <span class='va'>U97</span><span class='op'>)</span>
 
-inflation &lt;- rename(inflation, 
-                    INDEX = Index,
-                    YEAR = YEAR_S)</code></pre>
+<span class='va'>inflation</span> <span class='op'>&lt;-</span> <span class='fu'>rename</span><span class='op'>(</span><span class='va'>inflation</span>, 
+                    INDEX <span class='op'>=</span> <span class='va'>Index</span>,
+                    YEAR <span class='op'>=</span> <span class='va'>YEAR_S</span><span class='op'>)</span>
+</code></pre>
+</div>
 </div>
 <h3 id="add-the-bls-education-inflation-index">Add The BLS Education Inflation Index</h3>
 <p>Here, we’re combining the inflation data from <a href="https://data.bls.gov/cgi-bin/surveymost?cu">the BLS Education Inflation Index</a> alongside their annual counterparts from the census files so we can multiply the index value by each year’s recorded funding amount. Once we do that, we’ll have our inflation adjusted figures and be able to visualize them.</p>
 <div class="layout-chunk" data-layout="l-body">
-<pre class="r"><code>
-#Add Inflation Index
-inflation &lt;- inflation %&gt;% as_tibble() %&gt;% mutate(
-  Annual = NULL)
-t1993 &lt;- left_join(t1993, inflation, by =&quot;YEAR&quot;)
-t1994 &lt;- left_join(t1994, inflation, by =&quot;YEAR&quot;)
-t1995 &lt;- left_join(t1995, inflation, by =&quot;YEAR&quot;)
-t1996 &lt;- left_join(t1996, inflation, by =&quot;YEAR&quot;)
-t1997 &lt;- left_join(t1997, inflation, by =&quot;YEAR&quot;)
-t1998 &lt;- left_join(t1998, inflation, by =&quot;YEAR&quot;)
-t1999 &lt;- left_join(t1999, inflation, by =&quot;YEAR&quot;)
-t2000 &lt;- left_join(t2000, inflation, by =&quot;YEAR&quot;)
-t2001 &lt;- left_join(t2001, inflation, by =&quot;YEAR&quot;)
-t2002 &lt;- left_join(t2002, inflation, by =&quot;YEAR&quot;)
-t2003 &lt;- left_join(t2003, inflation, by =&quot;YEAR&quot;)
-t2004 &lt;- left_join(t2004, inflation, by =&quot;YEAR&quot;)
-t2005 &lt;- left_join(t2005, inflation, by =&quot;YEAR&quot;)
-t2006 &lt;- left_join(t2006, inflation, by =&quot;YEAR&quot;)
-t2007 &lt;- left_join(t2007, inflation, by =&quot;YEAR&quot;)
-t2008 &lt;- left_join(t2008, inflation, by =&quot;YEAR&quot;)
-t2009 &lt;- left_join(t2009, inflation, by =&quot;YEAR&quot;)
-t2010 &lt;- left_join(t2010, inflation, by =&quot;YEAR&quot;)
-t2011 &lt;- left_join(t2011, inflation, by =&quot;YEAR&quot;)
-t2012 &lt;- left_join(t2012, inflation, by =&quot;YEAR&quot;)
-t2013 &lt;- left_join(t2013, inflation, by =&quot;YEAR&quot;)
-t2014 &lt;- left_join(t2014, inflation, by =&quot;YEAR&quot;)
-t2015 &lt;- left_join(t2015, inflation, by =&quot;YEAR&quot;)</code></pre>
+<div class="sourceCode">
+<pre><code><span class='co'>#Add Inflation Index</span>
+<span class='va'>inflation</span> <span class='op'>&lt;-</span> <span class='va'>inflation</span> <span class='op'>%&gt;%</span> <span class='fu'>as_tibble</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>mutate</span><span class='op'>(</span>
+  Annual <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
+<span class='va'>t1993</span> <span class='op'>&lt;-</span> <span class='fu'>left_join</span><span class='op'>(</span><span class='va'>t1993</span>, <span class='va'>inflation</span>, by <span class='op'>=</span><span class='st'>"YEAR"</span><span class='op'>)</span>
+<span class='va'>t1994</span> <span class='op'>&lt;-</span> <span class='fu'>left_join</span><span class='op'>(</span><span class='va'>t1994</span>, <span class='va'>inflation</span>, by <span class='op'>=</span><span class='st'>"YEAR"</span><span class='op'>)</span>
+<span class='va'>t1995</span> <span class='op'>&lt;-</span> <span class='fu'>left_join</span><span class='op'>(</span><span class='va'>t1995</span>, <span class='va'>inflation</span>, by <span class='op'>=</span><span class='st'>"YEAR"</span><span class='op'>)</span>
+<span class='va'>t1996</span> <span class='op'>&lt;-</span> <span class='fu'>left_join</span><span class='op'>(</span><span class='va'>t1996</span>, <span class='va'>inflation</span>, by <span class='op'>=</span><span class='st'>"YEAR"</span><span class='op'>)</span>
+<span class='va'>t1997</span> <span class='op'>&lt;-</span> <span class='fu'>left_join</span><span class='op'>(</span><span class='va'>t1997</span>, <span class='va'>inflation</span>, by <span class='op'>=</span><span class='st'>"YEAR"</span><span class='op'>)</span>
+<span class='va'>t1998</span> <span class='op'>&lt;-</span> <span class='fu'>left_join</span><span class='op'>(</span><span class='va'>t1998</span>, <span class='va'>inflation</span>, by <span class='op'>=</span><span class='st'>"YEAR"</span><span class='op'>)</span>
+<span class='va'>t1999</span> <span class='op'>&lt;-</span> <span class='fu'>left_join</span><span class='op'>(</span><span class='va'>t1999</span>, <span class='va'>inflation</span>, by <span class='op'>=</span><span class='st'>"YEAR"</span><span class='op'>)</span>
+<span class='va'>t2000</span> <span class='op'>&lt;-</span> <span class='fu'>left_join</span><span class='op'>(</span><span class='va'>t2000</span>, <span class='va'>inflation</span>, by <span class='op'>=</span><span class='st'>"YEAR"</span><span class='op'>)</span>
+<span class='va'>t2001</span> <span class='op'>&lt;-</span> <span class='fu'>left_join</span><span class='op'>(</span><span class='va'>t2001</span>, <span class='va'>inflation</span>, by <span class='op'>=</span><span class='st'>"YEAR"</span><span class='op'>)</span>
+<span class='va'>t2002</span> <span class='op'>&lt;-</span> <span class='fu'>left_join</span><span class='op'>(</span><span class='va'>t2002</span>, <span class='va'>inflation</span>, by <span class='op'>=</span><span class='st'>"YEAR"</span><span class='op'>)</span>
+<span class='va'>t2003</span> <span class='op'>&lt;-</span> <span class='fu'>left_join</span><span class='op'>(</span><span class='va'>t2003</span>, <span class='va'>inflation</span>, by <span class='op'>=</span><span class='st'>"YEAR"</span><span class='op'>)</span>
+<span class='va'>t2004</span> <span class='op'>&lt;-</span> <span class='fu'>left_join</span><span class='op'>(</span><span class='va'>t2004</span>, <span class='va'>inflation</span>, by <span class='op'>=</span><span class='st'>"YEAR"</span><span class='op'>)</span>
+<span class='va'>t2005</span> <span class='op'>&lt;-</span> <span class='fu'>left_join</span><span class='op'>(</span><span class='va'>t2005</span>, <span class='va'>inflation</span>, by <span class='op'>=</span><span class='st'>"YEAR"</span><span class='op'>)</span>
+<span class='va'>t2006</span> <span class='op'>&lt;-</span> <span class='fu'>left_join</span><span class='op'>(</span><span class='va'>t2006</span>, <span class='va'>inflation</span>, by <span class='op'>=</span><span class='st'>"YEAR"</span><span class='op'>)</span>
+<span class='va'>t2007</span> <span class='op'>&lt;-</span> <span class='fu'>left_join</span><span class='op'>(</span><span class='va'>t2007</span>, <span class='va'>inflation</span>, by <span class='op'>=</span><span class='st'>"YEAR"</span><span class='op'>)</span>
+<span class='va'>t2008</span> <span class='op'>&lt;-</span> <span class='fu'>left_join</span><span class='op'>(</span><span class='va'>t2008</span>, <span class='va'>inflation</span>, by <span class='op'>=</span><span class='st'>"YEAR"</span><span class='op'>)</span>
+<span class='va'>t2009</span> <span class='op'>&lt;-</span> <span class='fu'>left_join</span><span class='op'>(</span><span class='va'>t2009</span>, <span class='va'>inflation</span>, by <span class='op'>=</span><span class='st'>"YEAR"</span><span class='op'>)</span>
+<span class='va'>t2010</span> <span class='op'>&lt;-</span> <span class='fu'>left_join</span><span class='op'>(</span><span class='va'>t2010</span>, <span class='va'>inflation</span>, by <span class='op'>=</span><span class='st'>"YEAR"</span><span class='op'>)</span>
+<span class='va'>t2011</span> <span class='op'>&lt;-</span> <span class='fu'>left_join</span><span class='op'>(</span><span class='va'>t2011</span>, <span class='va'>inflation</span>, by <span class='op'>=</span><span class='st'>"YEAR"</span><span class='op'>)</span>
+<span class='va'>t2012</span> <span class='op'>&lt;-</span> <span class='fu'>left_join</span><span class='op'>(</span><span class='va'>t2012</span>, <span class='va'>inflation</span>, by <span class='op'>=</span><span class='st'>"YEAR"</span><span class='op'>)</span>
+<span class='va'>t2013</span> <span class='op'>&lt;-</span> <span class='fu'>left_join</span><span class='op'>(</span><span class='va'>t2013</span>, <span class='va'>inflation</span>, by <span class='op'>=</span><span class='st'>"YEAR"</span><span class='op'>)</span>
+<span class='va'>t2014</span> <span class='op'>&lt;-</span> <span class='fu'>left_join</span><span class='op'>(</span><span class='va'>t2014</span>, <span class='va'>inflation</span>, by <span class='op'>=</span><span class='st'>"YEAR"</span><span class='op'>)</span>
+<span class='va'>t2015</span> <span class='op'>&lt;-</span> <span class='fu'>left_join</span><span class='op'>(</span><span class='va'>t2015</span>, <span class='va'>inflation</span>, by <span class='op'>=</span><span class='st'>"YEAR"</span><span class='op'>)</span>
+</code></pre>
+</div>
 </div>
 <h3 id="adjust-our-data-for-inflation">Adjust Our Data for Inflation</h3>
 <p>As mentioned before, we’ll be using data from <a href="https://data.bls.gov/cgi-bin/surveymost?cu">the Bureau of Labor &amp; Statistics’ Education Inflation Index</a> to calculate our inflation adjusted figures.</p>
 <div class="layout-chunk" data-layout="l-body">
-<pre class="r"><code>
-t1993e &lt;- t1993 %&gt;% as_tibble() %&gt;% mutate(
-  TOTALREVe = TOTALREV*IndexED,
-  TFEDREVe = TFEDREV*IndexED,
-  TSTREVe = TSTREV*IndexED,
-  TLOCREVe = TLOCREV*IndexED,
-  PROPTAXe = PROPTAX*IndexED,
-  MISCREVe = MISCREV*IndexED,
-  TOTALEXPe = TOTALEXP*IndexED,
-  TCURELSCe = TCURELSC*IndexED)
+<div class="sourceCode">
+<pre><code><span class='va'>t1993e</span> <span class='op'>&lt;-</span> <span class='va'>t1993</span> <span class='op'>%&gt;%</span> <span class='fu'>as_tibble</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>mutate</span><span class='op'>(</span>
+  TOTALREVe <span class='op'>=</span> <span class='va'>TOTALREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TFEDREVe <span class='op'>=</span> <span class='va'>TFEDREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TSTREVe <span class='op'>=</span> <span class='va'>TSTREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TLOCREVe <span class='op'>=</span> <span class='va'>TLOCREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  PROPTAXe <span class='op'>=</span> <span class='va'>PROPTAX</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  MISCREVe <span class='op'>=</span> <span class='va'>MISCREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TOTALEXPe <span class='op'>=</span> <span class='va'>TOTALEXP</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TCURELSCe <span class='op'>=</span> <span class='va'>TCURELSC</span><span class='op'>*</span><span class='va'>IndexED</span><span class='op'>)</span>
 
-t1994e &lt;- t1994 %&gt;% as_tibble() %&gt;% mutate(
-  TOTALREVe = TOTALREV*IndexED,
-  TFEDREVe = TFEDREV*IndexED,
-  TSTREVe = TSTREV*IndexED,
-  TLOCREVe = TLOCREV*IndexED,
-  PROPTAXe = PROPTAX*IndexED,
-  MISCREVe = MISCREV*IndexED,
-  TOTALEXPe = TOTALEXP*IndexED,
-  TCURELSCe = TCURELSC*IndexED)
+<span class='va'>t1994e</span> <span class='op'>&lt;-</span> <span class='va'>t1994</span> <span class='op'>%&gt;%</span> <span class='fu'>as_tibble</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>mutate</span><span class='op'>(</span>
+  TOTALREVe <span class='op'>=</span> <span class='va'>TOTALREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TFEDREVe <span class='op'>=</span> <span class='va'>TFEDREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TSTREVe <span class='op'>=</span> <span class='va'>TSTREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TLOCREVe <span class='op'>=</span> <span class='va'>TLOCREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  PROPTAXe <span class='op'>=</span> <span class='va'>PROPTAX</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  MISCREVe <span class='op'>=</span> <span class='va'>MISCREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TOTALEXPe <span class='op'>=</span> <span class='va'>TOTALEXP</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TCURELSCe <span class='op'>=</span> <span class='va'>TCURELSC</span><span class='op'>*</span><span class='va'>IndexED</span><span class='op'>)</span>
 
-t1995e &lt;- t1995 %&gt;% as_tibble() %&gt;% mutate(
-  TOTALREVe = TOTALREV*IndexED,
-  TFEDREVe = TFEDREV*IndexED,
-  TSTREVe = TSTREV*IndexED,
-  TLOCREVe = TLOCREV*IndexED,
-  PROPTAXe = PROPTAX*IndexED,
-  MISCREVe = MISCREV*IndexED,
-  TOTALEXPe = TOTALEXP*IndexED,
-  TCURELSCe = TCURELSC*IndexED)
+<span class='va'>t1995e</span> <span class='op'>&lt;-</span> <span class='va'>t1995</span> <span class='op'>%&gt;%</span> <span class='fu'>as_tibble</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>mutate</span><span class='op'>(</span>
+  TOTALREVe <span class='op'>=</span> <span class='va'>TOTALREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TFEDREVe <span class='op'>=</span> <span class='va'>TFEDREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TSTREVe <span class='op'>=</span> <span class='va'>TSTREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TLOCREVe <span class='op'>=</span> <span class='va'>TLOCREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  PROPTAXe <span class='op'>=</span> <span class='va'>PROPTAX</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  MISCREVe <span class='op'>=</span> <span class='va'>MISCREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TOTALEXPe <span class='op'>=</span> <span class='va'>TOTALEXP</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TCURELSCe <span class='op'>=</span> <span class='va'>TCURELSC</span><span class='op'>*</span><span class='va'>IndexED</span><span class='op'>)</span>
 
-t1996e &lt;- t1996 %&gt;% as_tibble() %&gt;% mutate(
-  TOTALREVe = TOTALREV*IndexED,
-  TFEDREVe = TFEDREV*IndexED,
-  TSTREVe = TSTREV*IndexED,
-  TLOCREVe = TLOCREV*IndexED,
-  PROPTAXe = PROPTAX*IndexED,
-  MISCREVe = MISCREV*IndexED,
-  TOTALEXPe = TOTALEXP*IndexED,
-  TCURELSCe = TCURELSC*IndexED)
+<span class='va'>t1996e</span> <span class='op'>&lt;-</span> <span class='va'>t1996</span> <span class='op'>%&gt;%</span> <span class='fu'>as_tibble</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>mutate</span><span class='op'>(</span>
+  TOTALREVe <span class='op'>=</span> <span class='va'>TOTALREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TFEDREVe <span class='op'>=</span> <span class='va'>TFEDREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TSTREVe <span class='op'>=</span> <span class='va'>TSTREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TLOCREVe <span class='op'>=</span> <span class='va'>TLOCREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  PROPTAXe <span class='op'>=</span> <span class='va'>PROPTAX</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  MISCREVe <span class='op'>=</span> <span class='va'>MISCREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TOTALEXPe <span class='op'>=</span> <span class='va'>TOTALEXP</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TCURELSCe <span class='op'>=</span> <span class='va'>TCURELSC</span><span class='op'>*</span><span class='va'>IndexED</span><span class='op'>)</span>
 
-t1997e &lt;- t1997 %&gt;% as_tibble() %&gt;% mutate(
-  TOTALREVe = TOTALREV*IndexED,
-  TFEDREVe = TFEDREV*IndexED,
-  TSTREVe = TSTREV*IndexED,
-  TLOCREVe = TLOCREV*IndexED,
-  PROPTAXe = PROPTAX*IndexED,
-  MISCREVe = MISCREV*IndexED,
-  TOTALEXPe = TOTALEXP*IndexED,
-  TCURELSCe = TCURELSC*IndexED)
+<span class='va'>t1997e</span> <span class='op'>&lt;-</span> <span class='va'>t1997</span> <span class='op'>%&gt;%</span> <span class='fu'>as_tibble</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>mutate</span><span class='op'>(</span>
+  TOTALREVe <span class='op'>=</span> <span class='va'>TOTALREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TFEDREVe <span class='op'>=</span> <span class='va'>TFEDREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TSTREVe <span class='op'>=</span> <span class='va'>TSTREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TLOCREVe <span class='op'>=</span> <span class='va'>TLOCREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  PROPTAXe <span class='op'>=</span> <span class='va'>PROPTAX</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  MISCREVe <span class='op'>=</span> <span class='va'>MISCREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TOTALEXPe <span class='op'>=</span> <span class='va'>TOTALEXP</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TCURELSCe <span class='op'>=</span> <span class='va'>TCURELSC</span><span class='op'>*</span><span class='va'>IndexED</span><span class='op'>)</span>
 
-t1998e &lt;- t1998 %&gt;% as_tibble() %&gt;% mutate(
-  TOTALREVe = TOTALREV*IndexED,
-  TFEDREVe = TFEDREV*IndexED,
-  TSTREVe = TSTREV*IndexED,
-  TLOCREVe = TLOCREV*IndexED,
-  PROPTAXe = PROPTAX*IndexED,
-  MISCREVe = MISCREV*IndexED,
-  TOTALEXPe = TOTALEXP*IndexED,
-  TCURELSCe = TCURELSC*IndexED)
+<span class='va'>t1998e</span> <span class='op'>&lt;-</span> <span class='va'>t1998</span> <span class='op'>%&gt;%</span> <span class='fu'>as_tibble</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>mutate</span><span class='op'>(</span>
+  TOTALREVe <span class='op'>=</span> <span class='va'>TOTALREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TFEDREVe <span class='op'>=</span> <span class='va'>TFEDREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TSTREVe <span class='op'>=</span> <span class='va'>TSTREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TLOCREVe <span class='op'>=</span> <span class='va'>TLOCREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  PROPTAXe <span class='op'>=</span> <span class='va'>PROPTAX</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  MISCREVe <span class='op'>=</span> <span class='va'>MISCREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TOTALEXPe <span class='op'>=</span> <span class='va'>TOTALEXP</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TCURELSCe <span class='op'>=</span> <span class='va'>TCURELSC</span><span class='op'>*</span><span class='va'>IndexED</span><span class='op'>)</span>
 
-t1999e &lt;- t1999 %&gt;% as_tibble() %&gt;% mutate(
-  TOTALREVe = TOTALREV*IndexED,
-  TFEDREVe = TFEDREV*IndexED,
-  TSTREVe = TSTREV*IndexED,
-  TLOCREVe = TLOCREV*IndexED,
-  PROPTAXe = PROPTAX*IndexED,
-  MISCREVe = MISCREV*IndexED,
-  TOTALEXPe = TOTALEXP*IndexED,
-  TCURELSCe = TCURELSC*IndexED)
+<span class='va'>t1999e</span> <span class='op'>&lt;-</span> <span class='va'>t1999</span> <span class='op'>%&gt;%</span> <span class='fu'>as_tibble</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>mutate</span><span class='op'>(</span>
+  TOTALREVe <span class='op'>=</span> <span class='va'>TOTALREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TFEDREVe <span class='op'>=</span> <span class='va'>TFEDREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TSTREVe <span class='op'>=</span> <span class='va'>TSTREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TLOCREVe <span class='op'>=</span> <span class='va'>TLOCREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  PROPTAXe <span class='op'>=</span> <span class='va'>PROPTAX</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  MISCREVe <span class='op'>=</span> <span class='va'>MISCREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TOTALEXPe <span class='op'>=</span> <span class='va'>TOTALEXP</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TCURELSCe <span class='op'>=</span> <span class='va'>TCURELSC</span><span class='op'>*</span><span class='va'>IndexED</span><span class='op'>)</span>
 
-t2000e &lt;- t2000 %&gt;% as_tibble() %&gt;% mutate(
-  TOTALREVe = TOTALREV*IndexED,
-  TFEDREVe = TFEDREV*IndexED,
-  TSTREVe = TSTREV*IndexED,
-  TLOCREVe = TLOCREV*IndexED,
-  PROPTAXe = PROPTAX*IndexED,
-  MISCREVe = MISCREV*IndexED,
-  TOTALEXPe = TOTALEXP*IndexED,
-  TCURELSCe = TCURELSC*IndexED)
+<span class='va'>t2000e</span> <span class='op'>&lt;-</span> <span class='va'>t2000</span> <span class='op'>%&gt;%</span> <span class='fu'>as_tibble</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>mutate</span><span class='op'>(</span>
+  TOTALREVe <span class='op'>=</span> <span class='va'>TOTALREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TFEDREVe <span class='op'>=</span> <span class='va'>TFEDREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TSTREVe <span class='op'>=</span> <span class='va'>TSTREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TLOCREVe <span class='op'>=</span> <span class='va'>TLOCREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  PROPTAXe <span class='op'>=</span> <span class='va'>PROPTAX</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  MISCREVe <span class='op'>=</span> <span class='va'>MISCREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TOTALEXPe <span class='op'>=</span> <span class='va'>TOTALEXP</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TCURELSCe <span class='op'>=</span> <span class='va'>TCURELSC</span><span class='op'>*</span><span class='va'>IndexED</span><span class='op'>)</span>
 
-t2001e &lt;- t2001 %&gt;% as_tibble() %&gt;% mutate(
-  TOTALREVe = TOTALREV*IndexED,
-  TFEDREVe = TFEDREV*IndexED,
-  TSTREVe = TSTREV*IndexED,
-  TLOCREVe = TLOCREV*IndexED,
-  PROPTAXe = PROPTAX*IndexED,
-  MISCREVe = MISCREV*IndexED,
-  TOTALEXPe = TOTALEXP*IndexED,
-  TCURELSCe = TCURELSC*IndexED)
+<span class='va'>t2001e</span> <span class='op'>&lt;-</span> <span class='va'>t2001</span> <span class='op'>%&gt;%</span> <span class='fu'>as_tibble</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>mutate</span><span class='op'>(</span>
+  TOTALREVe <span class='op'>=</span> <span class='va'>TOTALREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TFEDREVe <span class='op'>=</span> <span class='va'>TFEDREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TSTREVe <span class='op'>=</span> <span class='va'>TSTREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TLOCREVe <span class='op'>=</span> <span class='va'>TLOCREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  PROPTAXe <span class='op'>=</span> <span class='va'>PROPTAX</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  MISCREVe <span class='op'>=</span> <span class='va'>MISCREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TOTALEXPe <span class='op'>=</span> <span class='va'>TOTALEXP</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TCURELSCe <span class='op'>=</span> <span class='va'>TCURELSC</span><span class='op'>*</span><span class='va'>IndexED</span><span class='op'>)</span>
 
 
-t2002e &lt;- t2002 %&gt;% as_tibble() %&gt;% mutate(
-  TOTALREVe = TOTALREV*IndexED,
-  TFEDREVe = TFEDREV*IndexED,
-  TSTREVe = TSTREV*IndexED,
-  TLOCREVe = TLOCREV*IndexED,
-  PROPTAXe = PROPTAX*IndexED,
-  MISCREVe = MISCREV*IndexED,
-  TOTALEXPe = TOTALEXP*IndexED,
-  TCURELSCe = TCURELSC*IndexED)
+<span class='va'>t2002e</span> <span class='op'>&lt;-</span> <span class='va'>t2002</span> <span class='op'>%&gt;%</span> <span class='fu'>as_tibble</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>mutate</span><span class='op'>(</span>
+  TOTALREVe <span class='op'>=</span> <span class='va'>TOTALREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TFEDREVe <span class='op'>=</span> <span class='va'>TFEDREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TSTREVe <span class='op'>=</span> <span class='va'>TSTREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TLOCREVe <span class='op'>=</span> <span class='va'>TLOCREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  PROPTAXe <span class='op'>=</span> <span class='va'>PROPTAX</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  MISCREVe <span class='op'>=</span> <span class='va'>MISCREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TOTALEXPe <span class='op'>=</span> <span class='va'>TOTALEXP</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TCURELSCe <span class='op'>=</span> <span class='va'>TCURELSC</span><span class='op'>*</span><span class='va'>IndexED</span><span class='op'>)</span>
 
-t2003e &lt;- t2003 %&gt;% as_tibble() %&gt;% mutate(
-  TOTALREVe = TOTALREV*IndexED,
-  TFEDREVe = TFEDREV*IndexED,
-  TSTREVe = TSTREV*IndexED,
-  TLOCREVe = TLOCREV*IndexED,
-  PROPTAXe = PROPTAX*IndexED,
-  MISCREVe = MISCREV*IndexED,
-  TOTALEXPe = TOTALEXP*IndexED,
-  TCURELSCe = TCURELSC*IndexED)
+<span class='va'>t2003e</span> <span class='op'>&lt;-</span> <span class='va'>t2003</span> <span class='op'>%&gt;%</span> <span class='fu'>as_tibble</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>mutate</span><span class='op'>(</span>
+  TOTALREVe <span class='op'>=</span> <span class='va'>TOTALREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TFEDREVe <span class='op'>=</span> <span class='va'>TFEDREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TSTREVe <span class='op'>=</span> <span class='va'>TSTREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TLOCREVe <span class='op'>=</span> <span class='va'>TLOCREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  PROPTAXe <span class='op'>=</span> <span class='va'>PROPTAX</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  MISCREVe <span class='op'>=</span> <span class='va'>MISCREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TOTALEXPe <span class='op'>=</span> <span class='va'>TOTALEXP</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TCURELSCe <span class='op'>=</span> <span class='va'>TCURELSC</span><span class='op'>*</span><span class='va'>IndexED</span><span class='op'>)</span>
 
-t2004e &lt;- t2004 %&gt;% as_tibble() %&gt;% mutate(
-  TOTALREVe = TOTALREV*IndexED,
-  TFEDREVe = TFEDREV*IndexED,
-  TSTREVe = TSTREV*IndexED,
-  TLOCREVe = TLOCREV*IndexED,
-  PROPTAXe = PROPTAX*IndexED,
-  MISCREVe = MISCREV*IndexED,
-  TOTALEXPe = TOTALEXP*IndexED,
-  TCURELSCe = TCURELSC*IndexED)
+<span class='va'>t2004e</span> <span class='op'>&lt;-</span> <span class='va'>t2004</span> <span class='op'>%&gt;%</span> <span class='fu'>as_tibble</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>mutate</span><span class='op'>(</span>
+  TOTALREVe <span class='op'>=</span> <span class='va'>TOTALREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TFEDREVe <span class='op'>=</span> <span class='va'>TFEDREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TSTREVe <span class='op'>=</span> <span class='va'>TSTREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TLOCREVe <span class='op'>=</span> <span class='va'>TLOCREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  PROPTAXe <span class='op'>=</span> <span class='va'>PROPTAX</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  MISCREVe <span class='op'>=</span> <span class='va'>MISCREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TOTALEXPe <span class='op'>=</span> <span class='va'>TOTALEXP</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TCURELSCe <span class='op'>=</span> <span class='va'>TCURELSC</span><span class='op'>*</span><span class='va'>IndexED</span><span class='op'>)</span>
 
-t2005e &lt;- t2005 %&gt;% as_tibble() %&gt;% mutate(
-  TOTALREVe = TOTALREV*IndexED,
-  TFEDREVe = TFEDREV*IndexED,
-  TSTREVe = TSTREV*IndexED,
-  TLOCREVe = TLOCREV*IndexED,
-  PROPTAXe = PROPTAX*IndexED,
-  MISCREVe = MISCREV*IndexED,
-  TOTALEXPe = TOTALEXP*IndexED,
-  TCURELSCe = TCURELSC*IndexED)
+<span class='va'>t2005e</span> <span class='op'>&lt;-</span> <span class='va'>t2005</span> <span class='op'>%&gt;%</span> <span class='fu'>as_tibble</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>mutate</span><span class='op'>(</span>
+  TOTALREVe <span class='op'>=</span> <span class='va'>TOTALREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TFEDREVe <span class='op'>=</span> <span class='va'>TFEDREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TSTREVe <span class='op'>=</span> <span class='va'>TSTREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TLOCREVe <span class='op'>=</span> <span class='va'>TLOCREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  PROPTAXe <span class='op'>=</span> <span class='va'>PROPTAX</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  MISCREVe <span class='op'>=</span> <span class='va'>MISCREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TOTALEXPe <span class='op'>=</span> <span class='va'>TOTALEXP</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TCURELSCe <span class='op'>=</span> <span class='va'>TCURELSC</span><span class='op'>*</span><span class='va'>IndexED</span><span class='op'>)</span>
 
-t2006e &lt;- t2006 %&gt;% as_tibble() %&gt;% mutate(
-  TOTALREVe = TOTALREV*IndexED,
-  TFEDREVe = TFEDREV*IndexED,
-  TSTREVe = TSTREV*IndexED,
-  TLOCREVe = TLOCREV*IndexED,
-  PROPTAXe = PROPTAX*IndexED,
-  MISCREVe = MISCREV*IndexED,
-  TOTALEXPe = TOTALEXP*IndexED,
-  TCURELSCe = TCURELSC*IndexED)
+<span class='va'>t2006e</span> <span class='op'>&lt;-</span> <span class='va'>t2006</span> <span class='op'>%&gt;%</span> <span class='fu'>as_tibble</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>mutate</span><span class='op'>(</span>
+  TOTALREVe <span class='op'>=</span> <span class='va'>TOTALREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TFEDREVe <span class='op'>=</span> <span class='va'>TFEDREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TSTREVe <span class='op'>=</span> <span class='va'>TSTREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TLOCREVe <span class='op'>=</span> <span class='va'>TLOCREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  PROPTAXe <span class='op'>=</span> <span class='va'>PROPTAX</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  MISCREVe <span class='op'>=</span> <span class='va'>MISCREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TOTALEXPe <span class='op'>=</span> <span class='va'>TOTALEXP</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TCURELSCe <span class='op'>=</span> <span class='va'>TCURELSC</span><span class='op'>*</span><span class='va'>IndexED</span><span class='op'>)</span>
 
-t2007e &lt;- t2007 %&gt;% as_tibble() %&gt;% mutate(
-  TOTALREVe = TOTALREV*IndexED,
-  TFEDREVe = TFEDREV*IndexED,
-  TSTREVe = TSTREV*IndexED,
-  TLOCREVe = TLOCREV*IndexED,
-  PROPTAXe = PROPTAX*IndexED,
-  MISCREVe = MISCREV*IndexED,
-  TOTALEXPe = TOTALEXP*IndexED,
-  TCURELSCe = TCURELSC*IndexED)
+<span class='va'>t2007e</span> <span class='op'>&lt;-</span> <span class='va'>t2007</span> <span class='op'>%&gt;%</span> <span class='fu'>as_tibble</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>mutate</span><span class='op'>(</span>
+  TOTALREVe <span class='op'>=</span> <span class='va'>TOTALREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TFEDREVe <span class='op'>=</span> <span class='va'>TFEDREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TSTREVe <span class='op'>=</span> <span class='va'>TSTREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TLOCREVe <span class='op'>=</span> <span class='va'>TLOCREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  PROPTAXe <span class='op'>=</span> <span class='va'>PROPTAX</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  MISCREVe <span class='op'>=</span> <span class='va'>MISCREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TOTALEXPe <span class='op'>=</span> <span class='va'>TOTALEXP</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TCURELSCe <span class='op'>=</span> <span class='va'>TCURELSC</span><span class='op'>*</span><span class='va'>IndexED</span><span class='op'>)</span>
 
-t2008e &lt;- t2008 %&gt;% as_tibble() %&gt;% mutate(
-  TOTALREVe = TOTALREV*IndexED,
-  TFEDREVe = TFEDREV*IndexED,
-  TSTREVe = TSTREV*IndexED,
-  TLOCREVe = TLOCREV*IndexED,
-  PROPTAXe = PROPTAX*IndexED,
-  MISCREVe = MISCREV*IndexED,
-  TOTALEXPe = TOTALEXP*IndexED,
-  TCURELSCe = TCURELSC*IndexED)
+<span class='va'>t2008e</span> <span class='op'>&lt;-</span> <span class='va'>t2008</span> <span class='op'>%&gt;%</span> <span class='fu'>as_tibble</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>mutate</span><span class='op'>(</span>
+  TOTALREVe <span class='op'>=</span> <span class='va'>TOTALREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TFEDREVe <span class='op'>=</span> <span class='va'>TFEDREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TSTREVe <span class='op'>=</span> <span class='va'>TSTREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TLOCREVe <span class='op'>=</span> <span class='va'>TLOCREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  PROPTAXe <span class='op'>=</span> <span class='va'>PROPTAX</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  MISCREVe <span class='op'>=</span> <span class='va'>MISCREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TOTALEXPe <span class='op'>=</span> <span class='va'>TOTALEXP</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TCURELSCe <span class='op'>=</span> <span class='va'>TCURELSC</span><span class='op'>*</span><span class='va'>IndexED</span><span class='op'>)</span>
 
-t2009e &lt;- t2009 %&gt;% as_tibble() %&gt;% mutate(
-  TOTALREVe = TOTALREV*IndexED,
-  TFEDREVe = TFEDREV*IndexED,
-  TSTREVe = TSTREV*IndexED,
-  TLOCREVe = TLOCREV*IndexED,
-  PROPTAXe = PROPTAX*IndexED,
-  MISCREVe = MISCREV*IndexED,
-  TOTALEXPe = TOTALEXP*IndexED,
-  TCURELSCe = TCURELSC*IndexED)
+<span class='va'>t2009e</span> <span class='op'>&lt;-</span> <span class='va'>t2009</span> <span class='op'>%&gt;%</span> <span class='fu'>as_tibble</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>mutate</span><span class='op'>(</span>
+  TOTALREVe <span class='op'>=</span> <span class='va'>TOTALREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TFEDREVe <span class='op'>=</span> <span class='va'>TFEDREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TSTREVe <span class='op'>=</span> <span class='va'>TSTREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TLOCREVe <span class='op'>=</span> <span class='va'>TLOCREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  PROPTAXe <span class='op'>=</span> <span class='va'>PROPTAX</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  MISCREVe <span class='op'>=</span> <span class='va'>MISCREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TOTALEXPe <span class='op'>=</span> <span class='va'>TOTALEXP</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TCURELSCe <span class='op'>=</span> <span class='va'>TCURELSC</span><span class='op'>*</span><span class='va'>IndexED</span><span class='op'>)</span>
 
-t2010e &lt;- t2010 %&gt;% as_tibble() %&gt;% mutate(
-  TOTALREVe = TOTALREV*IndexED,
-  TFEDREVe = TFEDREV*IndexED,
-  TSTREVe = TSTREV*IndexED,
-  TLOCREVe = TLOCREV*IndexED,
-  PROPTAXe = PROPTAX*IndexED,
-  MISCREVe = MISCREV*IndexED,
-  TOTALEXPe = TOTALEXP*IndexED,
-  TCURELSCe = TCURELSC*IndexED)
+<span class='va'>t2010e</span> <span class='op'>&lt;-</span> <span class='va'>t2010</span> <span class='op'>%&gt;%</span> <span class='fu'>as_tibble</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>mutate</span><span class='op'>(</span>
+  TOTALREVe <span class='op'>=</span> <span class='va'>TOTALREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TFEDREVe <span class='op'>=</span> <span class='va'>TFEDREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TSTREVe <span class='op'>=</span> <span class='va'>TSTREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TLOCREVe <span class='op'>=</span> <span class='va'>TLOCREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  PROPTAXe <span class='op'>=</span> <span class='va'>PROPTAX</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  MISCREVe <span class='op'>=</span> <span class='va'>MISCREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TOTALEXPe <span class='op'>=</span> <span class='va'>TOTALEXP</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TCURELSCe <span class='op'>=</span> <span class='va'>TCURELSC</span><span class='op'>*</span><span class='va'>IndexED</span><span class='op'>)</span>
 
-t2011e &lt;- t2011 %&gt;% as_tibble() %&gt;% mutate(
-  TOTALREVe = TOTALREV*IndexED,
-  TFEDREVe = TFEDREV*IndexED,
-  TSTREVe = TSTREV*IndexED,
-  TLOCREVe = TLOCREV*IndexED,
-  PROPTAXe = PROPTAX*IndexED,
-  MISCREVe = MISCREV*IndexED,
-  TOTALEXPe = TOTALEXP*IndexED,
-  TCURELSCe = TCURELSC*IndexED)
+<span class='va'>t2011e</span> <span class='op'>&lt;-</span> <span class='va'>t2011</span> <span class='op'>%&gt;%</span> <span class='fu'>as_tibble</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>mutate</span><span class='op'>(</span>
+  TOTALREVe <span class='op'>=</span> <span class='va'>TOTALREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TFEDREVe <span class='op'>=</span> <span class='va'>TFEDREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TSTREVe <span class='op'>=</span> <span class='va'>TSTREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TLOCREVe <span class='op'>=</span> <span class='va'>TLOCREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  PROPTAXe <span class='op'>=</span> <span class='va'>PROPTAX</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  MISCREVe <span class='op'>=</span> <span class='va'>MISCREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TOTALEXPe <span class='op'>=</span> <span class='va'>TOTALEXP</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TCURELSCe <span class='op'>=</span> <span class='va'>TCURELSC</span><span class='op'>*</span><span class='va'>IndexED</span><span class='op'>)</span>
 
-t2012e &lt;- t2012 %&gt;% as_tibble() %&gt;% mutate(
-  TOTALREVe = TOTALREV*IndexED,
-  TFEDREVe = TFEDREV*IndexED,
-  TSTREVe = TSTREV*IndexED,
-  TLOCREVe = TLOCREV*IndexED,
-  PROPTAXe = PROPTAX*IndexED,
-  MISCREVe = MISCREV*IndexED,
-  TOTALEXPe = TOTALEXP*IndexED,
-  TCURELSCe = TCURELSC*IndexED)
+<span class='va'>t2012e</span> <span class='op'>&lt;-</span> <span class='va'>t2012</span> <span class='op'>%&gt;%</span> <span class='fu'>as_tibble</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>mutate</span><span class='op'>(</span>
+  TOTALREVe <span class='op'>=</span> <span class='va'>TOTALREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TFEDREVe <span class='op'>=</span> <span class='va'>TFEDREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TSTREVe <span class='op'>=</span> <span class='va'>TSTREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TLOCREVe <span class='op'>=</span> <span class='va'>TLOCREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  PROPTAXe <span class='op'>=</span> <span class='va'>PROPTAX</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  MISCREVe <span class='op'>=</span> <span class='va'>MISCREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TOTALEXPe <span class='op'>=</span> <span class='va'>TOTALEXP</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TCURELSCe <span class='op'>=</span> <span class='va'>TCURELSC</span><span class='op'>*</span><span class='va'>IndexED</span><span class='op'>)</span>
 
-t2013e &lt;- t2013 %&gt;% as_tibble() %&gt;% mutate(
-  TOTALREVe = TOTALREV*IndexED,
-  TFEDREVe = TFEDREV*IndexED,
-  TSTREVe = TSTREV*IndexED,
-  TLOCREVe = TLOCREV*IndexED,
-  PROPTAXe = PROPTAX*IndexED,
-  MISCREVe = MISCREV*IndexED,
-  TOTALEXPe = TOTALEXP*IndexED,
-  TCURELSCe = TCURELSC*IndexED)
+<span class='va'>t2013e</span> <span class='op'>&lt;-</span> <span class='va'>t2013</span> <span class='op'>%&gt;%</span> <span class='fu'>as_tibble</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>mutate</span><span class='op'>(</span>
+  TOTALREVe <span class='op'>=</span> <span class='va'>TOTALREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TFEDREVe <span class='op'>=</span> <span class='va'>TFEDREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TSTREVe <span class='op'>=</span> <span class='va'>TSTREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TLOCREVe <span class='op'>=</span> <span class='va'>TLOCREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  PROPTAXe <span class='op'>=</span> <span class='va'>PROPTAX</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  MISCREVe <span class='op'>=</span> <span class='va'>MISCREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TOTALEXPe <span class='op'>=</span> <span class='va'>TOTALEXP</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TCURELSCe <span class='op'>=</span> <span class='va'>TCURELSC</span><span class='op'>*</span><span class='va'>IndexED</span><span class='op'>)</span>
 
-t2014e &lt;- t2014 %&gt;% as_tibble() %&gt;% mutate(
-  TOTALREVe = TOTALREV*IndexED,
-  TFEDREVe = TFEDREV*IndexED,
-  TSTREVe = TSTREV*IndexED,
-  TLOCREVe = TLOCREV*IndexED,
-  PROPTAXe = PROPTAX*IndexED,
-  MISCREVe = MISCREV*IndexED,
-  TOTALEXPe = TOTALEXP*IndexED,
-  TCURELSCe = TCURELSC*IndexED)
+<span class='va'>t2014e</span> <span class='op'>&lt;-</span> <span class='va'>t2014</span> <span class='op'>%&gt;%</span> <span class='fu'>as_tibble</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>mutate</span><span class='op'>(</span>
+  TOTALREVe <span class='op'>=</span> <span class='va'>TOTALREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TFEDREVe <span class='op'>=</span> <span class='va'>TFEDREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TSTREVe <span class='op'>=</span> <span class='va'>TSTREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TLOCREVe <span class='op'>=</span> <span class='va'>TLOCREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  PROPTAXe <span class='op'>=</span> <span class='va'>PROPTAX</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  MISCREVe <span class='op'>=</span> <span class='va'>MISCREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TOTALEXPe <span class='op'>=</span> <span class='va'>TOTALEXP</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TCURELSCe <span class='op'>=</span> <span class='va'>TCURELSC</span><span class='op'>*</span><span class='va'>IndexED</span><span class='op'>)</span>
 
-t2015e &lt;- t2015 %&gt;% as_tibble() %&gt;% mutate(
-  TOTALREVe = TOTALREV*IndexED,
-  TFEDREVe = TFEDREV*IndexED,
-  TSTREVe = TSTREV*IndexED,
-  TLOCREVe = TLOCREV*IndexED,
-  PROPTAXe = PROPTAX*IndexED,
-  MISCREVe = MISCREV*IndexED,
-  TOTALEXPe = TOTALEXP*IndexED,
-  TCURELSCe = TCURELSC*IndexED)</code></pre>
+<span class='va'>t2015e</span> <span class='op'>&lt;-</span> <span class='va'>t2015</span> <span class='op'>%&gt;%</span> <span class='fu'>as_tibble</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>mutate</span><span class='op'>(</span>
+  TOTALREVe <span class='op'>=</span> <span class='va'>TOTALREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TFEDREVe <span class='op'>=</span> <span class='va'>TFEDREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TSTREVe <span class='op'>=</span> <span class='va'>TSTREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TLOCREVe <span class='op'>=</span> <span class='va'>TLOCREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  PROPTAXe <span class='op'>=</span> <span class='va'>PROPTAX</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  MISCREVe <span class='op'>=</span> <span class='va'>MISCREV</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TOTALEXPe <span class='op'>=</span> <span class='va'>TOTALEXP</span><span class='op'>*</span><span class='va'>IndexED</span>,
+  TCURELSCe <span class='op'>=</span> <span class='va'>TCURELSC</span><span class='op'>*</span><span class='va'>IndexED</span><span class='op'>)</span>
+</code></pre>
+</div>
 </div>
 <h3 id="merge-all-datasets-into-one">Merge All Datasets Into One</h3>
 <p>At this point, once each of our individual datasets that are adjusted for inflation are compiled, we can merge them into one single dataset that is one step closer to being visualized.</p>
 <div class="layout-chunk" data-layout="l-body">
-<pre class="r"><code>
-full.94e &lt;- bind_rows(t1993e, t1994e)
-full.95e &lt;- bind_rows(full.94e, t1995e)
-full.96e &lt;- bind_rows(full.95e, t1996e)
-full.97e &lt;- bind_rows(full.96e, t1997e)
-full.98e &lt;- bind_rows(full.97e, t1998e)
-full.99e &lt;- bind_rows(full.98e, t1999e)
-full.00e &lt;- bind_rows(full.99e, t2000e)
-full.01e &lt;- bind_rows(full.00e, t2001e)
-full.02e &lt;- bind_rows(full.01e, t2002e)
-full.03e &lt;- bind_rows(full.02e, t2003e)
-full.04e &lt;- bind_rows(full.03e, t2004e)
-full.05e &lt;- bind_rows(full.04e, t2005e)
-full.06e &lt;- bind_rows(full.05e, t2006e)
-full.07e &lt;- bind_rows(full.06e, t2007e)
-full.08e &lt;- bind_rows(full.07e, t2008e)
-full.09e &lt;- bind_rows(full.08e, t2009e)
-full.10e &lt;- bind_rows(full.09e, t2010e)
-full.11e &lt;- bind_rows(full.10e, t2011e)
-full.12e &lt;- bind_rows(full.11e, t2012e)
-full.13e &lt;- bind_rows(full.12e, t2013e)
-full.14e &lt;- bind_rows(full.13e, t2014e)
-full25e &lt;- bind_rows(full.14e, t2015e)
+<div class="sourceCode">
+<pre><code><span class='va'>full.94e</span> <span class='op'>&lt;-</span> <span class='fu'>bind_rows</span><span class='op'>(</span><span class='va'>t1993e</span>, <span class='va'>t1994e</span><span class='op'>)</span>
+<span class='va'>full.95e</span> <span class='op'>&lt;-</span> <span class='fu'>bind_rows</span><span class='op'>(</span><span class='va'>full.94e</span>, <span class='va'>t1995e</span><span class='op'>)</span>
+<span class='va'>full.96e</span> <span class='op'>&lt;-</span> <span class='fu'>bind_rows</span><span class='op'>(</span><span class='va'>full.95e</span>, <span class='va'>t1996e</span><span class='op'>)</span>
+<span class='va'>full.97e</span> <span class='op'>&lt;-</span> <span class='fu'>bind_rows</span><span class='op'>(</span><span class='va'>full.96e</span>, <span class='va'>t1997e</span><span class='op'>)</span>
+<span class='va'>full.98e</span> <span class='op'>&lt;-</span> <span class='fu'>bind_rows</span><span class='op'>(</span><span class='va'>full.97e</span>, <span class='va'>t1998e</span><span class='op'>)</span>
+<span class='va'>full.99e</span> <span class='op'>&lt;-</span> <span class='fu'>bind_rows</span><span class='op'>(</span><span class='va'>full.98e</span>, <span class='va'>t1999e</span><span class='op'>)</span>
+<span class='va'>full.00e</span> <span class='op'>&lt;-</span> <span class='fu'>bind_rows</span><span class='op'>(</span><span class='va'>full.99e</span>, <span class='va'>t2000e</span><span class='op'>)</span>
+<span class='va'>full.01e</span> <span class='op'>&lt;-</span> <span class='fu'>bind_rows</span><span class='op'>(</span><span class='va'>full.00e</span>, <span class='va'>t2001e</span><span class='op'>)</span>
+<span class='va'>full.02e</span> <span class='op'>&lt;-</span> <span class='fu'>bind_rows</span><span class='op'>(</span><span class='va'>full.01e</span>, <span class='va'>t2002e</span><span class='op'>)</span>
+<span class='va'>full.03e</span> <span class='op'>&lt;-</span> <span class='fu'>bind_rows</span><span class='op'>(</span><span class='va'>full.02e</span>, <span class='va'>t2003e</span><span class='op'>)</span>
+<span class='va'>full.04e</span> <span class='op'>&lt;-</span> <span class='fu'>bind_rows</span><span class='op'>(</span><span class='va'>full.03e</span>, <span class='va'>t2004e</span><span class='op'>)</span>
+<span class='va'>full.05e</span> <span class='op'>&lt;-</span> <span class='fu'>bind_rows</span><span class='op'>(</span><span class='va'>full.04e</span>, <span class='va'>t2005e</span><span class='op'>)</span>
+<span class='va'>full.06e</span> <span class='op'>&lt;-</span> <span class='fu'>bind_rows</span><span class='op'>(</span><span class='va'>full.05e</span>, <span class='va'>t2006e</span><span class='op'>)</span>
+<span class='va'>full.07e</span> <span class='op'>&lt;-</span> <span class='fu'>bind_rows</span><span class='op'>(</span><span class='va'>full.06e</span>, <span class='va'>t2007e</span><span class='op'>)</span>
+<span class='va'>full.08e</span> <span class='op'>&lt;-</span> <span class='fu'>bind_rows</span><span class='op'>(</span><span class='va'>full.07e</span>, <span class='va'>t2008e</span><span class='op'>)</span>
+<span class='va'>full.09e</span> <span class='op'>&lt;-</span> <span class='fu'>bind_rows</span><span class='op'>(</span><span class='va'>full.08e</span>, <span class='va'>t2009e</span><span class='op'>)</span>
+<span class='va'>full.10e</span> <span class='op'>&lt;-</span> <span class='fu'>bind_rows</span><span class='op'>(</span><span class='va'>full.09e</span>, <span class='va'>t2010e</span><span class='op'>)</span>
+<span class='va'>full.11e</span> <span class='op'>&lt;-</span> <span class='fu'>bind_rows</span><span class='op'>(</span><span class='va'>full.10e</span>, <span class='va'>t2011e</span><span class='op'>)</span>
+<span class='va'>full.12e</span> <span class='op'>&lt;-</span> <span class='fu'>bind_rows</span><span class='op'>(</span><span class='va'>full.11e</span>, <span class='va'>t2012e</span><span class='op'>)</span>
+<span class='va'>full.13e</span> <span class='op'>&lt;-</span> <span class='fu'>bind_rows</span><span class='op'>(</span><span class='va'>full.12e</span>, <span class='va'>t2013e</span><span class='op'>)</span>
+<span class='va'>full.14e</span> <span class='op'>&lt;-</span> <span class='fu'>bind_rows</span><span class='op'>(</span><span class='va'>full.13e</span>, <span class='va'>t2014e</span><span class='op'>)</span>
+<span class='va'>full25e</span> <span class='op'>&lt;-</span> <span class='fu'>bind_rows</span><span class='op'>(</span><span class='va'>full.14e</span>, <span class='va'>t2015e</span><span class='op'>)</span>
 
-full25 &lt;- dplyr::select(full25e, one_of(c(&quot;STATE&quot;, &quot;IDCENSUS&quot;, &quot;YEAR&quot;, &quot;NAME&quot;, &quot;SCHLEV&quot;, &quot;ENROLL&quot;, &quot;TOTALREV&quot;, &quot;TFEDREV&quot;, &quot;TSTREV&quot;,&quot;TLOCREV&quot;, &quot;PROPTAX&quot;, &quot;MISCREV&quot;, &quot;TOTALEXP&quot;, &quot;TCURELSC&quot;)))</code></pre>
+<span class='va'>full25</span> <span class='op'>&lt;-</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>full25e</span>, <span class='fu'>one_of</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"STATE"</span>, <span class='st'>"IDCENSUS"</span>, <span class='st'>"YEAR"</span>, <span class='st'>"NAME"</span>, <span class='st'>"SCHLEV"</span>, <span class='st'>"ENROLL"</span>, <span class='st'>"TOTALREV"</span>, <span class='st'>"TFEDREV"</span>, <span class='st'>"TSTREV"</span>,<span class='st'>"TLOCREV"</span>, <span class='st'>"PROPTAX"</span>, <span class='st'>"MISCREV"</span>, <span class='st'>"TOTALEXP"</span>, <span class='st'>"TCURELSC"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
 </div>
 <h3 id="add-fips-state-codes-to-our-datasets">Add FIPS State Codes To Our Datasets</h3>
 <p>To take full advantage of the <code>geofacet</code> package, I used FIPS code identifiers to help identify each state. For more on what FIPS is, <a href="https://www.census.gov/geo/reference/ansi_statetables.html">check this page out</a>.</p>
 <div class="layout-chunk" data-layout="l-body">
-<pre class="r"><code>
-#Import the FIPS state codes
-fipscode &lt;- read_csv(&quot;data/FIPSStates.csv&quot;, col_types = cols(`census id` = col_character()))
+<div class="sourceCode">
+<pre><code><span class='co'>#Import the FIPS state codes</span>
+<span class='va'>fipscode</span> <span class='op'>&lt;-</span> <span class='fu'>read_csv</span><span class='op'>(</span><span class='st'>"data/FIPSStates.csv"</span>, col_types <span class='op'>=</span> <span class='fu'>cols</span><span class='op'>(</span>`census id` <span class='op'>=</span> <span class='fu'>col_character</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
 
-#Remove Unnecessary Columns
-fipscode &lt;- fipscode %&gt;% as_tibble() %&gt;% mutate(&quot;Official USPS Code&quot; = NULL)
+<span class='co'>#Remove Unnecessary Columns</span>
+<span class='va'>fipscode</span> <span class='op'>&lt;-</span> <span class='va'>fipscode</span> <span class='op'>%&gt;%</span> <span class='fu'>as_tibble</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>mutate</span><span class='op'>(</span><span class='st'>"Official USPS Code"</span> <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 
-#Rename the FIPS id column to &#39;STATE&#39;, which we&#39;ll use to replace our current column identifying each state.  
-fipscode &lt;- rename(fipscode, STATE = &quot;census id&quot;)
+<span class='co'>#Rename the FIPS id column to 'STATE', which we'll use to replace our current column identifying each state.  </span>
+<span class='va'>fipscode</span> <span class='op'>&lt;-</span> <span class='fu'>rename</span><span class='op'>(</span><span class='va'>fipscode</span>, STATE <span class='op'>=</span> <span class='st'>"census id"</span><span class='op'>)</span>
 
-#Add the New State ID to our Uniform Dataset
-fullest &lt;- left_join(full25, fipscode, by =&quot;STATE&quot;)
+<span class='co'>#Add the New State ID to our Uniform Dataset</span>
+<span class='va'>fullest</span> <span class='op'>&lt;-</span> <span class='fu'>left_join</span><span class='op'>(</span><span class='va'>full25</span>, <span class='va'>fipscode</span>, by <span class='op'>=</span><span class='st'>"STATE"</span><span class='op'>)</span>
 
-#Remove All Columns Except our Major Revenue Columns
-full25a &lt;- dplyr::select(fullest, one_of(c(&quot;YEAR&quot;,&quot;Name&quot;, &quot;TOTALREV&quot;, &quot;TFEDREV&quot;, &quot;TSTREV&quot;, &quot;TLOCREV&quot;)))
+<span class='co'>#Remove All Columns Except our Major Revenue Columns</span>
+<span class='va'>full25a</span> <span class='op'>&lt;-</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>fullest</span>, <span class='fu'>one_of</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"YEAR"</span>,<span class='st'>"Name"</span>, <span class='st'>"TOTALREV"</span>, <span class='st'>"TFEDREV"</span>, <span class='st'>"TSTREV"</span>, <span class='st'>"TLOCREV"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
 
-#Change our YEAR column to a Date Format
-full25a &lt;- rename(full25a, State = Name) %&gt;%
-  mutate(YEAR=as.Date(YEAR, format = &quot;%Y&quot;))
+<span class='co'>#Change our YEAR column to a Date Format</span>
+<span class='va'>full25a</span> <span class='op'>&lt;-</span> <span class='fu'>rename</span><span class='op'>(</span><span class='va'>full25a</span>, State <span class='op'>=</span> <span class='va'>Name</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>mutate</span><span class='op'>(</span>YEAR<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='va'>YEAR</span>, format <span class='op'>=</span> <span class='st'>"%Y"</span><span class='op'>)</span><span class='op'>)</span>
   
-#Begin Summarizing our Data by Year &amp; State
-full25b &lt;- full25a %&gt;% group_by(YEAR,State) %&gt;% summarise_each(funs(sum))
+<span class='co'>#Begin Summarizing our Data by Year &amp; State</span>
+<span class='va'>full25b</span> <span class='op'>&lt;-</span> <span class='va'>full25a</span> <span class='op'>%&gt;%</span> <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>YEAR</span>,<span class='va'>State</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>summarise_each</span><span class='op'>(</span><span class='fu'>funs</span><span class='op'>(</span><span class='va'>sum</span><span class='op'>)</span><span class='op'>)</span>
 
-#Now that we have summarized data, calculate the share of revenue by diving each of the three revenue source amounts by the total amount of revenue in that state each year.
-full25b &lt;- full25b %&gt;% as_tibble() %&gt;% mutate(
-  PctFED = (TFEDREV/TOTALREV)*100,
-  PctSTA = (TSTREV/TOTALREV)*100,
-  PctLOC = (TLOCREV/TOTALREV)*100)
+<span class='co'>#Now that we have summarized data, calculate the share of revenue by diving each of the three revenue source amounts by the total amount of revenue in that state each year.</span>
+<span class='va'>full25b</span> <span class='op'>&lt;-</span> <span class='va'>full25b</span> <span class='op'>%&gt;%</span> <span class='fu'>as_tibble</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>mutate</span><span class='op'>(</span>
+  PctFED <span class='op'>=</span> <span class='op'>(</span><span class='va'>TFEDREV</span><span class='op'>/</span><span class='va'>TOTALREV</span><span class='op'>)</span><span class='op'>*</span><span class='fl'>100</span>,
+  PctSTA <span class='op'>=</span> <span class='op'>(</span><span class='va'>TSTREV</span><span class='op'>/</span><span class='va'>TOTALREV</span><span class='op'>)</span><span class='op'>*</span><span class='fl'>100</span>,
+  PctLOC <span class='op'>=</span> <span class='op'>(</span><span class='va'>TLOCREV</span><span class='op'>/</span><span class='va'>TOTALREV</span><span class='op'>)</span><span class='op'>*</span><span class='fl'>100</span><span class='op'>)</span>
   
   
-#Remove the Total Revenue Column
-full25c &lt;- dplyr::select(full25b, one_of(c(&quot;YEAR&quot;, &quot;State&quot;, &quot;PctFED&quot;, &quot;PctSTA&quot;, &quot;PctLOC&quot;)))
+<span class='co'>#Remove the Total Revenue Column</span>
+<span class='va'>full25c</span> <span class='op'>&lt;-</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>full25b</span>, <span class='fu'>one_of</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"YEAR"</span>, <span class='st'>"State"</span>, <span class='st'>"PctFED"</span>, <span class='st'>"PctSTA"</span>, <span class='st'>"PctLOC"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
 
-#Rename Columns with Printable Identifiers
-full25c &lt;- rename(full25c, 
-                 &quot;Federal Revenue&quot; = PctFED,
-                 &quot;State Revenue&quot; = PctSTA,
-                 &quot;Local Revenue&quot; = PctLOC)
+<span class='co'>#Rename Columns with Printable Identifiers</span>
+<span class='va'>full25c</span> <span class='op'>&lt;-</span> <span class='fu'>rename</span><span class='op'>(</span><span class='va'>full25c</span>, 
+                 <span class='st'>"Federal Revenue"</span> <span class='op'>=</span> <span class='va'>PctFED</span>,
+                 <span class='st'>"State Revenue"</span> <span class='op'>=</span> <span class='va'>PctSTA</span>,
+                 <span class='st'>"Local Revenue"</span> <span class='op'>=</span> <span class='va'>PctLOC</span><span class='op'>)</span>
 
-#Transform the Data Longways for Visualization Purposes
-fullest25e &lt;- gather(full25c, &quot;Source&quot;, &quot;Percent&quot;, 3:5)
-yearly_avg &lt;- fullest25e %&gt;% group_by(YEAR,Source) %&gt;% summarise(Annual_Avg = mean(Percent))</code></pre>
+<span class='co'>#Transform the Data Longways for Visualization Purposes</span>
+<span class='va'>fullest25e</span> <span class='op'>&lt;-</span> <span class='fu'>gather</span><span class='op'>(</span><span class='va'>full25c</span>, <span class='st'>"Source"</span>, <span class='st'>"Percent"</span>, <span class='fl'>3</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>)</span>
+<span class='va'>yearly_avg</span> <span class='op'>&lt;-</span> <span class='va'>fullest25e</span> <span class='op'>%&gt;%</span> <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>YEAR</span>,<span class='va'>Source</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>summarise</span><span class='op'>(</span>Annual_Avg <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>Percent</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
 </div>
 <h3 id="plot-the-school-finance-map">Plot The School Finance Map</h3>
 <p>At this point, we’ll use the <code>geofacet</code> and <code>ggplot2</code> packages to visualize our data. For style purposes, I’ve used a theme from the <code>ggthemes</code> package to make the visualization a bit cleaner, along with a few custom theme stylings. Once you run this, you should be able to reproduce the visualization I shared at the top of this post.</p>
 <div class="layout-chunk" data-layout="l-body">
-<pre class="r"><code>
-showtext::showtext_auto()
+<div class="sourceCode">
+<pre><code><span class='fu'>showtext</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/showtext/man/showtext_auto.html'>showtext_auto</a></span><span class='op'>(</span><span class='op'>)</span>
 
-gg &lt;- ggplot(arrange(fullest25e,Source,YEAR), aes(x = YEAR, y =Percent, fill = Source, group = Source)) +
-  geom_area(alpha = 0.8, position = &#39;stack&#39;) +
-  scale_fill_manual(values = c(&quot;#ef8a62&quot;, &quot;#d1e5f0&quot;, &quot;#67a9cf&quot;)) +
-  facet_geo(~ State, grid = &quot;us_state_grid2&quot;) +
-  scale_x_date(expand=c(0,0), date_breaks=&quot;7 year&quot;, date_labels = &quot;%Y&quot;, limits = c(as.Date(c(&quot;1993-02-27&quot;, &quot;2016-06-01&quot;)))) +
-  scale_y_continuous(expand = c(0, 0)) +
-  labs(title = &quot;How Schools Were Paid For Over The Past 25 Years, 1993-2015&quot;,
-       subtitle=&quot;The chart shows annual school funding shares in each state by federal, state, and local sources.&quot;,
-       caption = &quot;Data Source: US Census, Public Finance Survey \nNote: Figures are adjusted for inflation using the BLS Education Index.&quot;,
-       x = &quot;Year&quot;,
-       y = &quot;Percentage of Overall Funding&quot;) + 
-  theme_hc() + 
-  theme(text = element_text(color = &quot;#4D4D4D&quot;),
-        plot.title=element_text(face=&quot;bold&quot;, size = 40),
-        plot.subtitle=element_text(size=24),
-        plot.caption=element_text(size=14),
-        legend.title=element_text(size = 18, face=&quot;bold&quot;),
-        legend.text = element_text(size = 18),
-        legend.position = c(.85, 0.2),
-        legend.box.just = &quot;right&quot;,
-        legend.key.size = unit(1, &quot;cm&quot;),
-        axis.title.y = element_text(color = &quot;#4D4D4D&quot;, face=&#39;bold&#39;),
-        axis.title.x = element_text(size = 14, color = &quot;#4D4D4D&quot;, face=&#39;bold&#39;),
-        strip.text.x = element_text(size = 11.5, color = &quot;#4D4D4D&quot;, face=&#39;bold&#39;),
-        strip.text.y = element_text(size = 14, color = &quot;#4D4D4D&quot;, face=&#39;bold&#39;),
-        strip.background = element_rect(fill = &quot;#ffffff&quot;, color = NA)) +
-        guides(fill=guide_legend(direction = &quot;vertical&quot;, 
-                                 title.position = &quot;top&quot;, 
-                                 label.position = &quot;right&quot;, 
-                                 byrow=TRUE, 
-                                 title=&quot;Source of Funding&quot;))
+<span class='va'>gg</span> <span class='op'>&lt;-</span> <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>arrange</span><span class='op'>(</span><span class='va'>fullest25e</span>,<span class='va'>Source</span>,<span class='va'>YEAR</span><span class='op'>)</span>, <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>YEAR</span>, y <span class='op'>=</span><span class='va'>Percent</span>, fill <span class='op'>=</span> <span class='va'>Source</span>, group <span class='op'>=</span> <span class='va'>Source</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_area</span><span class='op'>(</span>alpha <span class='op'>=</span> <span class='fl'>0.8</span>, position <span class='op'>=</span> <span class='st'>'stack'</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>scale_fill_manual</span><span class='op'>(</span>values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"#ef8a62"</span>, <span class='st'>"#d1e5f0"</span>, <span class='st'>"#67a9cf"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>facet_geo</span><span class='op'>(</span><span class='op'>~</span> <span class='va'>State</span>, grid <span class='op'>=</span> <span class='st'>"us_state_grid2"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>scale_x_date</span><span class='op'>(</span>expand<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>0</span><span class='op'>)</span>, date_breaks<span class='op'>=</span><span class='st'>"7 year"</span>, date_labels <span class='op'>=</span> <span class='st'>"%Y"</span>, limits <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"1993-02-27"</span>, <span class='st'>"2016-06-01"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>scale_y_continuous</span><span class='op'>(</span>expand <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>labs</span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"How Schools Were Paid For Over The Past 25 Years, 1993-2015"</span>,
+       subtitle<span class='op'>=</span><span class='st'>"The chart shows annual school funding shares in each state by federal, state, and local sources."</span>,
+       caption <span class='op'>=</span> <span class='st'>"Data Source: US Census, Public Finance Survey \nNote: Figures are adjusted for inflation using the BLS Education Index."</span>,
+       x <span class='op'>=</span> <span class='st'>"Year"</span>,
+       y <span class='op'>=</span> <span class='st'>"Percentage of Overall Funding"</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'>theme_hc</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'>theme</span><span class='op'>(</span>text <span class='op'>=</span> <span class='fu'>element_text</span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"#4D4D4D"</span><span class='op'>)</span>,
+        plot.title<span class='op'>=</span><span class='fu'>element_text</span><span class='op'>(</span>face<span class='op'>=</span><span class='st'>"bold"</span>, size <span class='op'>=</span> <span class='fl'>40</span><span class='op'>)</span>,
+        plot.subtitle<span class='op'>=</span><span class='fu'>element_text</span><span class='op'>(</span>size<span class='op'>=</span><span class='fl'>24</span><span class='op'>)</span>,
+        plot.caption<span class='op'>=</span><span class='fu'>element_text</span><span class='op'>(</span>size<span class='op'>=</span><span class='fl'>14</span><span class='op'>)</span>,
+        legend.title<span class='op'>=</span><span class='fu'>element_text</span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>18</span>, face<span class='op'>=</span><span class='st'>"bold"</span><span class='op'>)</span>,
+        legend.text <span class='op'>=</span> <span class='fu'>element_text</span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>18</span><span class='op'>)</span>,
+        legend.position <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>.85</span>, <span class='fl'>0.2</span><span class='op'>)</span>,
+        legend.box.just <span class='op'>=</span> <span class='st'>"right"</span>,
+        legend.key.size <span class='op'>=</span> <span class='fu'>unit</span><span class='op'>(</span><span class='fl'>1</span>, <span class='st'>"cm"</span><span class='op'>)</span>,
+        axis.title.y <span class='op'>=</span> <span class='fu'>element_text</span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"#4D4D4D"</span>, face<span class='op'>=</span><span class='st'>'bold'</span><span class='op'>)</span>,
+        axis.title.x <span class='op'>=</span> <span class='fu'>element_text</span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>14</span>, color <span class='op'>=</span> <span class='st'>"#4D4D4D"</span>, face<span class='op'>=</span><span class='st'>'bold'</span><span class='op'>)</span>,
+        strip.text.x <span class='op'>=</span> <span class='fu'>element_text</span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>11.5</span>, color <span class='op'>=</span> <span class='st'>"#4D4D4D"</span>, face<span class='op'>=</span><span class='st'>'bold'</span><span class='op'>)</span>,
+        strip.text.y <span class='op'>=</span> <span class='fu'>element_text</span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>14</span>, color <span class='op'>=</span> <span class='st'>"#4D4D4D"</span>, face<span class='op'>=</span><span class='st'>'bold'</span><span class='op'>)</span>,
+        strip.background <span class='op'>=</span> <span class='fu'>element_rect</span><span class='op'>(</span>fill <span class='op'>=</span> <span class='st'>"#ffffff"</span>, color <span class='op'>=</span> <span class='cn'>NA</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+        <span class='fu'>guides</span><span class='op'>(</span>fill<span class='op'>=</span><span class='fu'>guide_legend</span><span class='op'>(</span>direction <span class='op'>=</span> <span class='st'>"vertical"</span>, 
+                                 title.position <span class='op'>=</span> <span class='st'>"top"</span>, 
+                                 label.position <span class='op'>=</span> <span class='st'>"right"</span>, 
+                                 byrow<span class='op'>=</span><span class='cn'>TRUE</span>, 
+                                 title<span class='op'>=</span><span class='st'>"Source of Funding"</span><span class='op'>)</span><span class='op'>)</span>
 
-# Save The Plot as a .png file
-ggsave(&quot;SFNationalMapOT.png&quot;, plot = gg, device = &quot;png&quot;, dpi=300,  width = 20, height = 12)</code></pre>
+<span class='co'># Save The Plot as a .png file</span>
+<span class='fu'>ggsave</span><span class='op'>(</span><span class='st'>"SFNationalMapOT.png"</span>, plot <span class='op'>=</span> <span class='va'>gg</span>, device <span class='op'>=</span> <span class='st'>"png"</span>, dpi<span class='op'>=</span><span class='fl'>300</span>,  width <span class='op'>=</span> <span class='fl'>20</span>, height <span class='op'>=</span> <span class='fl'>12</span><span class='op'>)</span>
+</code></pre>
+</div>
 </div>
 <h2 id="bonus-school-finance-map">Bonus School Finance Map</h2>
 <p>While I had limited time to produce the code-through for the first map, here’s an extra map that shows how much each state’s per pupil funding compares to the national average since 1992. One note about this one is that it uses the All-Consumer series inflation index from the Bureau of Labor &amp; Statistics for 1992, while the 1993 data onward uses the BLS Education Index.</p>
 <div class="layout-chunk" data-layout="l-page">
 <p><img src="SFNationalMapPP.png" width="2700" /></p>
 </div>
-<h2 id="photo-credit" class="appendix">Photo Credit</h2>
+<h2 class="appendix" id="photo-credit">Photo Credit</h2>
 <p><span>Photo by <a href="https://unsplash.com/@twinsfisch?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Isabella and Louisa Fischer</a> on <a href="https://unsplash.com/s/photos/isabella-louisa-school?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span></p>
-<h2 id="corrections" class="appendix">Corrections</h2>
+<h2 class="appendix" id="corrections">Corrections</h2>
 <p>If you see mistakes or want to suggest changes, please create an <a href="https://github.com/mrworthington/mrworthington.github.io/issues">issue</a> on the source repository.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <section class="footnotes" role="doc-endnotes">
 <hr />
 <ol>

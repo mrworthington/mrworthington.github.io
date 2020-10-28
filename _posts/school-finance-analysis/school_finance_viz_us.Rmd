@@ -14,6 +14,8 @@ output:
   distill::distill_article:
     css: page_header.css
     self_contained: false
+    toc: true
+    toc_depth: 2
 preview: isabella-and-louisa-fischer-uSPjZzYwXO4-unsplash-2.jpg
 categories:
   - School Finance
