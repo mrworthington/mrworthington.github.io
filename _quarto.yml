@@ -5,6 +5,8 @@ project:
 
 website:
   title: "Matt Worthington"
+  repository_url: https://github.com/mrworthington/mrworthington.github.io
+  google-analytics: "UA-52682113-1"
   twitter-card: true
   opengraph: true
   reader-mode: false
