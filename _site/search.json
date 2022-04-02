@@ -133,13 +133,6 @@
     "text": "Photo Credit\n\nPhoto by Ryan Magsino on Unsplash"
   },
   {
-    "objectID": "docs/tutorials/index.html",
-    "href": "docs/tutorials/index.html",
-    "title": "Tutorials",
-    "section": "",
-    "text": "Install Quarto\n:::\n::: {.g-col-lg-9 .g-col-12}"
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Notes From A Spreadsheet",
