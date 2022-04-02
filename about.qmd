@@ -8,6 +8,21 @@ format:
     # self_contained: false
     toc: true
     # toc_depth: 2
+  # pdf:
+  #   pdf-engine: lualatex
+  #   # pdf-engine-opt: -outdir=out
+  #   toc: true
+  #   number-sections: true
+  #   documentclass: report
+  #   toc-title: Contents
+  #   lof: true
+  #   lot: true
+  #   geometry:
+  #     - top=30mm
+  #     - left=20mm
+  #     - heightrounded
+  #   fontfamily: inter
+  #   colorlinks: true
 title-block-banner: bio.jpg
 title-block-banner-color: "#ffffff"
 image: bio.jpg
