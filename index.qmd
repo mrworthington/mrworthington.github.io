@@ -1,0 +1,21 @@
+---
+title: "Notes From A Spreadsheet"
+page-layout: full
+title-block-banner: true
+format:
+  html:
+    css: home_header.css
+listing:
+  sort: "date desc"
+  sort-ui: false
+  filter-ui: false
+  categories: true
+  type: default
+  fields: [image, date, description, categories, title, author, reading-time]
+  field-display-names:
+    # title: "Report"
+    date_format: medium
+  contents:
+    # - "*.qmd"
+    - "articles/"
+---

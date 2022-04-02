@@ -1,0 +1,17 @@
+---
+title: "Get Started"
+subtitle: "Install Quarto, then check out the tutorials to learn the basics."
+format:
+  html:
+    toc: true
+page-layout: full
+anchor-sections: true
+editor: source
+aliases:
+  - /docs/getting-started/installation.html
+---
+
+## Step 1 
+
+#### Install Quarto
+
