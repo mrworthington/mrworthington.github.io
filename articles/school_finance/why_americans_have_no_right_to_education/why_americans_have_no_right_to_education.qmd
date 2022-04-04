@@ -25,6 +25,10 @@ format:
     # toc_depth: 2
 title-block-banner: fullsizeoutput_77ff.jpg
 title-block-banner-color: "#ffffff"
+categories:
+  - School Finance
+  - Recapture
+  - Public Education
 image: fullsizeoutput_77ff.jpg
 ---
 :::{.callout-note}

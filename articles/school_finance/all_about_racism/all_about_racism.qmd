@@ -22,6 +22,10 @@ format:
 image: IMG_0028-e1512660939350.jpg
 title-block-banner: IMG_0028-e1512660939350.jpg
 title-block-banner-color: "#ffffff"
+categories:
+  - School Finance
+  - Recapture
+  - Public Education
 twitter:
   creator: "@mrworthington"
 ---

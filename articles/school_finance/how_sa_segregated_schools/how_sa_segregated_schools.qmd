@@ -18,6 +18,10 @@ format:
 image: HOLC_San_Antonio_City_Survey_Report_1_Exhibit_B_Racial_Concentrations_2.jpg
 title-block-banner: HOLC_San_Antonio_City_Survey_Report_1_Exhibit_B_Racial_Concentrations_2.jpg
 title-block-banner-color: "#ffffff"
+categories:
+  - School Finance
+  - Recapture
+  - Public Education
 twitter:
   creator: "@mrworthington"
 ---
