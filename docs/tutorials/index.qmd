@@ -1,0 +1,22 @@
+---
+title: "Tutorials"
+subtitle: "Install Quarto, then check out the tutorials to learn the basics."
+format:
+  html:
+    toc: true
+page-layout: full
+toc: true
+anchor-sections: true
+editor: source
+aliases:
+  - /docs/getting-started/installation.html
+---
+
+::: {.grid .step .column-page-right}
+::: {.g-col-lg-3 .g-col-12}
+## Step 1 
+
+#### Install Quarto {.fw-light}
+:::
+
+::: {.g-col-lg-9 .g-col-12}

@@ -1,0 +1,298 @@
+---
+title: "How To Improve Texas Schools"
+description: |
+  Despite calls to eliminate recapture from folks in Austin, statewide debates center around choosing between school vouchers and fully funding public schools. So what should we be focused on in the 88th session? The answer is the basic allotment.
+author:
+  - name: Matt Worthington 
+    url: https://mrworthington.com/about
+    affiliation: Self
+    affiliation_url: https://mrworthington.com
+  # - name: Chandra Villanueva
+  #   url: https://everytexan.org/
+  #   affiliation: Every Texan
+  #   affiliation_url: https://everytexan.org/
+date: today
+page-layout: article
+draft: true
+body-header: | 
+  This page brought to you by <https://example.com>
+format:
+  html:
+    date_format: medium
+    css: page_header.css
+    fig-width: 8
+    toc-depth: 3
+title-block-banner: meggyn-pomerleau-2SGDohBsYPg-unsplash-2.jpg
+title-block-banner-color: "#ffffff"
+image: meggyn-pomerleau-2SGDohBsYPg-unsplash-2.jpg
+categories:
+  - School Finance
+  - Public Education
+  - Texas Education Agency
+  - Independent School Districts
+  - Charter Schools
+twitter:
+  creator: "@mrworthington"
+---
+
+```{r hc-theme}
+#| echo: false
+#| message: false
+#| warning: false
+my_hc_theme <- function(base_size="12px", base_family="Ringside Narrow SSm A, Ringside Narrow SSm B, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif", title_size="28px", title_weight = "900", subtitle_size="14px", subtitle_weight = "500", credit_size="10px", header_align = "left", legend_align = "center", credits_align = "left", ...) {
+
+  highcharter::hc_theme_merge(
+    highcharter::hc_theme_smpl(),
+    highcharter::hc_theme(colors = c("#002D74", "#F26852", "#2A7DE1", "#00A9C5", "#3A4A9F"),
+                          marker = list(fillColor = c("#002D74", "#F26852", "#2A7DE1", "#00A9C5", "#3A4A9F"),
+                                        lineColor = '#000',
+                                        radius = 3,
+                                        lineWidth = 1,
+                                        symbol = "circle"),
+                          chart = list(backgroundColor = "#fff",
+                                       style = list(fontFamily = base_family,
+                                                    fontSize = base_size,
+                                                    color="#2d2d2d",
+                                                    fontWeight="500",
+                                                    textTransform="initial")),
+                          title = list(style = list(fontFamily = base_family,
+                                                    fontSize = title_size,
+                                                    fontWeight = title_weight,
+                                                    color="#2d2d2d"),
+                                       align = header_align),
+                          subtitle = list(style = list(fontFamily = base_family,
+                                                       color="#2d2d2d",
+                                                       textTransform="initial",
+                                                       fontWeight=subtitle_weight,
+                                                       fontSize = subtitle_size),
+                                          align = header_align),
+                          legend = list(align = legend_align,
+                                        style = list(fontFamily = base_family,
+                                                     color="white"),
+                                        itemStyle = list(fontFamily = base_family,
+                                                         color = '#2d2d2d'),
+                                        itemHoverStyle = list(color = 'gray'),
+                                        verticalAlign = "top"),
+                          credits = list(style = list(color = "#2d2d2d",
+                                                      fontSize = credit_size),
+                                         align = credits_align),
+                          tooltip = list(
+                            backgroundColor = "#ffffff",
+                            borderColor = "#333f48",
+                            borderRadius = 2,
+                            borderWidth = 3,
+                            shape = "rect",
+                            className = "highchart-ttip-style",
+                            padding = 4
+                          ),
+                          xAxis = list(labels = list(style = list(fontFamily = "JetBrains Mono, sans-serif",
+                                                                  color = "#3C3C3C")),
+                                       title = list(style = list(color = "#2d2d2d",
+                                                                 fontSize = "12px",
+                                                                 color="#2d2d2d",
+                                                                 fontWeight="500")),
+                                       lineColor = '#2d2d2d',
+                                       lineWidth = 2,
+                                       gridLineWidth = 0,
+                                       gridLineColor = 'rgba(219,220,221,1)',
+                                       tickColor = 'rgba(219,220,221,1)',
+                                       tickWidth = 1),
+                          yAxis = list(labels = list(style = list(fontFamily = "JetBrains Mono, sans-serif",
+                                                                  color = "#3C3C3C")),
+                                       title = list(style = list(color = "#2d2d2d",
+                                                                 fontSize = "12px",
+                                                                 color="#2d2d2d",
+                                                                 fontWeight="500")),
+                                       gridLineWidth = 0.75,
+                                       lineColor = 'rgba(219,220,221,0.5)',
+                                       lineWidth = 0,
+                                       MinorGridLineWidth = 0.75,
+                                       MinorGridLineColor = 'rgba(219,220,221,0.5)',
+                                       gridLineWidth = 0.75,
+                                       gridLineColor = 'rgba(219,220,221,0.5)',
+                                       tickColor = 'rgba(219,220,221,1)',
+                                       tickWidth = 1),
+                          plotOptions = list(column = list(opacity=.8,
+                                                           groupPadding = 0,
+                                                           # pointWidth = 35,
+                                                           dataLabels = list(
+                                                             style = list(fontFamily = "JetBrains Mono, sans-serif",
+                                                                          color = "#3C3C3C")
+                                                           )))))
+}
+  
+```
+
+## Purpose of this Post
+
+This post was written up with the explicit goal of helping people understand how best to get dollars into Texas classrooms at a time when students, teachers, and families attending public schools are wrestling with unprecedented struggles. It's not focused on school vouchers, but references them as part of the debate around school funding. Instead of focusing on lots of issues, this post is focused on providing people with actual data to understand what's happening in schools right now.
+
+::: {.callout-note collapse="true" appearance="simple"}
+## Expand: My background in Texas Education
+
+Note: As a native Texan and former educator who left the classroom primarily because I couldn't afford to make ends meet for my family, my career has been dedicated to advancing the public good--though especially for children. I grew up in poverty. I am a product of Texas public schools. And my education is one part of what propelled me towards pursuing expanded opportunity for others. For the past four years, I've also served as a member and Vice-Chair for the City of Austin's Early Childhood Council and will be serving Del Valle ISD as a School Board Trustee in November 2022.
+:::
+
+### Current Debates Around School Finance
+
+The 88th Texas Legislative Session is quickly approaching and, come January 2023, public education will be a major focal point of conversation and legislation that take place during session. At issue are largely two things: school choice and public education funding. On one hand, Governor Greg Abbott is trying to sell Texas on adopting [school](https://www.texastribune.org/2022/08/08/texas-school-choice-legislation/ "Texas Tribune: Texas Republicans are trying to sell school choice measures, but rural conservatives aren’t buying") [vouchers](https://www.texastribune.org/2022/08/03/beto-orourke-greg-abbott-school-vouchers/ "Texas Tribune: With rural Texas watching, Greg Abbott and Beto O’Rourke dig in on school vouchers fight") and, on the other, Beto O'Rourke is focusing on calls to [fully](https://www.dallasnews.com/news/education/2022/03/07/beto-orourke-pledges-to-increase-school-funding-fight-vouchers-during-dallas-campaign-stop/ "Dallas Morning News: Beto O’Rourke pledges to increase school funding, fight vouchers during Dallas campaign stop") [fund](https://betoorourke.com/issue/invest-in-world-class-schools/ "Beto's Policy Platform: "World-Class Schools: I will fully fund public schools and fully support teachers, students, and parents."") schools. That's where the debate is at statewide.
+
+In Austin, [local news outlets](https://www.kut.org/education/2022-02-11/austin-isd-paid-hundreds-of-millions-more-than-other-districts-in-texas-recapture-program?_amp=true) and [social](https://twitter.com/WalkableAustin/status/1522610505545920512) [media](https://twitter.com/JackCraver/status/1522585626398371841) have largely focused on debates regarding Austin ISD's gigantic recapture obligation that has been ballooning over the last decade.
+
+## On Austin ISD & Recapture
+
+### The Two Debates Behind Recapture Criticism
+
+There's really two debates that people have in news articles or social media. They usually start out with noting how large Austin's recapture bill is and then drawing one of the two conclusions below:
+
+*Austin ISD's recapture obligation is \[huge/large/outrageous\] and we don't really know where that money is going.* *I think...*
+
+1.  ...we should be using that money to provide property tax relief for Austin ISD homeowners, at a time when Austin is wrestling with affordability.
+
+2.  ...we should be using that money to increasing funding for Austin ISD schools, at a time when school poverty is high and teachers are leaving the classroom at unprecedented rates.
+
+Let's get one thing out of the way here: Austin does have a large recapture bill. That's not really a debate, but for those wondering, here's what Austin's historical recapture looks like as a share of the state's pool of recapture collections:
+
+```{r importRecapture}
+#| echo: false
+#| message: false
+#| warning: false
+library(tidyverse)
+library(readxl)
+library(janitor)
+
+recap_raw <- read_excel("raw_data/tea_recapture_history.xlsx") |>
+  clean_names() |>
+  select(-contains("designation")) |>
+  rename(name = chapter_41_district)
+
+recap_aus <- recap_raw |>
+  filter(name == "Total Amount for stimated Recapture" | name == "AUSTIN ISD") |>
+  mutate(name = str_replace(name, "AUSTIN ISD", "Austin ISD"),
+         name = str_replace(name, "Total Amount for stimated Recapture", "Total Recapture")) |>
+  select(-district) |>
+  pivot_longer(x1994_total_recapture:x2021_total_recapture,
+               names_to = "year",
+               values_to = "amount") |>
+  mutate(year = str_remove_all(year, "x"),
+         year = str_remove_all(year, "_total_recapture"),
+         year = paste0(year, "01-01"),
+         year = lubridate::ymd(year)) |>
+  filter(name == "Austin ISD") |>
+  rename(austin_isd = amount) |>
+  select(-name) |>
+  arrange(year)
+
+recap_not_aus <- recap_raw |>
+  filter(name != "AUSTIN ISD") |>
+  filter(name == "Total Amount for stimated Recapture" | name == "AUSTIN ISD") |>
+  mutate(name = str_replace(name, "AUSTIN ISD", "Austin ISD"),
+         name = str_replace(name, "Total Amount for stimated Recapture", "Total Recapture")) |>
+  select(-district) |>
+  pivot_longer(x1994_total_recapture:x2021_total_recapture,
+               names_to = "year",
+               values_to = "amount") |>
+  mutate(year = str_remove_all(year, "x"),
+         year = str_remove_all(year, "_total_recapture"),
+         year = paste0(year, "01-01"),
+         year = lubridate::ymd(year),
+         amount_lbl = scales::comma(amount)) |>
+  filter(name != "Austin ISD") |>
+  rename(all_recapture = amount) |>
+  arrange(year)
+
+recap_share <- recap_aus |>
+  left_join(recap_not_aus, by = "year") |>
+  mutate(recap_not_aus = all_recapture - austin_isd,
+         `Austin ISD` = austin_isd/all_recapture,
+         `Everyone Else` = 1-`Austin ISD`,
+         aisd_pct = austin_isd/all_recapture,
+         else_pct = 1-aisd_pct,
+         aisd_pct = if_else(aisd_pct==1|aisd_pct==0, 
+                            scales::percent(aisd_pct, accuracy = 1), 
+                            scales::percent(aisd_pct, accuracy = 0.1)),
+         else_pct = if_else(else_pct==1|else_pct==0, 
+                            scales::percent(else_pct, accuracy = 1), 
+                            scales::percent(else_pct, accuracy = 0.1))) |> 
+  select(year, austin_isd, recap_not_aus, aisd_pct, else_pct, `Austin ISD`, `Everyone Else`) |>
+  pivot_longer(`Austin ISD`:`Everyone Else`,
+               names_to = "name",
+               values_to = "amount") |> 
+  mutate(amt_lbl = scales::percent(amount, accuracy = 0.1),
+         name = forcats::fct_relevel(name, "Everyone Else", "Austin ISD"),
+         year_lbl = lubridate::year(year),
+         recap_not_aus = if_else(recap_not_aus>=1000000000,
+                                 scales::dollar(recap_not_aus, scale = .000000001, accuracy = 0.01, suffix = "B"),
+                                 scales::dollar(recap_not_aus, scale = .000001, accuracy = 0.1, suffix = "M")),
+         austin_isd = if_else(austin_isd>=1000000000,
+                              scales::dollar(austin_isd, scale = .000000001, accuracy = 0.01, suffix = "B"),
+                              scales::dollar(austin_isd, scale = .000001, accuracy = 0.1, suffix = "M")),
+         tooltip = glue::glue("<div class='tooltip-frame'><span class='tooltip-title'>Recapture Paid | {year_lbl}</span> <hr class='tooltip-hr'> <table style='width:100%'> <tr> <td><a class = 'tooltip-text' style = 'font-weight:700;color:rgba(203, 121, 58, 1)'>Austin ISD</td> <td><a class = 'tooltip-text'>{austin_isd}</td> <td><a class = 'tooltip-context'>({aisd_pct})</td> </tr> <tr> <td><a class = 'tooltip-text'style = 'font-weight:700;color:rgba(18, 130, 162, 1)'>Everyone Else</td> <td><a class = 'tooltip-text'>{recap_not_aus}</td> <td><a class = 'tooltip-context'>({else_pct})</td> </tr> </table></div>"))
+```
+
+```{r austinRecapture}
+#| echo: false
+#| message: false
+#| warning: false
+
+library(highcharter)
+
+hchart(recap_share, "area",
+       hcaes(x=year, y=amount, group = name, color = name)) |> 
+  hc_title(text = "The Share of Recapture Collection in Texas") |> 
+  hc_subtitle(text = "Austin ISD vs. Everyone Else") |> 
+  hc_credits(
+    enabled = TRUE,
+    text = "Source: Texas Education Agency - Recapture Paid Data",
+    href = "https://tea.texas.gov/sites/default/files/1994%20-%202021%20Chapter%2041%20Recapture%20Paid%20by%20District%2001.21.21.xlsx") |> 
+  hc_colors(colors = list('rgba(18, 130, 162, 1)','rgba(203, 121, 58, 1)')) |> 
+  hc_add_theme(my_hc_theme()) |>
+  hc_yAxis(title = list(text = "Total Recapture Collected (%)"),
+           format = "{value}%") |>
+  hc_xAxis(title=NULL) |>
+  hc_tooltip(useHTML = TRUE, formatter = JS("function(){return(this.point.tooltip)}")) |>
+  hc_plotOptions(area = list(fillOpacity=.5),
+                 series = list(stacking = "percent",
+                               events = list(legendItemClick = JS("function() {
+              return false;
+            }"))))
+```
+
+
+### Has property relief at #txlege occurred in recent years?
+
+In short, yes. And it wasn't just a one-time drop in the bucket. During the 
+
+[^1]: https://www.kut.org/education/2022-02-11/austin-isd-paid-hundreds-of-millions-more-than-other-districts-in-texas-recapture-program?\_amp=true
+
+### Why does Austin have such high recapture?
+
+The current body of medical & economic research on child poverty tells us that poverty exposes children to what is called "toxic stress". This adversity has strong linear relationships with multiple health impairments in adulthood, including heart disease, obesity, cancer, alcoholism, and depression. They reduce life expectancies for children. Counter that, one of the more significant explanations for long life-expectancies is local government spending.
+
+## How can Austin lower its recapture obligation?
+
+In Texas, school poverty disproportionately effects students of color. In 2014, almost half of the non-white student population in Texas attended high-poverty schools, which generally have greater academic, social, and emotional needs but receive inadequate funding for programming.
+
+## Raising the Basic Allotment is a way to lower recapture collections
+
+Meanwhile, the state has lowered its share of per-pupil funding on traditional ISDs. Since 2008, the state's funding has dipped by almost \$500 per ADA while local property tax funding has skyrocketed at over \$800 per ADA. Multiplied by the respective ADA counts of students in 2016, this shift constitutes an increased burden of roughly \$4.3 billion for statewide local property tax funding and a decreased responsibility of roughly \$2.5 billion for funding from the state.
+
+## Is recapture being used to pay for other things?
+
+Data: [Texas Education Agency - PEIMS District Financial Actual Reports](https://tea.texas.gov/financialstandardreports/); accessed via a public information request.
+
+While recapture was designed to provide equity, it has been undermined by the state's supplanting of revenues that it claims to supplement. Detailed records of recapture revenues show an over 800% increase in annual collections since 1994, but the state maintains no accounting method that tracks exactly where recapture money goes, by district. In other words, the public cannot see where the money ends up.
+
+Increasingly, poor districts are running out of ways to get more revenue. Nearly 43% of property poor districts have maxed out on their M&O rates compared to only 14% of property wealthy districts. This means poor districts are increasingly reliant on the hope for more funding from recapture. However, this hope is fragile because most property wealthy districts tax on M&O within their range of golden pennies, which is not subject to recapture.[^2] This is because many property wealthy districts do not trust the state as a fiduciary of recapture revenues.
+
+[^2]: txt
+
+If we fail to ensure that all 5.3 million children in Texas attend schools that are adequately and transparently funded, we risk a future where Texas is characterized by its lack moral, economic, or cultural wealth. That will happen if we fail to ensure that money intended for poor children actually makes its way to those classrooms where they are learning against all odds. If that means we, as Texas taxpayers, must pay more money than so be it. The lives of 5.3 million children and future generations of Texans literally depend upon it.
+
+Thank you.
+
+<!-- Footnotes -->
+
+#### Photo Credit {.appendix}
+
+Photo by <a href="https://unsplash.com/@meggyn?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Meggyn Pomerleau</a> on <a href="https://unsplash.com/@meggyn?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
