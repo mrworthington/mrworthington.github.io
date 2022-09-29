@@ -1,130 +1,140 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-  <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.180">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Matt Worthington - Notes From A Spreadsheet</title>
-  <style>
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
-  </style>
 
-  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
-  <script src="site_libs/clipboard/clipboard.min.js"></script>
-  <meta name="quarto:offset" content="./">
-  <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-  <script src="site_libs/quarto-search/fuse.min.js"></script>
-  <script src="site_libs/quarto-search/quarto-search.js"></script>
-  <script src="site_libs/quarto-listing/list.min.js"></script>
-  <script src="site_libs/quarto-listing/quarto-listing.js"></script>
-  <script src="site_libs/cookie-consent/cookie-consent.js"></script>
-  <link href="site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
-  <script src="site_libs/quarto-html/quarto.js"></script>
-  <script src="site_libs/quarto-html/popper.min.js"></script>
-  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-  <script src="site_libs/quarto-html/anchor.min.js"></script>
-  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-  <link id="quarto-text-highlighting-styles" href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
-  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
-  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
-  <script id="quarto-search-options" type="application/json">{
-    "location": "navbar",
-    "copy-button": false,
-    "collapse-after": 3,
-    "panel-placement": "end",
-    "type": "overlay",
-    "limit": 20,
-    "language": {
-      "search-no-results-text": "No results",
-      "search-matching-documents-text": "matching documents",
-      "search-copy-link-title": "Copy link to search",
-      "search-hide-matches-text": "Hide additional matches",
-      "search-more-match-text": "more match in this document",
-      "search-more-matches-text": "more matches in this document",
-      "search-clear-button-title": "Clear",
-      "search-detached-cancel-button-title": "Cancel",
-      "search-submit-button-title": "Submit"
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.251">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Matt Worthington - Notes From A Spreadsheet</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
+<script src="site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script>
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
     }
-  }</script>
-  <script>
 
-    window.document.addEventListener("DOMContentLoaded", function (_event) {
-      const listingTargetEl = window.document.querySelector('#listing-listing .list');
-      if (!listingTargetEl) {
-        // No listing discovered, do not attach.
-        return; 
-      }
+    const options = {
+      valueNames: ['listing-image','listing-date','listing-description','listing-categories','listing-title','listing-author','listing-reading-time',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description","listing-categories"],
+    };
 
-      const options = {
-        valueNames: ['listing-image','listing-date','listing-description','listing-categories','listing-title','listing-author','listing-reading-time',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-        
-        searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description","listing-categories"],
-      };
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
 
-      window['quarto-listings'] = window['quarto-listings'] || {};
-      window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-      if (window['quarto-listing-loaded']) {
-        window['quarto-listing-loaded']();
-      }
-    });
-    </script>
-  
-  <script type="text/plain" cookie-consent="tracking">
-
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-52682113-1', 'auto');
-
-  ga('send', {
-    hitType: 'pageview',
-    'anonymizeIp': true,
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
   });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
   </script>
-  
-  <script type="text/javascript" charset="UTF-8">
-  document.addEventListener('DOMContentLoaded', function () {
-  cookieconsent.run({
-    "notice_banner_type":"simple",
-    "consent_type":"implied",
-    "palette":"light",
-    "language":"en",
-    "page_load_consent_levels":["strictly-necessary","functionality","tracking","targeting"],
-    "notice_banner_reject_button_hide":false,
-    "preferences_center_close_button_hide":false,
-    "website_name":""
-    });
+
+<script type="text/javascript" charset="UTF-8">
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({
+  "notice_banner_type":"simple",
+  "consent_type":"implied",
+  "palette":"light",
+  "language":"en",
+  "page_load_consent_levels":["strictly-necessary","functionality","tracking","targeting"],
+  "notice_banner_reject_button_hide":false,
+  "preferences_center_close_button_hide":false,
+  "website_name":""
   });
-  </script> 
-    
-  <script src="https://kit.fontawesome.com/20bb25f1fd.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/6771036/6851432/css/fonts.css">
-  <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/6771036/7342412/css/fonts.css">
-  <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/6771036/6057432/css/fonts.css">
-  <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/6771036/7957232/css/fonts.css">
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
-  <link rel="stylesheet" href="home_header.css">
+});
+</script> 
+  
+<script src="https://kit.fontawesome.com/20bb25f1fd.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="https://cloud.typography.com/6771036/6851432/css/fonts.css">
+<link rel="stylesheet" type="text/css" href="https://cloud.typography.com/6771036/7342412/css/fonts.css">
+<link rel="stylesheet" type="text/css" href="https://cloud.typography.com/6771036/6057432/css/fonts.css">
+<link rel="stylesheet" type="text/css" href="https://cloud.typography.com/6771036/7957232/css/fonts.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="home_header.css">
+<meta property="og:title" content="Matt Worthington - Notes From A Spreadsheet">
+<meta property="og:site-name" content="Matt Worthington">
 <meta name="twitter:title" content="Matt Worthington - Notes From A Spreadsheet">
 <meta name="twitter:card" content="summary">
 </head>
-<body>
+
+<body class="nav-fixed">
+
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <a class="navbar-brand" href="./index.html">
-    <img src="./logo.png" alt="">
+      <div class="navbar-brand-container">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./logo.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Matt Worthington</span>
-  </a>
+    </a>
+  </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -158,24 +168,93 @@
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-left">
+      <h1 class="title">Notes From A Spreadsheet</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(7)</span></div><div class="category" data-category="Austin">Austin <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Austin Public Health">Austin Public Health <span class="quarto-category-count">(1)</span></div><div class="category" data-category="COVID19">COVID19 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Charter Schools">Charter Schools <span class="quarto-category-count">(2)</span></div><div class="category" data-category="I35">I35 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Independent School Districts">Independent School Districts <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Public Data">Public Data <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Public Education">Public Education <span class="quarto-category-count">(6)</span></div><div class="category" data-category="Public Health">Public Health <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Recapture">Recapture <span class="quarto-category-count">(4)</span></div><div class="category" data-category="School Finance">School Finance <span class="quarto-category-count">(6)</span></div><div class="category" data-category="Texas Education Agency">Texas Education Agency <span class="quarto-category-count">(1)</span></div><div class="category" data-category="US Census Bureau">US Census Bureau <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(8)</span></div><div class="category" data-category="Austin">Austin <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Austin Public Health">Austin Public Health <span class="quarto-category-count">(1)</span></div><div class="category" data-category="COVID19">COVID19 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Charter Schools">Charter Schools <span class="quarto-category-count">(2)</span></div><div class="category" data-category="GIS">GIS <span class="quarto-category-count">(1)</span></div><div class="category" data-category="I35">I35 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Independent School Districts">Independent School Districts <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Mapping">Mapping <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Public Data">Public Data <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Public Education">Public Education <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Public Health">Public Health <span class="quarto-category-count">(1)</span></div><div class="category" data-category="School Finance">School Finance <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Spatial Data">Spatial Data <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Texas Education Agency">Texas Education Agency <span class="quarto-category-count">(1)</span></div><div class="category" data-category="US Census Bureau">US Census Bureau <span class="quarto-category-count">(1)</span></div><div class="category" data-category="rdeck">rdeck <span class="quarto-category-count">(1)</span></div><div class="category" data-category="sf">sf <span class="quarto-category-count">(1)</span></div><div class="category" data-category="tidycensus">tidycensus <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
-<main class="content quarto-banner-title-block page-columns page-full column-page-left" id="quarto-document-content">
-<header id="title-block-header" class="quarto-title-block default page-columns page-full" data-sidebar-align="true">
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
-<div class="quarto-title-banner color-navbar page-columns page-full"><div class="quarto-title column-page-left"><h1 class="title display-7">Notes From A Spreadsheet</h1></div></div></header>
+
+
+
 
 
 
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="COVID19,Public Health,Austin Public Health,I35,Austin,Public Data" data-listing-date-sort="1597294800000" data-listing-file-modified-sort="1648925863877" data-listing-reading-time-sort="9.965">
+<div class="quarto-post image-right" data-index="0" data-categories="Spatial Data,GIS,Mapping,sf,tidycensus,rdeck" data-listing-date-sort="1664427600000" data-listing-file-modified-sort="1664461208599" data-listing-reading-time-sort="18.525">
+<div class="thumbnail">
+<p><a href="./articles/rstats/mapping-in-r/index.html"> <img src="./articles/rstats/mapping-in-r/andrew-neel-1-29wyvvLJA-unsplash-2.jpg" class="thumnail-image"> </a></p>
+</div>
+<div class="body">
+<a href="./articles/rstats/mapping-in-r/index.html">
+<h3 class="no-anchor listing-title">
+A Spatial/GIS Workflow for Interactive Maps in R
+</h3>
+<div class="listing-subtitle">
+
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Spatial Data'); return false;">
+Spatial Data
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('GIS'); return false;">
+GIS
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Mapping'); return false;">
+Mapping
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('sf'); return false;">
+sf
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('tidycensus'); return false;">
+tidycensus
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('rdeck'); return false;">
+rdeck
+</div>
+</div>
+<a href="./articles/rstats/mapping-in-r/index.html">
+<div class="listing-description">
+<p>In recent years, there’s been a ton of packages released in R for working with and visualizaing spatial data that have eliminated my need for things like ArcGIS. Here’s how I use them.</p>
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./articles/rstats/mapping-in-r/index.html">
+<div class="listing-date">
+Sep 29, 2022
+</div>
+<div class="listing-author">
+Matt Worthington
+</div>
+<div class="listing-reading-time">
+18 min
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="COVID19,Public Health,Austin Public Health,I35,Austin,Public Data" data-listing-date-sort="1597294800000" data-listing-file-modified-sort="1648868770337" data-listing-reading-time-sort="9.965">
 <div class="thumbnail">
 <p><a href="./articles/public_health/covid_atx/covid_atx_analysis.html"> <img src="./articles/public_health/covid_atx/ryan-magsino-sohLeI-k-HU-unsplash.jpg" class="thumnail-image"> </a></p>
 </div>
@@ -228,7 +307,7 @@ Matt Worthington
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="School Finance,Public Education,Charter Schools,US Census Bureau" data-listing-date-sort="1522213200000" data-listing-file-modified-sort="1648865344670" data-listing-reading-time-sort="25">
+<div class="quarto-post image-right" data-index="2" data-categories="School Finance,Public Education,Charter Schools,US Census Bureau" data-listing-date-sort="1522213200000" data-listing-file-modified-sort="1648865344670" data-listing-reading-time-sort="25">
 <div class="thumbnail">
 <p><a href="./articles/school_finance/school-finance-analysis/school_finance_viz_us.html"> <img src="./articles/school_finance/school-finance-analysis/isabella-and-louisa-fischer-uSPjZzYwXO4-unsplash.jpg" class="thumnail-image"> </a></p>
 </div>
@@ -275,7 +354,7 @@ Matt Worthington
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="School Finance,Public Education,Texas Education Agency,Independent School Districts,Charter Schools" data-listing-date-sort="1521608400000" data-listing-file-modified-sort="1648782117810" data-listing-reading-time-sort="5.035">
+<div class="quarto-post image-right" data-index="3" data-categories="School Finance,Public Education,Texas Education Agency,Independent School Districts,Charter Schools" data-listing-date-sort="1521608400000" data-listing-file-modified-sort="1648782117810" data-listing-reading-time-sort="5.035">
 <div class="thumbnail">
 <p><a href="./articles/school_finance/public-ed-testimony/public_ed_testimony.html"> <img src="./articles/school_finance/public-ed-testimony/meggyn-pomerleau-2SGDohBsYPg-unsplash-2.jpg" class="thumnail-image"> </a></p>
 </div>
@@ -325,7 +404,7 @@ Matt Worthington
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="School Finance,Recapture,Public Education" data-listing-date-sort="1512540000000" data-listing-file-modified-sort="1649078451925" data-listing-reading-time-sort="13.935">
+<div class="quarto-post image-right" data-index="4" data-listing-date-sort="1512540000000" data-listing-file-modified-sort="1657905683978" data-listing-reading-time-sort="13.935">
 <div class="thumbnail">
 <p><a href="./articles/school_finance/all_about_racism/all_about_racism.html"> <img src="./articles/school_finance/all_about_racism/IMG_0028-e1512660939350.jpg" class="thumnail-image"> </a></p>
 </div>
@@ -337,19 +416,6 @@ ICYMI: This was all about racism
 <div class="listing-subtitle">
 
 </div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('School Finance'); return false;">
-School Finance
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Recapture'); return false;">
-Recapture
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Public Education'); return false;">
-Public Education
-</div>
-</div>
-<a href="./articles/school_finance/all_about_racism/all_about_racism.html">
 <div class="listing-description">
 <p>While Rodriguez v. San Antonio ISD worked its way through the courts in 1968, transcripts of Civil Rights hearings revealed a deeper logic at work in San Antonio and the country that sought to disenfranchise Mexican-Americans in almost every facet of life.</p>
 </div>
@@ -369,7 +435,7 @@ Matt Worthington, Bekah McKneel
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="4" data-categories="School Finance,Recapture,Public Education" data-listing-date-sort="1511935200000" data-listing-file-modified-sort="1649078438647" data-listing-reading-time-sort="6.775">
+<div class="quarto-post image-right" data-index="5" data-listing-date-sort="1511935200000" data-listing-file-modified-sort="1648866315694" data-listing-reading-time-sort="6.775">
 <div class="thumbnail">
 <p><a href="./articles/school_finance/edgewood_fend_for_itself/edgewood_fend_for_itself.html"> <img src="./articles/school_finance/edgewood_fend_for_itself/edgewood1800.jpg" class="thumnail-image"> </a></p>
 </div>
@@ -381,19 +447,6 @@ How San Antonio left Edgewood to fend for itself
 <div class="listing-subtitle">
 
 </div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('School Finance'); return false;">
-School Finance
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Recapture'); return false;">
-Recapture
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Public Education'); return false;">
-Public Education
-</div>
-</div>
-<a href="./articles/school_finance/edgewood_fend_for_itself/edgewood_fend_for_itself.html">
 <div class="listing-description">
 <p>Reforms of the mid- and late-20th century offered opportunities for some school districts to shore up their property tax base and create more secure funding. Edgewood, however, would not be one of these.</p>
 </div>
@@ -413,7 +466,7 @@ Matt Worthington
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="5" data-categories="School Finance,Recapture,Public Education" data-listing-date-sort="1511330400000" data-listing-file-modified-sort="1649078411223" data-listing-reading-time-sort="9.49">
+<div class="quarto-post image-right" data-index="6" data-listing-date-sort="1511330400000" data-listing-file-modified-sort="1648867681865" data-listing-reading-time-sort="9.49">
 <div class="thumbnail">
 <p><a href="./articles/school_finance/how_sa_segregated_schools/how_sa_segregated_schools.html"> <img src="./articles/school_finance/how_sa_segregated_schools/HOLC_San_Antonio_City_Survey_Report_1_Exhibit_B_Racial_Concentrations_2.jpg" class="thumnail-image"> </a></p>
 </div>
@@ -425,19 +478,6 @@ How San Antonio segregated its schools
 <div class="listing-subtitle">
 
 </div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('School Finance'); return false;">
-School Finance
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Recapture'); return false;">
-Recapture
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Public Education'); return false;">
-Public Education
-</div>
-</div>
-<a href="./articles/school_finance/how_sa_segregated_schools/how_sa_segregated_schools.html">
 <div class="listing-description">
 <p>The struggles that continue to plague Edgewood ISD are rooted in prejudice. Throughout the 20th century, those prejudices became public policy that would allocate services unevenly across the city, creating intractable inequities still visible in the city’s school districts.</p>
 </div>
@@ -457,7 +497,7 @@ Matt Worthington
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="6" data-categories="School Finance,Recapture,Public Education" data-listing-date-sort="1510120800000" data-listing-file-modified-sort="1649078420551" data-listing-reading-time-sort="6.63">
+<div class="quarto-post image-right" data-index="7" data-listing-date-sort="1510120800000" data-listing-file-modified-sort="1648866307436" data-listing-reading-time-sort="6.63">
 <div class="thumbnail">
 <p><a href="./articles/school_finance/why_americans_have_no_right_to_education/why_americans_have_no_right_to_education.html"> <img src="./articles/school_finance/why_americans_have_no_right_to_education/fullsizeoutput_77ff.jpg" class="thumnail-image"> </a></p>
 </div>
@@ -469,19 +509,6 @@ Why Americans Have No Right To An Education
 <div class="listing-subtitle">
 
 </div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('School Finance'); return false;">
-School Finance
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Recapture'); return false;">
-Recapture
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Public Education'); return false;">
-Public Education
-</div>
-</div>
-<a href="./articles/school_finance/why_americans_have_no_right_to_education/why_americans_have_no_right_to_education.html">
 <div class="listing-description">
 <p>How Texas’ school finance system helped perpetuate nationwide inequity.</p>
 </div>
@@ -506,8 +533,26 @@ Matt Worthington
 No matching items
 </div>
 </div></main> <!-- /main -->
-<script type="application/javascript">
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -527,7 +572,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.blur();
     // flash "checked"
     button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
     setTimeout(function() {
+      button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
     // clear code selection
@@ -554,7 +602,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
@@ -599,21 +648,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-      <div class="nav-footer-center">
-        <ul class="footer-items list-unstyled">
-    <li class="nav-item">
-    <a class="nav-link" href="./about.html">About Me</a>
-  </li>  
-    <li class="nav-item">
-    <a class="nav-link" href="./license.qmd">License</a>
-  </li>  
-    <li class="nav-item">
-    <a class="nav-link" href="./trademark.qmd">Trademark</a>
-  </li>  
-</ul>
-      <div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+      <div class="nav-footer-center"><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
   </div>
 </footer>
+
 
 
 </body></html>

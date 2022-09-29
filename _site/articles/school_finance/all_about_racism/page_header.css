@@ -12,7 +12,7 @@ figcaption{
   margin: 0 auto;
 }
 
-main.quarto-banner-title-block .quarto-title-banner {
+.quarto-title-block .quarto-title-banner {
   padding-top: 8rem;
   color: #fff;
   font-family: "Gotham SSm A", "Gotham SSm B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica     Neue", Arial, sans-serif;
@@ -30,13 +30,4 @@ main.quarto-banner-title-block .quarto-title-banner {
   -o-background-size: cover !important;
   background-size:cover !important;
   background-position-y: -10rem !important;
-}
-
-main.quarto-banner-title-block #title-block-header.quarto-title-block.default .quarto-title-banner .quarto-title .title {
-  color: #fff;
-  font-weight: 900;
-}
-
-.highcharts-container text {
-    font-family: "Ringside Narrow SSm A", "Ringside Narrow SSm B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }

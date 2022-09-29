@@ -54,7 +54,8 @@ $body-color:            $gray-800 !default;
 $font-family-sans-serif:      "Whitney SSm A", "Whitney SSm B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
 $font-family-serif:           "Mercury SSm A", "Mercury SSm B", Georgia, Cambria, "Times New Roman", Times, serif !default;
 // stylelint-enable
-
+$font-size-root:              16px !default;
+$toc-font-size:               18px !default;
 $font-size-base:              1rem !default;
 $headings-font-weight:        700 !default;
 
@@ -108,6 +109,8 @@ $badge-padding-x:                   1.2em !default;
 
 $alert-border-width:                0 !default;
 
+
+
 /*-- scss:rules --*/
 
 // Cookies and Consent
@@ -118,16 +121,12 @@ $alert-border-width:                0 !default;
 
 // Listing Styles
 
-@media screen and (min-width: 600px) {
 .quarto-listing-container-default {
-  margin-left: -2em;
-}
+  margin-left: 0em;
 }
 
 #quarto-margin-sidebar .quarto-listing-category {
-  font-size: .7rem !important;
-  font-weight: 300;
-  font-family: "Ringside Narrow SSm A", "Ringside Narrow SSm B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;;
+  font-size: 0.85rem !important;
 }
 
 .listing-description {
@@ -136,9 +135,20 @@ $alert-border-width:                0 !default;
 
 div.quarto-post .listing-categories .listing-category {
   font-size: .55rem;
-  font-family: "Ringside Narrow SSm A", "Ringside Narrow SSm B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
 }
 
+.sidebar nav[role=doc-toc] ul {
+    font-family: "Ringside Narrow SSm A", "Ringside Narrow SSm B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+  list-style: none;
+  font-size: .9rem;
+  font-weight: 300;
+}
+
+.listing-title {
+  font-family: "Whitney SSm A", "Whitney SSm B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
+  color: #2d2d2d !important;
+  font-weight: 700;
+}
 
 .listing-date {
   font-family: "Ringside Narrow SSm A", "Ringside Narrow SSm B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
@@ -146,6 +156,7 @@ div.quarto-post .listing-categories .listing-category {
   text-transform: uppercase;
   font-size: .8rem !important;
 }
+
 .listing-author {
   font-family: "Ringside Narrow SSm A", "Ringside Narrow SSm B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
   color: #2d2d2d !important;
@@ -159,6 +170,12 @@ div.quarto-post .listing-categories .listing-category {
 .listing-author {
   font-family: "Ringside Narrow SSm A", "Ringside Narrow SSm B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
   color: #2d2d2d !important;
+}
+
+.listing-category {
+  text-transform: uppercase;
+  font-weight: 500;
+  font-family: "Ringside Narrow SSm A", "Ringside Narrow SSm B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 // Callout Styles
@@ -181,24 +198,29 @@ main.quarto-banner-title-block #title-block-header.quarto-title-block.default .q
   font-family: "Ringside Narrow SSm A", "Ringside Narrow SSm B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
-.quarto-title-authors {
-  font-size: .9em;
-  margin-bottom: 1em;
+.quarto-title-meta-author {
+  font-size: 1em;
+  margin-bottom: 0em;
   font-family: "Ringside Narrow SSm A", "Ringside Narrow SSm B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
 }
 
 #title-block-header.quarto-title-block.default .quarto-title-meta-heading {
   text-transform: uppercase;
-  font-size: .6em;
+  font-size: .7em;
   opacity: .8;
-  font-weight: 500;
+  font-weight: 400;
+  color: #8d8d8d;
   font-family: "Ringside Narrow SSm A", "Ringside Narrow SSm B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 #title-block-header.quarto-title-block.default .quarto-title-meta-contents p {
-  font-size: .9em;
+  font-size: .95em;
   margin-bottom: 1em;
   font-family: "Ringside Narrow SSm A", "Ringside Narrow SSm B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+}
+
+#title-block-header.quarto-title-block.default .description, #title-block-header.quarto-title-block.default .abstract {
+  font-size: 1.1rem;
 }
 
 // Sidebar
@@ -254,8 +276,14 @@ p {
   font-family: $font-family-sans-serif;
 }
 
-h1,h2,h3,h4,h5{
+h1,h2 {
   font-family: $font-family-sans-serif;
+}
+
+h3,h4,h5 {
+  font-family: "Ringside Narrow SSm A", "Ringside Narrow SSm B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 500;
+  color: #7d7d7d;
 }
 
 blockquote {
@@ -514,10 +542,6 @@ code {
   font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
 }
 
-d-article {
-  color: #6B6D6F;
-}
-
 h1 {
     font-weight: 800;
     color: #2d2d2d;
@@ -561,4 +585,79 @@ body {
     font-family: "Gotham SSm A", "Gotham SSm B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
 }
 
+// PAGE SPECIFIC CSS //
+
+.figure-img {
+  margin-bottom: .5rem;
+  line-height: 1;
+  width: 40%;
+}
+
+figcaption{
+  color: #6d7a86;
+  width: 54%;
+  text-align: center;
+  margin: 0 auto;
+}
+
+
+#title-block-header.quarto-title-block.default .quarto-title .title {
+  font-size: 2.25rem;
+  color: #fff;
+  font-weight: 900;
+}
+
+.highcharts-container text {
+    font-family: "Ringside Narrow SSm A", "Ringside Narrow SSm B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.highcharts-tooltip {
+}
+
+.tooltip-frame {
+  padding: 5px;
+  margin-left: 2px;
+  margin-right: 5px;
+  margin-top: 2px;
+  margin-bottom: -10px;
+  width: 100% !important;
+}
+
+.tooltip-title {
+  font-family: "Ringside Narrow SSm A", "Ringside Narrow SSm B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.25em;
+  font-weight: 900;
+  color: #4d4d4d;
+}
+
+.tooltip-hr {
+  margin-top: .3rem;
+  margin-bottom: .3rem;
+  border: 0;
+  border-top: 1px solid rgba(51, 63, 72,0.9);
+}
+
+.tooltip-text {
+  font-family: "Ringside Narrow SSm A", "Ringside Narrow SSm B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 1em;
+  font-weight: 400;
+  color: #333f48;
+  text-decoration: none;
+  -webkit-text-decoration: none;
+  -moz-text-decoration: none;
+  -ms-text-decoration: none;
+  -o-text-decoration: none;
+}
+
+.tooltip-context {
+   font-family: "Ringside Narrow SSm A", "Ringside Narrow SSm B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: .8em;
+  font-weight: 400;
+  color: #6d6d6d;
+  text-decoration: none;
+  -webkit-text-decoration: none;
+  -moz-text-decoration: none;
+  -ms-text-decoration: none;
+  -o-text-decoration: none;
+}
 

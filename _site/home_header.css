@@ -1,4 +1,4 @@
-main.quarto-banner-title-block .quarto-title-banner {
+.quarto-title-block .quarto-title-banner {
   padding-top: 6rem;
   background-image: none !important;
   background:
@@ -16,7 +16,7 @@ main.quarto-banner-title-block .quarto-title-banner {
   background-position: right 0px bottom -3vh;
 }
 
-main.quarto-banner-title-block #title-block-header.quarto-title-block.default .quarto-title-banner .quarto-title .title {
+#title-block-header.quarto-title-block.default .quarto-title .title {
   font-weight: 900 !important;
   font-size: 2.2rem;
   font-family: "Gotham SSm A", "Gotham SSm B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica     Neue", Arial, sans-serif !important;
