@@ -262,7 +262,7 @@ rdeck(map_style = NULL,
                         name = "Public Schools (SY21-22)",
                         get_position = geometry,
                         get_fill_color = "#b57000",
-                        radius_min_pixels = 4,
+                        radius_min_pixels = 2,
                         opacity = 0.3,
                         tooltip = c(Name, Location),
                         pickable = TRUE)
@@ -286,9 +286,10 @@ rdeck(map_style = mapbox_gallery_le_shine(),
                         name = "Public Schools (SY21-22)",
                         get_position = geometry,
                         get_fill_color = "#b57000",
-                        radius_min_pixels = 4,
+                        radius_min_pixels = 2,
                         opacity = 0.3,
-                        tooltip = c(Name, Location))
+                        tooltip = c(Name, Location),
+                        pickable = TRUE)
 
 ```
 
@@ -343,17 +344,14 @@ rdeck(map_style = mapbox_gallery_minimo(),
       initial_bounds = texas_bbox,
       theme = "light") |>
   add_scatterplot_layer(data = school_sites |> select(Name=NAME, Location = NMCBSA),
-                        visible = TRUE,
-                        visibility_toggle = TRUE,
-                        pickable = TRUE,
-                        antialiasing = TRUE,
                         name = "Public Schools (SY21-22)",
                         get_position = geometry,
-                        tooltip = c(Name, Location),
                         get_fill_color = "#bf5700",
                         radius_min_pixels = 2,
-                        blending_mode = "normal",
-                        opacity = 0.3)
+                        opacity = 0.3,
+                        tooltip = c(Name, Location),
+                        pickable = TRUE
+)
 ```
 
 <br>
