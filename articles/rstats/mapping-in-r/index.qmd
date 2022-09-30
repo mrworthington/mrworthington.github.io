@@ -30,7 +30,6 @@ categories:
   - GIS
   - Mapping
   - sf
-  - tidycensus
   - rdeck
 filters:
    - lightbox
@@ -196,7 +195,7 @@ The second function, `add_scatterplot_layer()` is what we use to add the dots an
 
 ```{r simple-canvas}
 #| echo: true
-#| code-summary: "**Show the code** | Building A Basic Map`"
+#| code-summary: "**Show the code** | Build A Basic Map"
 
 library(rdeck) # Loads rdeck library
 
@@ -220,7 +219,7 @@ The map above is a decent start, but there's a couple of issues to resolve:
 
 To fix this, we just add a few arguments to each of the two functions used in the previous code chunk.
 
-##### Styling our dots
+#### Styling our dots
 
 First, I'm going to style the dots. They look cool from far away, but appear to dissolve once you zoom in. This is the opposite of what we want if our goal is to let people explore the US and identify schools across the country. So, to fix this, we can use a couple of arguments within the existing `add_scatterplot_layer()` function.
 
@@ -246,7 +245,7 @@ rdeck(map_style = NULL,
 
 <br>
 
-##### Adding a tooltip
+#### Adding a tooltip
 
 Adding a tooltip is actually pretty easy and the pre-built tooltips are quite nice. In my office, I'm going to adjust the existing data argument already set to our `school_sites` object and select only the `Name` and `Location` columns. They're named differently, but I can rename them with `school_sites |> select(Name=NAME, Location = NMCBSA)`. After this, you add a `tooltip` argument to define what columns you want. A nice feature of the `tooltip` argument is that you can use [tidy-select](https://dplyr.tidyverse.org/reference/dplyr_tidy_select.html) syntax to build your tooltip. Lastly, I add `pickable = TRUE`, which just means that the dots will respond as I move my mouse/trackpad around the map.
 
@@ -270,7 +269,7 @@ rdeck(map_style = NULL,
 
 <br>
 
-##### Adding a basemap
+#### Adding a basemap
 
 Adding a basemap is easy once you get your token setup. Instead of setting `map_style = NULL` inside the`rdeck()` function we're currently, we just use one of the options from mapbox built into `rdeck`. For demonstration purposes, I'll use a style from mapbox called "Le Shine" by setting `map_style = mapbox_gallery_le_shine()`. In the original map, we use a style called "Minimo", which I like and think works well to contrast basic geographic markers alongside the kind of dots we're trying to visualize.
 
@@ -295,7 +294,7 @@ rdeck(map_style = mapbox_gallery_le_shine(),
 
 <br>
 
-##### Adding a bounding box
+#### Adding a bounding box
 
 Honestly, this one is kind of tricky and might be the least intuitive part of `rdeck` because the argument that controls this `initial_bounds` requires an object of `st_bbox`, `sf`, `sfc` class. The end result spits out a box of coordinates that looks like this:
 
