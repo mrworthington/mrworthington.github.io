@@ -15,7 +15,7 @@ twitter:
   creator: "@mrworthington"
 ---
 
-Originally from San Antonio, TX, I live in Austin with my wife, Jess, and our family. Currently, I am th. In addition, I serve as a commission member for the City of Austin's [Early Childhood Council](http://www.austintexas.gov/ecc). 
+Originally from San Antonio, TX, I live in Austin with my wife, Jess, and our family. Currently, I am the Associate Director of Data Science + Analytics at [Longevity Partners](https://longevity-partners.com/us/). In addition, I serve as a commission member for the City of Austin's [Early Childhood Council](http://www.austintexas.gov/ecc) and as the Vice-President of the [Del Valle Commununity Coalition](https://www.delvallecommunitycoalition.com). 
 
 **Professional Background**: Prior to now, I have led data work for [the LBJ School of Public Affairs's Data Initiatives](https://lbj.utexas.edu), [Texas 2036](https://texas2036.org/data/) and [the United Way for Greater Austin](unitedwayaustin.org). Before my career in Data Science and Analytics, I worked as an educator for several years with [KIPP Austin Public Schools](http://www.kippaustin.org) and [DC Public Schools](https://dcps.dc.gov) in Washington, DC. At KIPP, I served as the Digital Learning Coordinator for the Austin region. In DC, I taught at MacFarland Middle School in DCPS where I served as a Literacy Intervention Specialist, Special Education Teacher, and IT Coordinator. When I moved to the DCPS Central Office, I worked as the Manager of Technology Strategy in the Office of the Chief Operating Officer. 
 

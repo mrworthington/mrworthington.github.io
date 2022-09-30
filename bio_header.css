@@ -1,5 +1,5 @@
 .quarto-title-block .quarto-title-banner {
-  padding-top: 12rem !important;
+  padding-top: 10rem !important;
   color: #2d2d2d !important;
   font-family: "Gotham SSm A", "Gotham SSm B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica     Neue", Arial, sans-serif;
   background-image: none !important;
@@ -16,6 +16,16 @@
   -o-background-size: cover !important;
   background-size:contain !important;
   background-position-y: 0vh !important;
+}
+
+@media (max-width: 980px) {
+
+.quarto-title-block .quarto-title-banner {
+  padding-top: 6rem !important;
+  padding-bottom: inherit !important;
+  background-position-y: 8vh !important;
+  background-size: contain !important;
+}
 }
 
 main.quarto-banner-title-block #title-block-header.quarto-title-block.default .quarto-title-banner .quarto-title .title {
