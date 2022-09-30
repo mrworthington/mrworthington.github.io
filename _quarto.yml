@@ -12,6 +12,11 @@ website:
   open-graph: true
   reader-mode: false
   page-navigation: false
+  google-analytics:
+    tracking-id: "UA-52682113"
+    storage: cookies
+    anonymize-ip: true
+    version: 4
   # page-footer:
   #   center:
   #     - text: "About Me"
