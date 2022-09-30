@@ -92,11 +92,12 @@ background-size: cover;
 <link rel="stylesheet" href="bio_header.css">
 <meta property="og:title" content="Matt Worthington - About">
 <meta property="og:description" content="Originally from San Antonio, TX, I live in Austin with my wife, Jess, and our family. Currently, I am the Senior Project Manager of Data Initiatives at the LBJ School of Public Affairs.">
-<meta property="og:image" content="bio.jpg">
+<meta property="og:image" content="https://mrworthington.com/bio.jpg">
 <meta property="og:site-name" content="Matt Worthington">
 <meta name="twitter:title" content="Matt Worthington - About">
 <meta name="twitter:description" content="Originally from San Antonio, TX, I live in Austin with my wife, Jess, and our family. Currently, I am the Senior Project Manager of Data Initiatives at the LBJ School of Public Affairs.">
-<meta name="twitter:image" content="bio.jpg">
+<meta name="twitter:image" content="https://mrworthington.com/bio.jpg">
+<meta name="twitter:creator" content="@mrworthington">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -279,7 +280,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     });
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp(/https:\/\/mrworthington\.com/);
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href);
     }

@@ -1,7 +1,7 @@
 ---
 title: "A Spatial/GIS Workflow for Interactive Maps in R"
 description: |
-  In recent years, there's been a ton of packages released in R for working with and visualizaing spatial data that have eliminated my need for things like ArcGIS. Here's how I use them.
+  In recent years, there's been a ton of packages released in R for working with and visualizing spatial data that have eliminated my need for things like ArcGIS. Here's how I use a few of them.
 author:
   - name: Matt Worthington 
     url: https://mrworthington.com/about
@@ -32,8 +32,6 @@ categories:
   - sf
   - tidycensus
   - rdeck
-twitter:
-  creator: "@mrworthington"
 filters:
    - lightbox
 lightbox: auto
@@ -53,13 +51,15 @@ Yes.
 
 ## Second Question: Are R tools any kind of good for Sptial/GIS workflows?
 
-Absolutely. Positively. Definitely yes. R is fan-freaking-tastic for a ton of random stuff, but it is especially amazing when it comes to spatial work. In fact, one of the reasons I've come to love R so much is how simplified workflows are, regardless of how complicated the data may be.
+Absolutely. Positively. Definitively, yes. R is fan-freaking-tastic for a ton of random stuff, but it is especially amazing when it comes to spatial work. In fact, one of the reasons I've come to love R so much is how simplified workflows are, regardless of how complicated the data may be.
 
 I often think back on a grad school GIS Course in 2017, where I first learned how to make maps. The workflows involved downloading separate spatial/numeric data files and required multiple pieces of software[^1] and hours of time to join those data, design the map, and export that map to a format you could use in a report or public-facing document. And that was really only static maps that end up in printed or PDF reports. Interactive workflows was an entirely different beast that required even more expensive software and other skills.
 
 [^1]: It's worth mentioning that some of the software required for the described GIS workflows requires using Windows and costs a ton of money.
 
-In contrast, consider the map below, which is built *in this document*. The code chunk below pulls the spatial and numeric data from its source ([NCES Open Data](https://data-nces.opendata.arcgis.com/datasets/nces::public-school-locations-current-1/explore?location=34.278677%2C-96.594959%2C4.67 "National Center for Education Statistics: Public School Locations - Current")) and visualizes it int in about 10 lines of code. More impressive is that even though it contains over 100,000 school locations across the country, it's very fast. Use your mouse/trackpad to hover the dots and zoom in-and-out.
+In contrast, consider the map below, which is built *in this document*. The code chunk at the very bottom of the document is what produces this map. It pulls the spatial and numeric data from its source ([NCES Open Data](https://data-nces.opendata.arcgis.com/datasets/nces::public-school-locations-current-1/explore?location=34.278677%2C-96.594959%2C4.67 "National Center for Education Statistics: Public School Locations - Current")) and visualizes it in about 10 lines of code. 🤯
+
+More impressive is that, even though it contains over 100,000 school locations across the country, it's very fast. Use your mouse/track-pad to hover the dots and zoom in-and-out.
 
 ```{r load-packages}
 #| echo: false
@@ -331,7 +331,7 @@ get_bbox <- function(place) {
 texas_bbox <- get_bbox("Texas")
 ```
 
-In my case, I'm from Texas. I love Texas. And I want to focus the map on Texas. Not just cause I love it and am from here, but Texas is home to a significant chunk of America's school-aged children. Of the reported [49.5 million](https://nces.ed.gov/fastfacts/display.asp?id=372) children enrolled in US public schools, Texas accounts for over [5.4 million](https://nces.ed.gov/fastfacts/display.asp?id=372) of them. So, I'm going to pass the result of my `get_bbox()` object into the `initial_bounds` argument of the `rdeck()` function, which will set the starting point to Texas.
+In my case, I'm from Texas. I love Texas. And I want to focus the map on Texas. Not just cause I love it and am from here, but Texas is home to a significant chunk of America's school-aged children. Of the reported [49.5 million](https://nces.ed.gov/fastfacts/display.asp?id=372) children enrolled in US public schools, Texas accounts for over [5.4 million](https://rptsvr1.tea.texas.gov/cgi/sas/broker?_service=marykay&_program=adhoc.addispatch.sas&major=st&minor=e&charsln=120&linespg=60&loop=1&countykey=NO&oldnew=new&_debug=0&endyear=22&selsumm=ss&key=TYPE+HERE&grouping=e+&format=W "Texas Education Agency | PEIMS Student Enrollment Figures") of them. So, I'm going to pass the result of my `get_bbox()` object into the `initial_bounds` argument of the `rdeck()` function, which will set the starting point to Texas.
 
 ```{r all-together-map}
 #| echo: true
@@ -354,10 +354,8 @@ rdeck(map_style = mapbox_gallery_minimo(),
 )
 ```
 
-<br>
-And that's it! If you have any questions, revisions, or suggestions, just shoot me a message [on twitter](https://twitter.com/mrworthington).
+<br> And that's it! If you have any questions, revisions, or suggestions, just shoot me a message [on twitter](https://twitter.com/mrworthington).
 
 ## Acknowledgments {.appendix}
 
 Photo by <a href="https://unsplash.com/@andrewtneel?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Andrew Neel</a> on <a href="https://unsplash.com/s/photos/maps?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-  

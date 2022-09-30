@@ -95,11 +95,12 @@ background-size: cover;
 <link rel="stylesheet" href="page_header.css">
 <meta property="og:title" content="Matt Worthington - My Testimony to The Texas Commission on Public School Finance">
 <meta property="og:description" content="Delivered on March 19, 2018">
-<meta property="og:image" content="meggyn-pomerleau-2SGDohBsYPg-unsplash-2.jpg">
+<meta property="og:image" content="https://mrworthington.com/articles/school_finance/public-ed-testimony/meggyn-pomerleau-2SGDohBsYPg-unsplash-2.jpg">
 <meta property="og:site-name" content="Matt Worthington">
 <meta name="twitter:title" content="Matt Worthington - My Testimony to The Texas Commission on Public School Finance">
 <meta name="twitter:description" content="Delivered on March 19, 2018">
-<meta name="twitter:image" content="meggyn-pomerleau-2SGDohBsYPg-unsplash-2.jpg">
+<meta name="twitter:image" content="https://mrworthington.com/articles/school_finance/public-ed-testimony/meggyn-pomerleau-2SGDohBsYPg-unsplash-2.jpg">
+<meta name="twitter:creator" content="@mrworthington">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -349,7 +350,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     });
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp(/https:\/\/mrworthington\.com/);
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href);
     }

@@ -96,11 +96,12 @@ background-size: cover;
 <link rel="stylesheet" href="page_header.css">
 <meta property="og:title" content="Matt Worthington - ICYMI: This was all about racism">
 <meta property="og:description" content="While Rodriguez v. San Antonio ISD worked its way through the courts in 1968, transcripts of Civil Rights hearings revealed a deeper logic at work in San Antonio and the country that sought to disenfranchise Mexican-Americans in almost every facet of life.">
-<meta property="og:image" content="IMG_0028-e1512660939350.jpg">
+<meta property="og:image" content="https://mrworthington.com/articles/school_finance/all_about_racism/IMG_0028-e1512660939350.jpg">
 <meta property="og:site-name" content="Matt Worthington">
 <meta name="twitter:title" content="Matt Worthington - ICYMI: This was all about racism">
 <meta name="twitter:description" content="While Rodriguez v. San Antonio ISD worked its way through the courts in 1968, transcripts of Civil Rights hearings revealed a deeper logic at work in San Antonio and the country that sought to disenfranchise Mexican-Americans in almost every facet of life.">
-<meta name="twitter:image" content="IMG_0028-e1512660939350.jpg">
+<meta name="twitter:image" content="https://mrworthington.com/articles/school_finance/all_about_racism/IMG_0028-e1512660939350.jpg">
+<meta name="twitter:creator" content="@mrworthington">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -436,7 +437,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     });
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp(/https:\/\/mrworthington\.com/);
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href);
     }

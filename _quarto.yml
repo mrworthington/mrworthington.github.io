@@ -5,7 +5,10 @@ project:
 
 website:
   title: "Matt Worthington"
-  twitter-card: true
+  twitter-card:
+    creator: "@mrworthington"
+    site: "@mrworthington"
+  site-url: https://mrworthington.com
   open-graph: true
   reader-mode: false
   page-navigation: false

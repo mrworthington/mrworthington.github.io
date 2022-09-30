@@ -95,11 +95,12 @@ background-size: cover;
 <link rel="stylesheet" href="page_header.css">
 <meta property="og:title" content="Matt Worthington - How San Antonio segregated its schools">
 <meta property="og:description" content="The struggles that continue to plague Edgewood ISD are rooted in prejudice. Throughout the 20th century, those prejudices became public policy that would allocate services unevenly across the city, creating intractable inequities still visible in the city’s school districts.">
-<meta property="og:image" content="HOLC_San_Antonio_City_Survey_Report_1_Exhibit_B_Racial_Concentrations_2.jpg">
+<meta property="og:image" content="https://mrworthington.com/articles/school_finance/how_sa_segregated_schools/HOLC_San_Antonio_City_Survey_Report_1_Exhibit_B_Racial_Concentrations_2.jpg">
 <meta property="og:site-name" content="Matt Worthington">
 <meta name="twitter:title" content="Matt Worthington - How San Antonio segregated its schools">
 <meta name="twitter:description" content="The struggles that continue to plague Edgewood ISD are rooted in prejudice. Throughout the 20th century, those prejudices became public policy that would allocate services unevenly across the city, creating intractable inequities still visible in the city’s school districts.">
-<meta name="twitter:image" content="HOLC_San_Antonio_City_Survey_Report_1_Exhibit_B_Racial_Concentrations_2.jpg">
+<meta name="twitter:image" content="https://mrworthington.com/articles/school_finance/how_sa_segregated_schools/HOLC_San_Antonio_City_Survey_Report_1_Exhibit_B_Racial_Concentrations_2.jpg">
+<meta name="twitter:creator" content="@mrworthington">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -429,7 +430,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     });
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp(/https:\/\/mrworthington\.com/);
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href);
     }

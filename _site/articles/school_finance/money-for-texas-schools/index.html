@@ -138,11 +138,12 @@ background-size: cover;
 <link rel="stylesheet" href="page_header.css">
 <meta property="og:title" content="Matt Worthington - How To Improve Texas Schools">
 <meta property="og:description" content="Despite calls to eliminate recapture from folks in Austin, statewide debates center around choosing between school vouchers and fully funding public schools. So what should we be focused on in the 88th session? The answer is the basic allotment.">
-<meta property="og:image" content="meggyn-pomerleau-2SGDohBsYPg-unsplash-2.jpg">
+<meta property="og:image" content="https://mrworthington.com/articles/school_finance/money-for-texas-schools/meggyn-pomerleau-2SGDohBsYPg-unsplash-2.jpg">
 <meta property="og:site-name" content="Matt Worthington">
 <meta name="twitter:title" content="Matt Worthington - How To Improve Texas Schools">
 <meta name="twitter:description" content="Despite calls to eliminate recapture from folks in Austin, statewide debates center around choosing between school vouchers and fully funding public schools. So what should we be focused on in the 88th session? The answer is the basic allotment.">
-<meta name="twitter:image" content="meggyn-pomerleau-2SGDohBsYPg-unsplash-2.jpg">
+<meta name="twitter:image" content="https://mrworthington.com/articles/school_finance/money-for-texas-schools/meggyn-pomerleau-2SGDohBsYPg-unsplash-2.jpg">
+<meta name="twitter:creator" content="@mrworthington">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -456,7 +457,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     });
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp(/https:\/\/mrworthington\.com/);
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href);
     }

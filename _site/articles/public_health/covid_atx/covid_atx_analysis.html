@@ -95,11 +95,12 @@ background-size: cover;
 <link rel="stylesheet" href="page_header.css">
 <meta property="og:title" content="Matt Worthington - Analyzing COVID-19 in Austin">
 <meta property="og:description" content="Austin has been profiled numerous times throughout the pandemic as being relentless in its efforts to get good COVID-19 data, despite multiple challenges and barriers. This is the first in a set of posts where I take a look at local COVID-19 data for Austin and explore themes of risk, resilience, and disparities as it pertains to COVID-19 in Austin.">
-<meta property="og:image" content="ryan-magsino-sohLeI-k-HU-unsplash.jpg">
+<meta property="og:image" content="https://mrworthington.com/articles/public_health/covid_atx/ryan-magsino-sohLeI-k-HU-unsplash.jpg">
 <meta property="og:site-name" content="Matt Worthington">
 <meta name="twitter:title" content="Matt Worthington - Analyzing COVID-19 in Austin">
 <meta name="twitter:description" content="Austin has been profiled numerous times throughout the pandemic as being relentless in its efforts to get good COVID-19 data, despite multiple challenges and barriers. This is the first in a set of posts where I take a look at local COVID-19 data for Austin and explore themes of risk, resilience, and disparities as it pertains to COVID-19 in Austin.">
-<meta name="twitter:image" content="ryan-magsino-sohLeI-k-HU-unsplash.jpg">
+<meta name="twitter:image" content="https://mrworthington.com/articles/public_health/covid_atx/ryan-magsino-sohLeI-k-HU-unsplash.jpg">
+<meta name="twitter:creator" content="@mrworthington">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -807,7 +808,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     });
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp(/https:\/\/mrworthington\.com/);
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href);
     }
