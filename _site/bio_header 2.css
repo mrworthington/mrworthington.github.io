@@ -1,0 +1,36 @@
+.quarto-title-block .quarto-title-banner {
+  padding-top: 10rem !important;
+  color: #2d2d2d !important;
+  font-family: "Gotham SSm A", "Gotham SSm B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica     Neue", Arial, sans-serif;
+  background-image: none !important;
+  background:
+    /* top, transparent red, faked with gradient */
+    linear-gradient(
+      rgba(33, 39, 75, 0.5),
+      rgba(33, 39, 75, 0.5)
+    ),
+    /* bottom, image */
+    url(bio.jpg) no-repeat center center fixed !important;
+  -webkit-background-size: cover !important;
+  -moz-background-size: cover !important;
+  -o-background-size: cover !important;
+  background-size:contain !important;
+  background-position-y: 0vh !important;
+}
+
+@media (max-width: 980px) {
+
+.quarto-title-block .quarto-title-banner {
+  padding-top: 6rem !important;
+  padding-bottom: inherit !important;
+  background-position-y: 8vh !important;
+  background-size: contain !important;
+}
+}
+
+main.quarto-banner-title-block #title-block-header.quarto-title-block.default .quarto-title-banner .quarto-title .title {
+  font-weight: 900 !important;
+  font-size: 2.2rem;
+  font-family: "Gotham SSm A", "Gotham SSm B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica     Neue", Arial, sans-serif !important;
+  color: #fff !important;
+}

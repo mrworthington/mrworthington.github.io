@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.251">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Matt Worthington">
+<meta name="dcterms.date" content="2018-03-28">
+<meta name="description" content="Analyzing School Finances Revenue Breakdowns For Every State From 1993-2015">
+
+<title>Matt Worthington - Visualizing American School Finance</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="../../../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-52682113"></script>
+
+<script type="text/plain" cookie-consent="tracking">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-52682113', { 'anonymize_ip': true});
+</script>
+
+<script type="text/javascript" charset="UTF-8">
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({
+  "notice_banner_type":"simple",
+  "consent_type":"implied",
+  "palette":"light",
+  "language":"en",
+  "page_load_consent_levels":["strictly-necessary","functionality","tracking","targeting"],
+  "notice_banner_reject_button_hide":false,
+  "preferences_center_close_button_hide":false,
+  "website_name":""
+  });
+});
+</script> 
+  
+<style>
+    .quarto-title-block .quarto-title-banner {
+      color: #ffffff;
+background-image: url(isabella-and-louisa-fischer-uSPjZzYwXO4-unsplash.jpg);
+background-size: cover;
+    }
+    </style>
+<script src="https://kit.fontawesome.com/20bb25f1fd.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="https://cloud.typography.com/6771036/7342412/css/fonts.css">
+
+
+<link rel="stylesheet" href="page_header.css">
+<meta property="og:title" content="Matt Worthington - Visualizing American School Finance">
+<meta property="og:description" content="Analyzing School Finances Revenue Breakdowns For Every State From 1993-2015">
+<meta property="og:image" content="https://mrworthington.com/articles/school_finance/school-finance-analysis/isabella-and-louisa-fischer-uSPjZzYwXO4-unsplash.jpg">
+<meta property="og:site-name" content="Matt Worthington">
+<meta name="twitter:title" content="Matt Worthington - Visualizing American School Finance">
+<meta name="twitter:description" content="Analyzing School Finances Revenue Breakdowns For Every State From 1993-2015">
+<meta name="twitter:image" content="https://mrworthington.com/articles/school_finance/school-finance-analysis/isabella-and-louisa-fischer-uSPjZzYwXO4-unsplash.jpg">
+<meta name="twitter:creator" content="@mrworthington">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../logo.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Matt Worthington</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html">Home</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about.html">About Me</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://portfolio.mrworthington.com/">Portfolio</a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/mrworthington"><i class="bi bi-github" role="img" aria-label="Link to My Github">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/mrworthington"><i class="bi bi-twitter" role="img" aria-label="Link to My Twitter">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Visualizing American School Finance</h1>
+                  <div>
+        <div class="description">
+          <p>Analyzing School Finances Revenue Breakdowns For Every State From 1993-2015</p>
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">School Finance</div>
+                <div class="quarto-category">Public Education</div>
+                <div class="quarto-category">Charter Schools</div>
+                <div class="quarto-category">US Census Bureau</div>
+              </div>
+                  </div>
+  </div>
+    
+  <div class="quarto-title-meta-author">
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-heading">Affiliation</div>
+    
+      <div class="quarto-title-meta-contents">
+      <a href="https://mrworthington.com/about.html">Matt Worthington</a> 
+    </div>
+      <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              Me, Myself, and I
+            </p>
+        </div>
+      </div>
+
+  <div class="quarto-title-meta">
+
+        
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">March 28, 2018</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#why-visualize-school-finance" id="toc-why-visualize-school-finance" class="nav-link active" data-scroll-target="#why-visualize-school-finance">Why Visualize School Finance?</a>
+  <ul class="collapse">
+  <li><a href="#the-map" id="toc-the-map" class="nav-link" data-scroll-target="#the-map">The Map</a></li>
+  </ul></li>
+  <li><a href="#the-code-through" id="toc-the-code-through" class="nav-link" data-scroll-target="#the-code-through">The Code Through</a>
+  <ul class="collapse">
+  <li><a href="#accessing-all-the-data-used-here" id="toc-accessing-all-the-data-used-here" class="nav-link" data-scroll-target="#accessing-all-the-data-used-here">Accessing All the Data Used Here</a></li>
+  <li><a href="#import-school-finance-data" id="toc-import-school-finance-data" class="nav-link" data-scroll-target="#import-school-finance-data">Import School Finance Data</a></li>
+  <li><a href="#import-inflation-data-and-tidy-the-data" id="toc-import-inflation-data-and-tidy-the-data" class="nav-link" data-scroll-target="#import-inflation-data-and-tidy-the-data">Import Inflation Data and Tidy The Data</a></li>
+  <li><a href="#recode-additional-variables-of-interest" id="toc-recode-additional-variables-of-interest" class="nav-link" data-scroll-target="#recode-additional-variables-of-interest">Recode Additional Variables of Interest</a></li>
+  <li><a href="#add-the-bls-education-inflation-index" id="toc-add-the-bls-education-inflation-index" class="nav-link" data-scroll-target="#add-the-bls-education-inflation-index">Add The BLS Education Inflation Index</a></li>
+  <li><a href="#adjust-our-data-for-inflation" id="toc-adjust-our-data-for-inflation" class="nav-link" data-scroll-target="#adjust-our-data-for-inflation">Adjust Our Data for Inflation</a></li>
+  <li><a href="#merge-all-datasets-into-one" id="toc-merge-all-datasets-into-one" class="nav-link" data-scroll-target="#merge-all-datasets-into-one">Merge All Datasets Into One</a></li>
+  <li><a href="#add-fips-state-codes-to-our-datasets" id="toc-add-fips-state-codes-to-our-datasets" class="nav-link" data-scroll-target="#add-fips-state-codes-to-our-datasets">Add FIPS State Codes To Our Datasets</a></li>
+  <li><a href="#plot-the-school-finance-map" id="toc-plot-the-school-finance-map" class="nav-link" data-scroll-target="#plot-the-school-finance-map">Plot The School Finance Map</a></li>
+  <li><a href="#bonus-school-finance-map" id="toc-bonus-school-finance-map" class="nav-link" data-scroll-target="#bonus-school-finance-map">Bonus School Finance Map</a></li>
+  <li><a href="#photo-credit" id="toc-photo-credit" class="nav-link" data-scroll-target="#photo-credit">Photo Credit</a></li>
+  <li><a href="#corrections" id="toc-corrections" class="nav-link" data-scroll-target="#corrections">Corrections</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
+
+
+
+
+<div class="callout-note callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Note: This is a much older post of mine that contains an approach to coding I no longer use. I keep it up here as a reminder of the importance of growing coding skills. One of the key pieces of feedback I received from this post was to look into looping and interation. As a result, I learned about a package called <a href="https://purrr.tidyverse.org">{purrr}</a>, which was a great solution for this recommendation.</strong></p>
+</div>
+</div>
+</div>
+<p>This evening, <a href="https://edtrust.org/resource/funding-gaps-2018/">the Ed Trust is hosting a discussion on twitter at 8PM ET</a> on school funding inequity, so I thought I would do a code-through of a visualization I made this past summer while researching the legacy of a famous school finance Supreme Court case that ended up determining that <a href="https://www.folomedia.org/americans-no-right-education/">Americans had no fundamental right to an education</a>. In short, it shows the shares of funding over time for each of the three main sources of funding for public education in America: federal funding, state funding, and local funding (mostly property taxes).</p>
+<section id="why-visualize-school-finance" class="level1 page-columns page-full">
+<h1>Why Visualize School Finance?</h1>
+<p>In recent years, much has been debated about school funding, or the lack thereof. Notably, recent studies coming out of places like <a href="https://www.texastribune.org/2018/03/28/texas-am-lori-taylor-public-education-funding/">Texas A&amp;M</a> and <a href="http://usccr.gov/pubs/2018-01-10-Education-Inequity.pdf">the US Commission on Civil Rights</a> have highlighted funding deficits throughout America that not only threaten the futures of currently enrolled public school students, but <a href="https://www.texastribune.org/2018/03/20/texas-notice-credit-rating-downgrade-comptroller-says/">our future economies</a> throughout America.</p>
+<p>You may not have children, but school finance impacts you regardless. And as one news executive said recently in a visit to one of my public policy classes, “school finance is the thing people should be talking about but will likely never get talked about.”</p>
+<p>So here’s to helping people understand with clean visualizations. Alright, let’s see the map and get to the code-through.</p>
+<section id="the-map" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="the-map">The Map</h3>
+<div class="cell page-columns page-full">
+<div class="cell-output-display column-page">
+<p><img src="SFNationalMapOT.png" class="img-fluid" width="3000"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="the-code-through" class="level1 page-columns page-full">
+<h1>The Code Through</h1>
+<p>While we’ll visualize the three sources of funding, this dataset will organize a few other data points of use. While I’ll do my best to address what each one is, I may overlook a few variables. If I do, you can reach out to me or reach out to the folks at the Census’ Educational Finance Branch.</p>
+<section id="accessing-all-the-data-used-here" class="level3">
+<h3 class="anchored" data-anchor-id="accessing-all-the-data-used-here">Accessing All the Data Used Here</h3>
+<p>For this code-through, <a href="https://github.com/mrworthington/fileshare/raw/master/sf-data.zip">you can download all the data used for this code-through from my github</a>, which includes the inflation &amp; state “FIPS” code data needed for the visualization to work properly. Just add it to whatever directory you’re working out of and you’ll be good to go.</p>
+</section>
+<section id="import-school-finance-data" class="level3">
+<h3 class="anchored" data-anchor-id="import-school-finance-data">Import School Finance Data</h3>
+<p>While you already have the data, the US Census has been collecting data from every school district in the country since the 1960s. Using their FTP database, you can download the files here and other various datasets related to public finance. For our purposes, we’ll use their elementary and secondary school finance survey files and start from 1993 for a couple of reasons explained by clicking on the tooltips here<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
+<p>To access this raw data, you can go to the US Census FTP database where the school finance datasets are stored and download them into a folder there. First, <a href="ftp://ftp.census.gov/govs/school/">go to the FTP database</a>. Second, choose “Allow” when prompted and select guest when asked for authentication.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ftp-finderprompt.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">First, hit “Allow”</figcaption><p></p>
+</figure>
+</div>
+<p>Once you do this, you should see a dialogue showing your connection status that looks like this.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="connectingtoftp.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">You should see a connecting status like this before the remote disk loads the files.</figcaption><p></p>
+</figure>
+</div>
+<p>After the data downloads into the remote disk, find the files with the following labels highlighted in purple below (i.e., <code>"elsec.93.xls"</code>) and download them into a folder called “data”. Once you do that, save a .Rproj file into the same location and you’ll be able to run the code below without much trouble (I hope).</p>
+<p>One note about my code. By no means am I an expert in R and when I produced this code, I knew way less about the <code>tidyverse</code> than I do now. If any other R folks have feedback, I’m 100% open to ways I can make this code cleaner and more efficient.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"data"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Import Census School Finance Data</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>sf1993 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"elsec93.xls"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>sf1994 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"elsec94.xls"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>sf1995 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"elsec95.xls"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>sf1996 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"elsec96.xls"</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>sf1997 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"elsec97.xls"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>sf1998 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"elsec98.xls"</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>sf1999 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"elsec99.xls"</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>sf2000 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"elsec00.xls"</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>sf2001 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"elsec01.xls"</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>sf2002 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"elsec02.xls"</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>sf2003 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"elsec03.xls"</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>sf2004 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"elsec04.xls"</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>sf2005 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"elsec05.xls"</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>sf2006 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"elsec06.xls"</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>sf2007 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"elsec07.xls"</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>sf2008 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"elsec08.xls"</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>sf2009 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"elsec09.xls"</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>sf2010 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"elsec10.xls"</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>sf2011 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"elsec11.xls"</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>sf2012 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"elsec12.xls"</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>sf2013 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"elsec13.xls"</span>)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>sf2014 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"elsec14.xls"</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>sf2015 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"elsec15.xls"</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co">#Add YEAR Column, No M/D</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>sf1993<span class="sc">$</span>YEAR <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="st">"1993"</span>)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>sf1994<span class="sc">$</span>YEAR <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="st">"1994"</span>)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>sf1995<span class="sc">$</span>YEAR <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="st">"1995"</span>)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>sf1996<span class="sc">$</span>YEAR <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="st">"1996"</span>)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>sf1997<span class="sc">$</span>YEAR <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="st">"1997"</span>)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>sf1998<span class="sc">$</span>YEAR <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="st">"1998"</span>)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>sf1999<span class="sc">$</span>YEAR <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="st">"1999"</span>)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>sf2000<span class="sc">$</span>YEAR <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="st">"2000"</span>)</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>sf2001<span class="sc">$</span>YEAR <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="st">"2001"</span>)</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>sf2002<span class="sc">$</span>YEAR <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="st">"2002"</span>)</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>sf2003<span class="sc">$</span>YEAR <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="st">"2003"</span>)</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>sf2004<span class="sc">$</span>YEAR <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="st">"2004"</span>)</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>sf2005<span class="sc">$</span>YEAR <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="st">"2005"</span>)</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>sf2006<span class="sc">$</span>YEAR <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="st">"2006"</span>)</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>sf2007<span class="sc">$</span>YEAR <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="st">"2007"</span>)</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>sf2008<span class="sc">$</span>YEAR <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="st">"2008"</span>)</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>sf2009<span class="sc">$</span>YEAR <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="st">"2009"</span>)</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>sf2010<span class="sc">$</span>YEAR <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="st">"2010"</span>)</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>sf2011<span class="sc">$</span>YEAR <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="st">"2011"</span>)</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>sf2012<span class="sc">$</span>YEAR <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="st">"2012"</span>)</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>sf2013<span class="sc">$</span>YEAR <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="st">"2013"</span>)</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>sf2014<span class="sc">$</span>YEAR <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="st">"2014"</span>)</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>sf2015<span class="sc">$</span>YEAR <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="st">"2015"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="import-inflation-data-and-tidy-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="import-inflation-data-and-tidy-the-data">Import Inflation Data and Tidy The Data</h3>
+<p>At this part, we’re limiting the raw data to the revenue sources, along with a few other identifiers and more granular funding sources that will get accounted into the larger buckets of Federal, State, &amp; Local revenues but are interesting to see in our table nonetheless.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Introduce Inflation</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>inflation <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/inflation.csv"</span>, <span class="at">col_types =</span> <span class="fu">cols</span>(<span class="at">YEAR_S =</span> <span class="fu">col_character</span>()))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Select Only Those Variables of Interest</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>t1993 <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(sf1993, <span class="fu">one_of</span>(<span class="fu">c</span>(<span class="st">"STATE"</span>, <span class="st">"ID"</span>, <span class="st">"YEAR"</span>, <span class="st">"NAME"</span>, <span class="st">"SCHLEV"</span>, <span class="st">"V33"</span>, <span class="st">"TOTALREV"</span>, <span class="st">"TFEDREV"</span>, <span class="st">"TSTREV"</span>,<span class="st">"TLOCREV"</span>, <span class="st">"T06"</span>, <span class="st">"U97"</span>, <span class="st">"TOTALEXP"</span>, <span class="st">"TCURELSC"</span>)))</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>t1994 <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(sf1994, <span class="fu">one_of</span>(<span class="fu">c</span>(<span class="st">"STATE"</span>, <span class="st">"IDCENSUS"</span>, <span class="st">"YEAR"</span>, <span class="st">"NAME"</span>, <span class="st">"SCHLEV"</span>, <span class="st">"V33"</span>, <span class="st">"TOTALREV"</span>, <span class="st">"TFEDREV"</span>, <span class="st">"TSTREV"</span>,<span class="st">"TLOCREV"</span>, <span class="st">"T06"</span>, <span class="st">"U97"</span>, <span class="st">"TOTALEXP"</span>, <span class="st">"TCURELSC"</span>)))</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>t1995 <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(sf1995, <span class="fu">one_of</span>(<span class="fu">c</span>(<span class="st">"STATE"</span>, <span class="st">"IDCENSUS"</span>, <span class="st">"YEAR"</span>, <span class="st">"NAME"</span>, <span class="st">"SCHLEV"</span>, <span class="st">"V33"</span>, <span class="st">"TOTALREV"</span>, <span class="st">"TFEDREV"</span>, <span class="st">"TSTREV"</span>,<span class="st">"TLOCREV"</span>, <span class="st">"T06"</span>, <span class="st">"U97"</span>, <span class="st">"TOTALEXP"</span>, <span class="st">"TCURELSC"</span>)))</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>t1996 <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(sf1996, <span class="fu">one_of</span>(<span class="fu">c</span>(<span class="st">"STATE"</span>, <span class="st">"IDCENSUS"</span>, <span class="st">"YEAR"</span>, <span class="st">"NAME"</span>, <span class="st">"SCHLEV"</span>, <span class="st">"V33"</span>, <span class="st">"TOTALREV"</span>, <span class="st">"TFEDREV"</span>, <span class="st">"TSTREV"</span>,<span class="st">"TLOCREV"</span>, <span class="st">"T06"</span>, <span class="st">"U97"</span>, <span class="st">"TOTALEXP"</span>, <span class="st">"TCURELSC"</span>)))</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>t1997 <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(sf1997, <span class="fu">one_of</span>(<span class="fu">c</span>(<span class="st">"STATE"</span>, <span class="st">"IDCENSUS"</span>, <span class="st">"YEAR"</span>, <span class="st">"NAME"</span>, <span class="st">"SCHLEV"</span>, <span class="st">"V33"</span>, <span class="st">"TOTALREV"</span>, <span class="st">"TFEDREV"</span>, <span class="st">"TSTREV"</span>,<span class="st">"TLOCREV"</span>, <span class="st">"T06"</span>, <span class="st">"U97"</span>, <span class="st">"TOTALEXP"</span>, <span class="st">"TCURELSC"</span>)))</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>t1998 <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(sf1998, <span class="fu">one_of</span>(<span class="fu">c</span>(<span class="st">"STATE"</span>, <span class="st">"IDCENSUS"</span>, <span class="st">"YEAR"</span>, <span class="st">"NAME"</span>, <span class="st">"SCHLEV"</span>, <span class="st">"V33"</span>, <span class="st">"TOTALREV"</span>, <span class="st">"TFEDREV"</span>, <span class="st">"TSTREV"</span>,<span class="st">"TLOCREV"</span>, <span class="st">"T06"</span>, <span class="st">"U97"</span>, <span class="st">"TOTALEXP"</span>, <span class="st">"TCURELSC"</span>)))</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>t1999 <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(sf1999, <span class="fu">one_of</span>(<span class="fu">c</span>(<span class="st">"STATE"</span>, <span class="st">"IDCENSUS"</span>, <span class="st">"YEAR"</span>, <span class="st">"NAME"</span>, <span class="st">"SCHLEV"</span>, <span class="st">"V33"</span>, <span class="st">"TOTALREV"</span>, <span class="st">"TFEDREV"</span>, <span class="st">"TSTREV"</span>,<span class="st">"TLOCREV"</span>, <span class="st">"T06"</span>, <span class="st">"U97"</span>, <span class="st">"TOTALEXP"</span>, <span class="st">"TCURELSC"</span>)))</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>t2000 <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(sf2000, <span class="fu">one_of</span>(<span class="fu">c</span>(<span class="st">"STATE"</span>, <span class="st">"IDCENSUS"</span>, <span class="st">"YEAR"</span>, <span class="st">"NAME"</span>, <span class="st">"SCHLEV"</span>, <span class="st">"V33"</span>, <span class="st">"TOTALREV"</span>, <span class="st">"TFEDREV"</span>, <span class="st">"TSTREV"</span>,<span class="st">"TLOCREV"</span>, <span class="st">"T06"</span>, <span class="st">"U97"</span>, <span class="st">"TOTALEXP"</span>, <span class="st">"TCURELSC"</span>)))</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>t2001 <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(sf2001, <span class="fu">one_of</span>(<span class="fu">c</span>(<span class="st">"STATE"</span>, <span class="st">"IDCENSUS"</span>, <span class="st">"YEAR"</span>, <span class="st">"NAME"</span>, <span class="st">"SCHLEV"</span>, <span class="st">"V33"</span>, <span class="st">"TOTALREV"</span>, <span class="st">"TFEDREV"</span>, <span class="st">"TSTREV"</span>,<span class="st">"TLOCREV"</span>, <span class="st">"T06"</span>, <span class="st">"U97"</span>, <span class="st">"TOTALEXP"</span>, <span class="st">"TCURELSC"</span>)))</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>t2002 <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(sf2002, <span class="fu">one_of</span>(<span class="fu">c</span>(<span class="st">"STATE"</span>, <span class="st">"IDCENSUS"</span>, <span class="st">"YEAR"</span>, <span class="st">"NAME"</span>, <span class="st">"SCHLEV"</span>, <span class="st">"V33"</span>, <span class="st">"TOTALREV"</span>, <span class="st">"TFEDREV"</span>, <span class="st">"TSTREV"</span>,<span class="st">"TLOCREV"</span>, <span class="st">"T06"</span>, <span class="st">"U97"</span>, <span class="st">"TOTALEXP"</span>, <span class="st">"TCURELSC"</span>)))</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>t2003 <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(sf2003, <span class="fu">one_of</span>(<span class="fu">c</span>(<span class="st">"STATE"</span>, <span class="st">"IDCENSUS"</span>, <span class="st">"YEAR"</span>, <span class="st">"NAME"</span>, <span class="st">"SCHLEV"</span>, <span class="st">"V33"</span>, <span class="st">"TOTALREV"</span>, <span class="st">"TFEDREV"</span>, <span class="st">"TSTREV"</span>,<span class="st">"TLOCREV"</span>, <span class="st">"T06"</span>, <span class="st">"U97"</span>, <span class="st">"TOTALEXP"</span>, <span class="st">"TCURELSC"</span>)))</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>t2004 <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(sf2004, <span class="fu">one_of</span>(<span class="fu">c</span>(<span class="st">"STATE"</span>, <span class="st">"IDCENSUS"</span>, <span class="st">"YEAR"</span>, <span class="st">"NAME"</span>, <span class="st">"SCHLEV"</span>, <span class="st">"V33"</span>, <span class="st">"TOTALREV"</span>, <span class="st">"TFEDREV"</span>, <span class="st">"TSTREV"</span>,<span class="st">"TLOCREV"</span>, <span class="st">"T06"</span>, <span class="st">"U97"</span>, <span class="st">"TOTALEXP"</span>, <span class="st">"TCURELSC"</span>)))</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>t2005 <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(sf2005, <span class="fu">one_of</span>(<span class="fu">c</span>(<span class="st">"STATE"</span>, <span class="st">"IDCENSUS"</span>, <span class="st">"YEAR"</span>, <span class="st">"NAME"</span>, <span class="st">"SCHLEV"</span>, <span class="st">"V33"</span>, <span class="st">"TOTALREV"</span>, <span class="st">"TFEDREV"</span>, <span class="st">"TSTREV"</span>,<span class="st">"TLOCREV"</span>, <span class="st">"T06"</span>, <span class="st">"U97"</span>, <span class="st">"TOTALEXP"</span>, <span class="st">"TCURELSC"</span>)))</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>t2006 <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(sf2006, <span class="fu">one_of</span>(<span class="fu">c</span>(<span class="st">"STATE"</span>, <span class="st">"IDCENSUS"</span>, <span class="st">"YEAR"</span>, <span class="st">"NAME"</span>, <span class="st">"SCHLEV"</span>, <span class="st">"V33"</span>, <span class="st">"TOTALREV"</span>, <span class="st">"TFEDREV"</span>, <span class="st">"TSTREV"</span>,<span class="st">"TLOCREV"</span>, <span class="st">"T06"</span>, <span class="st">"U97"</span>, <span class="st">"TOTALEXP"</span>, <span class="st">"TCURELSC"</span>)))</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>t2007 <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(sf2007, <span class="fu">one_of</span>(<span class="fu">c</span>(<span class="st">"STATE"</span>, <span class="st">"IDCENSUS"</span>, <span class="st">"YEAR"</span>, <span class="st">"NAME"</span>, <span class="st">"SCHLEV"</span>, <span class="st">"V33"</span>, <span class="st">"TOTALREV"</span>, <span class="st">"TFEDREV"</span>, <span class="st">"TSTREV"</span>,<span class="st">"TLOCREV"</span>, <span class="st">"T06"</span>, <span class="st">"U97"</span>, <span class="st">"TOTALEXP"</span>, <span class="st">"TCURELSC"</span>)))</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>t2008 <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(sf2008, <span class="fu">one_of</span>(<span class="fu">c</span>(<span class="st">"STATE"</span>, <span class="st">"IDCENSUS"</span>, <span class="st">"YEAR"</span>, <span class="st">"NAME"</span>, <span class="st">"SCHLEV"</span>, <span class="st">"V33"</span>, <span class="st">"TOTALREV"</span>, <span class="st">"TFEDREV"</span>, <span class="st">"TSTREV"</span>,<span class="st">"TLOCREV"</span>, <span class="st">"T06"</span>, <span class="st">"U97"</span>, <span class="st">"TOTALEXP"</span>, <span class="st">"TCURELSC"</span>)))</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>t2009 <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(sf2009, <span class="fu">one_of</span>(<span class="fu">c</span>(<span class="st">"STATE"</span>, <span class="st">"IDCENSUS"</span>, <span class="st">"YEAR"</span>, <span class="st">"NAME"</span>, <span class="st">"SCHLEV"</span>, <span class="st">"V33"</span>, <span class="st">"TOTALREV"</span>, <span class="st">"TFEDREV"</span>, <span class="st">"TSTREV"</span>,<span class="st">"TLOCREV"</span>, <span class="st">"T06"</span>, <span class="st">"U97"</span>, <span class="st">"TOTALEXP"</span>, <span class="st">"TCURELSC"</span>)))</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>t2010 <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(sf2010, <span class="fu">one_of</span>(<span class="fu">c</span>(<span class="st">"STATE"</span>, <span class="st">"IDCENSUS"</span>, <span class="st">"YEAR"</span>, <span class="st">"NAME"</span>, <span class="st">"SCHLEV"</span>, <span class="st">"V33"</span>, <span class="st">"TOTALREV"</span>, <span class="st">"TFEDREV"</span>, <span class="st">"TSTREV"</span>,<span class="st">"TLOCREV"</span>, <span class="st">"T06"</span>, <span class="st">"U97"</span>, <span class="st">"TOTALEXP"</span>, <span class="st">"TCURELSC"</span>)))</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>t2011 <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(sf2011, <span class="fu">one_of</span>(<span class="fu">c</span>(<span class="st">"STATE"</span>, <span class="st">"IDCENSUS"</span>, <span class="st">"YEAR"</span>, <span class="st">"NAME"</span>, <span class="st">"SCHLEV"</span>, <span class="st">"V33"</span>, <span class="st">"TOTALREV"</span>, <span class="st">"TFEDREV"</span>, <span class="st">"TSTREV"</span>,<span class="st">"TLOCREV"</span>, <span class="st">"T06"</span>, <span class="st">"U97"</span>, <span class="st">"TOTALEXP"</span>, <span class="st">"TCURELSC"</span>)))</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>t2012 <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(sf2012, <span class="fu">one_of</span>(<span class="fu">c</span>(<span class="st">"STATE"</span>, <span class="st">"IDCENSUS"</span>, <span class="st">"YEAR"</span>, <span class="st">"NAME"</span>, <span class="st">"SCHLEV"</span>, <span class="st">"V33"</span>, <span class="st">"TOTALREV"</span>, <span class="st">"TFEDREV"</span>, <span class="st">"TSTREV"</span>,<span class="st">"TLOCREV"</span>, <span class="st">"T06"</span>, <span class="st">"U97"</span>, <span class="st">"TOTALEXP"</span>, <span class="st">"TCURELSC"</span>)))</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>t2013 <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(sf2013, <span class="fu">one_of</span>(<span class="fu">c</span>(<span class="st">"STATE"</span>, <span class="st">"IDCENSUS"</span>, <span class="st">"YEAR"</span>, <span class="st">"NAME"</span>, <span class="st">"SCHLEV"</span>, <span class="st">"V33"</span>, <span class="st">"TOTALREV"</span>, <span class="st">"TFEDREV"</span>, <span class="st">"TSTREV"</span>,<span class="st">"TLOCREV"</span>, <span class="st">"T06"</span>, <span class="st">"U97"</span>, <span class="st">"TOTALEXP"</span>, <span class="st">"TCURELSC"</span>)))</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>t2014 <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(sf2014, <span class="fu">one_of</span>(<span class="fu">c</span>(<span class="st">"STATE"</span>, <span class="st">"IDCENSUS"</span>, <span class="st">"YEAR"</span>, <span class="st">"NAME"</span>, <span class="st">"SCHLEV"</span>, <span class="st">"V33"</span>, <span class="st">"TOTALREV"</span>, <span class="st">"TFEDREV"</span>, <span class="st">"TSTREV"</span>,<span class="st">"TLOCREV"</span>, <span class="st">"T06"</span>, <span class="st">"U97"</span>, <span class="st">"TOTALEXP"</span>, <span class="st">"TCURELSC"</span>)))</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>t2015 <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(sf2015, <span class="fu">one_of</span>(<span class="fu">c</span>(<span class="st">"STATE"</span>, <span class="st">"IDCENSUS"</span>, <span class="st">"YEAR"</span>, <span class="st">"NAME"</span>, <span class="st">"SCHLEV"</span>, <span class="st">"V33"</span>, <span class="st">"TOTALREV"</span>, <span class="st">"TFEDREV"</span>, <span class="st">"TSTREV"</span>,<span class="st">"TLOCREV"</span>, <span class="st">"T06"</span>, <span class="st">"U97"</span>, <span class="st">"TOTALEXP"</span>, <span class="st">"TCURELSC"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="recode-additional-variables-of-interest" class="level3">
+<h3 class="anchored" data-anchor-id="recode-additional-variables-of-interest">Recode Additional Variables of Interest</h3>
+<p>Truth be told, many databases use strange identifiers to identify what those variables represent. In the census dataset, they used some names that are easy to interpret at first glance. For instance, <code>TOTALREV</code> equals “Total Revenue”. However, some variables aren’t easily interpretable. For my purposes, I wanted to create more readable names for some of the variables I pulled in earlier. This code does that.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Recode 1993 Variables</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>t1993 <span class="ot">&lt;-</span> <span class="fu">rename</span>(t1993,  </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">ENROLL =</span> V33,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">IDCENSUS =</span> ID,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">PROPTAX =</span> T06,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">MISCREV =</span> U97)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Recode 1994 Variables</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>t1994 <span class="ot">&lt;-</span> <span class="fu">rename</span>(t1994,  </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">ENROLL =</span> V33,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">PROPTAX =</span> T06,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">MISCREV =</span> U97)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co">#Recode 1995 Variables</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>t1995 <span class="ot">&lt;-</span> <span class="fu">rename</span>(t1995,  </span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>                <span class="at">ENROLL =</span> V33,</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>                <span class="at">PROPTAX =</span> T06,</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>                <span class="at">MISCREV =</span> U97)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co">#Recode 1996 Variables</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>t1996 <span class="ot">&lt;-</span> <span class="fu">rename</span>(t1996,  </span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>                <span class="at">ENROLL =</span> V33,</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>                <span class="at">PROPTAX =</span> T06,</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>                <span class="at">MISCREV =</span> U97)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="co">#Recode 1997 Variables</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>t1997 <span class="ot">&lt;-</span> <span class="fu">rename</span>(t1997,  </span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>                <span class="at">ENROLL =</span> V33,</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>                <span class="at">PROPTAX =</span> T06,</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>                <span class="at">MISCREV =</span> U97)</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="co">#Recode 1998 Variables</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>t1998 <span class="ot">&lt;-</span> <span class="fu">rename</span>(t1998,  </span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>                <span class="at">ENROLL =</span> V33,</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>                <span class="at">PROPTAX =</span> T06,</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>                <span class="at">MISCREV =</span> U97)</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="co">#Recode 1999 Variables</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>t1999 <span class="ot">&lt;-</span> <span class="fu">rename</span>(t1999,  </span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>                <span class="at">ENROLL =</span> V33,</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>                <span class="at">PROPTAX =</span> T06,</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>                <span class="at">MISCREV =</span> U97)</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="co">#Recode 2000 Variables</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>t2000 <span class="ot">&lt;-</span> <span class="fu">rename</span>(t2000,  </span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>                <span class="at">ENROLL =</span> V33,</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>                <span class="at">PROPTAX =</span> T06,</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>                <span class="at">MISCREV =</span> U97)</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="co">#Recode 2001 Variables</span></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>t2001 <span class="ot">&lt;-</span> <span class="fu">rename</span>(t2001,  </span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>                <span class="at">ENROLL =</span> V33,</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>                <span class="at">PROPTAX =</span> T06,</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>                <span class="at">MISCREV =</span> U97)</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a><span class="co">#Recode 2002 Variables</span></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>t2002 <span class="ot">&lt;-</span> <span class="fu">rename</span>(t2002,  </span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>                <span class="at">ENROLL =</span> V33,</span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>                <span class="at">PROPTAX =</span> T06,</span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>                <span class="at">MISCREV =</span> U97)</span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a><span class="co">#Recode 2003 Variables</span></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>t2003 <span class="ot">&lt;-</span> <span class="fu">rename</span>(t2003,  </span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>                <span class="at">ENROLL =</span> V33,</span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>                <span class="at">PROPTAX =</span> T06,</span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>                <span class="at">MISCREV =</span> U97)</span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a><span class="co">#Recode 2004 Variables</span></span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>t2004 <span class="ot">&lt;-</span> <span class="fu">rename</span>(t2004,  </span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>                <span class="at">ENROLL =</span> V33,</span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>                <span class="at">PROPTAX =</span> T06,</span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>                <span class="at">MISCREV =</span> U97)</span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a><span class="co">#Recode 2005 Variables</span></span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>t2005 <span class="ot">&lt;-</span> <span class="fu">rename</span>(t2005,  </span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>                <span class="at">ENROLL =</span> V33,</span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>                <span class="at">PROPTAX =</span> T06,</span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>                <span class="at">MISCREV =</span> U97)</span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a><span class="co">#Recode 2006 Variables</span></span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>t2006 <span class="ot">&lt;-</span> <span class="fu">rename</span>(t2006,  </span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a>                <span class="at">ENROLL =</span> V33,</span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>                <span class="at">PROPTAX =</span> T06,</span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a>                <span class="at">MISCREV =</span> U97)</span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a><span class="co">#Recode 2007 Variables</span></span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a>t2007 <span class="ot">&lt;-</span> <span class="fu">rename</span>(t2007,  </span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a>                <span class="at">ENROLL =</span> V33,</span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a>                <span class="at">PROPTAX =</span> T06,</span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a>                <span class="at">MISCREV =</span> U97)</span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a><span class="co">#Recode 2008 Variables</span></span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a>t2008 <span class="ot">&lt;-</span> <span class="fu">rename</span>(t2008,  </span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a>                <span class="at">ENROLL =</span> V33,</span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a>                <span class="at">PROPTAX =</span> T06,</span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a>                <span class="at">MISCREV =</span> U97)</span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a><span class="co">#Recode 2009 Variables</span></span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a>t2009 <span class="ot">&lt;-</span> <span class="fu">rename</span>(t2009,  </span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a>                <span class="at">ENROLL =</span> V33,</span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a>                <span class="at">PROPTAX =</span> T06,</span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a>                <span class="at">MISCREV =</span> U97)</span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a><span class="co">#Recode 2010 Variables</span></span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a>t2010 <span class="ot">&lt;-</span> <span class="fu">rename</span>(t2010,  </span>
+<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a>                <span class="at">ENROLL =</span> V33,</span>
+<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a>                <span class="at">PROPTAX =</span> T06,</span>
+<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a>                <span class="at">MISCREV =</span> U97)</span>
+<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a><span class="co">#Recode 2011 Variables</span></span>
+<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a>t2011 <span class="ot">&lt;-</span> <span class="fu">rename</span>(t2011,  </span>
+<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a>                <span class="at">ENROLL =</span> V33,</span>
+<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a>                <span class="at">PROPTAX =</span> T06,</span>
+<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a>                <span class="at">MISCREV =</span> U97)</span>
+<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a><span class="co">#Recode 2012 Variables</span></span>
+<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a>t2012 <span class="ot">&lt;-</span> <span class="fu">rename</span>(t2012,  </span>
+<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a>                <span class="at">ENROLL =</span> V33,</span>
+<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a>                <span class="at">PROPTAX =</span> T06,</span>
+<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a>                <span class="at">MISCREV =</span> U97)</span>
+<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a><span class="co">#Recode 2013 Variables</span></span>
+<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a>t2013 <span class="ot">&lt;-</span> <span class="fu">rename</span>(t2013,  </span>
+<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a>                <span class="at">ENROLL =</span> V33,</span>
+<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a>                <span class="at">PROPTAX =</span> T06,</span>
+<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a>                <span class="at">MISCREV =</span> U97)</span>
+<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a><span class="co">#Recode 2014 Variables</span></span>
+<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a>t2014 <span class="ot">&lt;-</span> <span class="fu">rename</span>(t2014,  </span>
+<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a>                <span class="at">ENROLL =</span> V33,</span>
+<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a>                <span class="at">PROPTAX =</span> T06,</span>
+<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a>                <span class="at">MISCREV =</span> U97)</span>
+<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a><span class="co">#Recode 2015 Variables</span></span>
+<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a>t2015 <span class="ot">&lt;-</span> <span class="fu">rename</span>(t2015,  </span>
+<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a>                <span class="at">ENROLL =</span> V33,</span>
+<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a>                <span class="at">PROPTAX =</span> T06,</span>
+<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a>                <span class="at">MISCREV =</span> U97)</span>
+<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-139"><a href="#cb3-139" aria-hidden="true" tabindex="-1"></a>inflation <span class="ot">&lt;-</span> <span class="fu">rename</span>(inflation, </span>
+<span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a>                    <span class="at">INDEX =</span> Index,</span>
+<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a>                    <span class="at">YEAR =</span> YEAR_S)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="add-the-bls-education-inflation-index" class="level3">
+<h3 class="anchored" data-anchor-id="add-the-bls-education-inflation-index">Add The BLS Education Inflation Index</h3>
+<p>Here, we’re combining the inflation data from <a href="https://data.bls.gov/cgi-bin/surveymost?cu">the BLS Education Inflation Index</a> alongside their annual counterparts from the census files so we can multiply the index value by each year’s recorded funding amount. Once we do that, we’ll have our inflation adjusted figures and be able to visualize them.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Add Inflation Index</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>inflation <span class="ot">&lt;-</span> inflation <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Annual =</span> <span class="cn">NULL</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>t1993 <span class="ot">&lt;-</span> <span class="fu">left_join</span>(t1993, inflation, <span class="at">by =</span><span class="st">"YEAR"</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>t1994 <span class="ot">&lt;-</span> <span class="fu">left_join</span>(t1994, inflation, <span class="at">by =</span><span class="st">"YEAR"</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>t1995 <span class="ot">&lt;-</span> <span class="fu">left_join</span>(t1995, inflation, <span class="at">by =</span><span class="st">"YEAR"</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>t1996 <span class="ot">&lt;-</span> <span class="fu">left_join</span>(t1996, inflation, <span class="at">by =</span><span class="st">"YEAR"</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>t1997 <span class="ot">&lt;-</span> <span class="fu">left_join</span>(t1997, inflation, <span class="at">by =</span><span class="st">"YEAR"</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>t1998 <span class="ot">&lt;-</span> <span class="fu">left_join</span>(t1998, inflation, <span class="at">by =</span><span class="st">"YEAR"</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>t1999 <span class="ot">&lt;-</span> <span class="fu">left_join</span>(t1999, inflation, <span class="at">by =</span><span class="st">"YEAR"</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>t2000 <span class="ot">&lt;-</span> <span class="fu">left_join</span>(t2000, inflation, <span class="at">by =</span><span class="st">"YEAR"</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>t2001 <span class="ot">&lt;-</span> <span class="fu">left_join</span>(t2001, inflation, <span class="at">by =</span><span class="st">"YEAR"</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>t2002 <span class="ot">&lt;-</span> <span class="fu">left_join</span>(t2002, inflation, <span class="at">by =</span><span class="st">"YEAR"</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>t2003 <span class="ot">&lt;-</span> <span class="fu">left_join</span>(t2003, inflation, <span class="at">by =</span><span class="st">"YEAR"</span>)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>t2004 <span class="ot">&lt;-</span> <span class="fu">left_join</span>(t2004, inflation, <span class="at">by =</span><span class="st">"YEAR"</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>t2005 <span class="ot">&lt;-</span> <span class="fu">left_join</span>(t2005, inflation, <span class="at">by =</span><span class="st">"YEAR"</span>)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>t2006 <span class="ot">&lt;-</span> <span class="fu">left_join</span>(t2006, inflation, <span class="at">by =</span><span class="st">"YEAR"</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>t2007 <span class="ot">&lt;-</span> <span class="fu">left_join</span>(t2007, inflation, <span class="at">by =</span><span class="st">"YEAR"</span>)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>t2008 <span class="ot">&lt;-</span> <span class="fu">left_join</span>(t2008, inflation, <span class="at">by =</span><span class="st">"YEAR"</span>)</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>t2009 <span class="ot">&lt;-</span> <span class="fu">left_join</span>(t2009, inflation, <span class="at">by =</span><span class="st">"YEAR"</span>)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>t2010 <span class="ot">&lt;-</span> <span class="fu">left_join</span>(t2010, inflation, <span class="at">by =</span><span class="st">"YEAR"</span>)</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>t2011 <span class="ot">&lt;-</span> <span class="fu">left_join</span>(t2011, inflation, <span class="at">by =</span><span class="st">"YEAR"</span>)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>t2012 <span class="ot">&lt;-</span> <span class="fu">left_join</span>(t2012, inflation, <span class="at">by =</span><span class="st">"YEAR"</span>)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>t2013 <span class="ot">&lt;-</span> <span class="fu">left_join</span>(t2013, inflation, <span class="at">by =</span><span class="st">"YEAR"</span>)</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>t2014 <span class="ot">&lt;-</span> <span class="fu">left_join</span>(t2014, inflation, <span class="at">by =</span><span class="st">"YEAR"</span>)</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>t2015 <span class="ot">&lt;-</span> <span class="fu">left_join</span>(t2015, inflation, <span class="at">by =</span><span class="st">"YEAR"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="adjust-our-data-for-inflation" class="level3">
+<h3 class="anchored" data-anchor-id="adjust-our-data-for-inflation">Adjust Our Data for Inflation</h3>
+<p>As mentioned before, we’ll be using data from <a href="https://data.bls.gov/cgi-bin/surveymost?cu">the Bureau of Labor &amp; Statistics’ Education Inflation Index</a> to calculate our inflation adjusted figures.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>t1993e <span class="ot">&lt;-</span> t1993 <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">TOTALREVe =</span> TOTALREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">TFEDREVe =</span> TFEDREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">TSTREVe =</span> TSTREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">TLOCREVe =</span> TLOCREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">PROPTAXe =</span> PROPTAX<span class="sc">*</span>IndexED,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">MISCREVe =</span> MISCREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">TOTALEXPe =</span> TOTALEXP<span class="sc">*</span>IndexED,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">TCURELSCe =</span> TCURELSC<span class="sc">*</span>IndexED)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>t1994e <span class="ot">&lt;-</span> t1994 <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">TOTALREVe =</span> TOTALREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">TFEDREVe =</span> TFEDREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">TSTREVe =</span> TSTREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">TLOCREVe =</span> TLOCREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">PROPTAXe =</span> PROPTAX<span class="sc">*</span>IndexED,</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">MISCREVe =</span> MISCREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">TOTALEXPe =</span> TOTALEXP<span class="sc">*</span>IndexED,</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">TCURELSCe =</span> TCURELSC<span class="sc">*</span>IndexED)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>t1995e <span class="ot">&lt;-</span> t1995 <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">TOTALREVe =</span> TOTALREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">TFEDREVe =</span> TFEDREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">TSTREVe =</span> TSTREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">TLOCREVe =</span> TLOCREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">PROPTAXe =</span> PROPTAX<span class="sc">*</span>IndexED,</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">MISCREVe =</span> MISCREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">TOTALEXPe =</span> TOTALEXP<span class="sc">*</span>IndexED,</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">TCURELSCe =</span> TCURELSC<span class="sc">*</span>IndexED)</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>t1996e <span class="ot">&lt;-</span> t1996 <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">TOTALREVe =</span> TOTALREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">TFEDREVe =</span> TFEDREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">TSTREVe =</span> TSTREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>  <span class="at">TLOCREVe =</span> TLOCREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>  <span class="at">PROPTAXe =</span> PROPTAX<span class="sc">*</span>IndexED,</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>  <span class="at">MISCREVe =</span> MISCREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>  <span class="at">TOTALEXPe =</span> TOTALEXP<span class="sc">*</span>IndexED,</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>  <span class="at">TCURELSCe =</span> TCURELSC<span class="sc">*</span>IndexED)</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>t1997e <span class="ot">&lt;-</span> t1997 <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>  <span class="at">TOTALREVe =</span> TOTALREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>  <span class="at">TFEDREVe =</span> TFEDREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>  <span class="at">TSTREVe =</span> TSTREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>  <span class="at">TLOCREVe =</span> TLOCREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>  <span class="at">PROPTAXe =</span> PROPTAX<span class="sc">*</span>IndexED,</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>  <span class="at">MISCREVe =</span> MISCREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>  <span class="at">TOTALEXPe =</span> TOTALEXP<span class="sc">*</span>IndexED,</span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>  <span class="at">TCURELSCe =</span> TCURELSC<span class="sc">*</span>IndexED)</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>t1998e <span class="ot">&lt;-</span> t1998 <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>  <span class="at">TOTALREVe =</span> TOTALREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>  <span class="at">TFEDREVe =</span> TFEDREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>  <span class="at">TSTREVe =</span> TSTREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>  <span class="at">TLOCREVe =</span> TLOCREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>  <span class="at">PROPTAXe =</span> PROPTAX<span class="sc">*</span>IndexED,</span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>  <span class="at">MISCREVe =</span> MISCREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>  <span class="at">TOTALEXPe =</span> TOTALEXP<span class="sc">*</span>IndexED,</span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>  <span class="at">TCURELSCe =</span> TCURELSC<span class="sc">*</span>IndexED)</span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>t1999e <span class="ot">&lt;-</span> t1999 <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>  <span class="at">TOTALREVe =</span> TOTALREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>  <span class="at">TFEDREVe =</span> TFEDREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>  <span class="at">TSTREVe =</span> TSTREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>  <span class="at">TLOCREVe =</span> TLOCREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>  <span class="at">PROPTAXe =</span> PROPTAX<span class="sc">*</span>IndexED,</span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a>  <span class="at">MISCREVe =</span> MISCREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a>  <span class="at">TOTALEXPe =</span> TOTALEXP<span class="sc">*</span>IndexED,</span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a>  <span class="at">TCURELSCe =</span> TCURELSC<span class="sc">*</span>IndexED)</span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a>t2000e <span class="ot">&lt;-</span> t2000 <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a>  <span class="at">TOTALREVe =</span> TOTALREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a>  <span class="at">TFEDREVe =</span> TFEDREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a>  <span class="at">TSTREVe =</span> TSTREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a>  <span class="at">TLOCREVe =</span> TLOCREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a>  <span class="at">PROPTAXe =</span> PROPTAX<span class="sc">*</span>IndexED,</span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a>  <span class="at">MISCREVe =</span> MISCREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a>  <span class="at">TOTALEXPe =</span> TOTALEXP<span class="sc">*</span>IndexED,</span>
+<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a>  <span class="at">TCURELSCe =</span> TCURELSC<span class="sc">*</span>IndexED)</span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a>t2001e <span class="ot">&lt;-</span> t2001 <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a>  <span class="at">TOTALREVe =</span> TOTALREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a>  <span class="at">TFEDREVe =</span> TFEDREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a>  <span class="at">TSTREVe =</span> TSTREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a>  <span class="at">TLOCREVe =</span> TLOCREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a>  <span class="at">PROPTAXe =</span> PROPTAX<span class="sc">*</span>IndexED,</span>
+<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a>  <span class="at">MISCREVe =</span> MISCREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a>  <span class="at">TOTALEXPe =</span> TOTALEXP<span class="sc">*</span>IndexED,</span>
+<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a>  <span class="at">TCURELSCe =</span> TCURELSC<span class="sc">*</span>IndexED)</span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a>t2002e <span class="ot">&lt;-</span> t2002 <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a>  <span class="at">TOTALREVe =</span> TOTALREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a>  <span class="at">TFEDREVe =</span> TFEDREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a>  <span class="at">TSTREVe =</span> TSTREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a>  <span class="at">TLOCREVe =</span> TLOCREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a>  <span class="at">PROPTAXe =</span> PROPTAX<span class="sc">*</span>IndexED,</span>
+<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a>  <span class="at">MISCREVe =</span> MISCREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a>  <span class="at">TOTALEXPe =</span> TOTALEXP<span class="sc">*</span>IndexED,</span>
+<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a>  <span class="at">TCURELSCe =</span> TCURELSC<span class="sc">*</span>IndexED)</span>
+<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a>t2003e <span class="ot">&lt;-</span> t2003 <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a>  <span class="at">TOTALREVe =</span> TOTALREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a>  <span class="at">TFEDREVe =</span> TFEDREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a>  <span class="at">TSTREVe =</span> TSTREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a>  <span class="at">TLOCREVe =</span> TLOCREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a>  <span class="at">PROPTAXe =</span> PROPTAX<span class="sc">*</span>IndexED,</span>
+<span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a>  <span class="at">MISCREVe =</span> MISCREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-109"><a href="#cb5-109" aria-hidden="true" tabindex="-1"></a>  <span class="at">TOTALEXPe =</span> TOTALEXP<span class="sc">*</span>IndexED,</span>
+<span id="cb5-110"><a href="#cb5-110" aria-hidden="true" tabindex="-1"></a>  <span class="at">TCURELSCe =</span> TCURELSC<span class="sc">*</span>IndexED)</span>
+<span id="cb5-111"><a href="#cb5-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-112"><a href="#cb5-112" aria-hidden="true" tabindex="-1"></a>t2004e <span class="ot">&lt;-</span> t2004 <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb5-113"><a href="#cb5-113" aria-hidden="true" tabindex="-1"></a>  <span class="at">TOTALREVe =</span> TOTALREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-114"><a href="#cb5-114" aria-hidden="true" tabindex="-1"></a>  <span class="at">TFEDREVe =</span> TFEDREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-115"><a href="#cb5-115" aria-hidden="true" tabindex="-1"></a>  <span class="at">TSTREVe =</span> TSTREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-116"><a href="#cb5-116" aria-hidden="true" tabindex="-1"></a>  <span class="at">TLOCREVe =</span> TLOCREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-117"><a href="#cb5-117" aria-hidden="true" tabindex="-1"></a>  <span class="at">PROPTAXe =</span> PROPTAX<span class="sc">*</span>IndexED,</span>
+<span id="cb5-118"><a href="#cb5-118" aria-hidden="true" tabindex="-1"></a>  <span class="at">MISCREVe =</span> MISCREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-119"><a href="#cb5-119" aria-hidden="true" tabindex="-1"></a>  <span class="at">TOTALEXPe =</span> TOTALEXP<span class="sc">*</span>IndexED,</span>
+<span id="cb5-120"><a href="#cb5-120" aria-hidden="true" tabindex="-1"></a>  <span class="at">TCURELSCe =</span> TCURELSC<span class="sc">*</span>IndexED)</span>
+<span id="cb5-121"><a href="#cb5-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-122"><a href="#cb5-122" aria-hidden="true" tabindex="-1"></a>t2005e <span class="ot">&lt;-</span> t2005 <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb5-123"><a href="#cb5-123" aria-hidden="true" tabindex="-1"></a>  <span class="at">TOTALREVe =</span> TOTALREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a>  <span class="at">TFEDREVe =</span> TFEDREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-125"><a href="#cb5-125" aria-hidden="true" tabindex="-1"></a>  <span class="at">TSTREVe =</span> TSTREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-126"><a href="#cb5-126" aria-hidden="true" tabindex="-1"></a>  <span class="at">TLOCREVe =</span> TLOCREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-127"><a href="#cb5-127" aria-hidden="true" tabindex="-1"></a>  <span class="at">PROPTAXe =</span> PROPTAX<span class="sc">*</span>IndexED,</span>
+<span id="cb5-128"><a href="#cb5-128" aria-hidden="true" tabindex="-1"></a>  <span class="at">MISCREVe =</span> MISCREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-129"><a href="#cb5-129" aria-hidden="true" tabindex="-1"></a>  <span class="at">TOTALEXPe =</span> TOTALEXP<span class="sc">*</span>IndexED,</span>
+<span id="cb5-130"><a href="#cb5-130" aria-hidden="true" tabindex="-1"></a>  <span class="at">TCURELSCe =</span> TCURELSC<span class="sc">*</span>IndexED)</span>
+<span id="cb5-131"><a href="#cb5-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-132"><a href="#cb5-132" aria-hidden="true" tabindex="-1"></a>t2006e <span class="ot">&lt;-</span> t2006 <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb5-133"><a href="#cb5-133" aria-hidden="true" tabindex="-1"></a>  <span class="at">TOTALREVe =</span> TOTALREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-134"><a href="#cb5-134" aria-hidden="true" tabindex="-1"></a>  <span class="at">TFEDREVe =</span> TFEDREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-135"><a href="#cb5-135" aria-hidden="true" tabindex="-1"></a>  <span class="at">TSTREVe =</span> TSTREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-136"><a href="#cb5-136" aria-hidden="true" tabindex="-1"></a>  <span class="at">TLOCREVe =</span> TLOCREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-137"><a href="#cb5-137" aria-hidden="true" tabindex="-1"></a>  <span class="at">PROPTAXe =</span> PROPTAX<span class="sc">*</span>IndexED,</span>
+<span id="cb5-138"><a href="#cb5-138" aria-hidden="true" tabindex="-1"></a>  <span class="at">MISCREVe =</span> MISCREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-139"><a href="#cb5-139" aria-hidden="true" tabindex="-1"></a>  <span class="at">TOTALEXPe =</span> TOTALEXP<span class="sc">*</span>IndexED,</span>
+<span id="cb5-140"><a href="#cb5-140" aria-hidden="true" tabindex="-1"></a>  <span class="at">TCURELSCe =</span> TCURELSC<span class="sc">*</span>IndexED)</span>
+<span id="cb5-141"><a href="#cb5-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-142"><a href="#cb5-142" aria-hidden="true" tabindex="-1"></a>t2007e <span class="ot">&lt;-</span> t2007 <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb5-143"><a href="#cb5-143" aria-hidden="true" tabindex="-1"></a>  <span class="at">TOTALREVe =</span> TOTALREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-144"><a href="#cb5-144" aria-hidden="true" tabindex="-1"></a>  <span class="at">TFEDREVe =</span> TFEDREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-145"><a href="#cb5-145" aria-hidden="true" tabindex="-1"></a>  <span class="at">TSTREVe =</span> TSTREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-146"><a href="#cb5-146" aria-hidden="true" tabindex="-1"></a>  <span class="at">TLOCREVe =</span> TLOCREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-147"><a href="#cb5-147" aria-hidden="true" tabindex="-1"></a>  <span class="at">PROPTAXe =</span> PROPTAX<span class="sc">*</span>IndexED,</span>
+<span id="cb5-148"><a href="#cb5-148" aria-hidden="true" tabindex="-1"></a>  <span class="at">MISCREVe =</span> MISCREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-149"><a href="#cb5-149" aria-hidden="true" tabindex="-1"></a>  <span class="at">TOTALEXPe =</span> TOTALEXP<span class="sc">*</span>IndexED,</span>
+<span id="cb5-150"><a href="#cb5-150" aria-hidden="true" tabindex="-1"></a>  <span class="at">TCURELSCe =</span> TCURELSC<span class="sc">*</span>IndexED)</span>
+<span id="cb5-151"><a href="#cb5-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-152"><a href="#cb5-152" aria-hidden="true" tabindex="-1"></a>t2008e <span class="ot">&lt;-</span> t2008 <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb5-153"><a href="#cb5-153" aria-hidden="true" tabindex="-1"></a>  <span class="at">TOTALREVe =</span> TOTALREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-154"><a href="#cb5-154" aria-hidden="true" tabindex="-1"></a>  <span class="at">TFEDREVe =</span> TFEDREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-155"><a href="#cb5-155" aria-hidden="true" tabindex="-1"></a>  <span class="at">TSTREVe =</span> TSTREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-156"><a href="#cb5-156" aria-hidden="true" tabindex="-1"></a>  <span class="at">TLOCREVe =</span> TLOCREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-157"><a href="#cb5-157" aria-hidden="true" tabindex="-1"></a>  <span class="at">PROPTAXe =</span> PROPTAX<span class="sc">*</span>IndexED,</span>
+<span id="cb5-158"><a href="#cb5-158" aria-hidden="true" tabindex="-1"></a>  <span class="at">MISCREVe =</span> MISCREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-159"><a href="#cb5-159" aria-hidden="true" tabindex="-1"></a>  <span class="at">TOTALEXPe =</span> TOTALEXP<span class="sc">*</span>IndexED,</span>
+<span id="cb5-160"><a href="#cb5-160" aria-hidden="true" tabindex="-1"></a>  <span class="at">TCURELSCe =</span> TCURELSC<span class="sc">*</span>IndexED)</span>
+<span id="cb5-161"><a href="#cb5-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-162"><a href="#cb5-162" aria-hidden="true" tabindex="-1"></a>t2009e <span class="ot">&lt;-</span> t2009 <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb5-163"><a href="#cb5-163" aria-hidden="true" tabindex="-1"></a>  <span class="at">TOTALREVe =</span> TOTALREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-164"><a href="#cb5-164" aria-hidden="true" tabindex="-1"></a>  <span class="at">TFEDREVe =</span> TFEDREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-165"><a href="#cb5-165" aria-hidden="true" tabindex="-1"></a>  <span class="at">TSTREVe =</span> TSTREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-166"><a href="#cb5-166" aria-hidden="true" tabindex="-1"></a>  <span class="at">TLOCREVe =</span> TLOCREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-167"><a href="#cb5-167" aria-hidden="true" tabindex="-1"></a>  <span class="at">PROPTAXe =</span> PROPTAX<span class="sc">*</span>IndexED,</span>
+<span id="cb5-168"><a href="#cb5-168" aria-hidden="true" tabindex="-1"></a>  <span class="at">MISCREVe =</span> MISCREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-169"><a href="#cb5-169" aria-hidden="true" tabindex="-1"></a>  <span class="at">TOTALEXPe =</span> TOTALEXP<span class="sc">*</span>IndexED,</span>
+<span id="cb5-170"><a href="#cb5-170" aria-hidden="true" tabindex="-1"></a>  <span class="at">TCURELSCe =</span> TCURELSC<span class="sc">*</span>IndexED)</span>
+<span id="cb5-171"><a href="#cb5-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-172"><a href="#cb5-172" aria-hidden="true" tabindex="-1"></a>t2010e <span class="ot">&lt;-</span> t2010 <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb5-173"><a href="#cb5-173" aria-hidden="true" tabindex="-1"></a>  <span class="at">TOTALREVe =</span> TOTALREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-174"><a href="#cb5-174" aria-hidden="true" tabindex="-1"></a>  <span class="at">TFEDREVe =</span> TFEDREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-175"><a href="#cb5-175" aria-hidden="true" tabindex="-1"></a>  <span class="at">TSTREVe =</span> TSTREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-176"><a href="#cb5-176" aria-hidden="true" tabindex="-1"></a>  <span class="at">TLOCREVe =</span> TLOCREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-177"><a href="#cb5-177" aria-hidden="true" tabindex="-1"></a>  <span class="at">PROPTAXe =</span> PROPTAX<span class="sc">*</span>IndexED,</span>
+<span id="cb5-178"><a href="#cb5-178" aria-hidden="true" tabindex="-1"></a>  <span class="at">MISCREVe =</span> MISCREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-179"><a href="#cb5-179" aria-hidden="true" tabindex="-1"></a>  <span class="at">TOTALEXPe =</span> TOTALEXP<span class="sc">*</span>IndexED,</span>
+<span id="cb5-180"><a href="#cb5-180" aria-hidden="true" tabindex="-1"></a>  <span class="at">TCURELSCe =</span> TCURELSC<span class="sc">*</span>IndexED)</span>
+<span id="cb5-181"><a href="#cb5-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-182"><a href="#cb5-182" aria-hidden="true" tabindex="-1"></a>t2011e <span class="ot">&lt;-</span> t2011 <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb5-183"><a href="#cb5-183" aria-hidden="true" tabindex="-1"></a>  <span class="at">TOTALREVe =</span> TOTALREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-184"><a href="#cb5-184" aria-hidden="true" tabindex="-1"></a>  <span class="at">TFEDREVe =</span> TFEDREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-185"><a href="#cb5-185" aria-hidden="true" tabindex="-1"></a>  <span class="at">TSTREVe =</span> TSTREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-186"><a href="#cb5-186" aria-hidden="true" tabindex="-1"></a>  <span class="at">TLOCREVe =</span> TLOCREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-187"><a href="#cb5-187" aria-hidden="true" tabindex="-1"></a>  <span class="at">PROPTAXe =</span> PROPTAX<span class="sc">*</span>IndexED,</span>
+<span id="cb5-188"><a href="#cb5-188" aria-hidden="true" tabindex="-1"></a>  <span class="at">MISCREVe =</span> MISCREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-189"><a href="#cb5-189" aria-hidden="true" tabindex="-1"></a>  <span class="at">TOTALEXPe =</span> TOTALEXP<span class="sc">*</span>IndexED,</span>
+<span id="cb5-190"><a href="#cb5-190" aria-hidden="true" tabindex="-1"></a>  <span class="at">TCURELSCe =</span> TCURELSC<span class="sc">*</span>IndexED)</span>
+<span id="cb5-191"><a href="#cb5-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-192"><a href="#cb5-192" aria-hidden="true" tabindex="-1"></a>t2012e <span class="ot">&lt;-</span> t2012 <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb5-193"><a href="#cb5-193" aria-hidden="true" tabindex="-1"></a>  <span class="at">TOTALREVe =</span> TOTALREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-194"><a href="#cb5-194" aria-hidden="true" tabindex="-1"></a>  <span class="at">TFEDREVe =</span> TFEDREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-195"><a href="#cb5-195" aria-hidden="true" tabindex="-1"></a>  <span class="at">TSTREVe =</span> TSTREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-196"><a href="#cb5-196" aria-hidden="true" tabindex="-1"></a>  <span class="at">TLOCREVe =</span> TLOCREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-197"><a href="#cb5-197" aria-hidden="true" tabindex="-1"></a>  <span class="at">PROPTAXe =</span> PROPTAX<span class="sc">*</span>IndexED,</span>
+<span id="cb5-198"><a href="#cb5-198" aria-hidden="true" tabindex="-1"></a>  <span class="at">MISCREVe =</span> MISCREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-199"><a href="#cb5-199" aria-hidden="true" tabindex="-1"></a>  <span class="at">TOTALEXPe =</span> TOTALEXP<span class="sc">*</span>IndexED,</span>
+<span id="cb5-200"><a href="#cb5-200" aria-hidden="true" tabindex="-1"></a>  <span class="at">TCURELSCe =</span> TCURELSC<span class="sc">*</span>IndexED)</span>
+<span id="cb5-201"><a href="#cb5-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-202"><a href="#cb5-202" aria-hidden="true" tabindex="-1"></a>t2013e <span class="ot">&lt;-</span> t2013 <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb5-203"><a href="#cb5-203" aria-hidden="true" tabindex="-1"></a>  <span class="at">TOTALREVe =</span> TOTALREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-204"><a href="#cb5-204" aria-hidden="true" tabindex="-1"></a>  <span class="at">TFEDREVe =</span> TFEDREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-205"><a href="#cb5-205" aria-hidden="true" tabindex="-1"></a>  <span class="at">TSTREVe =</span> TSTREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-206"><a href="#cb5-206" aria-hidden="true" tabindex="-1"></a>  <span class="at">TLOCREVe =</span> TLOCREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-207"><a href="#cb5-207" aria-hidden="true" tabindex="-1"></a>  <span class="at">PROPTAXe =</span> PROPTAX<span class="sc">*</span>IndexED,</span>
+<span id="cb5-208"><a href="#cb5-208" aria-hidden="true" tabindex="-1"></a>  <span class="at">MISCREVe =</span> MISCREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-209"><a href="#cb5-209" aria-hidden="true" tabindex="-1"></a>  <span class="at">TOTALEXPe =</span> TOTALEXP<span class="sc">*</span>IndexED,</span>
+<span id="cb5-210"><a href="#cb5-210" aria-hidden="true" tabindex="-1"></a>  <span class="at">TCURELSCe =</span> TCURELSC<span class="sc">*</span>IndexED)</span>
+<span id="cb5-211"><a href="#cb5-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-212"><a href="#cb5-212" aria-hidden="true" tabindex="-1"></a>t2014e <span class="ot">&lt;-</span> t2014 <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb5-213"><a href="#cb5-213" aria-hidden="true" tabindex="-1"></a>  <span class="at">TOTALREVe =</span> TOTALREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-214"><a href="#cb5-214" aria-hidden="true" tabindex="-1"></a>  <span class="at">TFEDREVe =</span> TFEDREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-215"><a href="#cb5-215" aria-hidden="true" tabindex="-1"></a>  <span class="at">TSTREVe =</span> TSTREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-216"><a href="#cb5-216" aria-hidden="true" tabindex="-1"></a>  <span class="at">TLOCREVe =</span> TLOCREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-217"><a href="#cb5-217" aria-hidden="true" tabindex="-1"></a>  <span class="at">PROPTAXe =</span> PROPTAX<span class="sc">*</span>IndexED,</span>
+<span id="cb5-218"><a href="#cb5-218" aria-hidden="true" tabindex="-1"></a>  <span class="at">MISCREVe =</span> MISCREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-219"><a href="#cb5-219" aria-hidden="true" tabindex="-1"></a>  <span class="at">TOTALEXPe =</span> TOTALEXP<span class="sc">*</span>IndexED,</span>
+<span id="cb5-220"><a href="#cb5-220" aria-hidden="true" tabindex="-1"></a>  <span class="at">TCURELSCe =</span> TCURELSC<span class="sc">*</span>IndexED)</span>
+<span id="cb5-221"><a href="#cb5-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-222"><a href="#cb5-222" aria-hidden="true" tabindex="-1"></a>t2015e <span class="ot">&lt;-</span> t2015 <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb5-223"><a href="#cb5-223" aria-hidden="true" tabindex="-1"></a>  <span class="at">TOTALREVe =</span> TOTALREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-224"><a href="#cb5-224" aria-hidden="true" tabindex="-1"></a>  <span class="at">TFEDREVe =</span> TFEDREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-225"><a href="#cb5-225" aria-hidden="true" tabindex="-1"></a>  <span class="at">TSTREVe =</span> TSTREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-226"><a href="#cb5-226" aria-hidden="true" tabindex="-1"></a>  <span class="at">TLOCREVe =</span> TLOCREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-227"><a href="#cb5-227" aria-hidden="true" tabindex="-1"></a>  <span class="at">PROPTAXe =</span> PROPTAX<span class="sc">*</span>IndexED,</span>
+<span id="cb5-228"><a href="#cb5-228" aria-hidden="true" tabindex="-1"></a>  <span class="at">MISCREVe =</span> MISCREV<span class="sc">*</span>IndexED,</span>
+<span id="cb5-229"><a href="#cb5-229" aria-hidden="true" tabindex="-1"></a>  <span class="at">TOTALEXPe =</span> TOTALEXP<span class="sc">*</span>IndexED,</span>
+<span id="cb5-230"><a href="#cb5-230" aria-hidden="true" tabindex="-1"></a>  <span class="at">TCURELSCe =</span> TCURELSC<span class="sc">*</span>IndexED)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="merge-all-datasets-into-one" class="level3">
+<h3 class="anchored" data-anchor-id="merge-all-datasets-into-one">Merge All Datasets Into One</h3>
+<p>At this point, once each of our individual datasets that are adjusted for inflation are compiled, we can merge them into one single dataset that is one step closer to being visualized.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>full<span class="fl">.94</span>e <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(t1993e, t1994e)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>full<span class="fl">.95</span>e <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(full<span class="fl">.94</span>e, t1995e)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>full<span class="fl">.96</span>e <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(full<span class="fl">.95</span>e, t1996e)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>full<span class="fl">.97</span>e <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(full<span class="fl">.96</span>e, t1997e)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>full<span class="fl">.98</span>e <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(full<span class="fl">.97</span>e, t1998e)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>full<span class="fl">.99</span>e <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(full<span class="fl">.98</span>e, t1999e)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>full<span class="fl">.00</span>e <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(full<span class="fl">.99</span>e, t2000e)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>full<span class="fl">.01</span>e <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(full<span class="fl">.00</span>e, t2001e)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>full<span class="fl">.02</span>e <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(full<span class="fl">.01</span>e, t2002e)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>full<span class="fl">.03</span>e <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(full<span class="fl">.02</span>e, t2003e)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>full<span class="fl">.04</span>e <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(full<span class="fl">.03</span>e, t2004e)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>full<span class="fl">.05</span>e <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(full<span class="fl">.04</span>e, t2005e)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>full<span class="fl">.06</span>e <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(full<span class="fl">.05</span>e, t2006e)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>full<span class="fl">.07</span>e <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(full<span class="fl">.06</span>e, t2007e)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>full<span class="fl">.08</span>e <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(full<span class="fl">.07</span>e, t2008e)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>full<span class="fl">.09</span>e <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(full<span class="fl">.08</span>e, t2009e)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>full<span class="fl">.10</span>e <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(full<span class="fl">.09</span>e, t2010e)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>full<span class="fl">.11</span>e <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(full<span class="fl">.10</span>e, t2011e)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>full<span class="fl">.12</span>e <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(full<span class="fl">.11</span>e, t2012e)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>full<span class="fl">.13</span>e <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(full<span class="fl">.12</span>e, t2013e)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>full<span class="fl">.14</span>e <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(full<span class="fl">.13</span>e, t2014e)</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>full25e <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(full<span class="fl">.14</span>e, t2015e)</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>full25 <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(full25e, <span class="fu">one_of</span>(<span class="fu">c</span>(<span class="st">"STATE"</span>, <span class="st">"IDCENSUS"</span>, <span class="st">"YEAR"</span>, <span class="st">"NAME"</span>, <span class="st">"SCHLEV"</span>, <span class="st">"ENROLL"</span>, <span class="st">"TOTALREV"</span>, <span class="st">"TFEDREV"</span>, <span class="st">"TSTREV"</span>,<span class="st">"TLOCREV"</span>, <span class="st">"PROPTAX"</span>, <span class="st">"MISCREV"</span>, <span class="st">"TOTALEXP"</span>, <span class="st">"TCURELSC"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="add-fips-state-codes-to-our-datasets" class="level3">
+<h3 class="anchored" data-anchor-id="add-fips-state-codes-to-our-datasets">Add FIPS State Codes To Our Datasets</h3>
+<p>To take full advantage of the <code>geofacet</code> package, I used FIPS code identifiers to help identify each state. For more on what FIPS is, <a href="https://www.census.gov/geo/reference/ansi_statetables.html">check this page out</a>.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Import the FIPS state codes</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>fipscode <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/FIPSStates.csv"</span>, <span class="at">col_types =</span> <span class="fu">cols</span>(<span class="st">`</span><span class="at">census id</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">col_character</span>()))</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Remove Unnecessary Columns</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>fipscode <span class="ot">&lt;-</span> fipscode <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="st">"Official USPS Code"</span> <span class="ot">=</span> <span class="cn">NULL</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Rename the FIPS id column to 'STATE', which we'll use to replace our current column identifying each state.  </span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>fipscode <span class="ot">&lt;-</span> <span class="fu">rename</span>(fipscode, <span class="at">STATE =</span> <span class="st">"census id"</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Add the New State ID to our Uniform Dataset</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>fullest <span class="ot">&lt;-</span> <span class="fu">left_join</span>(full25, fipscode, <span class="at">by =</span><span class="st">"STATE"</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co">#Remove All Columns Except our Major Revenue Columns</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>full25a <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(fullest, <span class="fu">one_of</span>(<span class="fu">c</span>(<span class="st">"YEAR"</span>,<span class="st">"Name"</span>, <span class="st">"TOTALREV"</span>, <span class="st">"TFEDREV"</span>, <span class="st">"TSTREV"</span>, <span class="st">"TLOCREV"</span>)))</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co">#Change our YEAR column to a Date Format</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>full25a <span class="ot">&lt;-</span> <span class="fu">rename</span>(full25a, <span class="at">State =</span> Name) <span class="sc">%&gt;%</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">YEAR=</span><span class="fu">as.Date</span>(YEAR, <span class="at">format =</span> <span class="st">"%Y"</span>))</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="co">#Begin Summarizing our Data by Year &amp; State</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>full25b <span class="ot">&lt;-</span> full25a <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(YEAR,State) <span class="sc">%&gt;%</span> <span class="fu">summarise_each</span>(<span class="fu">funs</span>(sum))</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="co">#Now that we have summarized data, calculate the share of revenue by diving each of the three revenue source amounts by the total amount of revenue in that state each year.</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>full25b <span class="ot">&lt;-</span> full25b <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">PctFED =</span> (TFEDREV<span class="sc">/</span>TOTALREV)<span class="sc">*</span><span class="dv">100</span>,</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">PctSTA =</span> (TSTREV<span class="sc">/</span>TOTALREV)<span class="sc">*</span><span class="dv">100</span>,</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">PctLOC =</span> (TLOCREV<span class="sc">/</span>TOTALREV)<span class="sc">*</span><span class="dv">100</span>)</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="co">#Remove the Total Revenue Column</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>full25c <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(full25b, <span class="fu">one_of</span>(<span class="fu">c</span>(<span class="st">"YEAR"</span>, <span class="st">"State"</span>, <span class="st">"PctFED"</span>, <span class="st">"PctSTA"</span>, <span class="st">"PctLOC"</span>)))</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="co">#Rename Columns with Printable Identifiers</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>full25c <span class="ot">&lt;-</span> <span class="fu">rename</span>(full25c, </span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"Federal Revenue"</span> <span class="ot">=</span> PctFED,</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"State Revenue"</span> <span class="ot">=</span> PctSTA,</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"Local Revenue"</span> <span class="ot">=</span> PctLOC)</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a><span class="co">#Transform the Data Longways for Visualization Purposes</span></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>fullest25e <span class="ot">&lt;-</span> <span class="fu">gather</span>(full25c, <span class="st">"Source"</span>, <span class="st">"Percent"</span>, <span class="dv">3</span><span class="sc">:</span><span class="dv">5</span>)</span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>yearly_avg <span class="ot">&lt;-</span> fullest25e <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(YEAR,Source) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">Annual_Avg =</span> <span class="fu">mean</span>(Percent))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="plot-the-school-finance-map" class="level3">
+<h3 class="anchored" data-anchor-id="plot-the-school-finance-map">Plot The School Finance Map</h3>
+<p>At this point, we’ll use the <code>geofacet</code> and <code>ggplot2</code> packages to visualize our data. For style purposes, I’ve used a theme from the <code>ggthemes</code> package to make the visualization a bit cleaner, along with a few custom theme stylings. Once you run this, you should be able to reproduce the visualization I shared at the top of this post.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>showtext<span class="sc">::</span><span class="fu">showtext_auto</span>()</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>gg <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="fu">arrange</span>(fullest25e,Source,YEAR), <span class="fu">aes</span>(<span class="at">x =</span> YEAR, <span class="at">y =</span>Percent, <span class="at">fill =</span> Source, <span class="at">group =</span> Source)) <span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">alpha =</span> <span class="fl">0.8</span>, <span class="at">position =</span> <span class="st">'stack'</span>) <span class="sc">+</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#ef8a62"</span>, <span class="st">"#d1e5f0"</span>, <span class="st">"#67a9cf"</span>)) <span class="sc">+</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_geo</span>(<span class="sc">~</span> State, <span class="at">grid =</span> <span class="st">"us_state_grid2"</span>) <span class="sc">+</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">expand=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>), <span class="at">date_breaks=</span><span class="st">"7 year"</span>, <span class="at">date_labels =</span> <span class="st">"%Y"</span>, <span class="at">limits =</span> <span class="fu">c</span>(<span class="fu">as.Date</span>(<span class="fu">c</span>(<span class="st">"1993-02-27"</span>, <span class="st">"2016-06-01"</span>)))) <span class="sc">+</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"How Schools Were Paid For Over The Past 25 Years, 1993-2015"</span>,</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle=</span><span class="st">"The chart shows annual school funding shares in each state by federal, state, and local sources."</span>,</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Data Source: US Census, Public Finance Survey </span><span class="sc">\n</span><span class="st">Note: Figures are adjusted for inflation using the BLS Education Index."</span>,</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Percentage of Overall Funding"</span>) <span class="sc">+</span> </span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_hc</span>() <span class="sc">+</span> </span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"#4D4D4D"</span>),</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title=</span><span class="fu">element_text</span>(<span class="at">face=</span><span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">40</span>),</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.subtitle=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">24</span>),</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.caption=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">14</span>),</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title=</span><span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>, <span class="at">face=</span><span class="st">"bold"</span>),</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>),</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="fu">c</span>(.<span class="dv">85</span>, <span class="fl">0.2</span>),</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.box.just =</span> <span class="st">"right"</span>,</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.key.size =</span> <span class="fu">unit</span>(<span class="dv">1</span>, <span class="st">"cm"</span>),</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"#4D4D4D"</span>, <span class="at">face=</span><span class="st">'bold'</span>),</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>, <span class="at">color =</span> <span class="st">"#4D4D4D"</span>, <span class="at">face=</span><span class="st">'bold'</span>),</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>        <span class="at">strip.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="fl">11.5</span>, <span class="at">color =</span> <span class="st">"#4D4D4D"</span>, <span class="at">face=</span><span class="st">'bold'</span>),</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>        <span class="at">strip.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>, <span class="at">color =</span> <span class="st">"#4D4D4D"</span>, <span class="at">face=</span><span class="st">'bold'</span>),</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>        <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#ffffff"</span>, <span class="at">color =</span> <span class="cn">NA</span>)) <span class="sc">+</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>        <span class="fu">guides</span>(<span class="at">fill=</span><span class="fu">guide_legend</span>(<span class="at">direction =</span> <span class="st">"vertical"</span>, </span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">title.position =</span> <span class="st">"top"</span>, </span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">label.position =</span> <span class="st">"right"</span>, </span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">byrow=</span><span class="cn">TRUE</span>, </span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">title=</span><span class="st">"Source of Funding"</span>))</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Save The Plot as a .png file</span></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"SFNationalMapOT.png"</span>, <span class="at">plot =</span> gg, <span class="at">device =</span> <span class="st">"png"</span>, <span class="at">dpi=</span><span class="dv">300</span>,  <span class="at">width =</span> <span class="dv">20</span>, <span class="at">height =</span> <span class="dv">12</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="bonus-school-finance-map" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="bonus-school-finance-map">Bonus School Finance Map</h2>
+<p>While I had limited time to produce the code-through for the first map, here’s an extra map that shows how much each state’s per pupil funding compares to the national average since 1992. One note about this one is that it uses the All-Consumer series inflation index from the Bureau of Labor &amp; Statistics for 1992, while the 1993 data onward uses the BLS Education Index.</p>
+<div class="cell page-columns page-full">
+<div class="cell-output-display column-page">
+<p><img src="SFNationalMapPP.png" class="img-fluid" width="2700"></p>
+</div>
+</div>
+</section>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="photo-credit" class="level2 appendix"><h2 class="quarto-appendix-heading">Photo Credit</h2><div class="quarto-appendix-contents">
+
+<p><span>Photo by <a href="https://unsplash.com/@twinsfisch?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Isabella and Louisa Fischer</a> on <a href="https://unsplash.com/s/photos/isabella-louisa-school?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span></p>
+</div></section><section id="corrections" class="level2 appendix"><h2 class="quarto-appendix-heading">Corrections</h2><div class="quarto-appendix-contents">
+
+<p>If you see mistakes or want to suggest changes, please create an <a href="https://github.com/mrworthington/mrworthington.github.io/issues">issue</a> on the source repository.</p>
+
+
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Before 1992, the method of collection for the census didn’t disaggregate federal revenues from state revenues because federal dollars were technically implemented through the state. However, since 1992, the census shifted their reporting protocols for states and began requesting that each state delineate between their contributions versus what the federal government provided.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>While this method of collection started in 1992, our analysis will start in 1993 because that is when <a href="https://data.bls.gov/cgi-bin/surveymost?cu">the Bureau of Labor &amp; Statistics introduced their Education Inflation Index</a>, which was meant to provide clarity on a dollar’s value in the education space.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/">https://creativecommons.org/licenses/by-nc/4.0/</a></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp(/https:\/\/mrworthington\.com/);
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+      }
+    }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+      <div class="nav-footer-center"><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+  </div>
+</footer>
+
+
+
+</body></html>

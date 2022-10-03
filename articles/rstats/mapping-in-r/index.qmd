@@ -185,7 +185,7 @@ data <- read_sf(url) |>
   st_as_sf(crs = st_crs(4326))
 ```
 
-At this point, we are ready to map the data. Now, there's lots of spatial packages out there to map with like `{leaflet}`, `{mapview}` , `{mapdeck}`, `{tmap}`, and `{leafgl}`, but I've recently become a huge fan of a an R package called `{rdeck}`. I'm partial to it because it's incredibly lightweight and the maps look really great once you've gotten a token from [mapbox studio](https://www.mapbox.com/mapbox-studio "Mapbox Studio welcome page"), even though you don't necessarily need one. [For more on getting a mapbox token, see Kyle Walker's tutorial from his {mapboxapi} R package.]{.aside}
+At this point, we are ready to map the data. Now, there's lots of spatial packages out there to map with like `{leaflet}`, `{mapview}` , `{mapdeck}`, `{tmap}`, and `{leafgl}`, but I've recently become a huge fan of an R package called `{rdeck}`. I'm partial to it because it's incredibly lightweight and the maps look really great once you've gotten a token from [mapbox studio](https://www.mapbox.com/mapbox-studio "Mapbox Studio welcome page"), even though you don't necessarily need one. [For more on getting a mapbox token, see Kyle Walker's tutorial from his {mapboxapi} R package.]{.aside}
 
 So how do we map in `{rdeck}?` Well, let's pretend like you didn't have a mapbox token. You could start by running a code chunk, like the one below, which has two functions from `{rdeck}`.
 
@@ -247,7 +247,7 @@ rdeck(map_style = NULL,
 
 #### Adding a tooltip
 
-Adding a tooltip is actually pretty easy and the pre-built tooltips are quite nice. In my office, I'm going to adjust the existing data argument already set to our `school_sites` object and select only the `Name` and `Location` columns. They're named differently, but I can rename them with `school_sites |> select(Name=NAME, Location = NMCBSA)`. After this, you add a `tooltip` argument to define what columns you want. A nice feature of the `tooltip` argument is that you can use [tidy-select](https://dplyr.tidyverse.org/reference/dplyr_tidy_select.html) syntax to build your tooltip. Lastly, I add `pickable = TRUE`, which just means that the dots will respond as I move my mouse/trackpad around the map.
+Adding a tooltip is actually pretty easy and the pre-built tooltips are quite nice. In my code chunk, I'm going to adjust the existing data argument already set to our `school_sites` object and select only the `Name` and `Location` columns. They're named differently, but I can rename them with `school_sites |> select(Name=NAME, Location = NMCBSA)`. After this, you add a `tooltip` argument to define what columns you want. A nice feature of the `tooltip` argument is that you can use [tidy-select](https://dplyr.tidyverse.org/reference/dplyr_tidy_select.html) syntax to build your tooltip. Lastly, I add `pickable = TRUE`, which just means that the dots will respond as I move my mouse/trackpad around the map.
 
 If you want, you can add some CSS afterwards, but it's [a little complicated to adjust](https://github.com/qfes/rdeck/issues/61) and the default tooltips are easy to set and look good. Alright, onto basemaps and bounding boxes.
 
