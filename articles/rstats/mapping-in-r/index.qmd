@@ -4,13 +4,9 @@ description: |
   In recent years, there's been a ton of packages released in R for working with and visualizing spatial data that have eliminated my need for things like ArcGIS. Here's how I use a few of them.
 author:
   - name: Matt Worthington 
-    url: https://mrworthington.com/about
-    affiliation: None
-    affiliation_url: https://mrworthington.com
+    url: https://twitter.com/mrworthington
 date: 2022-09-29
 page-layout: full
-body-header: | 
-  This page brought to you by <https://example.com>
 format:
   html:
     date_format: medium

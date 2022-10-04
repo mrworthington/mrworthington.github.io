@@ -1,0 +1,145 @@
+---
+title: "A Follow-Up on Open Sourcing Knowledge"
+description: |
+  Last week, I shared about how I use R for spatial workflows on social media and got a lot of feedback. Here's what I've learned, plus some more spatial tips.
+author:
+  - name: Matt Worthington 
+    url: https://twitter.com/mrworthington
+date: 2022-10-04
+page-layout: full
+draft: true
+format:
+  html:
+    date_format: medium
+    css: page_header.css
+    fig-width: 8
+    toc-depth: 3
+    code-fold: true
+    code-tools: true
+    code-link: true
+title-block-banner: true
+title-block-banner-color: "#ffffff"
+image: page_preview.jpg
+categories:
+  - Spatial Data
+  - GIS
+  - Mapping
+  - Sharing
+  - tidycensus
+  - rdeck
+filters:
+   - lightbox
+lightbox: auto
+execute: 
+  echo: fenced
+  warning: false
+  message: false
+---
+
+## Some Background On This Post
+
+Last week, I shared a semi-lengthy write-up of one of my favorite spatial packages in R. In part, I'd been inspired by an experience I had at RStudio Conference where I realized part of why I don't share is because I thought I didn't have anything worth sharing. Anyway...
+
+**TLDR from last post**: I shared about why `{rdeck}` is great and got a lot of feedback.
+
+Part of that feedback was an interesting request that I'd actually been toying around with the day before. Jon Harmon asked if I'd share what I'd learned by deciding to share.
+
+```{=html}
+<blockquote class="twitter-tweet" data-conversation="none"><p lang="en" dir="ltr">A follow-up blog about the things you learned by posting this would be both meta and cool 😁</p>&mdash; Jon Harmon (he/him) (@JonTheGeek) <a href="https://twitter.com/JonTheGeek/status/1576239033507672064?ref_src=twsrc%5Etfw">October 1, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+```
+
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r load-packages}
+#| code-summary: "**The Code** | Package Setup"
+library(tidyverse)
+library(tidycensus)
+library(viridis)
+library(rdeck)
+library(sf)
+options(tigris_use_cache = TRUE)
+```
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r get-acs-spatial}
+#| code-fold: show
+#| code-summary: "**The Code** | {tidycensus} Call"
+travis <- get_acs(
+  state = "TX",
+  county = "Travis",
+  geography = "tract",
+  variables = "B19013_001",
+  geometry = TRUE,
+  year = 2020
+) |> 
+  st_cast("MULTIPOLYGON") |> 
+  st_transform(crs = st_crs(4326))
+
+glimpse(travis)
+```
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+
+```{r first-map}
+#| column: screen-inset-shaded
+#| code-summary: "**The Code** | {tidycensus} + {rdeck} Map"
+
+travis_map <- rdeck(map_style = mapbox_gallery_minimo(),
+      initial_bounds = travis,
+      controller = TRUE,
+      editor = TRUE,
+      layer_selector = TRUE,
+      theme = "light") |> 
+  add_polygon_layer(data = travis,
+                    visibility_toggle = TRUE,
+                    name = "Median Household Income (by Census Tract)",
+                    opacity = 0.4,
+                    get_polygon = geometry,
+                    tooltip = estimate,
+                    pickable = TRUE,
+                    auto_highlight = TRUE,
+                    wireframe = TRUE,
+                    get_fill_color = scale_color_linear(
+                      col = estimate,
+                      palette = magma(10)
+                    ))
+
+travis_map
+
+```
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r annotated-map}
+#| column: page
+#| fig-height: 7
+#| code-summary: "**The Code** | Annotated Map"
+
+custom_shape <- read_sf("rdeck.geojson")
+
+travis_map |> 
+  add_polygon_layer(data = custom_shape,
+                    name = "Highlighted Area",
+                    opacity = 0.1,
+                    get_polygon = geometry,
+                    # tooltip = estimate,
+                    # pickable = TRUE,
+                    # auto_highlight = TRUE,
+                    # wireframe = TRUE,
+                    get_fill_color = "#5da5da")
+```
+
+## Acknowledgements {.appendix}
+
+Photo by <a href="https://unsplash.com/@devintavery?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Devin Avery</a> on <a href="https://unsplash.com/s/photos/match?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
