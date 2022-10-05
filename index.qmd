@@ -11,6 +11,7 @@ listing:
   filter-ui: false
   categories: true
   type: default
+  feed: true
   fields: [image, date, description, categories, title, author, reading-time]
   field-display-names:
     # title: "Report"

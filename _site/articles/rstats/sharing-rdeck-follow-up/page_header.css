@@ -20,3 +20,17 @@ figcaption {
   background-size:cover !important;
   background-position-y: -10rem !important;
 }
+
+.rdeck.light {
+  background-color: #ffffff !important;
+}
+
+#cb3-5 {
+  font-weight:700;
+  background-color: #FFFDA6;
+}
+
+#cb5-2 {
+  font-weight:700;
+  background-color: #FFFDA6;
+}

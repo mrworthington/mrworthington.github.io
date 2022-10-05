@@ -6,7 +6,7 @@ project:
 website:
   title: "Matt Worthington"
   twitter-card: true
-  site-url: https://mrworthington.com
+  site-url: https://www.mrworthington.com
   open-graph: true
   reader-mode: false
   page-navigation: false
@@ -56,6 +56,8 @@ website:
       - href: https://twitter.com/mrworthington
         icon: twitter
         aria-label: "Link to My Twitter"
+      - icon: rss
+        href: index.xml
 
   # footer:
   #   border: true

@@ -98,11 +98,11 @@ background-size: cover;
 <link rel="stylesheet" href="bio_header.css">
 <meta property="og:title" content="Matt Worthington - About">
 <meta property="og:description" content="Originally from San Antonio, TX, I live in Austin with my wife, Jess, and our family. Currently, I am the Associate Director of Data Science + Analytics at Longevity Partners.">
-<meta property="og:image" content="https://mrworthington.com/bio.jpg">
+<meta property="og:image" content="https://www.mrworthington.com/bio.jpg">
 <meta property="og:site-name" content="Matt Worthington">
 <meta name="twitter:title" content="Matt Worthington - About">
 <meta name="twitter:description" content="Originally from San Antonio, TX, I live in Austin with my wife, Jess, and our family. Currently, I am the Associate Director of Data Science + Analytics at Longevity Partners.">
-<meta name="twitter:image" content="https://mrworthington.com/bio.jpg">
+<meta name="twitter:image" content="https://www.mrworthington.com/bio.jpg">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -143,6 +143,11 @@ background-size: cover;
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://twitter.com/mrworthington"><i class="bi bi-twitter" role="img" aria-label="Link to My Twitter">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="./index.xml"><i class="bi bi-rss" role="img">
 </i> 
  </a>
   </li>  
@@ -285,7 +290,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     });
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var filterRegex = new RegExp(/https:\/\/mrworthington\.com/);
+      var filterRegex = new RegExp(/https:\/\/www\.mrworthington\.com/);
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href);
     }

@@ -121,10 +121,12 @@ cookieconsent.run({
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="home_header.css">
-<meta property="og:title" content="Matt Worthington - Notes From A Spreadsheet">
+<link rel="alternate" type="application/rss+xml" title="Matt Worthington" href="index.xml"><meta property="og:title" content="Matt Worthington - Notes From A Spreadsheet">
+<meta property="og:image" content="https://www.mrworthington.com/articles/rstats/sharing-rdeck-follow-up/page_preview.jpg">
 <meta property="og:site-name" content="Matt Worthington">
 <meta name="twitter:title" content="Matt Worthington - Notes From A Spreadsheet">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.mrworthington.com/articles/rstats/sharing-rdeck-follow-up/page_preview.jpg">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="nav-fixed">
@@ -167,6 +169,11 @@ cookieconsent.run({
 </i> 
  </a>
   </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="./index.xml"><i class="bi bi-rss" role="img">
+</i> 
+ </a>
+  </li>  
 </ul>
               <div id="quarto-search" class="" title="Search"></div>
           </div> <!-- /navcollapse -->
@@ -194,7 +201,7 @@ cookieconsent.run({
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(8)</span></div><div class="category" data-category="Austin">Austin <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Austin Public Health">Austin Public Health <span class="quarto-category-count">(1)</span></div><div class="category" data-category="COVID19">COVID19 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Charter Schools">Charter Schools <span class="quarto-category-count">(2)</span></div><div class="category" data-category="GIS">GIS <span class="quarto-category-count">(1)</span></div><div class="category" data-category="I35">I35 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Independent School Districts">Independent School Districts <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Mapping">Mapping <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Public Data">Public Data <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Public Education">Public Education <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Public Health">Public Health <span class="quarto-category-count">(1)</span></div><div class="category" data-category="School Finance">School Finance <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Spatial Data">Spatial Data <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Texas Education Agency">Texas Education Agency <span class="quarto-category-count">(1)</span></div><div class="category" data-category="US Census Bureau">US Census Bureau <span class="quarto-category-count">(1)</span></div><div class="category" data-category="rdeck">rdeck <span class="quarto-category-count">(1)</span></div><div class="category" data-category="sf">sf <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(9)</span></div><div class="category" data-category="Austin">Austin <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Austin Public Health">Austin Public Health <span class="quarto-category-count">(1)</span></div><div class="category" data-category="COVID19">COVID19 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Charter Schools">Charter Schools <span class="quarto-category-count">(2)</span></div><div class="category" data-category="GIS">GIS <span class="quarto-category-count">(2)</span></div><div class="category" data-category="I35">I35 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Independent School Districts">Independent School Districts <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Mapping">Mapping <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Public Data">Public Data <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Public Education">Public Education <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Public Health">Public Health <span class="quarto-category-count">(1)</span></div><div class="category" data-category="School Finance">School Finance <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Sharing">Sharing <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Spatial Data">Spatial Data <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Texas Education Agency">Texas Education Agency <span class="quarto-category-count">(1)</span></div><div class="category" data-category="US Census Bureau">US Census Bureau <span class="quarto-category-count">(1)</span></div><div class="category" data-category="rdeck">rdeck <span class="quarto-category-count">(2)</span></div><div class="category" data-category="sf">sf <span class="quarto-category-count">(1)</span></div><div class="category" data-category="tidycensus">tidycensus <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
@@ -207,7 +214,60 @@ cookieconsent.run({
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Spatial Data,GIS,Mapping,sf,rdeck" data-listing-date-sort="1664427600000" data-listing-file-modified-sort="1664923222203" data-listing-reading-time-sort="18.26">
+<div class="quarto-post image-right" data-index="0" data-categories="Spatial Data,GIS,Mapping,Sharing,tidycensus,rdeck" data-listing-date-sort="1664859600000" data-listing-file-modified-sort="1664986067613" data-listing-reading-time-sort="13.435">
+<div class="thumbnail">
+<p><a href="./articles/rstats/sharing-rdeck-follow-up/index.html"> <img src="./articles/rstats/sharing-rdeck-follow-up/page_preview.jpg" class="thumnail-image"> </a></p>
+</div>
+<div class="body">
+<a href="./articles/rstats/sharing-rdeck-follow-up/index.html">
+<h3 class="no-anchor listing-title">
+A Follow-Up on Open Sourcing Stuff You Know
+</h3>
+<div class="listing-subtitle">
+
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Spatial Data'); return false;">
+Spatial Data
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('GIS'); return false;">
+GIS
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Mapping'); return false;">
+Mapping
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Sharing'); return false;">
+Sharing
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('tidycensus'); return false;">
+tidycensus
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('rdeck'); return false;">
+rdeck
+</div>
+</div>
+<a href="./articles/rstats/sharing-rdeck-follow-up/index.html">
+<div class="listing-description">
+<p>Last week, I shared about how I use R for spatial workflows on social media and got a lot of feedback. Here’s what I’ve learned, plus some more spatial tips.</p>
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./articles/rstats/sharing-rdeck-follow-up/index.html">
+<div class="listing-date">
+Oct 4, 2022
+</div>
+<div class="listing-author">
+Matt Worthington
+</div>
+<div class="listing-reading-time">
+13 min
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="Spatial Data,GIS,Mapping,sf,rdeck" data-listing-date-sort="1664427600000" data-listing-file-modified-sort="1664923222203" data-listing-reading-time-sort="18.26">
 <div class="thumbnail">
 <p><a href="./articles/rstats/mapping-in-r/index.html"> <img src="./articles/rstats/mapping-in-r/andrew-neel-1-29wyvvLJA-unsplash-2.jpg" class="thumnail-image"> </a></p>
 </div>
@@ -257,7 +317,7 @@ Matt Worthington
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="COVID19,Public Health,Austin Public Health,I35,Austin,Public Data" data-listing-date-sort="1597294800000" data-listing-file-modified-sort="1648868770337" data-listing-reading-time-sort="9.965">
+<div class="quarto-post image-right" data-index="2" data-categories="COVID19,Public Health,Austin Public Health,I35,Austin,Public Data" data-listing-date-sort="1597294800000" data-listing-file-modified-sort="1648868770337" data-listing-reading-time-sort="9.965">
 <div class="thumbnail">
 <p><a href="./articles/public_health/covid_atx/covid_atx_analysis.html"> <img src="./articles/public_health/covid_atx/ryan-magsino-sohLeI-k-HU-unsplash.jpg" class="thumnail-image"> </a></p>
 </div>
@@ -310,7 +370,7 @@ Matt Worthington
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="School Finance,Public Education,Charter Schools,US Census Bureau" data-listing-date-sort="1522213200000" data-listing-file-modified-sort="1648865344670" data-listing-reading-time-sort="25">
+<div class="quarto-post image-right" data-index="3" data-categories="School Finance,Public Education,Charter Schools,US Census Bureau" data-listing-date-sort="1522213200000" data-listing-file-modified-sort="1648865344670" data-listing-reading-time-sort="25">
 <div class="thumbnail">
 <p><a href="./articles/school_finance/school-finance-analysis/school_finance_viz_us.html"> <img src="./articles/school_finance/school-finance-analysis/isabella-and-louisa-fischer-uSPjZzYwXO4-unsplash.jpg" class="thumnail-image"> </a></p>
 </div>
@@ -357,7 +417,7 @@ Matt Worthington
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="School Finance,Public Education,Texas Education Agency,Independent School Districts,Charter Schools" data-listing-date-sort="1521608400000" data-listing-file-modified-sort="1648782117810" data-listing-reading-time-sort="5.035">
+<div class="quarto-post image-right" data-index="4" data-categories="School Finance,Public Education,Texas Education Agency,Independent School Districts,Charter Schools" data-listing-date-sort="1521608400000" data-listing-file-modified-sort="1648782117810" data-listing-reading-time-sort="5.035">
 <div class="thumbnail">
 <p><a href="./articles/school_finance/public-ed-testimony/public_ed_testimony.html"> <img src="./articles/school_finance/public-ed-testimony/meggyn-pomerleau-2SGDohBsYPg-unsplash-2.jpg" class="thumnail-image"> </a></p>
 </div>
@@ -407,7 +467,7 @@ Matt Worthington
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="4" data-listing-date-sort="1512540000000" data-listing-file-modified-sort="1657905683978" data-listing-reading-time-sort="13.935">
+<div class="quarto-post image-right" data-index="5" data-listing-date-sort="1512540000000" data-listing-file-modified-sort="1657905683978" data-listing-reading-time-sort="13.935">
 <div class="thumbnail">
 <p><a href="./articles/school_finance/all_about_racism/all_about_racism.html"> <img src="./articles/school_finance/all_about_racism/IMG_0028-e1512660939350.jpg" class="thumnail-image"> </a></p>
 </div>
@@ -438,7 +498,7 @@ Matt Worthington, Bekah McKneel
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="5" data-listing-date-sort="1511935200000" data-listing-file-modified-sort="1648866315694" data-listing-reading-time-sort="6.775">
+<div class="quarto-post image-right" data-index="6" data-listing-date-sort="1511935200000" data-listing-file-modified-sort="1648866315694" data-listing-reading-time-sort="6.775">
 <div class="thumbnail">
 <p><a href="./articles/school_finance/edgewood_fend_for_itself/edgewood_fend_for_itself.html"> <img src="./articles/school_finance/edgewood_fend_for_itself/edgewood1800.jpg" class="thumnail-image"> </a></p>
 </div>
@@ -469,7 +529,7 @@ Matt Worthington
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="6" data-listing-date-sort="1511330400000" data-listing-file-modified-sort="1648867681865" data-listing-reading-time-sort="9.49">
+<div class="quarto-post image-right" data-index="7" data-listing-date-sort="1511330400000" data-listing-file-modified-sort="1648867681865" data-listing-reading-time-sort="9.49">
 <div class="thumbnail">
 <p><a href="./articles/school_finance/how_sa_segregated_schools/how_sa_segregated_schools.html"> <img src="./articles/school_finance/how_sa_segregated_schools/HOLC_San_Antonio_City_Survey_Report_1_Exhibit_B_Racial_Concentrations_2.jpg" class="thumnail-image"> </a></p>
 </div>
@@ -500,7 +560,7 @@ Matt Worthington
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="7" data-listing-date-sort="1510120800000" data-listing-file-modified-sort="1648866307436" data-listing-reading-time-sort="6.63">
+<div class="quarto-post image-right" data-index="8" data-listing-date-sort="1510120800000" data-listing-file-modified-sort="1648866307436" data-listing-reading-time-sort="6.63">
 <div class="thumbnail">
 <p><a href="./articles/school_finance/why_americans_have_no_right_to_education/why_americans_have_no_right_to_education.html"> <img src="./articles/school_finance/why_americans_have_no_right_to_education/fullsizeoutput_77ff.jpg" class="thumnail-image"> </a></p>
 </div>
@@ -633,7 +693,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     });
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var filterRegex = new RegExp(/https:\/\/mrworthington\.com/);
+      var filterRegex = new RegExp(/https:\/\/www\.mrworthington\.com/);
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href);
     }

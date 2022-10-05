@@ -1,5 +1,5 @@
 ---
-title: "A Follow-Up on Open Sourcing Knowledge"
+title: "A Follow-Up on Open Sourcing Stuff You Know"
 description: |
   Last week, I shared about how I use R for spatial workflows on social media and got a lot of feedback. Here's what I've learned, plus some more spatial tips.
 author:
@@ -7,7 +7,6 @@ author:
     url: https://twitter.com/mrworthington
 date: 2022-10-04
 page-layout: full
-draft: true
 format:
   html:
     date_format: medium
@@ -38,38 +37,65 @@ execute:
 
 ## Some Background On This Post
 
-Last week, I shared a semi-lengthy write-up of one of my favorite spatial packages in R. In part, I'd been inspired by an experience I had at RStudio Conference where I realized part of why I don't share is because I thought I didn't have anything worth sharing. Anyway...
+Last week, I shared a semi-lengthy write-up of one of my favorite spatial packages in R. In part, I'd been inspired by an experience I had at RStudio/[Posit](https://posit.co) Conference where I realized part of why I don't share is because I thought I didn't have anything worth sharing. For fear of rehashing the entire post, **here's the TLDR from last post**: I shared about why `{rdeck}` is great and got a lot of great feedback.
 
-**TLDR from last post**: I shared about why `{rdeck}` is great and got a lot of feedback.
-
-Part of that feedback was an interesting request that I'd actually been toying around with the day before. Jon Harmon asked if I'd share what I'd learned by deciding to share.
+Part of that feedback was an interesting request that I'd actually been toying around with the day before. Jon Harmon asked if I'd share what I'd learned by deciding to share. Well, let's get into that.
 
 ```{=html}
 <blockquote class="twitter-tweet" data-conversation="none"><p lang="en" dir="ltr">A follow-up blog about the things you learned by posting this would be both meta and cool 😁</p>&mdash; Jon Harmon (he/him) (@JonTheGeek) <a href="https://twitter.com/JonTheGeek/status/1576239033507672064?ref_src=twsrc%5Etfw">October 1, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 ```
+## General Stuff I Learned
 
+##### The R Community is Freaking Amazing
 
-## Running Code
+The first thing I learned was really a reminder, which is how supportive and inclusive the [#rstats](https://twitter.com/hashtag/rstats) community is. Not kidding. I think, at times, I came to believe I didn't have a place in contributing to the greater R community simply because I didn't grow up as a quant-person. In fact, I grew up really poor and, even though I went to college, I majored in English[^1].
 
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+[^1]: Fun Fact. My brother was the quant person. He has an actual degree in mathematics.
+
+So, part of the thing that has kept me from sharing is thinking I didn't qualify. It's not entirely crazy to feel that way, TBH. Just within the [#rstats](https://twitter.com/hashtag/rstats) community, there's people like [Hadley Wickham](https://twitter.com/hadleywickham), [Yihui Xie](https://twitter.com/xieyihui), [Julia Silge](https://twitter.com/juliasilge), [Jenny Bryan](https://twitter.com/JennyBryan), [Thomas Lin Pedersen](https://twitter.com/thomasp85), [Alison Presmanes Hill](https://twitter.com/apreshill), [Mine Çetinkaya-Rundel](https://twitter.com/minebocek), [Edzer Pebesma](https://twitter.com/edzerpebesma), [Kyle Walker](https://twitter.com/kyle_e_walker), [Bob Rudis](https://twitter.com/hrbrmstr), [David Robinson](https://twitter.com/drob), [Danielle Navarro](https://twitter.com/djnavarro), [Gabriela de Queiroz](https://twitter.com/gdequeiroz), and [Tom Mock](https://twitter.com/thomas_mock).
+
+So, if you don't come from a quant background like me, it's not entirely crazy to feel like a fish out of water when you're learning from these folks and, let's be clear, I've learned *a ton* from these folks. They are all unique talents and most have got some kind of formal education or training that's quant-oriented.
+
+And, yet... part of the incredible success of R as a language is how ridiculously inclusive everyone is (folks above included). And that act of inclusion, IMO, is sharing. It's all these people with incredible knowledge figuring out how to share it and make it accessible. It's doing the work of translating knowledge to anyone that wants to learn.
+
+Anyway, I was reminded of just how awesome the R community is online. And I learned that sharing is part of the way you join what makes R awesome, even if you don't think you'd make the cut in a game of pick-up.
+
+##### Others Learn When You Share
+
+To that end, I also learned people learn from you. As a former middle school teacher, it was slightly reassuring to be like, "Oh yeah, I can teach stuff effectively." 😂 Not only were people online learning from the post, but one of my colleagues who just started learning R used it as a way to get their feet wet with Quarto/Rmarkdown docs. And, to my surprise, they were making their own version of the `{rdeck}` map I made in the last post!
+
+##### You Learn A Ton When You Share
+
+The last thing I learned was more about the workflow I described. [Anthony North](https://twitter.com/anthonyjlnorth) and [Miles McBain](https://twitter.com/MilesMcBain) both chimed in with really great bits of information that either clarified or added to what I knew about `{rdeck}`. So, in the spirit of sharing, here's some of that stuff. But instead of using the same map I used last time, I thought it might be good to place the other things I learned in the context of `{tidycensus}`.
+
+## Map Stuff I Learned
+
+### First of all, `{tidycensus}`
+
+I didn't actually learn about `{tidycensus}` through sharing the last post, but it's another incredible asset in my own spatial workflow. Part of that is because I went to grad school for public policy in the US and working with data from the US Census Bureau was...
+
+1.  Something I wanted to be good at
+
+2.  A slight nightmare to work with. Especially if it involved making maps or doing any kind of spatial analysis.
+
+It's hard to overstate how much Kyle Walker's `{tidycensus}` addressed both of those in the best way possible. Let me show you how. First things first, let's load the packages.
 
 ```{r load-packages}
 #| code-summary: "**The Code** | Package Setup"
-library(tidyverse)
-library(tidycensus)
-library(viridis)
-library(rdeck)
-library(sf)
-options(tigris_use_cache = TRUE)
+library(tidyverse)     # Loads core tidyverse tools
+library(tidycensus)    # Loads tools to pull census data
+library(viridis)       # Loads color palettes I use w/ {rdeck}
+library(rdeck)         # Loads rdeck library
+library(sf)            # Loads core spatial tools
+options(tigris_use_cache = TRUE) # Caches data we pull from tidycensus to speed up recalls
 ```
 
-## Running Code
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+Now that `{tidycensus}` is loaded, we can start pulling census data as long as you've already got your API Key from the US Census. Fortunately, Kyle's got [a great tutorial](https://walker-data.com/tidycensus/articles/basic-usage.html) for this on his `{tidycensus}` website. Using [the spatial example on his website](https://walker-data.com/tidycensus/articles/spatial-data.html), I'm going to download some tract-level census data from the latest 2020 ACS Estimates and then get the spatial data to go along with it. The exception here is that I'm going to focus on Travis County (Austin), where I live, instead of Harris County (Houston). [No shade to Houston, though. The humidity's so thick there it feels like someone's always breathing on you during the summer, but I otherwise love Houston and think it's an amazing city. Anyway, data...]{.aside}
 
 ```{r get-acs-spatial}
 #| code-fold: show
 #| code-summary: "**The Code** | {tidycensus} Call"
+
 travis <- get_acs(
   state = "TX",
   county = "Travis",
@@ -78,31 +104,94 @@ travis <- get_acs(
   geometry = TRUE,
   year = 2020
 ) |> 
-  st_cast("MULTIPOLYGON") |> 
   st_transform(crs = st_crs(4326))
-
-glimpse(travis)
 ```
 
-## Running Code
+Alright, so what happened? Well, we got data for every single census tract's Median Household Income in Travis County. A snapshot of that data is shown in the output below, but wait... what's that `st_transform()` thing about in the chunk above?
 
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+Well, if you take a look at the bold/highlighted text below, you notice that our CRS reads "WGS 84". I've done that because we're going to map polygons and `{rdeck}` [requires](https://github.com/qfes/rdeck/blob/2588a0bd8805248fec545bc321c20978122f3a64/R/controls.R) polygons to have a CRS of "WGS 84" and not "NAD 83" (which is what comes out of `{tidycensus}`). [**CRS** = [Coordinate Reference System](https://en.wikipedia.org/wiki/Spatial_reference_system)]{.aside} You don't need to know the technical details to use it, but you're more than welcome to [learn more about it](https://askanydifference.com/difference-between-wgs84-and-nad83-with-table/).
 
+``` r
+Simple feature collection with 6 features and 5 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: -97.77649 ymin: 30.18394 xmax: -97.644 ymax: 30.32954
+Geodetic CRS:  WGS 84
+        GEOID                                     NAME   variable estimate
+1 48453002201 Census Tract 22.01, Travis County, Texas B19013_001    57803
+2 48453000304  Census Tract 3.04, Travis County, Texas B19013_001    80000
+3 48453001307 Census Tract 13.07, Travis County, Texas B19013_001    76009
+4 48453002105 Census Tract 21.05, Travis County, Texas B19013_001    40811
+5 48453002413 Census Tract 24.13, Travis County, Texas B19013_001    45462
+6 48453000801  Census Tract 8.01, Travis County, Texas B19013_001    83958
+```
 
-```{r first-map}
-#| column: screen-inset-shaded
-#| code-summary: "**The Code** | {tidycensus} + {rdeck} Map"
+So, now, I've got my spatial data and want to map it. Well, one thing I thought would be great is trying to replicate a ggplot2-style map. I know I could use `{ggiraph}` (another amazing package I'll write about at some point), but I wanted to make something that feels like a `{ggplot2}` map made with `geom_sf()`, but interactive. I also learned that `{rdeck}` was [partly inspired](https://twitter.com/milesmcbain/status/1575998062492647424?s=46&t=3Liwezy7A57fcjibJEeH1Q) by `{ggplot2}`. To get that feel with `{rdeck}`, you can set the `map_style` argument to `NULL` and `controller=FALSE` get something similar to that ggplot2-style map.
 
-travis_map <- rdeck(map_style = mapbox_gallery_minimo(),
+```{r tidycensus-map}
+#| column: page
+#| fig-height: 7
+#| code-summary: "**The Code** | {tidycensus} ggplot-style  Map"
+
+travis_map <- rdeck(map_style = NULL,
       initial_bounds = travis,
-      controller = TRUE,
-      editor = TRUE,
-      layer_selector = TRUE,
+      controller = FALSE,
       theme = "light") |> 
   add_polygon_layer(data = travis,
                     visibility_toggle = TRUE,
                     name = "Median Household Income (by Census Tract)",
-                    opacity = 0.4,
+                    opacity = 0.9,
+                    get_polygon = geometry,
+                    tooltip = estimate,
+                    pickable = TRUE,
+                    auto_highlight = TRUE,
+                    get_fill_color = scale_color_linear(
+                      col = estimate,
+                      palette = magma(10)
+                    ))
+
+travis_map
+
+```
+
+### A Simpler Bounding Box Method
+
+In the last map, I talked about using [a fairly complicated function](https://www.mrworthington.com/articles/rstats/mapping-in-r/#adding-a-bounding-box) to get a bounding box. One of the things Anthony clarified is that you can just pass a spatial object of `st_bbox`, `sf`, or `sfc` class. This means we can just pass the `travis` object we created with `{tidycensus}` and pass it to the `initial_bounds` argument (second line in the code below). Amazing.
+
+``` r
+travis_map <- rdeck(map_style = NULL,
+      initial_bounds = travis,
+      controller = FALSE,
+      theme = "light") |> 
+  add_polygon_layer(data = travis,
+                    visibility_toggle = TRUE,
+                    name = "Median Household Income (by Census Tract)",
+                    opacity = 0.9,
+                    get_polygon = geometry,
+                    tooltip = estimate,
+                    pickable = TRUE,
+                    auto_highlight = TRUE,
+                    get_fill_color = scale_color_linear(
+                      col = estimate,
+                      palette = magma(10)
+                    ))
+```
+
+```{r first-map}
+#| echo: false
+#| include: false
+#| eval: true
+#| code-summary: "**The Code** | {tidycensus} + {rdeck} Map"
+
+travis_map <- rdeck(map_style = NULL,
+      initial_bounds = travis,
+      controller = FALSE,
+      editor = TRUE,
+      theme = "light") |> 
+  add_polygon_layer(data = travis,
+                    visibility_toggle = TRUE,
+                    name = "Median Household Income (by Census Tract)",
+                    opacity = 0.9,
                     get_polygon = geometry,
                     tooltip = estimate,
                     pickable = TRUE,
@@ -117,9 +206,15 @@ travis_map
 
 ```
 
-## Running Code
+### Annotating`{rdeck}` with the `{rdeck}` editor
 
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+One really amazing thing I didn't realize is that `{rdeck}` has an editor built-in. The editor can be turned on by setting `editor=TRUE` in the main `rdeck()` function. Miles McBain pointed out that you can use this with shiny for filtering spatial data and any linked data in-app. That sounds very useful, but I also think you can use it for creating custom annotations to spatial maps if you want to call out a particular area on maps you regularly make.
+
+This sounds simple enough, but spatial annotations can be pretty difficult without a tool like this where you can see the area you're trying to highlight on a map. Take a look at the GIF below to see how it works.
+
+![Drawing with the built-in {rdeck} editor](rdeck_download.gif){fig-alt="GIF showing how you select a \"Draw polygon\" tool from the editor menu, draw the polygon over a northeastern section of Travis County, and then save it as a .geojson file" fig-align="center" width="100%"}
+
+In short, you click on the tool you want (in my case a polygon), then you can draw with the tool, and once you're done, `{rdeck}` saves it as a ".geojson" file which can be read back into R using `read_sf()` and now you can add that spatial object onto your map as an annotation. The code chunk below does just that. Pretty great, huh?
 
 ```{r annotated-map}
 #| column: page
@@ -133,12 +228,10 @@ travis_map |>
                     name = "Highlighted Area",
                     opacity = 0.1,
                     get_polygon = geometry,
-                    # tooltip = estimate,
-                    # pickable = TRUE,
-                    # auto_highlight = TRUE,
-                    # wireframe = TRUE,
                     get_fill_color = "#5da5da")
 ```
+
+Anyway, enjoy digging more into `{rdeck}` (and `{tidycensus}`). Hope you find new stuff and write about it! Doesn't even have to be a blog. Could just be twitter.
 
 ## Acknowledgements {.appendix}
 
