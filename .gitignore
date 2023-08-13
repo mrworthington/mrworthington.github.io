@@ -10,3 +10,8 @@ README.html
 .RData 3
 ignore
 /.quarto/
+articles/rstats/gnarly-data-arrow-sql-duckdb/raw_data/ipums_export.parquet
+palmerpenguins.csv
+.RData 2
+palmerpenguins.csv
+.RData 2
