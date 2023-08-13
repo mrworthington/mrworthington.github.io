@@ -1,7 +1,11 @@
 project:
   type: site
+  render:
+    - "*.qmd"
+    - "!ignore/"
   resources:
     - "*.xlsx"
+
 
 website:
   title: "Matt Worthington"

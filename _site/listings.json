@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/articles/rstats/gnarly-data-arrow-sql-duckdb/index.html",
       "/articles/rstats/sharing-rdeck-follow-up/index.html",
       "/articles/rstats/mapping-in-r/index.html",
       "/articles/public_health/covid_atx/covid_atx_analysis.html",

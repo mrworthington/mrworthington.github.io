@@ -178,6 +178,9 @@ div.quarto-post .listing-categories .listing-category {
   font-family: "Ringside Narrow SSm A", "Ringside Narrow SSm B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
+.quarto-title-banner .code-tools-button:hover {
+color: #fff;
+}
 // Callout Styles
 
 .callout.callout-style-simple .callout-body {
@@ -590,7 +593,7 @@ body {
 .figure-img {
   margin-bottom: .5rem;
   line-height: 1;
-  width: 40%;
+  width: 100%;
 }
 
 figcaption{

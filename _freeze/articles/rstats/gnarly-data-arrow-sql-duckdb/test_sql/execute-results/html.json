@@ -1,0 +1,14 @@
+{
+  "hash": "5b22be38ca730cf977810c6a559b26f9",
+  "result": {
+    "markdown": "---\ntitle: \"Use external SQL file for SQL chunks\"\noutput: html_document\n---\n\n\nIn order to provide a reproducible example, we use dplyr and dbplyr with `tbl_memdb` to load a table into a memory db.\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(dplyr)\n```\n\n::: {.cell-output .cell-output-stderr}\n```\n\nAttaching package: 'dplyr'\n```\n:::\n\n::: {.cell-output .cell-output-stderr}\n```\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n```\n:::\n\n::: {.cell-output .cell-output-stderr}\n```\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n```\n:::\n\n```{.r .cell-code}\nlibrary(dbplyr)\n```\n\n::: {.cell-output .cell-output-stderr}\n```\n\nAttaching package: 'dbplyr'\n```\n:::\n\n::: {.cell-output .cell-output-stderr}\n```\nThe following objects are masked from 'package:dplyr':\n\n    ident, sql\n```\n:::\n\n```{.r .cell-code}\niris_db <- tbl_memdb(iris)\n# we isolate the connection object \ncon <- src_memdb()$con\n```\n:::\n\n\nWe check that it works with SQL chunk to filter data into an R object\n\n\n::: {.cell output.var='setosa'}\n\n```{.sql .cell-code}\nSELECT * FROM iris WHERE Species == \"setosa\"\n```\n:::\n\n\nThe object `setosa` exists\n\n\n::: {.cell}\n\n```{.r .cell-code}\nglimpse(setosa)\n```\n\n::: {.cell-output .cell-output-stdout}\n```\nRows: 50\nColumns: 5\n$ Sepal.Length <dbl> 5.1, 4.9, 4.7, 4.6, 5.0, 5.4, 4.6, 5.0, 4.4, 4.9, 5.4, 4.…\n$ Sepal.Width  <dbl> 3.5, 3.0, 3.2, 3.1, 3.6, 3.9, 3.4, 3.4, 2.9, 3.1, 3.7, 3.…\n$ Petal.Length <dbl> 1.4, 1.4, 1.3, 1.5, 1.4, 1.7, 1.4, 1.5, 1.4, 1.5, 1.5, 1.…\n$ Petal.Width  <dbl> 0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.3, 0.2, 0.2, 0.1, 0.2, 0.…\n$ Species      <chr> \"setosa\", \"setosa\", \"setosa\", \"setosa\", \"setosa\", \"setosa…\n```\n:::\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
