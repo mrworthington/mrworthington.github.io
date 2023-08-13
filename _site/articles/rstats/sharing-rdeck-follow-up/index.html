@@ -377,7 +377,7 @@ cookieconsent.run({
 <p>One really amazing thing I didn’t realize is that <a href="https://qfes.github.io/rdeck">rdeck</a> has an editor built-in. The editor can be turned on by setting <code>editor=TRUE</code> in the main <code>rdeck()</code> function. Miles McBain pointed out that you can use this with shiny for filtering spatial data and any linked data in-app. That sounds very useful, but I also think you can use it for creating custom annotations to spatial maps if you want to call out a particular area on maps you regularly make.</p>
 <p>This sounds simple enough, but spatial annotations can be pretty difficult without a tool like this where you can see the area you’re trying to highlight on a map. Take a look at the GIF below to see how it works.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="rdeck_download.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Drawing with the built-in {rdeck} editor"><img src="rdeck_download.gif" class="img-fluid figure-img" style="width:100.0%" alt="GIF showing how you select a &quot;Draw polygon&quot; tool from the editor menu, draw the polygon over a northeastern section of Travis County, and then save it as a .geojson file"></a></p>
+<figure class="figure"><p><a href="rdeck_download.gif" class="lightbox" title="Drawing with the built-in {rdeck} editor" data-gallery="quarto-lightbox-gallery-1"><img src="rdeck_download.gif" class="img-fluid figure-img" style="width:100.0%" alt="GIF showing how you select a &quot;Draw polygon&quot; tool from the editor menu, draw the polygon over a northeastern section of Travis County, and then save it as a .geojson file"></a></p>
 <figcaption class="figure-caption">Drawing with the built-in {rdeck} editor</figcaption></figure>
 </div>
 <p>In short, you click on the tool you want (in my case a polygon), then you can draw with the tool, and once you’re done, <a href="https://qfes.github.io/rdeck">rdeck</a> saves it as a “.geojson” file which can be read back into R using <code>read_sf()</code> and now you can add that spatial object onto your map as an annotation. The code chunk below does just that. Pretty great, huh?</p>
@@ -959,7 +959,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"loop":true,"selector":".lightbox","openEffect":"zoom","descPosition":"bottom","closeEffect":"zoom"});</script>
+</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","descPosition":"bottom","openEffect":"zoom","loop":true});</script>
 
 
 </body></html>
