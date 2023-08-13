@@ -5,11 +5,10 @@ description: |
 author:
   - name: Matt Worthington 
     url: https://twitter.com/mrworthington
-date: 2023-08-10
+date: 2023-08-13
 page-layout: full
 format:
   html:
-    embed-resources: true
     date_format: medium
     css: page_header.css
     fig-width: 8
